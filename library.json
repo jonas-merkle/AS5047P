@@ -1,0 +1,26 @@
+{
+    "name": "AS5047P",
+    "keywords": "AS5047P, sensor, arduino",
+    "description": "An Arduino library for the AS5047P high-resolution rotary position sensor.",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/jonas-merkle/AS5047P.git"
+    },
+    "authors":
+    [
+        {
+            "name": "Jonas Merkle [JJM]",
+            "email": "jonas@jjm.one",
+            "maintainer": true
+        }
+    ],
+    "dependencies":
+    {
+        "name": "SPI",
+        "frameworks": "arduino"
+    },
+    "version": "1.0.0",
+    "frameworks": "arduino",
+    "platforms": "*"
+}
