@@ -53,16 +53,20 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class PROG_t
+     * @brief Provides a representation of the programming register register of the AS5047P.
+     */
     class PROG_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t PROGEN:1;
-            uint16_t OTPREF:1;
-            uint16_t PROGOTP:1;
-            uint16_t PROGVER:1;
+            uint16_t PROGEN:1;      ///< Program OTP enable: enables programming the entire OTP memory.
+            uint16_t OTPREF:1;      ///< Refreshes the non-volatile memory content with the OTP programmed content.
+            uint16_t PROGOTP:1;     ///< Start OTP programming cycle.
+            uint16_t PROGVER:1;     ///< Program verify: must be set to 1 for verifying the correctness of the OTP programming.
 
         } PROG_values_t;
 
@@ -92,17 +96,21 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class DIAAGC_t
+     * @brief Provides a representation of the diagnostic and AGC register of the AS5047P.
+     */
     class DIAAGC_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t AGC:8;
-            uint16_t LF:1;
-            uint16_t COF:1;
-            uint16_t MAGH:1;
-            uint16_t MAGL:1;
+            uint16_t AGC:8;     ///< Automatic gain control value.
+            uint16_t LF:1;      ///< Diagnostics: Offset compensation LF=0:internal offset loops not ready regulated LF=1:internal offset loop finished.
+            uint16_t COF:1;     ///< Diagnostics: CORDIC overflow.
+            uint16_t MAGH:1;    ///< Diagnostics: Magnetic field strength too high; AGC=0x00.
+            uint16_t MAGL:1;    ///< Diagnostics: Magnetic field strength too low; AGC=0xFF.
 
         } DIAAGC_values_t;
 
@@ -132,13 +140,17 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class MAG_t
+     * @brief Provides a representation of the CORDIC magnitude register of the AS5047P.
+     */
     class MAG_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t CMAG:14;
+            uint16_t CMAG:14;       ///< CORDIC magnitude information.
 
         } MAG_values_t;
 
@@ -168,13 +180,17 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class ANGLEUNC_t
+     * @brief Provides a representation of the measured angle without dynamic angle error compensation register of the AS5047P.
+     */
     class ANGLEUNC_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t CORDICANG:14;
+            uint16_t CORDICANG:14;      ///< Angle information without dynamic angle error compensation.
 
         } ANGLEUNC_values_t;
 
@@ -204,13 +220,17 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class ANGLECOM_t
+     * @brief Provides a representation of the measured angle with dynamic angle error compensation register of the AS5047P.
+     */
     class ANGLECOM_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t DAECANG:14;
+            uint16_t DAECANG:14;        ///< Angle information with dynamic angle error compensation.
 
         } ANGLECOM_values_t;
 
@@ -244,13 +264,17 @@ namespace AS5047P_types {
 
     // Non-Volatile Registers --------------------------------------
 
+    /**
+     * @class ZPOSM_t
+     * @brief Provides a representation of the zero position MSB register of the AS5047P.
+     */
     class ZPOSM_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t ZPOSM:8;
+            uint16_t ZPOSM:8;       ///< 8 most significant bits of the zero position.
 
         } ZPOSM_values_t;
 
@@ -280,15 +304,19 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class ZPOSL_t
+     * @brief Provides a representation of the zero position LSB /MAG diagnostic register of the AS5047P.
+     */
     class ZPOSL_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t ZPOSL:6;
-            uint16_t comp_l_error_en:1;
-            uint16_t comp_h_error_en:1;
+            uint16_t ZPOSL:6;               ///< 6 least significant bits of the zero position.
+            uint16_t comp_l_error_en:1;     ///< This bit enables the contribution of MAGH (Magnetic field strength too high) to the error flag.
+            uint16_t comp_h_error_en:1;     ///< This bit enables the contribution of MAGL (Magnetic field strength too low) to the error flag.
 
         } ZPOSL_values_t;
 
@@ -318,20 +346,24 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class SETTINGS1_t
+     * @brief Provides a representation of the custom setting register 1 of the AS5047P.
+     */
     class SETTINGS1_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t FactorySetting:1;
-            uint16_t NOISESET:1;
-            uint16_t DIR:1;
-            uint16_t UVW_ABI:1;
-            uint16_t DAECDIS:1;
-            uint16_t ABIBIN:1;
-            uint16_t Dataselect:1;
-            uint16_t PWMon:1;
+            uint16_t FactorySetting:1;  ///< Pre-Programmed to 1.
+            uint16_t NOISESET:1;        ///< Noise settings.
+            uint16_t DIR:1;             ///< Rotation direction.
+            uint16_t UVW_ABI:1;         ///< Defines the PWM Output (0 = ABI is operating, W is used as PWM 1 = UVW is operating, I is used as PWM).
+            uint16_t DAECDIS:1;         ///< Disable Dynamic Angle Error Compensation (0 = DAE compensation ON, 1 = DAE compensation OFF).
+            uint16_t ABIBIN:1;          ///< ABI decimal or binary selection of the ABI pulses per revolution.
+            uint16_t Dataselect:1;      ///< This bit defines which data can be read form address 16383dec (3FFFhex). 0->DAECANG 1->CORDICANG.
+            uint16_t PWMon:1;           ///< Enables PWM (setting of UVW_ABI Bit necessary).
 
         } SETTINGS1_values_t;
 
@@ -361,19 +393,23 @@ namespace AS5047P_types {
 
     };
 
+    /**
+     * @class SETTINGS2_t
+     * @brief Provides a representation of the custom setting register 2 of the AS5047P.
+     */
     class SETTINGS2_t {
 
     public:
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t UVWPP:3;
-            uint16_t HYS:2;
-            uint16_t ABIRES:3;
+            uint16_t UVWPP:3;       ///< UVW number of pole pairs (000 = 1, 001 = 2, 010 = 3, 011 = 4, 100 = 5, 101 = 6, 110 = 7, 111 = 7).
+            uint16_t HYS:2;         ///< Hysteresis setting.
+            uint16_t ABIRES:3;      ///<  Resolution of ABI.
 
         } SETTINGS2_values_t;
 
-        static const uint16_t REG_ADDRESS = 0x3FFD;     ///< Register address.
+        static const uint16_t REG_ADDRESS = 0x0019;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
         
         SETTINGS2_values_t values;      ///< Register values.
