@@ -39,13 +39,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> ERRFL_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -82,13 +82,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> PROG_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -126,13 +126,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> DIAAGC_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -166,13 +166,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> MAG_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -206,13 +206,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> ANGLEUNC_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -246,13 +246,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> ANGLECOM_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -290,13 +290,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> ZPOSM_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -332,13 +332,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> ZPOSL_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -379,13 +379,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> SETTINGS1_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
@@ -421,13 +421,13 @@ namespace AS5047P_types {
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A byte containing the raw data.
+         * @param raw Two bytes containing the raw data.
          * @return A new value struct.
          */
         static auto RawToValues(uint16_t raw) -> SETTINGS2_values_t;
 
         /**
-         * Converts a value struct into a byte containing the raw data.
+         * Converts a value struct into two bytes containing the raw data.
          * @param values A value struct.
          * @return A new byte containing the raw data.
          */
