@@ -3,9 +3,13 @@
 
 #include <inttypes.h>
 
-#define AS5047P_TYPES_WRITE_CMD 0
-#define AS5047P_TYPES_READ_CMD 1
+#define AS5047P_TYPES_WRITE_CMD 0       ///< Write command flag.
+#define AS5047P_TYPES_READ_CMD 1        ///< Read command flag.
 
+/**
+ * @namespace AS5047P_types
+ * @brief The namespace for all custom types needed for the AS5047P sensor.
+ */
 namespace AS5047P_types {
 
     // SPI Frames --------------------------------------------------
