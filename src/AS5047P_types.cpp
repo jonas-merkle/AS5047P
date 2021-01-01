@@ -1,11 +1,111 @@
 #include "AS5047P_types.h"
 
+#include "AS5047P_Util.h"
+
 namespace AS5047P_types {
+
+    // SPI Frames --------------------------------------------------
+
+    SPI_Command_Frame_t::SPI_Command_Frame_t(uint16_t raw) {
+        values = SPI_Command_Frame_t::RawToValues(raw);
+    }
+
+    SPI_Command_Frame_t::SPI_Command_Frame_t(uint16_t ADDR, uint16_t RW) {
+        values = {
+            .ADDR = ADDR,
+            .RW = RW,
+            .PARC = 0
+        };
+
+        values.PARC = AS5047P_Util::isEven(SPI_Command_Frame_t::ValuesToRaw(values));
+    }
+
+    auto SPI_Command_Frame_t::RawToValues(const uint16_t raw) -> SPI_Command_Frame_t::SPI_Command_Frame_values_t {
+        return {
+            .ADDR = (uint16_t) ((raw & 0x3FFF) >> 0),
+            .RW = (uint16_t) ((raw & 0x4000) >> 14),
+            .PARC = (uint16_t) ((raw & 0x8000) >> 15) 
+        };
+    }
+
+    auto SPI_Command_Frame_t::ValuesToRaw(const SPI_Command_Frame_t::SPI_Command_Frame_values_t values) -> uint16_t {
+        return (
+            (values.ADDR << 0) +
+            (values.RW << 14) +
+            (values.PARC << 15)
+        );
+    }
+
+    SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(uint16_t raw) {
+        values = SPI_ReadData_Frame_t::RawToValues(raw);
+    }
+
+    SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(uint16_t DATA, uint16_t EF) {
+        values = {
+            .DATA = DATA,
+            .EF = EF,
+            .PARD = 0
+        };
+
+        values.PARD = AS5047P_Util::isEven(SPI_ReadData_Frame_t::ValuesToRaw(values));
+    }
+
+    auto SPI_ReadData_Frame_t::RawToValues(const uint16_t raw) -> SPI_ReadData_Frame_t::SPI_ReadData_Frame_values_t {
+        return {
+            .DATA = (uint16_t) ((raw & 0x3FFF) >> 0),
+            .EF = (uint16_t) ((raw & 0x4000) >> 14),
+            .PARD = (uint16_t) ((raw & 0x8000) >> 15) 
+        };
+    }
+
+    auto SPI_ReadData_Frame_t::ValuesToRaw(const SPI_ReadData_Frame_t::SPI_ReadData_Frame_values_t values) -> uint16_t {
+        return (
+            (values.DATA << 0) +
+            (values.EF << 14) +
+            (values.PARD << 15)
+        );
+    }
+
+    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(uint16_t raw) {
+        values = SPI_WriteData_Frame_t::RawToValues(raw);
+    }
+
+    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(uint16_t DATA, uint16_t NC) {
+        values = {
+            .DATA = DATA,
+            .NC = NC,
+            .PARD = 0
+        };
+
+        values.PARD = AS5047P_Util::isEven(SPI_WriteData_Frame_t::ValuesToRaw(values));
+    }
+
+    auto SPI_WriteData_Frame_t::RawToValues(const uint16_t raw) -> SPI_WriteData_Frame_t::SPI_WriteData_Frame_values_t {
+        return {
+            .DATA = (uint16_t) ((raw & 0x3FFF) >> 0),
+            .NC = (uint16_t) ((raw & 0x4000) >> 14),
+            .PARD = (uint16_t) ((raw & 0x8000) >> 15) 
+        };
+    }
+
+    auto SPI_WriteData_Frame_t::ValuesToRaw(const SPI_WriteData_Frame_t::SPI_WriteData_Frame_values_t values) -> uint16_t {
+        return (
+            (values.DATA << 0) +
+            (values.NC << 14) +
+            (values.PARD << 15)
+        );
+    }
+
+    // -------------------------------------------------------------
 
     // Volatile Registers ------------------------------------------
 
     ERRFL_t::ERRFL_t() {
         values = ERRFL_t::RawToValues(ERRFL_t::REG_DEFAULT);
+    }
+
+    ERRFL_t::ERRFL_t(uint16_t raw) {
+        values = ERRFL_t::RawToValues(raw);
     }
 
     auto ERRFL_t::RawToValues(const uint16_t raw) -> ERRFL_t::ERRFL_values_t {
@@ -28,6 +128,10 @@ namespace AS5047P_types {
         values = PROG_t::RawToValues(PROG_t::REG_DEFAULT);
     }
 
+    PROG_t::PROG_t(uint16_t raw) {
+        values = PROG_t::RawToValues(raw);
+    }
+
     auto PROG_t::RawToValues(const uint16_t raw) -> PROG_t::PROG_values_t {
         return {
             .PROGEN = (uint16_t) ((raw & 0x0001) >> 0),
@@ -48,6 +152,10 @@ namespace AS5047P_types {
 
     DIAAGC_t::DIAAGC_t() {
         values = DIAAGC_t::RawToValues(DIAAGC_t::REG_DEFAULT);
+    }
+
+    DIAAGC_t::DIAAGC_t(uint16_t raw) {
+        values = DIAAGC_t::RawToValues(raw);
     }
 
     auto DIAAGC_t::RawToValues(const uint16_t raw) -> DIAAGC_t::DIAAGC_values_t {
@@ -74,6 +182,10 @@ namespace AS5047P_types {
         values = MAG_t::RawToValues(MAG_t::REG_DEFAULT);
     }
 
+    MAG_t::MAG_t(uint16_t raw) {
+        values = MAG_t::RawToValues(raw);
+    }
+
     auto MAG_t::RawToValues(const uint16_t raw) -> MAG_t::MAG_values_t {
         return {
             .CMAG = (uint16_t) ((raw & 0x3FFF) >> 0)
@@ -90,6 +202,10 @@ namespace AS5047P_types {
         values = ANGLEUNC_t::RawToValues(ANGLEUNC_t::REG_DEFAULT);
     }
 
+    ANGLEUNC_t::ANGLEUNC_t(uint16_t raw) {
+        values = ANGLEUNC_t::RawToValues(raw);
+    }
+
     auto ANGLEUNC_t::RawToValues(const uint16_t raw) -> ANGLEUNC_t::ANGLEUNC_values_t {
         return {
             .CORDICANG = (uint16_t) ((raw & 0x3FFF) >> 0)
@@ -104,6 +220,10 @@ namespace AS5047P_types {
 
     ANGLECOM_t::ANGLECOM_t() {
         values = ANGLECOM_t::RawToValues(ANGLECOM_t::REG_DEFAULT);
+    }
+
+    ANGLECOM_t::ANGLECOM_t(uint16_t raw) {
+        values = ANGLECOM_t::RawToValues(raw);
     }
 
     auto ANGLECOM_t::RawToValues(const uint16_t raw) -> ANGLECOM_t::ANGLECOM_values_t {
@@ -126,6 +246,10 @@ namespace AS5047P_types {
         values = ZPOSM_t::RawToValues(ZPOSM_t::REG_DEFAULT);
     }
 
+    ZPOSM_t::ZPOSM_t(uint16_t raw) {
+        values = ZPOSM_t::RawToValues(raw);
+    }
+
     auto ZPOSM_t::RawToValues(const uint16_t raw) -> ZPOSM_t::ZPOSM_values_t {
         return {
             .ZPOSM = (uint16_t) ((raw & 0x00FF) >> 0)
@@ -140,6 +264,10 @@ namespace AS5047P_types {
 
     ZPOSL_t::ZPOSL_t() {
         values = ZPOSL_t::RawToValues(ZPOSL_t::REG_DEFAULT);
+    }
+
+    ZPOSL_t::ZPOSL_t(uint16_t raw) {
+        values = ZPOSL_t::RawToValues(raw);
     }
 
     auto ZPOSL_t::RawToValues(const uint16_t raw) -> ZPOSL_t::ZPOSL_values_t {
@@ -160,6 +288,10 @@ namespace AS5047P_types {
 
     SETTINGS1_t::SETTINGS1_t() {
         values = SETTINGS1_t::RawToValues(SETTINGS1_t::REG_DEFAULT);
+    }
+
+    SETTINGS1_t::SETTINGS1_t(uint16_t raw) {
+        values = SETTINGS1_t::RawToValues(raw);
     }
 
     auto SETTINGS1_t::RawToValues(const uint16_t raw) -> SETTINGS1_t::SETTINGS1_values_t {
@@ -192,6 +324,10 @@ namespace AS5047P_types {
         values = SETTINGS2_t::RawToValues(SETTINGS2_t::REG_DEFAULT);
     }
 
+    SETTINGS2_t::SETTINGS2_t(uint16_t raw) {
+        values = SETTINGS2_t::RawToValues(raw);
+    }
+
     auto SETTINGS2_t::RawToValues(const uint16_t raw) -> SETTINGS2_t::SETTINGS2_values_t {
         return {
             .UVWPP = (uint16_t) ((raw & 0x0007) >> 0),
@@ -209,5 +345,4 @@ namespace AS5047P_types {
     }
 
     // -------------------------------------------------------------
-
 }
