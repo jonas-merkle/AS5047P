@@ -12,7 +12,7 @@ namespace AS5047P_ComBackend {
     
         public:
 
-            AS5047P_SPI(uint8_t chipSelectPinNo, uint32_t spiSpeed = 100000);
+            AS5047P_SPI(uint8_t chipSelectPinNo, uint32_t spiSpeed = 8000000); // todo: check for: 14000000
 
             void write(uint16_t regAddress, uint16_t data);
             uint16_t read(uint16_t regAddress);

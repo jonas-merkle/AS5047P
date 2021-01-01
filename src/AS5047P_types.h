@@ -50,14 +50,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> SPI_Command_Frame_values_t;
+            static auto RawToValues(const uint16_t *raw) -> SPI_Command_Frame_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(SPI_Command_Frame_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const SPI_Command_Frame_values_t *values) -> uint16_t;
 
     };
 
@@ -102,14 +102,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> SPI_ReadData_Frame_values_t;
+            static auto RawToValues(const uint16_t *raw) -> SPI_ReadData_Frame_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(SPI_ReadData_Frame_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const SPI_ReadData_Frame_values_t *values) -> uint16_t;
 
     };
 
@@ -154,14 +154,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> SPI_WriteData_Frame_values_t;
+            static auto RawToValues(const uint16_t *raw) -> SPI_WriteData_Frame_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(SPI_WriteData_Frame_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const SPI_WriteData_Frame_values_t *values) -> uint16_t;
 
     };
 
@@ -178,7 +178,7 @@ namespace AS5047P_types {
         
         public:
         
-            static const uint16_t REG_ADDRESS = 0x0001;     ///< Register address.
+            static const uint16_t REG_ADDRESS = 0x0000;     ///< Register address.
 
     };
 
@@ -223,14 +223,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> ERRFL_values_t;
+            static auto RawToValues(const uint16_t *raw) -> ERRFL_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(ERRFL_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const ERRFL_values_t *values) -> uint16_t;
 
     };
 
@@ -272,14 +272,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> PROG_values_t;
+            static auto RawToValues(const uint16_t *raw) -> PROG_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(PROG_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const PROG_values_t *values) -> uint16_t;
 
     };
 
@@ -322,14 +322,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> DIAAGC_values_t;
+            static auto RawToValues(const uint16_t *raw) -> DIAAGC_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(DIAAGC_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const DIAAGC_values_t *values) -> uint16_t;
 
     };
 
@@ -368,14 +368,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> MAG_values_t;
+            static auto RawToValues(const uint16_t *raw) -> MAG_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(MAG_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const MAG_values_t *values) -> uint16_t;
 
     };
 
@@ -414,14 +414,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> ANGLEUNC_values_t;
+            static auto RawToValues(const uint16_t *raw) -> ANGLEUNC_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(ANGLEUNC_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const ANGLEUNC_values_t *values) -> uint16_t;
 
     };
 
@@ -460,14 +460,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> ANGLECOM_values_t;
+            static auto RawToValues(const uint16_t *raw) -> ANGLECOM_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(ANGLECOM_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const ANGLECOM_values_t *values) -> uint16_t;
 
     };
 
@@ -510,14 +510,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> ZPOSM_values_t;
+            static auto RawToValues(const uint16_t *raw) -> ZPOSM_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(ZPOSM_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const ZPOSM_values_t *values) -> uint16_t;
 
     };
 
@@ -558,14 +558,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> ZPOSL_values_t;
+            static auto RawToValues(const uint16_t *raw) -> ZPOSL_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(ZPOSL_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const ZPOSL_values_t *values) -> uint16_t;
 
     };
 
@@ -612,14 +612,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> SETTINGS1_values_t;
+            static auto RawToValues(const uint16_t *raw) -> SETTINGS1_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(SETTINGS1_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const SETTINGS1_values_t *values) -> uint16_t;
 
     };
 
@@ -660,14 +660,14 @@ namespace AS5047P_types {
              * @param raw Two bytes containing the raw data.
              * @return A new value struct.
              */
-            static auto RawToValues(uint16_t raw) -> SETTINGS2_values_t;
+            static auto RawToValues(const uint16_t *raw) -> SETTINGS2_values_t;
 
             /**
              * Converts a value struct into two bytes containing the raw data.
              * @param values A value struct.
              * @return A new byte containing the raw data.
              */
-            static auto ValuesToRaw(SETTINGS2_values_t values) -> uint16_t;
+            static auto ValuesToRaw(const SETTINGS2_values_t *values) -> uint16_t;
 
     };
 
