@@ -59,10 +59,10 @@ namespace AS5047P_types {
 
         typedef struct __attribute__ ((__packed__)) {
 
-            uint16_t PROGVER:1;
-            uint16_t PROGOTP:1;
-            uint16_t OTPREF:1;
             uint16_t PROGEN:1;
+            uint16_t OTPREF:1;
+            uint16_t PROGOTP:1;
+            uint16_t PROGVER:1;
 
         } PROG_values_t;
 
