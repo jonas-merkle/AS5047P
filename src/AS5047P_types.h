@@ -27,24 +27,29 @@ namespace AS5047P_types {
 
         } ERRFL_values_t;
 
-        ERRFL_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x0001;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
 
+        ERRFL_values_t values{};      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        ERRFL_t();
+
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> ERRFL_values_t;
+        static auto RawToValues(uint16_t raw) -> ERRFL_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const ERRFL_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(ERRFL_values_t values) -> uint16_t;
 
     };
 
@@ -61,24 +66,29 @@ namespace AS5047P_types {
 
         } PROG_values_t;
 
-        PROG_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x0003;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
 
+        PROG_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        PROG_t();
+
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> PROG_values_t;
+        static auto RawToValues(uint16_t raw) -> PROG_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const PROG_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(PROG_values_t values) -> uint16_t;
 
     };
 
@@ -96,28 +106,29 @@ namespace AS5047P_types {
 
         } DIAAGC_values_t;
 
-        DIAAGC_values_t values;      ///< Register values.
-        /**
-         * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
-         * @return A new value struct.
-         */
         static const uint16_t REG_ADDRESS = 0x3FFC;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0180;     ///< Register default values.
 
+        DIAAGC_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        DIAAGC_t();
+
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> DIAAGC_values_t;
+        static auto RawToValues(uint16_t raw) -> DIAAGC_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const DIAAGC_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(DIAAGC_values_t values) -> uint16_t;
 
     };
 
@@ -131,24 +142,29 @@ namespace AS5047P_types {
 
         } MAG_values_t;
 
-        MAG_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x3FFD;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
 
+        MAG_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        MAG_t();
+
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> MAG_values_t;
+        static auto RawToValues(uint16_t raw) -> MAG_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const MAG_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(MAG_values_t values) -> uint16_t;
 
     };
 
@@ -162,24 +178,29 @@ namespace AS5047P_types {
 
         } ANGLEUNC_values_t;
 
-        ANGLEUNC_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x3FFE;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
 
+        ANGLEUNC_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        ANGLEUNC_t();
+
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> ANGLEUNC_values_t;
+        static auto RawToValues(uint16_t raw) -> ANGLEUNC_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const ANGLEUNC_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(ANGLEUNC_values_t values) -> uint16_t;
 
     };
 
@@ -193,24 +214,29 @@ namespace AS5047P_types {
 
         } ANGLECOM_values_t;
 
-        ANGLECOM_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x3FFF;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
 
+        ANGLECOM_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        ANGLECOM_t();
+
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> ANGLECOM_values_t;
+        static auto RawToValues(uint16_t raw) -> ANGLECOM_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const ANGLECOM_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(ANGLECOM_values_t values) -> uint16_t;
 
     };
 
@@ -228,24 +254,29 @@ namespace AS5047P_types {
 
         } ZPOSM_values_t;
 
-        ZPOSM_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x0016;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
+        
+        ZPOSM_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        ZPOSM_t();
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> ZPOSM_values_t;
+        static auto RawToValues(uint16_t raw) -> ZPOSM_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const ZPOSM_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(ZPOSM_values_t values) -> uint16_t;
 
     };
 
@@ -261,24 +292,29 @@ namespace AS5047P_types {
 
         } ZPOSL_values_t;
 
-        ZPOSL_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x0017;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
+        
+        ZPOSL_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        ZPOSL_t();
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> ZPOSL_values_t;
+        static auto RawToValues(uint16_t raw) -> ZPOSL_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const ZPOSL_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(ZPOSL_values_t values) -> uint16_t;
 
     };
 
@@ -299,24 +335,29 @@ namespace AS5047P_types {
 
         } SETTINGS1_values_t;
 
-        SETTINGS1_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x0018;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0001;     ///< Register default values.
+        
+        SETTINGS1_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        SETTINGS1_t();
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> SETTINGS1_values_t;
+        static auto RawToValues(uint16_t raw) -> SETTINGS1_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const SETTINGS1_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(SETTINGS1_values_t values) -> uint16_t;
 
     };
 
@@ -332,24 +373,29 @@ namespace AS5047P_types {
 
         } SETTINGS2_values_t;
 
-        SETTINGS2_values_t values;      ///< Register values.
-
         static const uint16_t REG_ADDRESS = 0x3FFD;     ///< Register address.
         static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
+        
+        SETTINGS2_values_t values;      ///< Register values.
+
+        /**
+         * Default constructor.
+         */
+        SETTINGS2_t();
 
         /**
          * Converts a raw byte into a register value struct.
-         * @param raw A pointer to a byte containing the raw data.
+         * @param raw A byte containing the raw data.
          * @return A new value struct.
          */
-        static auto RawToValues(const uint16_t *raw) -> SETTINGS2_values_t;
+        static auto RawToValues(uint16_t raw) -> SETTINGS2_values_t;
 
         /**
          * Converts a value struct into a byte containing the raw data.
-         * @param values A pointer to a value struct.
+         * @param values A value struct.
          * @return A new byte containing the raw data.
          */
-        static auto ValuesToRaw(const SETTINGS2_values_t *values) -> uint16_t;
+        static auto ValuesToRaw(SETTINGS2_values_t values) -> uint16_t;
 
     };
 
