@@ -6,6 +6,10 @@
 
 compile:
   platforms:
+    - uno
     - mega2560
+    - leonardo
+    - zero
+    - m4
   libraries:
     #- "SPI"
