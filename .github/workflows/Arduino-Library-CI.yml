@@ -19,15 +19,18 @@ jobs:
         with:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
     
-      - name: Run a one-line script
+      - name: Run a one-line script part 2
         run: ls -la
       
-      #- name: Arduino CI
-      #  uses: Arduino-CI/action@v0.1.0
+      - name: Arduino CI
+        uses: Arduino-CI/action@v0.1.0
     
-      #- name: Boxigen Build
-      #  uses: mattnotmitt/doxygen-action@v1
-      #  with:
-      #      working-directory: '.'
-      #      doxyfile-path: '.Doxyfile'
+      - name: Boxigen Build
+        uses: mattnotmitt/doxygen-action@v1
+        with:
+            working-directory: '.'
+            doxyfile-path: '.Doxyfile'
+      
+      - name: Run a one-line script part 2
+        run: ls -la  
         
