@@ -24,29 +24,22 @@ An Arduino library for the AS5047P high-resolution rotary position sensor.
 
 ## Project Status & ToDo's
 
-:heavy_check_mark: Read / Write functions for all registers implemented.
-
-:heavy_check_mark: Doxygen comments added.
-
-:heavy_check_mark: [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0
-
-:heavy_check_mark: [keywords.txt](keywords.txt) updated for main library functions.
-
-:heavy_check_mark: Adding a CI pipline.
-
-:heavy_check_mark: Build & deploy doxygen documentation for the library.
-
-:x: [keywords.txt](keywords.txt) updated for all library functions.
-
-:x: Parity check on incoming data.
-
-:x: Sensor status output as string.
-
-:x: [Readme.md](README.md) update.
-
-:x: Additional examples.
-
-:x: Implementation & test of programming the one time programmable register of the AS5047P.
+| Status | Task / ToDo |
+|:------:|:------------|
+|   ✅   | Read / Write functions for all registers implemented. |
+|   ✅   | Doxygen comments added. |
+|   ✅   | [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
+|   ✅   | [BasicReadAngleAndDebugInfo.ino](examples/BasicReadAngleAndDebugInfo/BasicReadAngleAndDebugInfo.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
+|   ✅   | Adding a CI pipline. |
+|   ✅   | Build & deploy doxygen documentation for the library. |
+|   ✅   | Sensor status output as string. |
+|   ✅   | [keywords.txt](keywords.txt) updated for main library functions. |
+|   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
+|   🚧   | [Readme.md](README.md) update.|
+|   🚧   | Parity check on incoming data. |
+|   ❌   | Additional examples. |
+|   ❌   | Unit Tests?! |
+|   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |
 
 ## About the AS5047P
 
