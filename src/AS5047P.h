@@ -2,6 +2,7 @@
 #define AS5047P_h
 
 #include <inttypes.h>
+#include <string>
 
 #include "types/AS5047P_Types.h"
 #include "spi/AS5047P_SPI.h"
@@ -28,6 +29,12 @@ class AS5047P {
          * @return True on success, else false
          */
         bool init();
+
+        /**
+         * Reads all status information from the AS5047P sensor and returns them as a string.
+         * @return A string with all status information.
+         */
+        std::string readStatusAsString();
 
 
         /**
