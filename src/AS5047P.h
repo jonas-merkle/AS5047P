@@ -22,6 +22,14 @@ class AS5047P {
          */
         AS5047P(uint8_t chipSelectPinNo = 12, uint32_t spiSpeed = 100000);
 
+
+        /**
+         * Initializes the sensor object & tests the connection. Must be calles once befor unsing the sensor object.
+         * @return True on success, else false
+         */
+        bool init();
+
+
         /**
          * Read the current magnitude value.
          * @return The current magnitude value.

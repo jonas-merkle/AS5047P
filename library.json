@@ -1,7 +1,8 @@
 {
     "name": "AS5047P",
-    "keywords": "AS5047P, sensor, arduino",
+    "version": "1.0.0",
     "description": "An Arduino library for the AS5047P high-resolution rotary position sensor.",
+    "keywords": "AS5047P, sensor, arduino",
     "repository":
     {
         "type": "git",
@@ -12,15 +13,28 @@
         {
             "name": "Jonas Merkle [JJM]",
             "email": "jonas@jjm.one",
+            "url": "jjm.one",
             "maintainer": true
         }
     ],
+    "license": "GPL-3.0-only",
+    "frameworks": "arduino",
+    "platforms": "*",
     "dependencies":
     {
+        "owner": "Arduino",
         "name": "SPI",
-        "frameworks": "arduino"
+        "version": "*",
+        "frameworks": "arduino",
+        "platforms": "*"
     },
-    "version": "1.0.0",
-    "frameworks": "arduino",
-    "platforms": "*"
+    "examples": [
+        {
+            "name": "BasicReadAngle",
+            "base": "examples/BasicReadAngle",
+            "files": [
+                "BasicReadAngle.ino"
+            ]
+        }
+    ]
 }

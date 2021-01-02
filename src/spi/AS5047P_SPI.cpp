@@ -15,10 +15,16 @@ namespace AS5047P_ComBackend {
 
     }
 
+    void AS5047P_SPI::init() {
+        SPI.begin();
+    }
+
     void AS5047P_SPI::write(const uint16_t regAddress, const uint16_t data) {
 
         // init spi interface
+        #ifdef AS5047P_SPI_INIT_ON_COM_ENAB
         SPI.begin();
+        #endif
         SPI.beginTransaction(__spiSettings);
 
         // set register address
@@ -35,7 +41,9 @@ namespace AS5047P_ComBackend {
 
         // close spi interface
         SPI.endTransaction();
+        #ifdef AS5047P_SPI_INIT_ON_COM_ENAB
         SPI.end();
+        #endif
 
     }
 
@@ -45,7 +53,9 @@ namespace AS5047P_ComBackend {
         uint16_t receivedData = 0;
         
         // init spi interface
+        #ifdef AS5047P_SPI_INIT_ON_COM_ENAB
         SPI.begin();
+        #endif
         SPI.beginTransaction(__spiSettings);
 
         // set register address
@@ -63,7 +73,9 @@ namespace AS5047P_ComBackend {
         
         // close spi interface
         SPI.endTransaction();
+        #ifdef AS5047P_SPI_INIT_ON_COM_ENAB
         SPI.end();
+        #endif
 
         return receivedData;
 
