@@ -1,0 +1,50 @@
+#######################################
+# Syntax Coloring Map For ExampleLibrary
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+AS5047P		KEYWORD1
+
+#######################################
+# Functions (KEYWORD2)
+#######################################
+
+readMagnitude	KEYWORD2
+readAngleRaw	KEYWORD2
+readAngleDegree		KEYWORD2
+read_ERRFL	KEYWORD2
+read_PROG	KEYWORD2
+read_DIAAGC		KEYWORD2
+read_MAG	KEYWORD2
+read_ANGLEUNC	KEYWORD2
+read_ANGLECOM	KEYWORD2
+void write_PROG		KEYWORD2
+read_ZPOSM	KEYWORD2
+read_ZPOSL	KEYWORD2
+read_SETTINGS1	KEYWORD2
+read_SETTINGS2	KEYWORD2
+write_ZPOSM		KEYWORD2
+write_ZPOSL		KEYWORD2
+write_SETTINGS1		KEYWORD2
+write_SETTINGS2		KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+as5047p		KEYWORD2
+
+#######################################
+# Structures (KEYWORD3)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+#######################################
+# ? (LITERAL2)
+#######################################
