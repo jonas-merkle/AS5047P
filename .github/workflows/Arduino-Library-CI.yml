@@ -55,7 +55,7 @@ jobs:
           fetch-depth: 0   
           persist-credentials: false
 
-      - name: ⚙️ Running a little script to move files
+      - name: ⚙️🔀 Running a little script to move files
         run: |
           ls -la ./.gh-pages
           rm -rf ./.gh-pages/docs/${{ steps.extract_branch.outputs.branch }}
@@ -65,10 +65,10 @@ jobs:
           ls -la ./.gh-pages/docs
           ls -la ./.gh-pages/docs/${{ steps.extract_branch.outputs.branch }}/html
 
-      #- name: 🚀📜 Deploy Documentation 
-      #  uses: JamesIves/github-pages-deploy-action@3.7.1
-      #  with:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #    BRANCH: gh-pages # The branch the action should deploy to.
-      #    FOLDER: build # The folder the action should deploy.
-      #    CLEAN: true # Automatically remove deleted files from the deploy branch
+      - name: 🚀📜 Deploy Documentation 
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: ./.gh-pages # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
