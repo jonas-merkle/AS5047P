@@ -35,7 +35,7 @@ jobs:
       
       - name: Extract branch name
         shell: bash
-        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       
       #- name: Doxigen Build
@@ -43,4 +43,4 @@ jobs:
       
       - name: Run a one-line script part 2
         run: |
-          echo 'The branch name is' $BRANCH_NAME
+          echo 'The branch name is' ${{ steps.extract_branch.outputs.branch }}
