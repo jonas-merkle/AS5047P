@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Clone current Library Repository
+      - name: 📥📄 Clone current Library Repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          fetch-depth: 0
+          persist-credentials: false
       
-      #- name: Arduino CI
+      #- name: 🔧🤖 Arduino CI Build
       #  uses: Arduino-CI/action@v0.1.1
   
   deploy:
@@ -28,19 +29,45 @@ jobs:
     if: github.event_name == 'push'        
     steps:
       
-      - name: Clone current Library Repository
+      - name: 📥📄 Clone current Library Repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          fetch-depth: 0  
+          persist-credentials: false
       
-      - name: Extract branch name
+      - name: 🔍 Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       
-      #- name: Doxigen Build
-      #  uses: mattnotmitt/doxygen-action@v1
+      - name: 💬 Display branch name
+        run: echo 'The current branch name is ' ${{ steps.extract_branch.outputs.branch }}
       
-      - name: Run a one-line script part 2
+      #- name: 🔧📜 Doxigen Build
+      #  uses: mattnotmitt/doxygen-action@v1
+          
+      - name: 📥🌐 Clone current gh-pages barnch of the Library Repository
+        uses: actions/checkout@v2
+        with:
+          ref: 'gh-pages'
+          path: './.gh-pages'
+          clean: true
+          fetch-depth: 0   
+          persist-credentials: false
+
+      - name: ⚙️ Running a little script to move files
         run: |
+          ls -la ./.gh-pages
+          rm -rf ./.gh-pages/docu/${{ steps.extract_branch.outputs.branch }}
+          mkdir ./.gh-pages/docu/${{ steps.extract_branch.outputs.branch }}
+          ls -la ./.gh-pages
+          ls -la ./.gh-pages/docu
           echo 'The branch name is' ${{ steps.extract_branch.outputs.branch }}
+
+      #- name: 🚀📜 Deploy Documentation 
+      #  uses: JamesIves/github-pages-deploy-action@3.7.1
+      #  with:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    BRANCH: gh-pages # The branch the action should deploy to.
+      #    FOLDER: build # The folder the action should deploy.
+      #    CLEAN: true # Automatically remove deleted files from the deploy branch
