@@ -1,0 +1,33 @@
+name: Arduino Library CI
+
+on:
+  
+  push:
+    branches: [ master develop feature/ci ]
+  pull_request:
+    branches: [ master develop ]
+  workflow_dispatch:
+
+jobs:
+  
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Clone current Library Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+    
+      - name: Run a one-line script
+        run: ls -la
+      
+      #- name: Arduino CI
+      #  uses: Arduino-CI/action@v0.1.0
+    
+      #- name: Boxigen Build
+      #  uses: mattnotmitt/doxygen-action@v1
+      #  with:
+      #      working-directory: '.'
+      #      doxyfile-path: '.Doxyfile'
+        
