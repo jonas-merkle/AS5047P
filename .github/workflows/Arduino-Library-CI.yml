@@ -43,8 +43,8 @@ jobs:
       - name: 💬 Display branch name
         run: echo 'The current branch name is ' ${{ steps.extract_branch.outputs.branch }}
       
-      #- name: 🔧📜 Doxigen Build
-      #  uses: mattnotmitt/doxygen-action@v1
+      - name: 🔧📜 Doxigen Build
+        uses: mattnotmitt/doxygen-action@v1
           
       - name: 📥🌐 Clone current gh-pages barnch of the Library Repository
         uses: actions/checkout@v2
@@ -58,10 +58,12 @@ jobs:
       - name: ⚙️ Running a little script to move files
         run: |
           ls -la ./.gh-pages
-          rm -rf ./.gh-pages/docu/${{ steps.extract_branch.outputs.branch }}
-          mkdir -p ./.gh-pages/docu/${{ steps.extract_branch.outputs.branch }}
+          rm -rf ./.gh-pages/docs/${{ steps.extract_branch.outputs.branch }}
+          mkdir -p ./.gh-pages/docs/${{ steps.extract_branch.outputs.branch }}
+          cp -r ./.doxygen/* ./.gh-pages/docs/${{ steps.extract_branch.outputs.branch }}
           ls -la ./.gh-pages
-          ls -la ./.gh-pages/docu
+          ls -la ./.gh-pages/docs
+          ls -la ./.gh-pages/docs/${{ steps.extract_branch.outputs.branch }}
 
       #- name: 🚀📜 Deploy Documentation 
       #  uses: JamesIves/github-pages-deploy-action@3.7.1
