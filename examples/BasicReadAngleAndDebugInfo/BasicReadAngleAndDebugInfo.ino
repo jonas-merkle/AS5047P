@@ -12,7 +12,7 @@
 */
 
 // include the library for the AS5047P sensor.
-#include "AS5047P.h"
+#include <AS5047P.h>
 
 // define a led pin.
 #define LED_PIN 13
@@ -37,7 +37,7 @@ void setup() {
 
   // initialize the AS5047P sensor and hold if sensor can't be initialized..
   while (!as5047p.init()) {
-    Serial.println("Can't connect to the AS5047P sensor! Please check the connection... ");
+    Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection... "));
     delay(5000);
   }
 }
