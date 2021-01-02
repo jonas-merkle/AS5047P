@@ -33,6 +33,12 @@ void setup() {
   // initialize the serial bus for the communication with your pc.
   Serial.begin(115200);
 
+  // initialize the AS5047P sensor and hold if sensor can't be initialized..
+  while (!as5047p.init()) {
+    Serial.println("Can't connect to the AS5047P sensor! Please check the connection... ");
+    delay(5000);
+  }
+
 }
 
 // arduino loop routine

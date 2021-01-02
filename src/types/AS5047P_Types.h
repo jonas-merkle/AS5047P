@@ -33,7 +33,7 @@ namespace AS5047P_types {
 
             } SPI_Command_Frame_values_t;
 
-            SPI_Command_Frame_values_t values{};      ///< Register values.
+            SPI_Command_Frame_values_t values;      ///< Register values.
 
             /**
              * Constructor.
@@ -85,7 +85,7 @@ namespace AS5047P_types {
 
             } SPI_ReadData_Frame_values_t;
 
-            SPI_ReadData_Frame_values_t values{};      ///< Register values.
+            SPI_ReadData_Frame_values_t values;      ///< Register values.
 
             /**
              * Constructor.
@@ -137,7 +137,7 @@ namespace AS5047P_types {
 
             } SPI_WriteData_Frame_values_t;
 
-            SPI_WriteData_Frame_values_t values{};      ///< Register values.
+            SPI_WriteData_Frame_values_t values;      ///< Register values.
 
             /**
              * Constructor.
@@ -209,7 +209,7 @@ namespace AS5047P_types {
             static const uint16_t REG_ADDRESS = 0x0001;     ///< Register address.
             static const uint16_t REG_DEFAULT = 0x0000;     ///< Register default values.
 
-            ERRFL_values_t values{};      ///< Register values.
+            ERRFL_values_t values;      ///< Register values.
 
             /**
              * Default constructor.

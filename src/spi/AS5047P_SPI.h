@@ -29,6 +29,12 @@ namespace AS5047P_ComBackend {
 
 
             /**
+             * Initializes the spi interface.
+             */
+            void init();
+
+
+            /**
              * Wirte data to register of the AS5047P sensor.
              * @param regAddress The address of the register where the data should be written.
              * @param data The data to wirte.

@@ -4,6 +4,19 @@
 AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spiInterface(chipSelectPinNo, spiSpeed) {
 }
 
+
+bool AS5047P::init() {
+    
+    __spiInterface.init();
+
+    AS5047P_types::DIAAGC_t diagRes = read_DIAAGC();
+    
+    // Todo: check if ther is a better way to test the connection...
+    return (AS5047P_types::DIAAGC_t::ValuesToRaw(&diagRes.values) != 0);
+
+}
+
+
 uint16_t AS5047P::readMagnitude() {
     
     AS5047P_types::MAG_t res = AS5047P::read_MAG();
