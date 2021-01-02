@@ -1,0 +1,15 @@
+#unittest:
+#  platforms:
+#    - mega2560
+#  libraries:
+#    - "SPI"
+
+compile:
+  platforms:
+    - uno
+    - mega2560
+    - leonardo
+    - zero
+    - m4
+  libraries:
+    #- "SPI"
