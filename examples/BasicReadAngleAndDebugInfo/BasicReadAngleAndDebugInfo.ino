@@ -2,7 +2,7 @@
   BasicReadAngleAndDebugInfo.ino
 
   CAUTION!!!
-  This code runs only on Atmel/Microchip SAMD based Boards like the Arduino Zero or Adafruit Feather M0
+  This code runs only on Atmel/Microchip SAMD based Boards like the Arduino Zero or Adafruit Feather M0!
 
   This is a basic example program to read the angle position and debug information from a AS5047 rotary encoder.
   The angle postion and debug information gets updated and printed to the serial consol once a second. 

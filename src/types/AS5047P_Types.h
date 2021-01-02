@@ -639,7 +639,7 @@ namespace AS5047P_types {
 
                 uint16_t UVWPP:3;       ///< UVW number of pole pairs (000 = 1, 001 = 2, 010 = 3, 011 = 4, 100 = 5, 101 = 6, 110 = 7, 111 = 7).
                 uint16_t HYS:2;         ///< Hysteresis setting.
-                uint16_t ABIRES:3;      ///<  Resolution of ABI.
+                uint16_t ABIRES:3;      ///< Resolution of ABI.
 
             } SETTINGS2_values_t;
 
