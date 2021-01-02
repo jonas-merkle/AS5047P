@@ -59,10 +59,9 @@ jobs:
         run: |
           ls -la ./.gh-pages
           rm -rf ./.gh-pages/docu/${{ steps.extract_branch.outputs.branch }}
-          mkdir ./.gh-pages/docu/${{ steps.extract_branch.outputs.branch }}
+          mkdir -p ./.gh-pages/docu/${{ steps.extract_branch.outputs.branch }}
           ls -la ./.gh-pages
           ls -la ./.gh-pages/docu
-          echo 'The branch name is' ${{ steps.extract_branch.outputs.branch }}
 
       #- name: 🚀📜 Deploy Documentation 
       #  uses: JamesIves/github-pages-deploy-action@3.7.1
