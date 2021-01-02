@@ -25,17 +25,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     #needs: [ build ]
-    if: ${{ github.event_name == 'push'}}        
+    if: github.event_name == 'push'        
     steps:
       
       - name: Clone current Library Repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
+      
+      - name: Extract branch name
+        shell: bash
+        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      
       #- name: Doxigen Build
       #  uses: mattnotmitt/doxygen-action@v1
       
       - name: Run a one-line script part 2
         run: |
-          echo ${{ github.workspace }}
+          echo 'The branch name is' $BRANCH_NAME
