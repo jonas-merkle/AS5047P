@@ -14,7 +14,7 @@ namespace AS5047P_Util {
      * @param data The data package.
      * @return True if the number of ones in the data package (including the parity bit!!! (which must not be set yet)) is even, else false.
      */
-    static bool isEvenParityBitNoSet(uint16_t data) {
+    static inline bool isEvenParityBitNoSet(uint16_t data) {
         uint16_t shift = data >> 8;
         data ^= data >> 8;      // example for 8-bir (this line scales it up to 16 bit)
         data ^= data >> 4;      // ( a b c d e f g h ) xor ( 0 0 0 0 a b c d ) = ( a b c d ae bf cg dh )
@@ -28,7 +28,7 @@ namespace AS5047P_Util {
      * @param data The data package.
      * @return True if the number of ones in the data package (including the parity bit!!! (which is already set yet)) is even, else false.
      */
-    static bool isEvenParityBitSet(uint16_t data) {
+    static inline bool isEvenParityBitSet(uint16_t data) {
         return ~isEvenParityBitNoSet(data);
     }
 
@@ -37,7 +37,7 @@ namespace AS5047P_Util {
      * @param data The data package.
      * @return True if the parity information is correct, else false.
      */
-    static bool parityCheck(uint16_t data) {
+    static inline bool parityCheck(uint16_t data) {
         return ((data & (1 << 15)) && isEvenParityBitSet(data));
     }
 }

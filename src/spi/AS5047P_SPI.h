@@ -45,8 +45,8 @@ namespace AS5047P_ComBackend {
 
         private:
 
-            uint8_t chipSelectPinNo;        ///< The pin number of the chip select pin.
-            SPISettings spiSettings;        ///< The spi bus settings.
+            uint8_t __chipSelectPinNo;        ///< The pin number of the chip select pin.
+            SPISettings __spiSettings;        ///< The spi bus settings.
 
     };
 

@@ -1,17 +1,17 @@
 #include "AS5047P_SPI.h"
 
 #include <Arduino.h>
-#include "AS5047P_types.h"
+#include "types/AS5047P_Types.h"
 
 namespace AS5047P_ComBackend {
 
     AS5047P_SPI::AS5047P_SPI(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) {
         
-        this->chipSelectPinNo = chipSelectPinNo;
-        this->spiSettings = SPISettings(spiSpeed, MSBFIRST, SPI_MODE1);
+        this->__chipSelectPinNo = chipSelectPinNo;
+        this->__spiSettings = SPISettings(spiSpeed, MSBFIRST, SPI_MODE1);
 
-        pinMode(chipSelectPinNo, OUTPUT);
-        digitalWrite(chipSelectPinNo, HIGH);
+        pinMode(__chipSelectPinNo, OUTPUT);
+        digitalWrite(__chipSelectPinNo, HIGH);
 
     }
 
@@ -19,18 +19,18 @@ namespace AS5047P_ComBackend {
 
         // init spi interface
         SPI.begin();
-        SPI.beginTransaction(spiSettings);
+        SPI.beginTransaction(__spiSettings);
 
         // set register address
-        digitalWrite(chipSelectPinNo, LOW);
+        digitalWrite(__chipSelectPinNo, LOW);
         SPI.transfer16(regAddress);
-        digitalWrite(chipSelectPinNo, HIGH);
+        digitalWrite(__chipSelectPinNo, HIGH);
         delayMicroseconds(1);
         
         // write data
-        digitalWrite(chipSelectPinNo, LOW);
+        digitalWrite(__chipSelectPinNo, LOW);
         SPI.transfer16(data);
-        digitalWrite(chipSelectPinNo, HIGH);
+        digitalWrite(__chipSelectPinNo, HIGH);
         delayMicroseconds(1);
 
         // close spi interface
@@ -46,19 +46,19 @@ namespace AS5047P_ComBackend {
         
         // init spi interface
         SPI.begin();
-        SPI.beginTransaction(spiSettings);
+        SPI.beginTransaction(__spiSettings);
 
         // set register address
-        digitalWrite(chipSelectPinNo, LOW);
+        digitalWrite(__chipSelectPinNo, LOW);
         SPI.transfer16(regAddress);
-        digitalWrite(chipSelectPinNo, HIGH);
+        digitalWrite(__chipSelectPinNo, HIGH);
         delayMicroseconds(1);
         
         // write nop & reading data
-        digitalWrite(chipSelectPinNo, LOW);
+        digitalWrite(__chipSelectPinNo, LOW);
         AS5047P_types::SPI_Command_Frame_t nopFrame(AS5047P_types::NOP_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
         receivedData = SPI.transfer16(AS5047P_types::SPI_Command_Frame_t::ValuesToRaw(&nopFrame.values));
-        digitalWrite(chipSelectPinNo, HIGH);
+        digitalWrite(__chipSelectPinNo, HIGH);
         delayMicroseconds(1);
         
         // close spi interface

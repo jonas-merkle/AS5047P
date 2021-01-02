@@ -1,6 +1,6 @@
-#include "AS5047P_types.h"
+#include "AS5047P_Types.h"
 
-#include "AS5047P_Util.h"
+#include "util/AS5047P_Util.h"
 
 namespace AS5047P_types {
 
@@ -17,7 +17,7 @@ namespace AS5047P_types {
             .PARC = 0
         };
 
-        values.PARC = AS5047P_Util::isEvenInclParityBit(SPI_Command_Frame_t::ValuesToRaw(&values));
+        values.PARC = AS5047P_Util::isEvenParityBitNoSet(SPI_Command_Frame_t::ValuesToRaw(&values));
     }
 
     auto SPI_Command_Frame_t::RawToValues(const uint16_t *raw) -> SPI_Command_Frame_t::SPI_Command_Frame_values_t {
@@ -47,7 +47,7 @@ namespace AS5047P_types {
             .PARD = 0
         };
 
-        values.PARD = AS5047P_Util::isEvenInclParityBit(SPI_ReadData_Frame_t::ValuesToRaw(&values));
+        values.PARD = AS5047P_Util::isEvenParityBitNoSet(SPI_ReadData_Frame_t::ValuesToRaw(&values));
     }
 
     auto SPI_ReadData_Frame_t::RawToValues(const uint16_t *raw) -> SPI_ReadData_Frame_t::SPI_ReadData_Frame_values_t {
@@ -77,7 +77,7 @@ namespace AS5047P_types {
             .PARD = 0
         };
 
-        values.PARD = AS5047P_Util::isEvenInclParityBit(SPI_WriteData_Frame_t::ValuesToRaw(&values));
+        values.PARD = AS5047P_Util::isEvenParityBitNoSet(SPI_WriteData_Frame_t::ValuesToRaw(&values));
     }
 
     auto SPI_WriteData_Frame_t::RawToValues(const uint16_t *raw) -> SPI_WriteData_Frame_t::SPI_WriteData_Frame_values_t {

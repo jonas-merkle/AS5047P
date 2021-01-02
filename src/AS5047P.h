@@ -3,8 +3,8 @@
 
 #include <inttypes.h>
 
-#include "AS5047P_types.h"
-#include "AS5047P_SPI.h"
+#include "types/AS5047P_Types.h"
+#include "spi/AS5047P_SPI.h"
 
 
 /**
@@ -138,7 +138,7 @@ class AS5047P {
 
         private:
 
-        AS5047P_ComBackend::AS5047P_SPI spiInterface;       ///< The instance of the spi interface for the sensor communication.
+        AS5047P_ComBackend::AS5047P_SPI __spiInterface;       ///< The instance of the spi interface for the sensor communication.
 
 };
 
