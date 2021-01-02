@@ -3,9 +3,9 @@ name: Arduino Library CI
 on:
   
   push:
-    branches: [ master develop feature/ci ]
+    branches: [ master, develop, feature/ci ]
   pull_request:
-    branches: [ master develop ]
+    branches: [ master, develop, ]
   workflow_dispatch:
 
 jobs:
