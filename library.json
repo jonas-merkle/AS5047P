@@ -20,14 +20,6 @@
     "license": "GPL-3.0-only",
     "frameworks": "arduino",
     "platforms": "*",
-    "dependencies":
-    {
-        "owner": "Arduino",
-        "name": "SPI",
-        "version": "*",
-        "frameworks": "arduino",
-        "platforms": "*"
-    },
     "examples": [
         {
             "name": "BasicReadAngle",
