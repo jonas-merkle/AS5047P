@@ -27,9 +27,6 @@ jobs:
     
       - name: Doxigen Build
         uses: mattnotmitt/doxygen-action@v1
-        with:
-            working-directory: './'
-            doxyfile-path: './'
       
       - name: Run a one-line script part 2
         run: ls -la  
