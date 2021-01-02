@@ -37,4 +37,4 @@ jobs:
     #if: ${{ ${{ <context> }}github.event_name == 'push'}}        
     steps:
       - name: Test
-        run: echo ${{ github.event }}
+        run: echo ${{ github.event_name }}
