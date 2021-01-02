@@ -16,6 +16,8 @@ bool AS5047P::init() {
 
 }
 
+#ifdef ARDUINO_ARCH_SAMD
+
 std::string AS5047P::readStatusAsString() {
 
     AS5047P_types::ERRFL_t errorReg = read_ERRFL();
@@ -62,6 +64,7 @@ std::string AS5047P::readStatusAsString() {
 
 }
 
+#endif
 
 uint16_t AS5047P::readMagnitude() {
     

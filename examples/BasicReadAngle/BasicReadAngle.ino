@@ -2,7 +2,6 @@
   BasicReadAngle.ino
 
   This is a basic example program to read the angle position from a AS5047 rotary encoder.
-
   The angle postion gets updated and printed to the serial consol once a second. 
 
   More Information can be found here:
@@ -16,7 +15,7 @@
 #define LED_PIN 13
 
 // define the chip select port.
-#define AS5047P_CHIP_SELECT_PORT 12 
+#define AS5047P_CHIP_SELECT_PORT 9 
 
 // define the spi bus speed 
 #define AS5047P_CUSTOM_SPI_BUS_SPEED 100000
