@@ -8,4 +8,4 @@ compile:
   platforms:
     - mega2560
   libraries:
-    - "SPI"
+    #- "SPI"
