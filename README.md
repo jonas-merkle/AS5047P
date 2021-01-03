@@ -90,17 +90,23 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Doxygen comments added. |
 |   ✅   | [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
 |   ✅   | [BasicReadAngleAndDebugInfo.ino](examples/BasicReadAngleAndDebugInfo/BasicReadAngleAndDebugInfo.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
+|   ✅   | [PrintAllSettings.ino](examples/PrintAllSettings/PrintAllSettings.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
 |   ✅   | Adding a CI pipline. |
 |   ✅   | Build & deploy doxygen documentation for the library. |
 |   ✅   | Sensor status output as string. |
 |   ✅   | [keywords.txt](keywords.txt) updated for main library functions. |
-|   🚧   | Write functions for all registers implemented. |
+|   ✅   | Switch to unions... |
+|   ✅   | Write functions for all registers implemented. |
+|   ✅   | Parity check on incoming data. |
 |   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
-|   🚧   | Parity check on incoming data. |
+|   🚧   | Documentation update.|
 |   🚧   | Adding Library to Arduino Library Manager |
 |   🚧   | Adding Library to PlattformIO Library Manager |
-|   ❌   | Switch to unions... |
+|   🚧   | Test of all wirte functions |
+|   🚧   | Test of all read functions |
+|   🚧   | Improof initSPI() |
+|   🚧   | ToString() for Error_t |
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |
 |   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |
