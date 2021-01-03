@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['settings1_5ft_57',['SETTINGS1_t',['../class_a_s5047_p__types_1_1_s_e_t_t_i_n_g_s1__t.html',1,'AS5047P_types']]],
-  ['settings2_5ft_58',['SETTINGS2_t',['../class_a_s5047_p__types_1_1_s_e_t_t_i_n_g_s2__t.html',1,'AS5047P_types']]],
-  ['spi_5fcommand_5fframe_5ft_59',['SPI_Command_Frame_t',['../class_a_s5047_p__types_1_1_s_p_i___command___frame__t.html',1,'AS5047P_types']]],
-  ['spi_5freaddata_5fframe_5ft_60',['SPI_ReadData_Frame_t',['../class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html',1,'AS5047P_types']]],
-  ['spi_5fwritedata_5fframe_5ft_61',['SPI_WriteData_Frame_t',['../class_a_s5047_p__types_1_1_s_p_i___write_data___frame__t.html',1,'AS5047P_types']]]
+  ['prog_5fdata_5ft_95',['PROG_data_t',['../union_a_s5047_p__types_1_1_p_r_o_g__t_1_1_p_r_o_g__data__t.html',1,'AS5047P_types::PROG_t']]],
+  ['prog_5ft_96',['PROG_t',['../class_a_s5047_p__types_1_1_p_r_o_g__t.html',1,'AS5047P_types']]]
 ];
