@@ -11,7 +11,7 @@ AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spi
 
 // Init --------------------------------------------------------
 
-bool AS5047P::init() {
+bool AS5047P::initSPI() {
     
     __spiInterface.init();
 
