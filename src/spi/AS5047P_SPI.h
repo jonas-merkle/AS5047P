@@ -22,10 +22,10 @@ namespace AS5047P_ComBackend {
 
             /**
              * Constructor.
-             * @param chipSelectPinNo The pin number of the chip select pin (default: 12);
+             * @param chipSelectPinNo The pin number of the chip select pin (default: 9);
              * @param spiSpeed The spi bus speed (default: 8000000, on Feather M0 tested up to 32000000)
              */
-            AS5047P_SPI(uint8_t chipSelectPinNo = 12, uint32_t spiSpeed = 8000000);
+            AS5047P_SPI(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 8000000);
 
 
             /**

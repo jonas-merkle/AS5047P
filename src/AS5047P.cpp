@@ -16,6 +16,55 @@ bool AS5047P::init() {
 
 }
 
+#ifdef ARDUINO_ARCH_SAMD
+
+std::string AS5047P::readStatusAsString() {
+
+    AS5047P_types::ERRFL_t errorReg = read_ERRFL();
+    AS5047P_types::DIAAGC_t diagReg = read_DIAAGC();
+
+    std::string str;
+    str.reserve(350);
+
+    str.append("#########################\n");
+    str.append(" Error Information:\n");
+    str.append("-------------------------\n");
+    str.append("- Framing error:   ");
+    str.append(std::to_string(errorReg.values.FRERR));
+    str.append("\n");
+    str.append("- Invalid command: ");
+    str.append(std::to_string(errorReg.values.INVCOMM));
+    str.append("\n");
+    str.append("- Parity error:    ");
+    str.append(std::to_string(errorReg.values.PARERR));
+    str.append("\n");
+    str.append("#########################\n");
+    str.append(" Diagnostic Information: \n");
+    str.append("-------------------------\n");
+    str.append("- AGC Value:       ");
+    str.append(std::to_string(diagReg.values.AGC));
+    str.append("\n");
+    str.append("- Offset comp.:    ");
+    str.append(std::to_string(diagReg.values.LF));
+    str.append("\n");
+    str.append("- CORDIC overflow: ");
+    str.append(std::to_string(diagReg.values.COF));
+    str.append("\n");
+    str.append("- MAG too high:    ");
+    str.append(std::to_string(diagReg.values.MAGH));
+    str.append("\n");
+    str.append("- MAG too low:     ");
+    str.append(std::to_string(diagReg.values.MAGL));
+    str.append("\n");
+    str.append("#########################\n");
+
+    str.shrink_to_fit();
+
+    return str;
+
+}
+
+#endif
 
 uint16_t AS5047P::readMagnitude() {
     

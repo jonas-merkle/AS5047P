@@ -12,7 +12,8 @@ AS5047P		KEYWORD1
 # Functions (KEYWORD2)
 #######################################
 
-init    KEYWORD2
+init	KEYWORD2
+readStatusAsString	KEYWORD2
 readMagnitude	KEYWORD2
 readAngleRaw	KEYWORD2
 readAngleDegree		KEYWORD2
@@ -36,11 +37,11 @@ write_SETTINGS2		KEYWORD2
 # Instances (KEYWORD2)
 #######################################
 
-as5047p     KEYWORD2
-
 #######################################
 # Structures (KEYWORD3)
 #######################################
+
+as5047p		KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

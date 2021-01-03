@@ -3,6 +3,10 @@
 
 #include <inttypes.h>
 
+#ifdef ARDUINO_ARCH_SAMD
+#include <string>
+#endif
+
 #include "types/AS5047P_Types.h"
 #include "spi/AS5047P_SPI.h"
 
@@ -17,10 +21,10 @@ class AS5047P {
 
         /**
          * Constructor.
-         * @param chipSelectPinNo The pin number of the chip select pin (default: 12);
+         * @param chipSelectPinNo The pin number of the chip select pin (default: 9);
          * @param spiSpeed The spi bus speed (default: 8000000, on Feather M0 tested up to 32000000)
          */
-        AS5047P(uint8_t chipSelectPinNo = 12, uint32_t spiSpeed = 100000);
+        AS5047P(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 100000);
 
 
         /**
@@ -28,6 +32,14 @@ class AS5047P {
          * @return True on success, else false
          */
         bool init();
+
+        #ifdef ARDUINO_ARCH_SAMD
+        /**
+         * Reads all status information from the AS5047P sensor and returns them as a string.
+         * @return A string with all status information.
+         */
+        std::string readStatusAsString();
+        #endif
 
 
         /**
