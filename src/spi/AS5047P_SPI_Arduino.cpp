@@ -1,4 +1,4 @@
-#include "AS5047P_SPI.h"
+#include "AS5047P_SPI_Arduino.h"
 
 #include <Arduino.h>
 #include "types/AS5047P_Types.h"

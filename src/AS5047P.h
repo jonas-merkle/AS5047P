@@ -8,7 +8,7 @@
 #endif
 
 #include "types/AS5047P_Types.h"
-#include "spi/AS5047P_SPI.h"
+#include "spi/AS5047P_SPI_Arduino.h"
 
 
 #define AS5047P_INFO_STRING_BUFFER_SIZE 350
