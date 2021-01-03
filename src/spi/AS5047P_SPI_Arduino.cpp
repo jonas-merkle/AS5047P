@@ -66,7 +66,7 @@ namespace AS5047P_ComBackend {
         
         // write nop & reading data
         digitalWrite(__chipSelectPinNo, LOW);
-        AS5047P_types::SPI_Command_Frame_t nopFrame(AS5047P_types::NOP_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
+        AS5047P_Types::SPI_Command_Frame_t nopFrame(AS5047P_Types::NOP_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
         receivedData = SPI.transfer16(nopFrame.data.raw);
         digitalWrite(__chipSelectPinNo, HIGH);
         delayMicroseconds(1);

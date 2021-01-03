@@ -2,7 +2,7 @@
 
 #include "util/AS5047P_Util.h"
 
-namespace AS5047P_types {
+namespace AS5047P_Types {
 
     // Errors ------------------------------------------------------
 
