@@ -1,9 +1,6 @@
 /*
   BasicReadAngleAndDebugInfo.ino
 
-  CAUTION!!!
-  This code runs only on Atmel/Microchip SAMD based Boards like the Arduino Zero or Adafruit Feather M0!
-
   This is a basic example program to read the angle position and debug information from a AS5047 rotary encoder.
   The angle postion and debug information gets updated and printed to the serial consol once a second. 
 
@@ -50,10 +47,13 @@ void loop() {
   Serial.print("Angle: ");                        // print some text to the serial consol.
   Serial.println(as5047p.readAngleDegree());      // read the angle value from the AS5047P sensor an print it to the serial consol.
   #ifdef ARDUINO_ARCH_SAMD
-  std::string s = as5047p.readStatusAsString();   // get the string containing the debug information.
-  for(uint16_t i = 0; i < s.size(); i++) {        // printing the string character by character
+  std::string s = as5047p.readStatusAsStdString();      // get the string containing the debug information.
+  for(uint16_t i = 0; i < s.size(); i++) {              // printing the string character by character
     Serial.print(s[i]); 
   }
+  Serial.println("");
+  #else
+  Serial.println(as5047p.readStatusAsArduinoString());  // get the string containing the debug information and print it.
   Serial.println("");
   #endif
   delay(500);                                     // wait for 500 milli seconds.
