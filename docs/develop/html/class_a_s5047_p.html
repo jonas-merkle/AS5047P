@@ -82,6 +82,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6393f9aa26137162137d02be2e9bd603"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0267e5092638c1d20e335eaff70705a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a0267e5092638c1d20e335eaff70705a7">init</a> ()</td></tr>
 <tr class="separator:a0267e5092638c1d20e335eaff70705a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84dc04bccfa8aaa4a0c1f01d7a5c289a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a84dc04bccfa8aaa4a0c1f01d7a5c289a">checkForComErrorF</a> (<a class="el" href="class_a_s5047_p__types_1_1_e_r_r_o_r__t.html">AS5047P_types::ERROR_t</a> *errorOut)</td></tr>
+<tr class="separator:a84dc04bccfa8aaa4a0c1f01d7a5c289a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62dacdedcb9792896fc2be11e0f66cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ad62dacdedcb9792896fc2be11e0f66cd">checkForSensorErrorF</a> (<a class="el" href="class_a_s5047_p__types_1_1_e_r_r_o_r__t.html">AS5047P_types::ERROR_t</a> *errorOut)</td></tr>
+<tr class="separator:ad62dacdedcb9792896fc2be11e0f66cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae0badbc72869300a2e39a50a90ae5c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a1ae0badbc72869300a2e39a50a90ae5c">verifyWittenRegF</a> (uint16_t regAddress, uint16_t expectedData)</td></tr>
+<tr class="separator:a1ae0badbc72869300a2e39a50a90ae5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac068387483b45df4523bca69c67aae7b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ac068387483b45df4523bca69c67aae7b">readStatusAsArduinoString</a> ()</td></tr>
 <tr class="separator:ac068387483b45df4523bca69c67aae7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa752a29ebbe1d79873c78b7667397b60"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aa752a29ebbe1d79873c78b7667397b60">readMagnitude</a> ()</td></tr>
@@ -196,6 +202,56 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a84dc04bccfa8aaa4a0c1f01d7a5c289a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84dc04bccfa8aaa4a0c1f01d7a5c289a">&#9670;&nbsp;</a></span>checkForComErrorF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AS5047P::checkForComErrorF </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_s5047_p__types_1_1_e_r_r_o_r__t.html">AS5047P_types::ERROR_t</a> *&#160;</td>
+          <td class="paramname"><em>errorOut</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks the <a class="el" href="class_a_s5047_p.html" title="The main class for the AS5047P sensor.">AS5047P</a> sensors error registers for communication errors and clears this register. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorOut</td><td>A pointer to an <a class="el" href="class_a_s5047_p__types_1_1_e_r_r_o_r__t.html" title="Provides a representation for a &quot;ERROR Information&quot;.">AS5047P_types::ERROR_t</a> error object to store the received information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if no errors were found, else false. </dd></dl>
+
+</div>
+</div>
+<a id="ad62dacdedcb9792896fc2be11e0f66cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad62dacdedcb9792896fc2be11e0f66cd">&#9670;&nbsp;</a></span>checkForSensorErrorF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AS5047P::checkForSensorErrorF </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_s5047_p__types_1_1_e_r_r_o_r__t.html">AS5047P_types::ERROR_t</a> *&#160;</td>
+          <td class="paramname"><em>errorOut</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks the <a class="el" href="class_a_s5047_p.html" title="The main class for the AS5047P sensor.">AS5047P</a> sensors error registers for sensor errors. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorOut</td><td>A pointer to an <a class="el" href="class_a_s5047_p__types_1_1_e_r_r_o_r__t.html" title="Provides a representation for a &quot;ERROR Information&quot;.">AS5047P_types::ERROR_t</a> error object to store the received information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if no errors were found, else false. </dd></dl>
+
+</div>
+</div>
 <a id="a0267e5092638c1d20e335eaff70705a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0267e5092638c1d20e335eaff70705a7">&#9670;&nbsp;</a></span>init()</h2>
 
@@ -1034,6 +1090,42 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Reads all status information from the <a class="el" href="class_a_s5047_p.html" title="The main class for the AS5047P sensor.">AS5047P</a> sensor and returns them as a string. </p><dl class="section return"><dt>Returns</dt><dd>A string (Arduino String) with all status information. </dd></dl>
+
+</div>
+</div>
+<a id="a1ae0badbc72869300a2e39a50a90ae5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae0badbc72869300a2e39a50a90ae5c">&#9670;&nbsp;</a></span>verifyWittenRegF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AS5047P::verifyWittenRegF </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>regAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>expectedData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Verifies the content of a given register. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regAddress</td><td>The address of the register to verify. </td></tr>
+    <tr><td class="paramname">expectedData</td><td>The expected data in the register (The correct parity bit must be set!). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the register contains the expected data, else false. </dd></dl>
 
 </div>
 </div>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['diaagc_5ft_120',['DIAAGC_t',['../class_a_s5047_p__types_1_1_d_i_a_a_g_c__t.html#ad75d35ee1d3ecbf8f7ea782ff05da338',1,'AS5047P_types::DIAAGC_t::DIAAGC_t()'],['../class_a_s5047_p__types_1_1_d_i_a_a_g_c__t.html#a4073820594863b801336687a765042eb',1,'AS5047P_types::DIAAGC_t::DIAAGC_t(uint16_t raw)']]]
+  ['checkforcomerrorf_123',['checkForComErrorF',['../class_a_s5047_p.html#a84dc04bccfa8aaa4a0c1f01d7a5c289a',1,'AS5047P']]],
+  ['checkforsensorerrorf_124',['checkForSensorErrorF',['../class_a_s5047_p.html#ad62dacdedcb9792896fc2be11e0f66cd',1,'AS5047P']]]
 ];
