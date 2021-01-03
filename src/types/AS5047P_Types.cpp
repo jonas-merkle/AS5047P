@@ -4,6 +4,15 @@
 
 namespace AS5047P_types {
 
+    // Errors ------------------------------------------------------
+
+    ERROR_t::ERROR_t(uint8_t sensorSideErrorsRaw, uint8_t controllerSideErrorsRaw) {
+        sensorSideErrors.raw = sensorSideErrorsRaw;
+        controllerSideErrors.raw = controllerSideErrorsRaw;
+    }
+
+    // -------------------------------------------------------------
+
     // SPI Frames --------------------------------------------------
 
     SPI_Command_Frame_t::SPI_Command_Frame_t(const uint16_t raw) {

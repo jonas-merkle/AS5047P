@@ -12,11 +12,94 @@
  */
 namespace AS5047P_types {
 
+    // Errors ------------------------------------------------------
+
+    /**
+     * @enum ERROR_Names
+     * @brief Enum that holds the different error names an there according bit number in the raw error information byte.
+     */
+    enum ERROR_Names : uint8_t {
+        SENSOR_SPI_FRAMING_ERROR = 1,
+        SENSOR_SPI_INVALID_CMD = 2,
+        SENSOR_SPI_PARITY_ERROR = 4,
+
+        SENSOR_OFFSET_COMPENSATION_ERROR = 8,
+        SENSOR_CORDIC_OVERFLOW_ERROR = 16,
+        SENSOR_MAG_TOO_HIGH = 32,
+        SENSOR_MAG_TOO_LOW = 64,
+
+        CONTROLLER_SPI_PARITY_ERROR = 1, 
+        CONTROLLER_GENERAL_COMMUNICATION_ERROR = 2,
+        CONTROLLER_WRITE_VERIFY_FAILED = 4,
+    };
+
+    /**
+     * @class ERROR_t
+     * @brief Provides a representation for a "ERROR Information".
+     */
+    class ERROR_t {
+
+        public:
+
+            typedef union {
+
+                uint8_t raw = 0;
+
+                typedef struct __attribute__ ((__packed__)) {
+
+                    uint8_t SPI_FRAMING_ERROR:1;            ///< Framing error: is set to 1 when a non-compliant SPI frame is detected.
+                    uint8_t SPI_INVALID_CMD:1;              ///< Invalid command error: set to 1 by reading or writing an invalid register address.
+                    uint8_t SPI_PARITY_ERROR:1;             ///< Parity error.
+
+                    uint8_t OFFSET_COMPENSATION_ERROR:1;    ///< Diagnostics: Offset compensation LF=0:internal offset loops not ready regulated LF=1:internal offset loop finished.
+                    uint8_t CORDIC_OVERFLOW_ERROR:1;        ///< Diagnostics: CORDIC overflow.
+                    uint8_t MAG_TOO_HIGH:1;                 ///< Diagnostics: Magnetic field strength too high; AGC=0x00.
+                    uint8_t MAG_TOO_LOW:1;                  ///< Diagnostics: Magnetic field strength too low; AGC=0xFF.
+
+                } SensorSideErrorsFlags_t;
+                
+                SensorSideErrorsFlags_t flags;
+
+            } SensorSideErrors_t;
+
+            typedef union {
+
+                uint8_t raw = 0;
+                
+                typedef struct __attribute__ ((__packed__)) {
+
+                    uint8_t SPI_PARITY_ERROR:1;             ///< Parity error.
+                    
+                    uint8_t GENERAL_COMMUNICATION_ERROR:1;  ///< An error occured during the communication with the sensor. See sensor side errors for more information. 
+
+                    uint8_t WRITE_VERIFY_FAILED:1;          ///< Could not verify the new content of a written register.
+
+                } ControllerSideErrorsFlags_t;
+
+                ControllerSideErrorsFlags_t flags;
+                
+            } ControllerSideErrors_t;
+
+
+            SensorSideErrors_t sensorSideErrors;
+            ControllerSideErrors_t controllerSideErrors;
+
+            /**
+             * Main Constructor.
+             * @param sensorSideErrorsRaw The sensor side error raw data (default: 0).
+             * @param controllerSideErrorsRaw The controller side error raw data (default: 0).
+             */
+            ERROR_t(uint8_t sensorSideErrorsRaw = 0, uint8_t controllerSideErrorsRaw = 0);
+            
+    };
+
+    // -------------------------------------------------------------
+
     // SPI Frames --------------------------------------------------
 
     /**
      * @class SPI_Command_Frame_t
-     * @brief Provides a representation a "SPI Command Frame".
+     * @brief Provides a representation for a "SPI Command Frame".
      */
     class SPI_Command_Frame_t {
 
@@ -68,7 +151,7 @@ namespace AS5047P_types {
 
     /**
      * @class SPI_ReadData_Frame_t
-     * @brief Provides a representation a "SPI Read Data Frame".
+     * @brief Provides a representation for a "SPI Read Data Frame".
      */
     class SPI_ReadData_Frame_t {
 
@@ -120,7 +203,7 @@ namespace AS5047P_types {
 
     /**
      * @class SPI_WriteData_Frame_t
-     * @brief Provides a representation a "SPI Write Data Frame".
+     * @brief Provides a representation for a "SPI Write Data Frame".
      */
     class SPI_WriteData_Frame_t {
 

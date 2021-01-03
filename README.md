@@ -86,7 +86,7 @@ Sorry, this Feature is currently not supported. 😭
 
 | Status | Task / ToDo |
 |:------:|:------------|
-|   ✅   | Read / Write functions for all registers implemented. |
+|   ✅   | Read functions for all registers implemented. |
 |   ✅   | Doxygen comments added. |
 |   ✅   | [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
 |   ✅   | [BasicReadAngleAndDebugInfo.ino](examples/BasicReadAngleAndDebugInfo/BasicReadAngleAndDebugInfo.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
@@ -94,11 +94,13 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Build & deploy doxygen documentation for the library. |
 |   ✅   | Sensor status output as string. |
 |   ✅   | [keywords.txt](keywords.txt) updated for main library functions. |
+|   🚧   | Write functions for all registers implemented. |
 |   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
 |   🚧   | Parity check on incoming data. |
 |   🚧   | Adding Library to Arduino Library Manager |
 |   🚧   | Adding Library to PlattformIO Library Manager |
+|   ❌   | Switch to unions... |
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |
 |   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |

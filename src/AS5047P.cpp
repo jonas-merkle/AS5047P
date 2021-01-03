@@ -1,9 +1,13 @@
 #include "AS5047P.h"
 
+// Constructors ------------------------------------------------
 
 AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spiInterface(chipSelectPinNo, spiSpeed) {
 }
 
+// -------------------------------------------------------------
+
+// Init --------------------------------------------------------
 
 bool AS5047P::init() {
     
@@ -16,15 +20,18 @@ bool AS5047P::init() {
 
 }
 
-#ifdef ARDUINO_ARCH_SAMD
+// -------------------------------------------------------------
 
-std::string AS5047P::readStatusAsString() {
+// Util --------------------------------------------------------
+
+#ifdef ARDUINO_ARCH_SAMD
+std::string AS5047P::readStatusAsStdString() {
 
     AS5047P_types::ERRFL_t errorReg = read_ERRFL();
     AS5047P_types::DIAAGC_t diagReg = read_DIAAGC();
 
     std::string str;
-    str.reserve(350);
+    str.reserve(AS5047P_INFO_STRING_BUFFER_SIZE);
 
     str.append("#########################\n");
     str.append(" Error Information:\n");
@@ -63,13 +70,35 @@ std::string AS5047P::readStatusAsString() {
     return str;
 
 }
-
 #endif
+
+String AS5047P::readStatusAsArduinoString() {
+    AS5047P_types::ERRFL_t errorReg = read_ERRFL();
+    AS5047P_types::DIAAGC_t diagReg = read_DIAAGC();
+
+    char buf[AS5047P_INFO_STRING_BUFFER_SIZE] = {0};
+
+    sprintf(buf,
+        "#########################\n Error Information:\n-------------------------\n- Framing error:   %d\n- Invalid command: %d\n- Parity error:    %d\n#########################\n Diagnostic Information: \n-------------------------\n- AGC Value:       %d\n- Offset comp.:    %d\n- CORDIC overflow: %d\n- MAG too high:    %d\n- MAG too low:     %d\n#########################\n",
+        errorReg.values.FRERR, errorReg.values.INVCOMM, errorReg.values.PARERR,
+        diagReg.values.AGC, diagReg.values.LF, diagReg.values.COF, diagReg.values.MAGH, diagReg.values.MAGL
+    );
+
+    return String(buf);
+}
+
+// -------------------------------------------------------------
+
+// Read High-Level ---------------------------------------------
 
 uint16_t AS5047P::readMagnitude() {
     
     AS5047P_types::MAG_t res = AS5047P::read_MAG();
     return res.values.CMAG;
+
+}
+
+uint16_t AS5047P::readMagnitude(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) {
 
 }
 
@@ -86,6 +115,10 @@ uint16_t AS5047P::readAngleRaw(const bool withDAEC) {
 
 }
 
+uint16_t AS5047P::readAngleRaw(AS5047P_types::ERROR_t *errorOut, bool withDAEC, bool verifyParity, bool checkForComError, bool checkForSensorError) {
+
+}
+
 float AS5047P::readAngleDegree(bool withDAEC) {
     if (withDAEC) {
         AS5047P_types::ANGLECOM_t res = AS5047P::read_ANGLECOM();
@@ -98,6 +131,13 @@ float AS5047P::readAngleDegree(bool withDAEC) {
 
 }
 
+float AS5047P::readAngleDegree(AS5047P_types::ERROR_t *errorOut, bool withDAEC, bool verifyParity, bool checkForComError, bool checkForSensorError) {
+
+}
+
+// -------------------------------------------------------------
+
+// Read Volatile Registers -------------------------------------
 
 auto AS5047P::read_ERRFL() -> AS5047P_types::ERRFL_t {
 
@@ -107,6 +147,10 @@ auto AS5047P::read_ERRFL() -> AS5047P_types::ERRFL_t {
     
     AS5047P_types::ERRFL_t res(AS5047P_types::SPI_ReadData_Frame_t::ValuesToRaw(&recData.values));
     return res;
+
+}
+
+auto AS5047P::read_ERRFL(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::ERRFL_t {
 
 }
 
@@ -121,6 +165,10 @@ auto AS5047P::read_PROG() -> AS5047P_types::PROG_t {
 
 }
 
+auto AS5047P::read_PROG(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::PROG_t {
+
+}
+
 auto AS5047P::read_DIAAGC() -> AS5047P_types::DIAAGC_t {
     
     AS5047P_types::SPI_Command_Frame_t readCMD(AS5047P_types::DIAAGC_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
@@ -129,6 +177,10 @@ auto AS5047P::read_DIAAGC() -> AS5047P_types::DIAAGC_t {
     
     AS5047P_types::DIAAGC_t res(AS5047P_types::SPI_ReadData_Frame_t::ValuesToRaw(&recData.values));
     return res;
+
+}
+
+auto AS5047P::read_DIAAGC(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::DIAAGC_t {
 
 }
 
@@ -143,6 +195,10 @@ auto AS5047P::read_MAG() -> AS5047P_types::MAG_t {
 
 }
 
+auto AS5047P::read_MAG(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::MAG_t {
+
+}
+
 auto AS5047P::read_ANGLEUNC() -> AS5047P_types::ANGLEUNC_t {
 
     AS5047P_types::SPI_Command_Frame_t readCMD(AS5047P_types::ANGLEUNC_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
@@ -151,6 +207,10 @@ auto AS5047P::read_ANGLEUNC() -> AS5047P_types::ANGLEUNC_t {
     
     AS5047P_types::ANGLEUNC_t res(AS5047P_types::SPI_ReadData_Frame_t::ValuesToRaw(&recData.values));
     return res;
+
+}
+
+auto AS5047P::read_ANGLEUNC(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::ANGLEUNC_t {
 
 }
 
@@ -165,11 +225,25 @@ auto AS5047P::read_ANGLECOM() -> AS5047P_types::ANGLECOM_t {
 
 }
 
+auto AS5047P::read_ANGLECOM(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::ANGLECOM_t {
+
+}
+
+// -------------------------------------------------------------
+
+// Write Volatile Registers ------------------------------------
     
 void AS5047P::write_PROG(const AS5047P_types::PROG_t *regData) {
 
 }
 
+void AS5047P::write_PROG(const AS5047P_types::PROG_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+
+}
+
+// -------------------------------------------------------------
+
+// Read Non-Volatile Registers ---------------------------------
 
 auto AS5047P::read_ZPOSM() -> AS5047P_types::ZPOSM_t {
 
@@ -179,6 +253,10 @@ auto AS5047P::read_ZPOSM() -> AS5047P_types::ZPOSM_t {
     
     AS5047P_types::ZPOSM_t res(AS5047P_types::SPI_ReadData_Frame_t::ValuesToRaw(&recData.values));
     return res;
+
+}
+
+auto AS5047P::read_ZPOSM(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::ZPOSM_t {
 
 }
 
@@ -193,6 +271,10 @@ auto AS5047P::read_ZPOSL() -> AS5047P_types::ZPOSL_t {
 
 }
 
+auto AS5047P::read_ZPOSL(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::ZPOSL_t {
+
+}
+
 auto AS5047P::read_SETTINGS1() -> AS5047P_types::SETTINGS1_t {
 
     AS5047P_types::SPI_Command_Frame_t readCMD(AS5047P_types::SETTINGS1_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
@@ -201,6 +283,10 @@ auto AS5047P::read_SETTINGS1() -> AS5047P_types::SETTINGS1_t {
     
     AS5047P_types::SETTINGS1_t res(AS5047P_types::SPI_ReadData_Frame_t::ValuesToRaw(&recData.values));
     return res;
+
+}
+
+auto AS5047P::read_SETTINGS1(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::SETTINGS1_t {
 
 }
 
@@ -215,8 +301,19 @@ auto AS5047P::read_SETTINGS2() -> AS5047P_types::SETTINGS2_t {
 
 }
 
+auto AS5047P::read_SETTINGS2(AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_types::SETTINGS2_t {
+
+}
+
+// -------------------------------------------------------------
+
+// Write Non-Volatile Registers --------------------------------
 
 void AS5047P::write_ZPOSM(const AS5047P_types::ZPOSM_t *regData) {
+
+}
+
+void AS5047P::write_ZPOSM(const AS5047P_types::ZPOSM_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
 
 }
 
@@ -224,10 +321,24 @@ void AS5047P::write_ZPOSL(const AS5047P_types::ZPOSL_t *regData) {
 
 }
 
+void AS5047P::write_ZPOSL(const AS5047P_types::ZPOSL_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+
+}
+
 void AS5047P::write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData) {
+
+}
+
+void AS5047P::write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
 
 }
 
 void AS5047P::write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData) {
 
 }
+
+void AS5047P::write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+
+}
+
+// -------------------------------------------------------------
