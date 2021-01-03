@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mag_5ft_12',['MAG_t',['../class_a_s5047_p__types_1_1_m_a_g__t.html',1,'AS5047P_types::MAG_t'],['../class_a_s5047_p__types_1_1_m_a_g__t.html#aafddeb47a622d453d568d24fc430cbc3',1,'AS5047P_types::MAG_t::MAG_t()'],['../class_a_s5047_p__types_1_1_m_a_g__t.html#a85471643022775016b9deb6343d0677c',1,'AS5047P_types::MAG_t::MAG_t(uint16_t raw)']]]
+  ['flags_24',['flags',['../union_a_s5047_p__types_1_1_e_r_r_o_r__t_1_1_sensor_side_errors__t.html#a63166bca2de62e0b6362284edc9a3b81',1,'AS5047P_types::ERROR_t::SensorSideErrors_t::flags()'],['../union_a_s5047_p__types_1_1_e_r_r_o_r__t_1_1_controller_side_errors__t.html#a0ee8842dcab9aada27ac4f40b2e9fa7d',1,'AS5047P_types::ERROR_t::ControllerSideErrors_t::flags()']]]
 ];

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AS5047P - Arduino Library
-   &#160;<span id="projectnumber">1.0.0</span>
+   &#160;<span id="projectnumber">2.0.0</span>
    </div>
    <div id="projectbrief">An Arduino library for the AS5047P high-resolution rotary position sensor.</div>
   </td>
@@ -68,8 +68,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -77,39 +77,32 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Provides a representation a "SPI Read Data Frame".  
+<p>Provides a representation for a "SPI Read Data Frame".  
  <a href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_a_s5047_p___types_8h_source.html">AS5047P_Types.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union_a_s5047_p__types_1_1_s_p_i___read_data___frame__t_1_1_s_p_i___read_data___frame__data__t.html">SPI_ReadData_Frame_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8a473e03fa272923421784c31296f05b"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#a8a473e03fa272923421784c31296f05b">__attribute__</a> ((__packed__))</td></tr>
-<tr class="separator:a8a473e03fa272923421784c31296f05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab63f6d3da02f40eede9296411305aa01"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#ab63f6d3da02f40eede9296411305aa01">SPI_ReadData_Frame_t</a> (uint16_t raw)</td></tr>
 <tr class="separator:ab63f6d3da02f40eede9296411305aa01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af629170156f97e5b0b4c5d9f764dd54a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#af629170156f97e5b0b4c5d9f764dd54a">SPI_ReadData_Frame_t</a> (uint16_t ADDR, uint16_t EF)</td></tr>
 <tr class="separator:af629170156f97e5b0b4c5d9f764dd54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ae344f03be98803d22793d758fc8a40f5"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#ae344f03be98803d22793d758fc8a40f5">RawToValues</a> (const uint16_t *raw) -&gt; SPI_ReadData_Frame_values_t</td></tr>
-<tr class="separator:ae344f03be98803d22793d758fc8a40f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d387397c646eb9c8cf08016dd525f5"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#a23d387397c646eb9c8cf08016dd525f5">ValuesToRaw</a> (const SPI_ReadData_Frame_values_t *<a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#a6befa98c515f32c9c8f180ccfb4e8f4f">values</a>) -&gt; uint16_t</td></tr>
-<tr class="separator:a23d387397c646eb9c8cf08016dd525f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ad782bcddfd56d8daaea396bab0372968"><td class="memItemLeft" align="right" valign="top"><a id="ad782bcddfd56d8daaea396bab0372968"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SPI_ReadData_Frame_values_t</b></td></tr>
-<tr class="separator:ad782bcddfd56d8daaea396bab0372968"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6befa98c515f32c9c8f180ccfb4e8f4f"><td class="memItemLeft" align="right" valign="top"><a id="a6befa98c515f32c9c8f180ccfb4e8f4f"></a>
-SPI_ReadData_Frame_values_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#a6befa98c515f32c9c8f180ccfb4e8f4f">values</a></td></tr>
-<tr class="memdesc:a6befa98c515f32c9c8f180ccfb4e8f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register values. <br /></td></tr>
-<tr class="separator:a6befa98c515f32c9c8f180ccfb4e8f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee16692ffb3008cc5d09b1934a6f0e0"><td class="memItemLeft" align="right" valign="top"><a id="a7ee16692ffb3008cc5d09b1934a6f0e0"></a>
+<a class="el" href="union_a_s5047_p__types_1_1_s_p_i___read_data___frame__t_1_1_s_p_i___read_data___frame__data__t.html">SPI_ReadData_Frame_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p__types_1_1_s_p_i___read_data___frame__t.html#a7ee16692ffb3008cc5d09b1934a6f0e0">data</a></td></tr>
+<tr class="memdesc:a7ee16692ffb3008cc5d09b1934a6f0e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual data of a "SPI Read Data Frame". <br /></td></tr>
+<tr class="separator:a7ee16692ffb3008cc5d09b1934a6f0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides a representation a "SPI Read Data Frame". </p>
+<div class="textblock"><p>Provides a representation for a "SPI Read Data Frame". </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab63f6d3da02f40eede9296411305aa01"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab63f6d3da02f40eede9296411305aa01">&#9670;&nbsp;</a></span>SPI_ReadData_Frame_t() <span class="overload">[1/2]</span></h2>
@@ -167,102 +160,6 @@ SPI_ReadData_Frame_values_t&#160;</td><td class="memItemRight" valign="bottom"><
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8a473e03fa272923421784c31296f05b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a473e03fa272923421784c31296f05b">&#9670;&nbsp;</a></span>__attribute__()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct AS5047P_types::SPI_ReadData_Frame_t::__attribute__ </td>
-          <td>(</td>
-          <td class="paramtype">(__packed__)&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>&lt; Address to read or write.</p>
-<p>&lt; 0: No command frame error occurred 1: Error occurred.</p>
-<p>&lt; Parity bit (even) calculated on the lower 15 bits.</p>
-
-</div>
-</div>
-<a id="ae344f03be98803d22793d758fc8a40f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae344f03be98803d22793d758fc8a40f5">&#9670;&nbsp;</a></span>RawToValues()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P_types::SPI_ReadData_Frame_t::RawToValues </td>
-          <td>(</td>
-          <td class="paramtype">const uint16_t *&#160;</td>
-          <td class="paramname"><em>raw</em></td><td>)</td>
-          <td> -&gt; SPI_ReadData_Frame_values_t</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Converts a raw byte into a register value struct. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">raw</td><td>Two bytes containing the raw data. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A new value struct. </dd></dl>
-
-</div>
-</div>
-<a id="a23d387397c646eb9c8cf08016dd525f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23d387397c646eb9c8cf08016dd525f5">&#9670;&nbsp;</a></span>ValuesToRaw()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P_types::SPI_ReadData_Frame_t::ValuesToRaw </td>
-          <td>(</td>
-          <td class="paramtype">const SPI_ReadData_Frame_values_t *&#160;</td>
-          <td class="paramname"><em>values</em></td><td>)</td>
-          <td> -&gt; uint16_t</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Converts a value struct into two bytes containing the raw data. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">values</td><td>A value struct. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A new byte containing the raw data. </dd></dl>
 
 </div>
 </div>
