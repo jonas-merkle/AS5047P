@@ -44,6 +44,28 @@ class AS5047P {
 
         // Util --------------------------------------------------------
 
+        /**
+         * Checks the AS5047P sensors error registers for communication errors and clears this register.
+         * @param errorOut A pointer to an AS5047P_types::ERROR_t error object to store the received information.
+         * @return True if no errors were found, else false.
+         */
+        bool checkForComErrorF(AS5047P_types::ERROR_t *errorOut);
+
+        /**
+         * Checks the AS5047P sensors error registers for sensor errors.
+         * @param errorOut A pointer to an AS5047P_types::ERROR_t error object to store the received information.
+         * @return True if no errors were found, else false.
+         */
+        bool checkForSensorErrorF(AS5047P_types::ERROR_t *errorOut);
+
+        /**
+         * Verifies the content of a given register.
+         * @param regAddress The address of the register to verify.
+         * @param expectedData The expected data in the register (The correct parity bit must be set!).
+         * @return True if the register contains the expected data, else false.
+         */
+        bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData);
+
 
         #ifdef ARDUINO_ARCH_SAMD
         /**
