@@ -509,11 +509,54 @@ auto AS5047P::read_ANGLECOM(AS5047P_types::ERROR_t *errorOut, bool verifyParity,
 
 // Write Volatile Registers ------------------------------------
     
-void AS5047P::write_PROG(const AS5047P_types::PROG_t *regData) {
+bool AS5047P::write_PROG(const AS5047P_types::PROG_t *regData) {
+    
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::PROG_t::REG_ADDRESS, regData->data.raw);
+
+    return true;
 
 }
 
-void AS5047P::write_PROG(const AS5047P_types::PROG_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+bool AS5047P::write_PROG(const AS5047P_types::PROG_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
+    
+    // reset error data
+    *errorOut = AS5047P_types::ERROR_t();
+
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::PROG_t::REG_ADDRESS, regData->data.raw);
+
+    // check for communication error
+    if (checkForComError) {
+        checkForComErrorF(errorOut);
+    }
+
+    // check for sensor error
+    if (verifyWittenReg) {
+        checkForSensorErrorF(errorOut);
+
+        // check for communication error
+        if (checkForComError) {
+            checkForComErrorF(errorOut);
+        }
+    }
+
+    // check error information and return
+    return (
+        errorOut->sensorSideErrors.raw == 0 &&
+        errorOut->controllerSideErrors.raw == 0
+    );
 
 }
 
@@ -701,35 +744,207 @@ auto AS5047P::read_SETTINGS2(AS5047P_types::ERROR_t *errorOut, bool verifyParity
 
 // Write Non-Volatile Registers --------------------------------
 
-void AS5047P::write_ZPOSM(const AS5047P_types::ZPOSM_t *regData) {
+bool AS5047P::write_ZPOSM(const AS5047P_types::ZPOSM_t *regData) {
+    
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::ZPOSM_t::REG_ADDRESS, regData->data.raw);
+
+    return true;
+    
+}
+
+bool AS5047P::write_ZPOSM(const AS5047P_types::ZPOSM_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
+    
+    // reset error data
+    *errorOut = AS5047P_types::ERROR_t();
+
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::ZPOSM_t::REG_ADDRESS, regData->data.raw);
+
+    // check for communication error
+    if (checkForComError) {
+        checkForComErrorF(errorOut);
+    }
+
+    // check for sensor error
+    if (verifyWittenReg) {
+        checkForSensorErrorF(errorOut);
+
+        // check for communication error
+        if (checkForComError) {
+            checkForComErrorF(errorOut);
+        }
+    }
+
+    // check error information and return
+    return (
+        errorOut->sensorSideErrors.raw == 0 &&
+        errorOut->controllerSideErrors.raw == 0
+    );
 
 }
 
-void AS5047P::write_ZPOSM(const AS5047P_types::ZPOSM_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+bool AS5047P::write_ZPOSL(const AS5047P_types::ZPOSL_t *regData) {
+    
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::ZPOSL_t::REG_ADDRESS, regData->data.raw);
+
+    return true;
+    
+}
+
+bool AS5047P::write_ZPOSL(const AS5047P_types::ZPOSL_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
+    
+    // reset error data
+    *errorOut = AS5047P_types::ERROR_t();
+
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::ZPOSL_t::REG_ADDRESS, regData->data.raw);
+
+    // check for communication error
+    if (checkForComError) {
+        checkForComErrorF(errorOut);
+    }
+
+    // check for sensor error
+    if (verifyWittenReg) {
+        checkForSensorErrorF(errorOut);
+
+        // check for communication error
+        if (checkForComError) {
+            checkForComErrorF(errorOut);
+        }
+    }
+
+    // check error information and return
+    return (
+        errorOut->sensorSideErrors.raw == 0 &&
+        errorOut->controllerSideErrors.raw == 0
+    );
 
 }
 
-void AS5047P::write_ZPOSL(const AS5047P_types::ZPOSL_t *regData) {
+bool AS5047P::write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData) {
+    
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::SETTINGS1_t::REG_ADDRESS, regData->data.raw);
+
+    return true;
+    
+}
+
+bool AS5047P::write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
+    
+    // reset error data
+    *errorOut = AS5047P_types::ERROR_t();
+
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        return false;
+    }
+
+    // write register data
+    __spiInterface.write(AS5047P_types::SETTINGS1_t::REG_ADDRESS, regData->data.raw);
+
+    // check for communication error
+    if (checkForComError) {
+        checkForComErrorF(errorOut);
+    }
+
+    // check for sensor error
+    if (verifyWittenReg) {
+        checkForSensorErrorF(errorOut);
+
+        // check for communication error
+        if (checkForComError) {
+            checkForComErrorF(errorOut);
+        }
+    }
+
+    // check error information and return
+    return (
+        errorOut->sensorSideErrors.raw == 0 &&
+        errorOut->controllerSideErrors.raw == 0
+    );
 
 }
 
-void AS5047P::write_ZPOSL(const AS5047P_types::ZPOSL_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+bool AS5047P::write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData) {
+    
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        return false;
+    }
 
+    // write register data
+    __spiInterface.write(AS5047P_types::SETTINGS2_t::REG_ADDRESS, regData->data.raw);
+
+    return true;
+    
 }
 
-void AS5047P::write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData) {
+bool AS5047P::write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
+    
+    // reset error data
+    *errorOut = AS5047P_types::ERROR_t();
 
-}
+    // check parity of input
+    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
+        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        return false;
+    }
 
-void AS5047P::write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+    // write register data
+    __spiInterface.write(AS5047P_types::SETTINGS2_t::REG_ADDRESS, regData->data.raw);
 
-}
+    // check for communication error
+    if (checkForComError) {
+        checkForComErrorF(errorOut);
+    }
 
-void AS5047P::write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData) {
+    // check for sensor error
+    if (verifyWittenReg) {
+        checkForSensorErrorF(errorOut);
 
-}
+        // check for communication error
+        if (checkForComError) {
+            checkForComErrorF(errorOut);
+        }
+    }
 
-void AS5047P::write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool verifyWittenReg) {
+    // check error information and return
+    return (
+        errorOut->sensorSideErrors.raw == 0 &&
+        errorOut->controllerSideErrors.raw == 0
+    );
 
 }
 

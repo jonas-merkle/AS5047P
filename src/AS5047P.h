@@ -209,14 +209,16 @@ class AS5047P {
         /**
          * Write into the PROG register.
          * @param regDat The new contet of the PROG register.
+         * @return True if no error occured, else false.
          */            
-        void write_PROG(const AS5047P_types::PROG_t *regData);
+        bool write_PROG(const AS5047P_types::PROG_t *regData);
 
         /**
          * Write into the PROG register.
          * @param regDat The new contet of the PROG register.
+         * @return True if no error occured, else false.
          */ 
-        void write_PROG(const AS5047P_types::PROG_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_PROG(const AS5047P_types::PROG_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
 
         // -------------------------------------------------------------
 
@@ -277,50 +279,57 @@ class AS5047P {
         /**
          * Write into the ZPOSM register.
          * @param regDat The new contet of the ZPOSM register.
+         * @return True if no error occured, else false.
          */
-        void write_ZPOSM(const AS5047P_types::ZPOSM_t *regData);
+        bool write_ZPOSM(const AS5047P_types::ZPOSM_t *regData);
         
         /**
          * Write into the ZPOSM register.
          * @param regDat The new contet of the ZPOSM register.
          */
-        void write_ZPOSM(const AS5047P_types::ZPOSM_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_ZPOSM(const AS5047P_types::ZPOSM_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
 
         /**
          * Write into the ZPOSL register.
          * @param regDat The new contet of the ZPOSL register.
+         * @return True if no error occured, else false.
          */
-        void write_ZPOSL(const AS5047P_types::ZPOSL_t *regData);
+        bool write_ZPOSL(const AS5047P_types::ZPOSL_t *regData);
         
         /**
          * Write into the ZPOSL register.
          * @param regDat The new contet of the ZPOSL register.
+         * @return True if no error occured, else false.
          */
-        void write_ZPOSL(const AS5047P_types::ZPOSL_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_ZPOSL(const AS5047P_types::ZPOSL_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
 
         /**
          * Write into the SETTINGS1 register.
          * @param regDat The new contet of the SETTINGS1 register.
+         * @return True if no error occured, else false.
          */
-        void write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData);
+        bool write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData);
         
         /**
          * Write into the SETTINGS1 register.
          * @param regDat The new contet of the SETTINGS1 register.
+         * @return True if no error occured, else false.
          */
-        void write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_SETTINGS1(const AS5047P_types::SETTINGS1_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
 
         /**
          * Write into the ETTINGS2 register.
          * @param regDat The new contet of the ETTINGS2 register.
+         * @return True if no error occured, else false.
          */
-        void write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData);
+        bool write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData);
         
         /**
          * Write into the ETTINGS2 register.
          * @param regDat The new contet of the ETTINGS2 register.
+         * @return True if no error occured, else false.
          */
-        void write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData, AS5047P_types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_SETTINGS2(const AS5047P_types::SETTINGS2_t *regData, AS5047P_types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
 
         // -------------------------------------------------------------
 
