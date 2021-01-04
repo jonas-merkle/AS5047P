@@ -80,6 +80,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6393f9aa26137162137d02be2e9bd603"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a6393f9aa26137162137d02be2e9bd603">AS5047P</a> (uint8_t chipSelectPinNo=9, uint32_t spiSpeed=100000)</td></tr>
 <tr class="separator:a6393f9aa26137162137d02be2e9bd603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7083722dd79f12b5a18f09fe5784aa1c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a7083722dd79f12b5a18f09fe5784aa1c">checkSPICon</a> ()</td></tr>
+<tr class="separator:a7083722dd79f12b5a18f09fe5784aa1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5104b7f9a674560d6134ca338744535"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ac5104b7f9a674560d6134ca338744535">initSPI</a> ()</td></tr>
 <tr class="separator:ac5104b7f9a674560d6134ca338744535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2aecddab6f9aa986f7b5613f120f764"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ab2aecddab6f9aa986f7b5613f120f764">checkForComErrorF</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut)</td></tr>
@@ -252,6 +254,24 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a7083722dd79f12b5a18f09fe5784aa1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7083722dd79f12b5a18f09fe5784aa1c">&#9670;&nbsp;</a></span>checkSPICon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AS5047P::checkSPICon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tests the spi connection to the <a class="el" href="class_a_s5047_p.html" title="The main class for the AS5047P sensor.">AS5047P</a> sensor. </p><dl class="section return"><dt>Returns</dt><dd>True on success, else false. </dd></dl>
+
+</div>
+</div>
 <a id="ac5104b7f9a674560d6134ca338744535"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac5104b7f9a674560d6134ca338744535">&#9670;&nbsp;</a></span>initSPI()</h2>
 
@@ -266,7 +286,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initializes the sensor object &amp; tests the connection. Must be calles once befor unsing the sensor object. </p><dl class="section return"><dt>Returns</dt><dd>True on success, else false </dd></dl>
+<p>Initializes the sensor object &amp; tests the connection. Must be calles once befor unsing the sensor object. </p><dl class="section return"><dt>Returns</dt><dd>True on success, else false. </dd></dl>
 
 </div>
 </div>
