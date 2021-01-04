@@ -12,6 +12,13 @@ namespace AS5047P_Types {
         controllerSideErrors.raw = controllerSideErrorsRaw;
     }
 
+    bool ERROR_t::noError() {
+        return (
+            sensorSideErrors.raw == 0 &&
+            controllerSideErrors.raw == 0
+        );
+    }
+
     #ifdef ARDUINO_ARCH_SAMD
     std::string ERROR_t::toStdString() {
         

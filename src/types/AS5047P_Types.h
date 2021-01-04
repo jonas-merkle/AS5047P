@@ -93,7 +93,7 @@ namespace AS5047P_Types {
 
                     uint8_t CONT_SPI_PARITY_ERROR:1;        ///< Parity error.
                     
-                    uint8_t CONT_GENERAL_COM_ERROR:1;       ///< An error occured during the communication with the sensor. See sensor side errors for more information. 
+                    uint8_t CONT_GENERAL_COM_ERROR:1;       ///< An error occurred during the communication with the sensor. See sensor side errors for more information. 
 
                     uint8_t CONT_WRITE_VERIFY_FAILED:1;     ///< Could not verify the new content of a written register.
 
@@ -113,6 +113,12 @@ namespace AS5047P_Types {
              * @param controllerSideErrorsRaw The controller side error raw data (default: 0).
              */
             ERROR_t(uint8_t sensorSideErrorsRaw = 0, uint8_t controllerSideErrorsRaw = 0);
+
+            /**
+             * Checks if no error occurred.
+             * @return True on success, else false.
+             */
+            bool noError();
 
             #ifdef ARDUINO_ARCH_SAMD
             /**

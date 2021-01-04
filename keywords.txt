@@ -50,6 +50,8 @@ readStatusAsArduinoString	KEYWORD2
 readMagnitude	KEYWORD2
 readAngleRaw	KEYWORD2
 readAngleDegree		KEYWORD2
+readReg		KEYWORD2
+writeReg	KEYWORD2
 read_ERRFL	KEYWORD2
 read_PROG	KEYWORD2
 read_DIAAGC		KEYWORD2
@@ -77,6 +79,7 @@ isEvenParityBitSet	KEYWORD2
 parityCheck		KEYWORD2
 
 # AS5047P_Types.h
+noError		KEYWORD2
 toStdString		KEYWORD2
 toArduinoString		KEYWORD2
 
