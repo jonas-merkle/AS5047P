@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['prog_5ft_125',['PROG_t',['../class_a_s5047_p__types_1_1_p_r_o_g__t.html#adbf4aad15869600d9e85f27eced254e8',1,'AS5047P_types::PROG_t::PROG_t()'],['../class_a_s5047_p__types_1_1_p_r_o_g__t.html#a5f66d95889114ed614e8f2fa0cc4d24c',1,'AS5047P_types::PROG_t::PROG_t(uint16_t raw)']]]
+  ['mag_5ft_133',['MAG_t',['../class_a_s5047_p___types_1_1_m_a_g__t.html#a7b2fa59846143640b5a2bf67433d393b',1,'AS5047P_Types::MAG_t::MAG_t()'],['../class_a_s5047_p___types_1_1_m_a_g__t.html#ad731ba3f20a409be35c926bf1d278a21',1,'AS5047P_Types::MAG_t::MAG_t(uint16_t raw)']]]
 ];
