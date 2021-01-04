@@ -47,19 +47,19 @@ bool AS5047P::checkForComErrorF(AS5047P_Types::ERROR_t *errorOut) {
 
     // verify parity bit
     if (!AS5047P_Util::parityCheck(errorReg.data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
     }
 
     // write the ERRFL register content in errorOut
-    errorOut->sensorSideErrors.flags.SPI_FRAMING_ERROR |= errorReg.data.values.FRERR;
-    errorOut->sensorSideErrors.flags.SPI_INVALID_CMD |= errorReg.data.values.INVCOMM;
-    errorOut->sensorSideErrors.flags.SPI_PARITY_ERROR |= errorReg.data.values.PARERR;
+    errorOut->sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR |= errorReg.data.values.FRERR;
+    errorOut->sensorSideErrors.flags.SENS_SPI_INVALID_CMD |= errorReg.data.values.INVCOMM;
+    errorOut->sensorSideErrors.flags.SENS_SPI_PARITY_ERROR |= errorReg.data.values.PARERR;
 
     // check for no errors
     if (!errorReg.data.values.FRERR &&
         !errorReg.data.values.INVCOMM &&
         !errorReg.data.values.PARERR &&
-        !errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR) {
+        !errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR) {
         return true;
     }
     else {
@@ -74,21 +74,21 @@ bool AS5047P::checkForSensorErrorF(AS5047P_Types::ERROR_t *errorOut) {
 
     // verify parity bit
     if (!AS5047P_Util::parityCheck(diagReg.data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
     }
 
     // write the ERRFL register content in errorOut
-    errorOut->sensorSideErrors.flags.CORDIC_OVERFLOW_ERROR |= diagReg.data.values.COF;
-    errorOut->sensorSideErrors.flags.OFFSET_COMPENSATION_ERROR |= diagReg.data.values.LF;
-    errorOut->sensorSideErrors.flags.MAG_TOO_HIGH |= diagReg.data.values.MAGH;
-    errorOut->sensorSideErrors.flags.MAG_TOO_LOW |= diagReg.data.values.MAGL;
+    errorOut->sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR |= diagReg.data.values.COF;
+    errorOut->sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR |= diagReg.data.values.LF;
+    errorOut->sensorSideErrors.flags.SENS_MAG_TOO_HIGH |= diagReg.data.values.MAGH;
+    errorOut->sensorSideErrors.flags.SENS_MAG_TOO_LOW |= diagReg.data.values.MAGL;
 
     // check for no errors
     if (!diagReg.data.values.COF &&
         !diagReg.data.values.LF &&
         !diagReg.data.values.MAGH &&
         !diagReg.data.values.MAGL &&
-        !errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR) {
+        !errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR) {
         return true;
     }
     else {
@@ -276,7 +276,7 @@ auto AS5047P::read_ERRFL(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bo
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -320,7 +320,7 @@ auto AS5047P::read_PROG(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, boo
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -364,7 +364,7 @@ auto AS5047P::read_DIAAGC(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, b
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -408,7 +408,7 @@ auto AS5047P::read_MAG(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -452,7 +452,7 @@ auto AS5047P::read_ANGLEUNC(AS5047P_Types::ERROR_t *errorOut, bool verifyParity,
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -496,7 +496,7 @@ auto AS5047P::read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity,
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -544,7 +544,7 @@ bool AS5047P::write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ER
 
     // check parity of input
     if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         return false;
     }
 
@@ -599,7 +599,7 @@ auto AS5047P::read_ZPOSM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bo
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -643,7 +643,7 @@ auto AS5047P::read_ZPOSL(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bo
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -687,7 +687,7 @@ auto AS5047P::read_SETTINGS1(AS5047P_Types::ERROR_t *errorOut, bool verifyParity
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -731,7 +731,7 @@ auto AS5047P::read_SETTINGS2(AS5047P_Types::ERROR_t *errorOut, bool verifyParity
     // verify parity bit
     if (verifyParity) {
         if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         }
     }
 
@@ -779,7 +779,7 @@ bool AS5047P::write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData, AS5047P_Types::
 
     // check parity of input
     if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         return false;
     }
 
@@ -830,7 +830,7 @@ bool AS5047P::write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData, AS5047P_Types::
 
     // check parity of input
     if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         return false;
     }
 
@@ -881,7 +881,7 @@ bool AS5047P::write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData, AS5047P
 
     // check parity of input
     if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         return false;
     }
 
@@ -932,7 +932,7 @@ bool AS5047P::write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData, AS5047P
 
     // check parity of input
     if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
         return false;
     }
 

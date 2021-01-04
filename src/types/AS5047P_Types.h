@@ -27,9 +27,10 @@ namespace AS5047P_Types {
      * @brief Enum that holds the different error names an there according bit number in the raw error information byte.
      */
     enum ERROR_Names : uint8_t {
+
         SENS_SPI_FRAMING_ERROR = 1,
         SENS_SPI_INVALID_CMD = 2,
-        SENS_SPI_PARITY_ERROR = 4
+        SENS_SPI_PARITY_ERROR = 4,
 
         SENS_OFFSET_COMP_ERROR = 8,
         SENS_CORDIC_OVERFLOW_ERROR = 16,
@@ -39,6 +40,7 @@ namespace AS5047P_Types {
         CONT_SPI_PARITY_ERROR = 1, 
         CONT_GENERAL_COM_ERROR = 2,
         CONT_WRITE_VERIFY_FAILED = 4,
+
     };
 
     /**
@@ -126,7 +128,6 @@ namespace AS5047P_Types {
              */
             String toArduinoString();
 
-            
     };
 
     // -------------------------------------------------------------
