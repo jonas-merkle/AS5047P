@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verifywittenregf_157',['verifyWittenRegF',['../class_a_s5047_p.html#a1ae0badbc72869300a2e39a50a90ae5c',1,'AS5047P']]]
+  ['toarduinostring_161',['toArduinoString',['../class_a_s5047_p___types_1_1_e_r_r_o_r__t.html#abebaf4722102cf3fcd67e03d769d1c1e',1,'AS5047P_Types::ERROR_t']]]
 ];
