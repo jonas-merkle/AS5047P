@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AS5047P - Arduino Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.1.0</span>
    </div>
    <div id="projectbrief">An Arduino library for the AS5047P high-resolution rotary position sensor.</div>
   </td>
@@ -92,78 +92,48 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1ae0badbc72869300a2e39a50a90ae5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac068387483b45df4523bca69c67aae7b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ac068387483b45df4523bca69c67aae7b">readStatusAsArduinoString</a> ()</td></tr>
 <tr class="separator:ac068387483b45df4523bca69c67aae7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa752a29ebbe1d79873c78b7667397b60"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aa752a29ebbe1d79873c78b7667397b60">readMagnitude</a> ()</td></tr>
-<tr class="separator:aa752a29ebbe1d79873c78b7667397b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adce71bc3d778b2421e8d7e69babc7ed4"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#adce71bc3d778b2421e8d7e69babc7ed4">readMagnitude</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true)</td></tr>
-<tr class="separator:adce71bc3d778b2421e8d7e69babc7ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68ca71c6de5c67751cc7550c7c03c10c"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a68ca71c6de5c67751cc7550c7c03c10c">readAngleRaw</a> (bool withDAEC=true)</td></tr>
-<tr class="separator:a68ca71c6de5c67751cc7550c7c03c10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09a13fb0e865f45177411355a206aa79"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a09a13fb0e865f45177411355a206aa79">readAngleRaw</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool withDAEC=true, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true)</td></tr>
-<tr class="separator:a09a13fb0e865f45177411355a206aa79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a593edb1259f40f6d0418dbbb4e6d611f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a593edb1259f40f6d0418dbbb4e6d611f">readAngleDegree</a> (bool withDAEC=true)</td></tr>
-<tr class="separator:a593edb1259f40f6d0418dbbb4e6d611f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a055b6170b921537e002036f7eea9b222"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a055b6170b921537e002036f7eea9b222">readAngleDegree</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool withDAEC=true, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true)</td></tr>
-<tr class="separator:a055b6170b921537e002036f7eea9b222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a633e5cac8358f02cac5eebc18a443312"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a633e5cac8358f02cac5eebc18a443312">read_ERRFL</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_f_l__t.html">AS5047P_Types::ERRFL_t</a></td></tr>
-<tr class="separator:a633e5cac8358f02cac5eebc18a443312"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0cece6bde2499b26e8414b8c0160725"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ab0cece6bde2499b26e8414b8c0160725">read_ERRFL</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_f_l__t.html">AS5047P_Types::ERRFL_t</a></td></tr>
-<tr class="separator:ab0cece6bde2499b26e8414b8c0160725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa501b2e6cd76580aa71a6b674c88e0c3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aa501b2e6cd76580aa71a6b674c88e0c3">read_PROG</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a></td></tr>
-<tr class="separator:aa501b2e6cd76580aa71a6b674c88e0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0493dfebad2e0fd6359c149ff12b36a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ad0493dfebad2e0fd6359c149ff12b36a">read_PROG</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a></td></tr>
-<tr class="separator:ad0493dfebad2e0fd6359c149ff12b36a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf08640d8ec44a9853455c7a49e54ff2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aaf08640d8ec44a9853455c7a49e54ff2">read_DIAAGC</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_d_i_a_a_g_c__t.html">AS5047P_Types::DIAAGC_t</a></td></tr>
-<tr class="separator:aaf08640d8ec44a9853455c7a49e54ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af41632d147cd349ffb582dc9b8dd8687"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#af41632d147cd349ffb582dc9b8dd8687">read_DIAAGC</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_d_i_a_a_g_c__t.html">AS5047P_Types::DIAAGC_t</a></td></tr>
-<tr class="separator:af41632d147cd349ffb582dc9b8dd8687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8ce2e60adf802ddfdf8c3026596d5f9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ac8ce2e60adf802ddfdf8c3026596d5f9">read_MAG</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_m_a_g__t.html">AS5047P_Types::MAG_t</a></td></tr>
-<tr class="separator:ac8ce2e60adf802ddfdf8c3026596d5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af581a11804cd5766a52b63874362b1de"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#af581a11804cd5766a52b63874362b1de">read_MAG</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_m_a_g__t.html">AS5047P_Types::MAG_t</a></td></tr>
-<tr class="separator:af581a11804cd5766a52b63874362b1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a023acb438a0459b76517ab7f58953bef"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a023acb438a0459b76517ab7f58953bef">read_ANGLEUNC</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_u_n_c__t.html">AS5047P_Types::ANGLEUNC_t</a></td></tr>
-<tr class="separator:a023acb438a0459b76517ab7f58953bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83274bc23bce518b5bff2cdc58982626"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a83274bc23bce518b5bff2cdc58982626">read_ANGLEUNC</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_u_n_c__t.html">AS5047P_Types::ANGLEUNC_t</a></td></tr>
-<tr class="separator:a83274bc23bce518b5bff2cdc58982626"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cb9bba6490e08c84bd8aef8fa11cbdc"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a2cb9bba6490e08c84bd8aef8fa11cbdc">read_ANGLECOM</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_c_o_m__t.html">AS5047P_Types::ANGLECOM_t</a></td></tr>
-<tr class="separator:a2cb9bba6490e08c84bd8aef8fa11cbdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf4e6c7e6c5ac2aa6401058b4930c409"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#adf4e6c7e6c5ac2aa6401058b4930c409">read_ANGLECOM</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_c_o_m__t.html">AS5047P_Types::ANGLECOM_t</a></td></tr>
-<tr class="separator:adf4e6c7e6c5ac2aa6401058b4930c409"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f7dab5e01aa9730a008e6f361557c46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a2f7dab5e01aa9730a008e6f361557c46">write_PROG</a> (const <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a> *regData)</td></tr>
-<tr class="separator:a2f7dab5e01aa9730a008e6f361557c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f9ca03474edf388ac8131bd5ed0e830"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a8f9ca03474edf388ac8131bd5ed0e830">write_PROG</a> (const <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool checkForComError=true, bool verifyWittenReg=true)</td></tr>
-<tr class="separator:a8f9ca03474edf388ac8131bd5ed0e830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55f2fac41a338cf700240775fe6de776"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a55f2fac41a338cf700240775fe6de776">read_ZPOSM</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a></td></tr>
-<tr class="separator:a55f2fac41a338cf700240775fe6de776"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626ad3463b0e9990edf3903ce3e7c873"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a626ad3463b0e9990edf3903ce3e7c873">read_ZPOSM</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a></td></tr>
-<tr class="separator:a626ad3463b0e9990edf3903ce3e7c873"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58b6b460feded2f394f3b7153d8a0278"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a58b6b460feded2f394f3b7153d8a0278">read_ZPOSL</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a></td></tr>
-<tr class="separator:a58b6b460feded2f394f3b7153d8a0278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfe3af5c51d676e87d80a66bd4b2879a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#adfe3af5c51d676e87d80a66bd4b2879a">read_ZPOSL</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a></td></tr>
-<tr class="separator:adfe3af5c51d676e87d80a66bd4b2879a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a959e988974c9ab390ed7df08fee61e68"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a959e988974c9ab390ed7df08fee61e68">read_SETTINGS1</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a></td></tr>
-<tr class="separator:a959e988974c9ab390ed7df08fee61e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b024d68b3ca29d0559be0ee92daeb5f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a7b024d68b3ca29d0559be0ee92daeb5f">read_SETTINGS1</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a></td></tr>
-<tr class="separator:a7b024d68b3ca29d0559be0ee92daeb5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46cc9bad2a71bcee415970c4f4313f00"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a46cc9bad2a71bcee415970c4f4313f00">read_SETTINGS2</a> () -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a></td></tr>
-<tr class="separator:a46cc9bad2a71bcee415970c4f4313f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09586e028294c7840c033b6bd919d485"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a09586e028294c7840c033b6bd919d485">read_SETTINGS2</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool verifyParity=true, bool checkForComError=true, bool checkForSensorError=true) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a></td></tr>
-<tr class="separator:a09586e028294c7840c033b6bd919d485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a181e3ccb0e7b7f64f799daf81106103a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a181e3ccb0e7b7f64f799daf81106103a">write_ZPOSM</a> (const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a> *regData)</td></tr>
-<tr class="separator:a181e3ccb0e7b7f64f799daf81106103a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bcf95e24e7634a4eb237d1b0aece3a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a8bcf95e24e7634a4eb237d1b0aece3a3">write_ZPOSM</a> (const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool checkForComError=true, bool verifyWittenReg=true)</td></tr>
-<tr class="separator:a8bcf95e24e7634a4eb237d1b0aece3a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5356617e316b174a89e1f67d539a6677"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a5356617e316b174a89e1f67d539a6677">write_ZPOSL</a> (const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a> *regData)</td></tr>
-<tr class="separator:a5356617e316b174a89e1f67d539a6677"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa06a769d5f10ea2741f2ffdef4c27bc0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aa06a769d5f10ea2741f2ffdef4c27bc0">write_ZPOSL</a> (const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool checkForComError=true, bool verifyWittenReg=true)</td></tr>
-<tr class="separator:aa06a769d5f10ea2741f2ffdef4c27bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93365303175d42e9791dfe49a5ab4245"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a93365303175d42e9791dfe49a5ab4245">write_SETTINGS1</a> (const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a> *regData)</td></tr>
-<tr class="separator:a93365303175d42e9791dfe49a5ab4245"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38893a7b3dacbfa9332b77bdd2b87cb9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a38893a7b3dacbfa9332b77bdd2b87cb9">write_SETTINGS1</a> (const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool checkForComError=true, bool verifyWittenReg=true)</td></tr>
-<tr class="separator:a38893a7b3dacbfa9332b77bdd2b87cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29ebb3d1b5ad7bc3b5fa5adb6224cd94"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a29ebb3d1b5ad7bc3b5fa5adb6224cd94">write_SETTINGS2</a> (const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a> *regData)</td></tr>
-<tr class="separator:a29ebb3d1b5ad7bc3b5fa5adb6224cd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab81e38c8336363e1103bb59ca27b61ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ab81e38c8336363e1103bb59ca27b61ca">write_SETTINGS2</a> (const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut, bool checkForComError=true, bool verifyWittenReg=true)</td></tr>
-<tr class="separator:ab81e38c8336363e1103bb59ca27b61ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a927efffa100a2da6f4b35761c37e308c"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a927efffa100a2da6f4b35761c37e308c">readMagnitude</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false)</td></tr>
+<tr class="separator:a927efffa100a2da6f4b35761c37e308c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88982d7976889d4640cc81589c96473f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a88982d7976889d4640cc81589c96473f">readAngleRaw</a> (bool withDAEC=true, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false)</td></tr>
+<tr class="separator:a88982d7976889d4640cc81589c96473f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a335be977d2dea17b20d2c6e616a8b02e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a335be977d2dea17b20d2c6e616a8b02e">readAngleDegree</a> (bool withDAEC=true, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false)</td></tr>
+<tr class="separator:a335be977d2dea17b20d2c6e616a8b02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d3df155bee143917f6069c05e4e8dc"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a75d3df155bee143917f6069c05e4e8dc"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a75d3df155bee143917f6069c05e4e8dc">readReg</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false)</td></tr>
+<tr class="separator:a75d3df155bee143917f6069c05e4e8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a134a9df154b185e9942d284ad1909387"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a134a9df154b185e9942d284ad1909387"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a134a9df154b185e9942d284ad1909387">writeReg</a> (const T *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool checkForComError=false, bool verifyWittenReg=false)</td></tr>
+<tr class="separator:a134a9df154b185e9942d284ad1909387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15453b0a4c8a89193620c6c16d3fde88"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a15453b0a4c8a89193620c6c16d3fde88">read_ERRFL</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_f_l__t.html">AS5047P_Types::ERRFL_t</a></td></tr>
+<tr class="separator:a15453b0a4c8a89193620c6c16d3fde88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ffa9c478717992b4f8a99e98f827aca"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a2ffa9c478717992b4f8a99e98f827aca">read_PROG</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a></td></tr>
+<tr class="separator:a2ffa9c478717992b4f8a99e98f827aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3c29010fd554fe961f41cb7b07d26be"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ae3c29010fd554fe961f41cb7b07d26be">read_DIAAGC</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_d_i_a_a_g_c__t.html">AS5047P_Types::DIAAGC_t</a></td></tr>
+<tr class="separator:ae3c29010fd554fe961f41cb7b07d26be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad142d9e7e4f92042a372a3e61adb1cd0"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#ad142d9e7e4f92042a372a3e61adb1cd0">read_MAG</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_m_a_g__t.html">AS5047P_Types::MAG_t</a></td></tr>
+<tr class="separator:ad142d9e7e4f92042a372a3e61adb1cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c49e6a3dfbac152bae66f4a25116c4"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#af3c49e6a3dfbac152bae66f4a25116c4">read_ANGLEUNC</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_u_n_c__t.html">AS5047P_Types::ANGLEUNC_t</a></td></tr>
+<tr class="separator:af3c49e6a3dfbac152bae66f4a25116c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd0f3d3d3b220cf78c8267c9c6091e51"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#afd0f3d3d3b220cf78c8267c9c6091e51">read_ANGLECOM</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_c_o_m__t.html">AS5047P_Types::ANGLECOM_t</a></td></tr>
+<tr class="separator:afd0f3d3d3b220cf78c8267c9c6091e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa99d848826dca53ab4417607e12e4529"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aa99d848826dca53ab4417607e12e4529">write_PROG</a> (const <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool checkForComError=false, bool verifyWittenReg=false)</td></tr>
+<tr class="separator:aa99d848826dca53ab4417607e12e4529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a588602507681927758c9447c054188"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a2a588602507681927758c9447c054188">read_ZPOSM</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a></td></tr>
+<tr class="separator:a2a588602507681927758c9447c054188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebfb13871b6a40354ca20e3d57b377b1"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aebfb13871b6a40354ca20e3d57b377b1">read_ZPOSL</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a></td></tr>
+<tr class="separator:aebfb13871b6a40354ca20e3d57b377b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384aadba86953babe1d50f9f25be91c2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a384aadba86953babe1d50f9f25be91c2">read_SETTINGS1</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a></td></tr>
+<tr class="separator:a384aadba86953babe1d50f9f25be91c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b8915ee7e33727259b3a1aaa640a2b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#aa8b8915ee7e33727259b3a1aaa640a2b">read_SETTINGS2</a> (<a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool verifyParity=false, bool checkForComError=false, bool checkForSensorError=false) -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a></td></tr>
+<tr class="separator:aa8b8915ee7e33727259b3a1aaa640a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ff157577f161dbb4263e1e54cb0d15e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a6ff157577f161dbb4263e1e54cb0d15e">write_ZPOSM</a> (const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool checkForComError=false, bool verifyWittenReg=false)</td></tr>
+<tr class="separator:a6ff157577f161dbb4263e1e54cb0d15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a368a0c7eadde61697c8e06164d271203"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a368a0c7eadde61697c8e06164d271203">write_ZPOSL</a> (const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool checkForComError=false, bool verifyWittenReg=false)</td></tr>
+<tr class="separator:a368a0c7eadde61697c8e06164d271203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06fb43106c05cbccc2bba67cda9b751a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#a06fb43106c05cbccc2bba67cda9b751a">write_SETTINGS1</a> (const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool checkForComError=false, bool verifyWittenReg=false)</td></tr>
+<tr class="separator:a06fb43106c05cbccc2bba67cda9b751a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addfdb571b06059c4242d83d389edcc68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s5047_p.html#addfdb571b06059c4242d83d389edcc68">write_SETTINGS2</a> (const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a> *regData, <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *errorOut=nullptr, bool checkForComError=false, bool verifyWittenReg=false)</td></tr>
+<tr class="separator:addfdb571b06059c4242d83d389edcc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main class for the <a class="el" href="class_a_s5047_p.html" title="The main class for the AS5047P sensor.">AS5047P</a> sensor. </p>
@@ -290,26 +260,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2cb9bba6490e08c84bd8aef8fa11cbdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cb9bba6490e08c84bd8aef8fa11cbdc">&#9670;&nbsp;</a></span>read_ANGLECOM() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_ANGLECOM </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_c_o_m__t.html">AS5047P_Types::ANGLECOM_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the ANGLECOM register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the ANGLECOM register. </dd></dl>
-
-</div>
-</div>
-<a id="adf4e6c7e6c5ac2aa6401058b4930c409"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf4e6c7e6c5ac2aa6401058b4930c409">&#9670;&nbsp;</a></span>read_ANGLECOM() <span class="overload">[2/2]</span></h2>
+<a id="afd0f3d3d3b220cf78c8267c9c6091e51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd0f3d3d3b220cf78c8267c9c6091e51">&#9670;&nbsp;</a></span>read_ANGLECOM()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -318,25 +270,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_ANGLECOM </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -349,26 +301,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a023acb438a0459b76517ab7f58953bef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a023acb438a0459b76517ab7f58953bef">&#9670;&nbsp;</a></span>read_ANGLEUNC() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_ANGLEUNC </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_a_n_g_l_e_u_n_c__t.html">AS5047P_Types::ANGLEUNC_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the ANGLEUNC register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the ANGLEUNC register. </dd></dl>
-
-</div>
-</div>
-<a id="a83274bc23bce518b5bff2cdc58982626"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83274bc23bce518b5bff2cdc58982626">&#9670;&nbsp;</a></span>read_ANGLEUNC() <span class="overload">[2/2]</span></h2>
+<a id="af3c49e6a3dfbac152bae66f4a25116c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3c49e6a3dfbac152bae66f4a25116c4">&#9670;&nbsp;</a></span>read_ANGLEUNC()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -377,25 +311,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_ANGLEUNC </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -408,26 +342,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaf08640d8ec44a9853455c7a49e54ff2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf08640d8ec44a9853455c7a49e54ff2">&#9670;&nbsp;</a></span>read_DIAAGC() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_DIAAGC </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_d_i_a_a_g_c__t.html">AS5047P_Types::DIAAGC_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the DIAAGC register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the DIAAGC register. </dd></dl>
-
-</div>
-</div>
-<a id="af41632d147cd349ffb582dc9b8dd8687"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af41632d147cd349ffb582dc9b8dd8687">&#9670;&nbsp;</a></span>read_DIAAGC() <span class="overload">[2/2]</span></h2>
+<a id="ae3c29010fd554fe961f41cb7b07d26be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3c29010fd554fe961f41cb7b07d26be">&#9670;&nbsp;</a></span>read_DIAAGC()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -436,25 +352,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_DIAAGC </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -467,26 +383,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a633e5cac8358f02cac5eebc18a443312"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a633e5cac8358f02cac5eebc18a443312">&#9670;&nbsp;</a></span>read_ERRFL() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_ERRFL </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_e_r_r_f_l__t.html">AS5047P_Types::ERRFL_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the ERRFL register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the ERRFL register. </dd></dl>
-
-</div>
-</div>
-<a id="ab0cece6bde2499b26e8414b8c0160725"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0cece6bde2499b26e8414b8c0160725">&#9670;&nbsp;</a></span>read_ERRFL() <span class="overload">[2/2]</span></h2>
+<a id="a15453b0a4c8a89193620c6c16d3fde88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15453b0a4c8a89193620c6c16d3fde88">&#9670;&nbsp;</a></span>read_ERRFL()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -495,25 +393,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_ERRFL </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -526,26 +424,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac8ce2e60adf802ddfdf8c3026596d5f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8ce2e60adf802ddfdf8c3026596d5f9">&#9670;&nbsp;</a></span>read_MAG() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_MAG </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_m_a_g__t.html">AS5047P_Types::MAG_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the MAG register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the MAG register. </dd></dl>
-
-</div>
-</div>
-<a id="af581a11804cd5766a52b63874362b1de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af581a11804cd5766a52b63874362b1de">&#9670;&nbsp;</a></span>read_MAG() <span class="overload">[2/2]</span></h2>
+<a id="ad142d9e7e4f92042a372a3e61adb1cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad142d9e7e4f92042a372a3e61adb1cd0">&#9670;&nbsp;</a></span>read_MAG()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -554,25 +434,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_MAG </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -585,26 +465,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa501b2e6cd76580aa71a6b674c88e0c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa501b2e6cd76580aa71a6b674c88e0c3">&#9670;&nbsp;</a></span>read_PROG() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_PROG </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the PROG register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the PROG register. </dd></dl>
-
-</div>
-</div>
-<a id="ad0493dfebad2e0fd6359c149ff12b36a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0493dfebad2e0fd6359c149ff12b36a">&#9670;&nbsp;</a></span>read_PROG() <span class="overload">[2/2]</span></h2>
+<a id="a2ffa9c478717992b4f8a99e98f827aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ffa9c478717992b4f8a99e98f827aca">&#9670;&nbsp;</a></span>read_PROG()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -613,25 +475,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_PROG </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -644,26 +506,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a959e988974c9ab390ed7df08fee61e68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a959e988974c9ab390ed7df08fee61e68">&#9670;&nbsp;</a></span>read_SETTINGS1() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_SETTINGS1 </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the SETTINGS1 register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the SETTINGS1 register. </dd></dl>
-
-</div>
-</div>
-<a id="a7b024d68b3ca29d0559be0ee92daeb5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b024d68b3ca29d0559be0ee92daeb5f">&#9670;&nbsp;</a></span>read_SETTINGS1() <span class="overload">[2/2]</span></h2>
+<a id="a384aadba86953babe1d50f9f25be91c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a384aadba86953babe1d50f9f25be91c2">&#9670;&nbsp;</a></span>read_SETTINGS1()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -672,25 +516,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_SETTINGS1 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -703,26 +547,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a46cc9bad2a71bcee415970c4f4313f00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46cc9bad2a71bcee415970c4f4313f00">&#9670;&nbsp;</a></span>read_SETTINGS2() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_SETTINGS2 </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the SETTINGS2 register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the SETTINGS2 register. </dd></dl>
-
-</div>
-</div>
-<a id="a09586e028294c7840c033b6bd919d485"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09586e028294c7840c033b6bd919d485">&#9670;&nbsp;</a></span>read_SETTINGS2() <span class="overload">[2/2]</span></h2>
+<a id="aa8b8915ee7e33727259b3a1aaa640a2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8b8915ee7e33727259b3a1aaa640a2b">&#9670;&nbsp;</a></span>read_SETTINGS2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -731,25 +557,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_SETTINGS2 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -762,26 +588,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a58b6b460feded2f394f3b7153d8a0278"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58b6b460feded2f394f3b7153d8a0278">&#9670;&nbsp;</a></span>read_ZPOSL() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_ZPOSL </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the ZPOSL register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the ZPOSL register. </dd></dl>
-
-</div>
-</div>
-<a id="adfe3af5c51d676e87d80a66bd4b2879a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adfe3af5c51d676e87d80a66bd4b2879a">&#9670;&nbsp;</a></span>read_ZPOSL() <span class="overload">[2/2]</span></h2>
+<a id="aebfb13871b6a40354ca20e3d57b377b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebfb13871b6a40354ca20e3d57b377b1">&#9670;&nbsp;</a></span>read_ZPOSL()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -790,25 +598,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_ZPOSL </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -821,26 +629,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a55f2fac41a338cf700240775fe6de776"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55f2fac41a338cf700240775fe6de776">&#9670;&nbsp;</a></span>read_ZPOSM() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto AS5047P::read_ZPOSM </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the ZPOSM register. </p><dl class="section return"><dt>Returns</dt><dd>The contet of the ZPOSM register. </dd></dl>
-
-</div>
-</div>
-<a id="a626ad3463b0e9990edf3903ce3e7c873"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a626ad3463b0e9990edf3903ce3e7c873">&#9670;&nbsp;</a></span>read_ZPOSM() <span class="overload">[2/2]</span></h2>
+<a id="a2a588602507681927758c9447c054188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a588602507681927758c9447c054188">&#9670;&nbsp;</a></span>read_ZPOSM()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -849,25 +639,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto AS5047P::read_ZPOSM </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -880,8 +670,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a055b6170b921537e002036f7eea9b222"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a055b6170b921537e002036f7eea9b222">&#9670;&nbsp;</a></span>readAngleDegree() <span class="overload">[1/2]</span></h2>
+<a id="a335be977d2dea17b20d2c6e616a8b02e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335be977d2dea17b20d2c6e616a8b02e">&#9670;&nbsp;</a></span>readAngleDegree()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -889,32 +679,32 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">float AS5047P::readAngleDegree </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>withDAEC</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -933,33 +723,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a593edb1259f40f6d0418dbbb4e6d611f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a593edb1259f40f6d0418dbbb4e6d611f">&#9670;&nbsp;</a></span>readAngleDegree() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float AS5047P::readAngleDegree </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>withDAEC</em> = <code>true</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the current angle value in degree value. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">withDAEC</td><td>Flag to select if the value with or without dynamic angle error correction should be returned. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The current angle value in degree value. </dd></dl>
-
-</div>
-</div>
-<a id="a09a13fb0e865f45177411355a206aa79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09a13fb0e865f45177411355a206aa79">&#9670;&nbsp;</a></span>readAngleRaw() <span class="overload">[1/2]</span></h2>
+<a id="a88982d7976889d4640cc81589c96473f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88982d7976889d4640cc81589c96473f">&#9670;&nbsp;</a></span>readAngleRaw()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -967,32 +732,32 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">uint16_t AS5047P::readAngleRaw </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>withDAEC</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1011,51 +776,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a68ca71c6de5c67751cc7550c7c03c10c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68ca71c6de5c67751cc7550c7c03c10c">&#9670;&nbsp;</a></span>readAngleRaw() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t AS5047P::readAngleRaw </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>withDAEC</em> = <code>true</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the current raw angle value. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">withDAEC</td><td>Flag to select if the value with or without dynamic angle error correction should be returned. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The current raw angle value. </dd></dl>
-
-</div>
-</div>
-<a id="aa752a29ebbe1d79873c78b7667397b60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa752a29ebbe1d79873c78b7667397b60">&#9670;&nbsp;</a></span>readMagnitude() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t AS5047P::readMagnitude </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Read the current magnitude value. </p><dl class="section return"><dt>Returns</dt><dd>The current magnitude value. </dd></dl>
-
-</div>
-</div>
-<a id="adce71bc3d778b2421e8d7e69babc7ed4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adce71bc3d778b2421e8d7e69babc7ed4">&#9670;&nbsp;</a></span>readMagnitude() <span class="overload">[2/2]</span></h2>
+<a id="a927efffa100a2da6f4b35761c37e308c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a927efffa100a2da6f4b35761c37e308c">&#9670;&nbsp;</a></span>readMagnitude()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1064,25 +786,25 @@ Public Member Functions</h2></td></tr>
           <td class="memname">uint16_t AS5047P::readMagnitude </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyParity</em> = <code>true</code>, </td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForSensorError</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1092,6 +814,49 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Read the current magnitude value. </p><dl class="section return"><dt>Returns</dt><dd>The current magnitude value. </dd></dl>
+
+</div>
+</div>
+<a id="a75d3df155bee143917f6069c05e4e8dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75d3df155bee143917f6069c05e4e8dc">&#9670;&nbsp;</a></span>readReg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T AS5047P::readReg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verifyParity</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checkForSensorError</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reads a register. </p>
 
 </div>
 </div>
@@ -1149,33 +914,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f7dab5e01aa9730a008e6f361557c46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f7dab5e01aa9730a008e6f361557c46">&#9670;&nbsp;</a></span>write_PROG() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool AS5047P::write_PROG </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_a_s5047_p___types_1_1_p_r_o_g__t.html">AS5047P_Types::PROG_t</a> *&#160;</td>
-          <td class="paramname"><em>regData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Write into the PROG register. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">regDat</td><td>The new contet of the PROG register. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
-
-</div>
-</div>
-<a id="a8f9ca03474edf388ac8131bd5ed0e830"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f9ca03474edf388ac8131bd5ed0e830">&#9670;&nbsp;</a></span>write_PROG() <span class="overload">[2/2]</span></h2>
+<a id="aa99d848826dca53ab4417607e12e4529"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa99d848826dca53ab4417607e12e4529">&#9670;&nbsp;</a></span>write_PROG()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1190,19 +930,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyWittenReg</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>verifyWittenReg</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1217,37 +957,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if no error occurred, else false. </dd></dl>
 
 </div>
 </div>
-<a id="a93365303175d42e9791dfe49a5ab4245"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93365303175d42e9791dfe49a5ab4245">&#9670;&nbsp;</a></span>write_SETTINGS1() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool AS5047P::write_SETTINGS1 </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html">AS5047P_Types::SETTINGS1_t</a> *&#160;</td>
-          <td class="paramname"><em>regData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Write into the SETTINGS1 register. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">regDat</td><td>The new contet of the SETTINGS1 register. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
-
-</div>
-</div>
-<a id="a38893a7b3dacbfa9332b77bdd2b87cb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38893a7b3dacbfa9332b77bdd2b87cb9">&#9670;&nbsp;</a></span>write_SETTINGS1() <span class="overload">[2/2]</span></h2>
+<a id="a06fb43106c05cbccc2bba67cda9b751a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06fb43106c05cbccc2bba67cda9b751a">&#9670;&nbsp;</a></span>write_SETTINGS1()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1262,19 +977,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyWittenReg</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>verifyWittenReg</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1289,37 +1004,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if no error occurred, else false. </dd></dl>
 
 </div>
 </div>
-<a id="a29ebb3d1b5ad7bc3b5fa5adb6224cd94"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29ebb3d1b5ad7bc3b5fa5adb6224cd94">&#9670;&nbsp;</a></span>write_SETTINGS2() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool AS5047P::write_SETTINGS2 </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html">AS5047P_Types::SETTINGS2_t</a> *&#160;</td>
-          <td class="paramname"><em>regData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Write into the ETTINGS2 register. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">regDat</td><td>The new contet of the ETTINGS2 register. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
-
-</div>
-</div>
-<a id="ab81e38c8336363e1103bb59ca27b61ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab81e38c8336363e1103bb59ca27b61ca">&#9670;&nbsp;</a></span>write_SETTINGS2() <span class="overload">[2/2]</span></h2>
+<a id="addfdb571b06059c4242d83d389edcc68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addfdb571b06059c4242d83d389edcc68">&#9670;&nbsp;</a></span>write_SETTINGS2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1334,19 +1024,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyWittenReg</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>verifyWittenReg</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1361,37 +1051,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if no error occurred, else false. </dd></dl>
 
 </div>
 </div>
-<a id="a5356617e316b174a89e1f67d539a6677"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5356617e316b174a89e1f67d539a6677">&#9670;&nbsp;</a></span>write_ZPOSL() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool AS5047P::write_ZPOSL </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_l__t.html">AS5047P_Types::ZPOSL_t</a> *&#160;</td>
-          <td class="paramname"><em>regData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Write into the ZPOSL register. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">regDat</td><td>The new contet of the ZPOSL register. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
-
-</div>
-</div>
-<a id="aa06a769d5f10ea2741f2ffdef4c27bc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa06a769d5f10ea2741f2ffdef4c27bc0">&#9670;&nbsp;</a></span>write_ZPOSL() <span class="overload">[2/2]</span></h2>
+<a id="a368a0c7eadde61697c8e06164d271203"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a368a0c7eadde61697c8e06164d271203">&#9670;&nbsp;</a></span>write_ZPOSL()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1406,19 +1071,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyWittenReg</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>verifyWittenReg</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1433,37 +1098,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if no error occurred, else false. </dd></dl>
 
 </div>
 </div>
-<a id="a181e3ccb0e7b7f64f799daf81106103a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a181e3ccb0e7b7f64f799daf81106103a">&#9670;&nbsp;</a></span>write_ZPOSM() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool AS5047P::write_ZPOSM </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_a_s5047_p___types_1_1_z_p_o_s_m__t.html">AS5047P_Types::ZPOSM_t</a> *&#160;</td>
-          <td class="paramname"><em>regData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Write into the ZPOSM register. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">regDat</td><td>The new contet of the ZPOSM register. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if no error occured, else false. </dd></dl>
-
-</div>
-</div>
-<a id="a8bcf95e24e7634a4eb237d1b0aece3a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8bcf95e24e7634a4eb237d1b0aece3a3">&#9670;&nbsp;</a></span>write_ZPOSM() <span class="overload">[2/2]</span></h2>
+<a id="a6ff157577f161dbb4263e1e54cb0d15e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ff157577f161dbb4263e1e54cb0d15e">&#9670;&nbsp;</a></span>write_ZPOSM()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1478,19 +1118,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
-          <td class="paramname"><em>errorOut</em>, </td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>checkForComError</em> = <code>true</code>, </td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>verifyWittenReg</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>verifyWittenReg</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1505,6 +1145,50 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>True if no error occurred, else false. </dd></dl>
+
+</div>
+</div>
+<a id="a134a9df154b185e9942d284ad1909387"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a134a9df154b185e9942d284ad1909387">&#9670;&nbsp;</a></span>writeReg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AS5047P::writeReg </td>
+          <td>(</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>regData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_a_s5047_p___types_1_1_e_r_r_o_r__t.html">AS5047P_Types::ERROR_t</a> *&#160;</td>
+          <td class="paramname"><em>errorOut</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checkForComError</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verifyWittenReg</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Writes a register. </p>
 
 </div>
 </div>

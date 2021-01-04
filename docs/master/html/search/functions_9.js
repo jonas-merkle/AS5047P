@@ -1,8 +1,19 @@
 var searchData=
 [
-  ['settings1_5ft_150',['SETTINGS1_t',['../class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html#a6c6e6257e2eb3f8f2bf6cfef5a44e480',1,'AS5047P_Types::SETTINGS1_t::SETTINGS1_t()'],['../class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s1__t.html#a811e84a574297bb58ea790fb200dc018',1,'AS5047P_Types::SETTINGS1_t::SETTINGS1_t(uint16_t raw)']]],
-  ['settings2_5ft_151',['SETTINGS2_t',['../class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html#ab102d93c161712b7915f870a84f09eee',1,'AS5047P_Types::SETTINGS2_t::SETTINGS2_t()'],['../class_a_s5047_p___types_1_1_s_e_t_t_i_n_g_s2__t.html#a756608d4001c1e573ffd4537ee40ea5f',1,'AS5047P_Types::SETTINGS2_t::SETTINGS2_t(uint16_t raw)']]],
-  ['spi_5fcommand_5fframe_5ft_152',['SPI_Command_Frame_t',['../class_a_s5047_p___types_1_1_s_p_i___command___frame__t.html#a17413796806722832f32ad02ecbdbe64',1,'AS5047P_Types::SPI_Command_Frame_t::SPI_Command_Frame_t(uint16_t raw)'],['../class_a_s5047_p___types_1_1_s_p_i___command___frame__t.html#a91ce2be8bd3e7d0202640af7177ce39d',1,'AS5047P_Types::SPI_Command_Frame_t::SPI_Command_Frame_t(uint16_t ADDR, uint16_t RW)']]],
-  ['spi_5freaddata_5fframe_5ft_153',['SPI_ReadData_Frame_t',['../class_a_s5047_p___types_1_1_s_p_i___read_data___frame__t.html#a0654fea45b8a9f2e63a96ba0a6ae9439',1,'AS5047P_Types::SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(uint16_t raw)'],['../class_a_s5047_p___types_1_1_s_p_i___read_data___frame__t.html#a36f39358873b3842f4594d6518b54558',1,'AS5047P_Types::SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(uint16_t ADDR, uint16_t EF)']]],
-  ['spi_5fwritedata_5fframe_5ft_154',['SPI_WriteData_Frame_t',['../class_a_s5047_p___types_1_1_s_p_i___write_data___frame__t.html#a6faf14c94918a91631897c6abd59d8ae',1,'AS5047P_Types::SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(uint16_t raw)'],['../class_a_s5047_p___types_1_1_s_p_i___write_data___frame__t.html#ae2f3bdaaae58a508713f6b2754f24592',1,'AS5047P_Types::SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(uint16_t ADDR, uint16_t NC)']]]
+  ['read_140',['read',['../class_a_s5047_p___com_backend_1_1_a_s5047_p___s_p_i.html#af10c1983a1cf3fefec5d26604c08a3a7',1,'AS5047P_ComBackend::AS5047P_SPI']]],
+  ['read_5fanglecom_141',['read_ANGLECOM',['../class_a_s5047_p.html#afd0f3d3d3b220cf78c8267c9c6091e51',1,'AS5047P']]],
+  ['read_5fangleunc_142',['read_ANGLEUNC',['../class_a_s5047_p.html#af3c49e6a3dfbac152bae66f4a25116c4',1,'AS5047P']]],
+  ['read_5fdiaagc_143',['read_DIAAGC',['../class_a_s5047_p.html#ae3c29010fd554fe961f41cb7b07d26be',1,'AS5047P']]],
+  ['read_5ferrfl_144',['read_ERRFL',['../class_a_s5047_p.html#a15453b0a4c8a89193620c6c16d3fde88',1,'AS5047P']]],
+  ['read_5fmag_145',['read_MAG',['../class_a_s5047_p.html#ad142d9e7e4f92042a372a3e61adb1cd0',1,'AS5047P']]],
+  ['read_5fprog_146',['read_PROG',['../class_a_s5047_p.html#a2ffa9c478717992b4f8a99e98f827aca',1,'AS5047P']]],
+  ['read_5fsettings1_147',['read_SETTINGS1',['../class_a_s5047_p.html#a384aadba86953babe1d50f9f25be91c2',1,'AS5047P']]],
+  ['read_5fsettings2_148',['read_SETTINGS2',['../class_a_s5047_p.html#aa8b8915ee7e33727259b3a1aaa640a2b',1,'AS5047P']]],
+  ['read_5fzposl_149',['read_ZPOSL',['../class_a_s5047_p.html#aebfb13871b6a40354ca20e3d57b377b1',1,'AS5047P']]],
+  ['read_5fzposm_150',['read_ZPOSM',['../class_a_s5047_p.html#a2a588602507681927758c9447c054188',1,'AS5047P']]],
+  ['readangledegree_151',['readAngleDegree',['../class_a_s5047_p.html#a335be977d2dea17b20d2c6e616a8b02e',1,'AS5047P']]],
+  ['readangleraw_152',['readAngleRaw',['../class_a_s5047_p.html#a88982d7976889d4640cc81589c96473f',1,'AS5047P']]],
+  ['readmagnitude_153',['readMagnitude',['../class_a_s5047_p.html#a927efffa100a2da6f4b35761c37e308c',1,'AS5047P']]],
+  ['readreg_154',['readReg',['../class_a_s5047_p.html#a75d3df155bee143917f6069c05e4e8dc',1,'AS5047P']]],
+  ['readstatusasarduinostring_155',['readStatusAsArduinoString',['../class_a_s5047_p.html#ac068387483b45df4523bca69c67aae7b',1,'AS5047P']]]
 ];

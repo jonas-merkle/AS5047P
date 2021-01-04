@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AS5047P - Arduino Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.1.0</span>
    </div>
    <div id="projectbrief">An Arduino library for the AS5047P high-resolution rotary position sensor.</div>
   </td>
@@ -125,18 +125,18 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a2143ebf9da2e0cd376fadf1f23f11f6b"><td class="memItemLeft" align="right" valign="top"><a id="a2143ebf9da2e0cd376fadf1f23f11f6b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_s5047_p___types.html#a2143ebf9da2e0cd376fadf1f23f11f6b">ERROR_Names</a> : uint8_t { <br />
-&#160;&#160;<b>SENSOR_SPI_FRAMING_ERROR</b> = 1, 
-<b>SENSOR_SPI_INVALID_CMD</b> = 2, 
-<b>SENSOR_SPI_PARITY_ERROR</b> = 4, 
-<b>SENSOR_OFFSET_COMPENSATION_ERROR</b> = 8, 
+&#160;&#160;<b>SENS_SPI_FRAMING_ERROR</b> = 1, 
+<b>SENS_SPI_INVALID_CMD</b> = 2, 
+<b>SENS_SPI_PARITY_ERROR</b> = 4, 
+<b>SENS_OFFSET_COMP_ERROR</b> = 8, 
 <br />
-&#160;&#160;<b>SENSOR_CORDIC_OVERFLOW_ERROR</b> = 16, 
-<b>SENSOR_MAG_TOO_HIGH</b> = 32, 
-<b>SENSOR_MAG_TOO_LOW</b> = 64, 
-<b>CONTROLLER_SPI_PARITY_ERROR</b> = 1, 
+&#160;&#160;<b>SENS_CORDIC_OVERFLOW_ERROR</b> = 16, 
+<b>SENS_MAG_TOO_HIGH</b> = 32, 
+<b>SENS_MAG_TOO_LOW</b> = 64, 
+<b>CONT_SPI_PARITY_ERROR</b> = 1, 
 <br />
-&#160;&#160;<b>CONTROLLER_GENERAL_COMMUNICATION_ERROR</b> = 2, 
-<b>CONTROLLER_WRITE_VERIFY_FAILED</b> = 4
+&#160;&#160;<b>CONT_GENERAL_COM_ERROR</b> = 2, 
+<b>CONT_WRITE_VERIFY_FAILED</b> = 4
 <br />
  }</td></tr>
 <tr class="memdesc:a2143ebf9da2e0cd376fadf1f23f11f6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum that holds the different error names an there according bit number in the raw error information byte. <br /></td></tr>

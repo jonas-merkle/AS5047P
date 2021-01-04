@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['zposl_5fdata_5ft_79',['ZPOSL_data_t',['../union_a_s5047_p___types_1_1_z_p_o_s_l__t_1_1_z_p_o_s_l__data__t.html',1,'AS5047P_Types::ZPOSL_t']]],
-  ['zposl_5ft_80',['ZPOSL_t',['../class_a_s5047_p___types_1_1_z_p_o_s_l__t.html',1,'AS5047P_Types::ZPOSL_t'],['../class_a_s5047_p___types_1_1_z_p_o_s_l__t.html#a3c5a5d890022154478af01fae7931ac3',1,'AS5047P_Types::ZPOSL_t::ZPOSL_t()'],['../class_a_s5047_p___types_1_1_z_p_o_s_l__t.html#ad348ce8ea2bafbdf636d2831736ac0a9',1,'AS5047P_Types::ZPOSL_t::ZPOSL_t(uint16_t raw)']]],
-  ['zposl_5fvalues_5ft_81',['ZPOSL_values_t',['../union_a_s5047_p___types_1_1_z_p_o_s_l__t_1_1_z_p_o_s_l__data__t.html#a48d1d78e5dab3e225f7384a17c664921',1,'AS5047P_Types::ZPOSL_t::ZPOSL_data_t']]],
-  ['zposm_5fdata_5ft_82',['ZPOSM_data_t',['../union_a_s5047_p___types_1_1_z_p_o_s_m__t_1_1_z_p_o_s_m__data__t.html',1,'AS5047P_Types::ZPOSM_t']]],
-  ['zposm_5ft_83',['ZPOSM_t',['../class_a_s5047_p___types_1_1_z_p_o_s_m__t.html',1,'AS5047P_Types::ZPOSM_t'],['../class_a_s5047_p___types_1_1_z_p_o_s_m__t.html#a908c653f56e7515d8a63b23b2f534202',1,'AS5047P_Types::ZPOSM_t::ZPOSM_t()'],['../class_a_s5047_p___types_1_1_z_p_o_s_m__t.html#a702fa99e3642ddaa6f6d6fe75f4f01fd',1,'AS5047P_Types::ZPOSM_t::ZPOSM_t(uint16_t raw)']]],
-  ['zposm_5fvalues_5ft_84',['ZPOSM_values_t',['../union_a_s5047_p___types_1_1_z_p_o_s_m__t_1_1_z_p_o_s_m__data__t.html#aca80341cbeefc11f109f7d2448830354',1,'AS5047P_Types::ZPOSM_t::ZPOSM_data_t']]]
+  ['write_76',['write',['../class_a_s5047_p___com_backend_1_1_a_s5047_p___s_p_i.html#ae1d41dbbd3ceaa40e51631438497ddd4',1,'AS5047P_ComBackend::AS5047P_SPI']]],
+  ['write_5fprog_77',['write_PROG',['../class_a_s5047_p.html#aa99d848826dca53ab4417607e12e4529',1,'AS5047P']]],
+  ['write_5fsettings1_78',['write_SETTINGS1',['../class_a_s5047_p.html#a06fb43106c05cbccc2bba67cda9b751a',1,'AS5047P']]],
+  ['write_5fsettings2_79',['write_SETTINGS2',['../class_a_s5047_p.html#addfdb571b06059c4242d83d389edcc68',1,'AS5047P']]],
+  ['write_5fzposl_80',['write_ZPOSL',['../class_a_s5047_p.html#a368a0c7eadde61697c8e06164d271203',1,'AS5047P']]],
+  ['write_5fzposm_81',['write_ZPOSM',['../class_a_s5047_p.html#a6ff157577f161dbb4263e1e54cb0d15e',1,'AS5047P']]],
+  ['writereg_82',['writeReg',['../class_a_s5047_p.html#a134a9df154b185e9942d284ad1909387',1,'AS5047P']]]
 ];
