@@ -11,14 +11,28 @@ AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spi
 
 // Init --------------------------------------------------------
 
+bool AS5047P::checkSPICon() {
+    
+    // test write to an readonly register (error register)
+    __spiInterface.write(AS5047P_Types::ERRFL_t::REG_ADDRESS, 0x0007);
+
+    // read the error register (should contain an error)
+    AS5047P_Types::ERRFL_t errorReg = read_ERRFL();
+
+    // if error register contains no errors something is not right.
+    return (
+        errorReg.data.values.FRERR == 0 &&
+        errorReg.data.values.INVCOMM == 0 &&
+        errorReg.data.values.PARERR == 1
+    );
+
+}
+
 bool AS5047P::initSPI() {
     
     __spiInterface.init();
 
-    AS5047P_Types::DIAAGC_t diagRes = read_DIAAGC();
-    
-    // @Todo: check if ther is a better way to test the connection...
-    return (diagRes.data.raw != 0);
+    return checkSPICon();
 
 }
 

@@ -98,6 +98,7 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Switch to unions... |
 |   ✅   | Write functions for all registers implemented. |
 |   ✅   | Parity check on incoming data. |
+|   ✅   | Improve initSPI() |
 |   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
 |   🚧   | Documentation update.|
@@ -105,7 +106,6 @@ Sorry, this Feature is currently not supported. 😭
 |   🚧   | Adding Library to PlattformIO Library Manager |
 |   🚧   | Test of all wirte functions |
 |   🚧   | Test of all read functions |
-|   🚧   | Improof initSPI() |
 |   🚧   | ToString() for Error_t |
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |

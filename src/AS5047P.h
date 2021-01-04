@@ -35,8 +35,14 @@ class AS5047P {
         // Init --------------------------------------------------------
 
         /**
+         * Tests the spi connection to the AS5047P sensor.
+         * @return True on success, else false.
+         */
+        bool checkSPICon();
+
+        /**
          * Initializes the sensor object & tests the connection. Must be calles once befor unsing the sensor object.
-         * @return True on success, else false
+         * @return True on success, else false.
          */
         bool initSPI();
 
