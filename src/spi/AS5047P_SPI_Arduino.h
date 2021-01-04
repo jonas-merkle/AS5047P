@@ -1,10 +1,8 @@
-#ifndef AS5047P_SPI_h
-#define AS5047P_SPI_h
+#ifndef AS5047P_SPI_ARDUINO_h
+#define AS5047P_SPI_ARDUINO_h
 
 #include <inttypes.h>
 #include <SPI.h>
-
-#include "AS5047P_SPI.h"
 
 /**
  * @namespace AS5047P_ComBackend
@@ -58,4 +56,4 @@ namespace AS5047P_ComBackend {
 
 }
 
-#endif // AS5047P_SPI_h
+#endif // AS5047P_SPI_ARDUINO_h

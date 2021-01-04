@@ -1,5 +1,5 @@
-#ifndef AS5047P_types_h
-#define AS5047P_types_h
+#ifndef AS5047P_TYPES_h
+#define AS5047P_TYPES_h
 
 #include <inttypes.h>
 
@@ -7,10 +7,10 @@
 #define AS5047P_TYPES_READ_CMD 1        ///< Read command flag.
 
 /**
- * @namespace AS5047P_types
+ * @namespace AS5047P_Types
  * @brief The namespace for all custom types needed for the AS5047P sensor.
  */
-namespace AS5047P_types {
+namespace AS5047P_Types {
 
     // Errors ------------------------------------------------------
 
@@ -770,4 +770,4 @@ namespace AS5047P_types {
     // -------------------------------------------------------------
 }
 
-#endif // AS5047P_types_h
+#endif // AS5047P_TYPES_h

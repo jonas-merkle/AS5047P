@@ -32,7 +32,7 @@ void setup() {
   Serial.begin(115200);
 
   // initialize the AS5047P sensor and hold if sensor can't be initialized..
-  while (!as5047p.init()) {
+  while (!as5047p.initSPI()) {
     Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection... "));
     delay(5000);
   }
