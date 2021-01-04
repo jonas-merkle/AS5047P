@@ -47,19 +47,19 @@ bool AS5047P::checkForComErrorF(AS5047P_Types::ERROR_t *errorOut) {
 
     // verify parity bit
     if (!AS5047P_Util::parityCheck(errorReg.data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
     }
 
     // write the ERRFL register content in errorOut
-    errorOut->sensorSideErrors.flags.SPI_FRAMING_ERROR |= errorReg.data.values.FRERR;
-    errorOut->sensorSideErrors.flags.SPI_INVALID_CMD |= errorReg.data.values.INVCOMM;
-    errorOut->sensorSideErrors.flags.SPI_PARITY_ERROR |= errorReg.data.values.PARERR;
+    errorOut->sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR |= errorReg.data.values.FRERR;
+    errorOut->sensorSideErrors.flags.SENS_SPI_INVALID_CMD |= errorReg.data.values.INVCOMM;
+    errorOut->sensorSideErrors.flags.SENS_SPI_PARITY_ERROR |= errorReg.data.values.PARERR;
 
     // check for no errors
     if (!errorReg.data.values.FRERR &&
         !errorReg.data.values.INVCOMM &&
         !errorReg.data.values.PARERR &&
-        !errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR) {
+        !errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR) {
         return true;
     }
     else {
@@ -74,21 +74,21 @@ bool AS5047P::checkForSensorErrorF(AS5047P_Types::ERROR_t *errorOut) {
 
     // verify parity bit
     if (!AS5047P_Util::parityCheck(diagReg.data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
     }
 
     // write the ERRFL register content in errorOut
-    errorOut->sensorSideErrors.flags.CORDIC_OVERFLOW_ERROR |= diagReg.data.values.COF;
-    errorOut->sensorSideErrors.flags.OFFSET_COMPENSATION_ERROR |= diagReg.data.values.LF;
-    errorOut->sensorSideErrors.flags.MAG_TOO_HIGH |= diagReg.data.values.MAGH;
-    errorOut->sensorSideErrors.flags.MAG_TOO_LOW |= diagReg.data.values.MAGL;
+    errorOut->sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR |= diagReg.data.values.COF;
+    errorOut->sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR |= ~diagReg.data.values.LF;         // bit flip: O = not compensated -> error 
+    errorOut->sensorSideErrors.flags.SENS_MAG_TOO_HIGH |= diagReg.data.values.MAGH;
+    errorOut->sensorSideErrors.flags.SENS_MAG_TOO_LOW |= diagReg.data.values.MAGL;
 
     // check for no errors
     if (!diagReg.data.values.COF &&
         !diagReg.data.values.LF &&
         !diagReg.data.values.MAGH &&
         !diagReg.data.values.MAGL &&
-        !errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR) {
+        !errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR) {
         return true;
     }
     else {
@@ -185,13 +185,6 @@ String AS5047P::readStatusAsArduinoString() {
 
 // Read High-Level ---------------------------------------------
 
-uint16_t AS5047P::readMagnitude() {
-    
-    AS5047P_Types::MAG_t res = AS5047P::read_MAG();
-    return res.data.values.CMAG;
-
-}
-
 uint16_t AS5047P::readMagnitude(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) {
 
     AS5047P_Types::MAG_t res = AS5047P::read_MAG(errorOut, verifyParity, checkForComError, checkForSensorError);
@@ -199,20 +192,7 @@ uint16_t AS5047P::readMagnitude(AS5047P_Types::ERROR_t *errorOut, bool verifyPar
 
 }
 
-uint16_t AS5047P::readAngleRaw(const bool withDAEC) {
-
-    if (withDAEC) {
-        AS5047P_Types::ANGLECOM_t res = AS5047P::read_ANGLECOM();
-        return res.data.values.DAECANG;
-    }
-    else {
-        AS5047P_Types::ANGLEUNC_t res = AS5047P::read_ANGLEUNC();
-        return res.data.values.CORDICANG;
-    }
-
-}
-
-uint16_t AS5047P::readAngleRaw(AS5047P_Types::ERROR_t *errorOut, bool withDAEC, bool verifyParity, bool checkForComError, bool checkForSensorError) {
+uint16_t AS5047P::readAngleRaw(bool withDAEC, AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) {
 
     if (withDAEC) {
         AS5047P_Types::ANGLECOM_t res = AS5047P::read_ANGLECOM(errorOut, verifyParity, checkForComError, checkForSensorError);
@@ -225,20 +205,7 @@ uint16_t AS5047P::readAngleRaw(AS5047P_Types::ERROR_t *errorOut, bool withDAEC, 
 
 }
 
-float AS5047P::readAngleDegree(bool withDAEC) {
-
-    if (withDAEC) {
-        AS5047P_Types::ANGLECOM_t res = AS5047P::read_ANGLECOM();
-        return (res.data.values.DAECANG/(float)0x3FFF)*360;
-    }
-    else {
-        AS5047P_Types::ANGLEUNC_t res = AS5047P::read_ANGLEUNC();
-        return (res.data.values.CORDICANG/(float)0x3FFF)*360;
-    }
-
-}
-
-float AS5047P::readAngleDegree(AS5047P_Types::ERROR_t *errorOut, bool withDAEC, bool verifyParity, bool checkForComError, bool checkForSensorError) {
+float AS5047P::readAngleDegree(bool withDAEC, AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) {
 
     if (withDAEC) {
         AS5047P_Types::ANGLECOM_t res = AS5047P::read_ANGLECOM(errorOut, verifyParity, checkForComError, checkForSensorError);
@@ -248,6 +215,85 @@ float AS5047P::readAngleDegree(AS5047P_Types::ERROR_t *errorOut, bool withDAEC, 
         AS5047P_Types::ANGLEUNC_t res = AS5047P::read_ANGLEUNC(errorOut, verifyParity, checkForComError, checkForSensorError);
         return (res.data.values.CORDICANG/(float)0x3FFF)*360;
     }
+
+}
+
+// -------------------------------------------------------------
+
+// Template functions ------------------------------------------
+
+template<class T>
+T AS5047P::readReg(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) {
+    
+    // send read command
+    AS5047P_Types::SPI_Command_Frame_t readCMD(T::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
+
+    // read data
+    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
+
+    if (errorOut == nullptr) {
+        return T(recData.data.raw);
+    }
+    
+    // reset error data
+    *errorOut = AS5047P_Types::ERROR_t();
+
+    // verify parity bit
+    if (verifyParity) {
+        if (!AS5047P_Util::parityCheck(recData.data.raw)) {
+            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
+        }
+    }
+
+    // check for communication error
+    if (checkForComError) {
+        checkForComErrorF(errorOut);
+    }
+
+    // check for sensor error
+    if (checkForSensorError) {
+        checkForSensorErrorF(errorOut);
+
+        // check for communication error
+        if (checkForComError) {
+            checkForComErrorF(errorOut);
+        }
+    }
+
+    return T(recData.data.raw);
+
+}
+
+template<class T>
+bool AS5047P::writeReg(const T *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
+
+    // write register data
+    __spiInterface.write(T::REG_ADDRESS, regData->data.raw);
+    
+    if (errorOut == nullptr) {
+        return true;
+    }
+
+    // reset error data
+    *errorOut = AS5047P_Types::ERROR_t();    
+
+    // check for communication error
+    if (checkForComError) {
+        checkForComErrorF(errorOut);
+    }
+
+    // check for sensor error
+    if (verifyWittenReg) {
+        checkForSensorErrorF(errorOut);
+
+        // check for communication error
+        if (checkForComError) {
+            checkForComErrorF(errorOut);
+        }
+    }
+
+    // check error information and return
+    return errorOut->noError();;
 
 }
 
@@ -255,267 +301,39 @@ float AS5047P::readAngleDegree(AS5047P_Types::ERROR_t *errorOut, bool withDAEC, 
 
 // Read Volatile Registers -------------------------------------
 
-auto AS5047P::read_ERRFL() -> AS5047P_Types::ERRFL_t {
-
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::ERRFL_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::ERRFL_t(recData.data.raw);
-
-}
-
 auto AS5047P::read_ERRFL(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::ERRFL_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_ERRFL();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_PROG() -> AS5047P_Types::PROG_t {
+    return readReg<AS5047P_Types::ERRFL_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
     
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::PROG_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::PROG_t(recData.data.raw);
-
 }
 
 auto AS5047P::read_PROG(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::PROG_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_PROG();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_DIAAGC() -> AS5047P_Types::DIAAGC_t {
-    
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::DIAAGC_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::DIAAGC_t(recData.data.raw);
+    return readReg<AS5047P_Types::PROG_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
 auto AS5047P::read_DIAAGC(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::DIAAGC_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_DIAAGC();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_MAG() -> AS5047P_Types::MAG_t {
-    
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::MAG_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::MAG_t(recData.data.raw);
+    return readReg<AS5047P_Types::DIAAGC_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
 auto AS5047P::read_MAG(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::MAG_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_MAG();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_ANGLEUNC() -> AS5047P_Types::ANGLEUNC_t {
-
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::ANGLEUNC_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::ANGLEUNC_t(recData.data.raw);
+    return readReg<AS5047P_Types::MAG_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
 auto AS5047P::read_ANGLEUNC(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::ANGLEUNC_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_ANGLEUNC();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_ANGLECOM() -> AS5047P_Types::ANGLECOM_t {
-    
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::ANGLECOM_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::ANGLECOM_t(recData.data.raw);
+    return readReg<AS5047P_Types::ANGLEUNC_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
 auto AS5047P::read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::ANGLECOM_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_ANGLECOM();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
+    return readReg<AS5047P_Types::ANGLECOM_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
@@ -523,54 +341,9 @@ auto AS5047P::read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity,
 
 // Write Volatile Registers ------------------------------------
     
-bool AS5047P::write_PROG(const AS5047P_Types::PROG_t *regData) {
-    
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::PROG_t::REG_ADDRESS, regData->data.raw);
-
-    return true;
-
-}
-
 bool AS5047P::write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::PROG_t::REG_ADDRESS, regData->data.raw);
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (verifyWittenReg) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    // check error information and return
-    return (
-        errorOut->sensorSideErrors.raw == 0 &&
-        errorOut->controllerSideErrors.raw == 0
-    );
+    writeReg<AS5047P_Types::PROG_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
 }
 
@@ -578,387 +351,54 @@ bool AS5047P::write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ER
 
 // Read Non-Volatile Registers ---------------------------------
 
-auto AS5047P::read_ZPOSM() -> AS5047P_Types::ZPOSM_t {
-
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::ZPOSM_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::ZPOSM_t(recData.data.raw);
-
-}
-
 auto AS5047P::read_ZPOSM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::ZPOSM_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_ZPOSM();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_ZPOSL() -> AS5047P_Types::ZPOSL_t {
-
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::ZPOSL_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::ZPOSL_t(recData.data.raw);
+    return readReg<AS5047P_Types::ZPOSM_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
 auto AS5047P::read_ZPOSL(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::ZPOSL_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_ZPOSL();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_SETTINGS1() -> AS5047P_Types::SETTINGS1_t {
-
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::SETTINGS1_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::SETTINGS1_t(recData.data.raw);
+    return readReg<AS5047P_Types::ZPOSL_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
 auto AS5047P::read_SETTINGS1(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::SETTINGS1_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_SETTINGS1();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
-}
-
-auto AS5047P::read_SETTINGS2() -> AS5047P_Types::SETTINGS2_t {
-
-    AS5047P_Types::SPI_Command_Frame_t readCMD(AS5047P_Types::SETTINGS2_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
-    
-    return AS5047P_Types::SETTINGS2_t(recData.data.raw);
+    return readReg<AS5047P_Types::SETTINGS1_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 
 }
 
 auto AS5047P::read_SETTINGS2(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool checkForComError, bool checkForSensorError) -> AS5047P_Types::SETTINGS2_t {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // read base register
-    auto res = read_SETTINGS2();
-
-    // verify parity bit
-    if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(res.data.raw)) {
-            errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        }
-    }
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (checkForSensorError) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    return res;
-
+    return readReg<AS5047P_Types::SETTINGS2_t>(errorOut, verifyParity, checkForComError, checkForSensorError);
 }
 
 // -------------------------------------------------------------
 
 // Write Non-Volatile Registers --------------------------------
 
-bool AS5047P::write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData) {
-    
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::ZPOSM_t::REG_ADDRESS, regData->data.raw);
-
-    return true;
-    
-}
-
 bool AS5047P::write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
+    writeReg<AS5047P_Types::ZPOSM_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::ZPOSM_t::REG_ADDRESS, regData->data.raw);
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (verifyWittenReg) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    // check error information and return
-    return (
-        errorOut->sensorSideErrors.raw == 0 &&
-        errorOut->controllerSideErrors.raw == 0
-    );
-
-}
-
-bool AS5047P::write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData) {
-    
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::ZPOSL_t::REG_ADDRESS, regData->data.raw);
-
-    return true;
-    
 }
 
 bool AS5047P::write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
+    writeReg<AS5047P_Types::ZPOSL_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::ZPOSL_t::REG_ADDRESS, regData->data.raw);
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (verifyWittenReg) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    // check error information and return
-    return (
-        errorOut->sensorSideErrors.raw == 0 &&
-        errorOut->controllerSideErrors.raw == 0
-    );
-
-}
-
-bool AS5047P::write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData) {
-    
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::SETTINGS1_t::REG_ADDRESS, regData->data.raw);
-
-    return true;
-    
 }
 
 bool AS5047P::write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
+    writeReg<AS5047P_Types::SETTINGS1_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::SETTINGS1_t::REG_ADDRESS, regData->data.raw);
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (verifyWittenReg) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    // check error information and return
-    return (
-        errorOut->sensorSideErrors.raw == 0 &&
-        errorOut->controllerSideErrors.raw == 0
-    );
-
-}
-
-bool AS5047P::write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData) {
-    
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::SETTINGS2_t::REG_ADDRESS, regData->data.raw);
-
-    return true;
-    
 }
 
 bool AS5047P::write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    // reset error data
-    *errorOut = AS5047P_Types::ERROR_t();
-
-    // check parity of input
-    if (!AS5047P_Util::parityCheck(regData->data.raw)) {
-        errorOut->controllerSideErrors.flags.SPI_PARITY_ERROR = true;
-        return false;
-    }
-
-    // write register data
-    __spiInterface.write(AS5047P_Types::SETTINGS2_t::REG_ADDRESS, regData->data.raw);
-
-    // check for communication error
-    if (checkForComError) {
-        checkForComErrorF(errorOut);
-    }
-
-    // check for sensor error
-    if (verifyWittenReg) {
-        checkForSensorErrorF(errorOut);
-
-        // check for communication error
-        if (checkForComError) {
-            checkForComErrorF(errorOut);
-        }
-    }
-
-    // check error information and return
-    return (
-        errorOut->sensorSideErrors.raw == 0 &&
-        errorOut->controllerSideErrors.raw == 0
-    );
+    writeReg<AS5047P_Types::SETTINGS2_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
 }
 

@@ -7,8 +7,84 @@ namespace AS5047P_Types {
     // Errors ------------------------------------------------------
 
     ERROR_t::ERROR_t(uint8_t sensorSideErrorsRaw, uint8_t controllerSideErrorsRaw) {
+
         sensorSideErrors.raw = sensorSideErrorsRaw;
         controllerSideErrors.raw = controllerSideErrorsRaw;
+    }
+
+    bool ERROR_t::noError() {
+        return (
+            sensorSideErrors.raw == 0 &&
+            controllerSideErrors.raw == 0
+        );
+    }
+
+    #ifdef ARDUINO_ARCH_SAMD
+    std::string ERROR_t::toStdString() {
+        
+        std::string str;
+        str.reserve(AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE);
+
+        str.append("##################################\n");
+        str.append(" Sensor Side Errors:\n");
+        str.append("----------------------------------\n");
+        str.append("- SENS_SPI_FRAMING_ERROR:     ");
+        str.append(std::to_string(sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR));
+        str.append("\n");
+        str.append("- SENS_SPI_INVALID_CMD:       ");
+        str.append(std::to_string(sensorSideErrors.flags.SENS_SPI_INVALID_CMD));
+        str.append("\n");
+        str.append("- SENS_SPI_PARITY_ERROR:      ");
+        str.append(std::to_string(sensorSideErrors.flags.SENS_SPI_PARITY_ERROR));
+        str.append("\n");
+        str.append("- SENS_OFFSET_COMP_ERROR:     ");
+        str.append(std::to_string(sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR));
+        str.append("\n");
+        str.append("- SENS_CORDIC_OVERFLOW_ERROR: ");
+        str.append(std::to_string(sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR));
+        str.append("\n");
+        str.append("- SENS_CORDIC_OVERFLOW_ERROR: ");
+        str.append(std::to_string(sensorSideErrors.flags.SENS_MAG_TOO_HIGH));
+        str.append("\n");
+        str.append("- SENS_MAG_TOO_LOW:           ");
+        str.append(std::to_string(sensorSideErrors.flags.SENS_MAG_TOO_LOW));
+        str.append("\n");
+        str.append("##################################\n");
+        str.append(" Controller Side Errors: \n");
+        str.append("----------------------------------\n");
+        str.append("- CONT_SPI_PARITY_ERROR:      ");
+        str.append(std::to_string(controllerSideErrors.flags.CONT_SPI_PARITY_ERROR));
+        str.append("\n");
+        str.append("- CONT_GENERAL_COM_ERROR:     ");
+        str.append(std::to_string(controllerSideErrors.flags.CONT_GENERAL_COM_ERROR));
+        str.append("\n");
+        str.append("- CONT_WRITE_VERIFY_FAILED:   ");
+        str.append(std::to_string(controllerSideErrors.flags.CONT_WRITE_VERIFY_FAILED));
+        str.append("\n");
+        str.append("##################################\n");
+
+        str.shrink_to_fit();
+
+        return str;
+
+    }
+    #endif
+
+    String ERROR_t::toArduinoString() {
+
+        char buf[AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE] = {0};
+
+        sprintf(buf,
+            "##################################\n Sensor Side Errors:\n----------------------------------\n- SENS_SPI_FRAMING_ERROR:     %d\n- SENS_SPI_INVALID_CMD:       %d\n- SENS_SPI_PARITY_ERROR:      %d\n- SENS_OFFSET_COMP_ERROR:     %d\n- SENS_CORDIC_OVERFLOW_ERROR: %d\n- SENS_CORDIC_OVERFLOW_ERROR: %d\n- SENS_MAG_TOO_LOW:           %d\n##################################\n Controller Side Errors: \n----------------------------------\n- CONT_SPI_PARITY_ERROR:      %d\n- CONT_GENERAL_COM_ERROR:     %d\n- CONT_WRITE_VERIFY_FAILED:   %d\n##################################\n",
+            sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR, sensorSideErrors.flags.SENS_SPI_INVALID_CMD, sensorSideErrors.flags.SENS_SPI_PARITY_ERROR,
+            sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR, sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR, sensorSideErrors.flags.SENS_MAG_TOO_HIGH, 
+            sensorSideErrors.flags.SENS_MAG_TOO_LOW,
+
+            controllerSideErrors.flags.CONT_SPI_PARITY_ERROR, controllerSideErrors.flags.CONT_GENERAL_COM_ERROR, controllerSideErrors.flags.CONT_WRITE_VERIFY_FAILED
+        );
+
+        return String(buf);
+
     }
 
     // -------------------------------------------------------------

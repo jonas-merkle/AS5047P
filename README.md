@@ -2,14 +2,14 @@
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI/master?label=build%20master) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI/develop?label=build%20develop) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jonas-merkle/AS5047P) ![GitHub](https://img.shields.io/github/license/jonas-merkle/AS5047P) ![GitHub issues](https://img.shields.io/github/issues/jonas-merkle/AS5047P) ![GitHub pull requests](https://img.shields.io/github/issues-pr/jonas-merkle/AS5047P) ![Maintenance](https://img.shields.io/maintenance/yes/2021)
 
-## Tl;Dr
+## tl;dr
 
 **An Arduino library for the AS5047P high-resolution rotary position sensor.**
 
 ## Contents
 
 - [AS5047P - Arduino Library](#as5047p---arduino-library)
-  - [Tl;Dr](#tldr)
+  - [tl;dr](#tldr)
   - [Contents](#contents)
   - [Documentation !GitHub deployments](#documentation-)
   - [How to install this library](#how-to-install-this-library)
@@ -99,6 +99,7 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Write functions for all registers implemented. |
 |   ✅   | Parity check on incoming data. |
 |   ✅   | Improve initSPI() |
+|   ✅   | ToString() for Error_t |
 |   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
 |   🚧   | Documentation update.|
@@ -106,7 +107,6 @@ Sorry, this Feature is currently not supported. 😭
 |   🚧   | Adding Library to PlattformIO Library Manager |
 |   🚧   | Test of all wirte functions |
 |   🚧   | Test of all read functions |
-|   🚧   | ToString() for Error_t |
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |
 |   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |

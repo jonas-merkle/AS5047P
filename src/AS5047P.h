@@ -7,11 +7,13 @@
 #include <string>
 #endif
 
+#include <Arduino.h>
+
 #include "types/AS5047P_Types.h"
 #include "spi/AS5047P_SPI_Arduino.h"
 
 
-#define AS5047P_INFO_STRING_BUFFER_SIZE 350
+#define AS5047P_INFO_STRING_BUFFER_SIZE 350     ///< buffer size for information string
 
 /**
  * @class AS5047P
@@ -91,46 +93,44 @@ class AS5047P {
         // -------------------------------------------------------------
 
         // Read High-Level ---------------------------------------------
-
-        /**
-         * Read the current magnitude value.
-         * @return The current magnitude value.
-         */
-        uint16_t readMagnitude();
         
         /**
          * Read the current magnitude value.
          * @return The current magnitude value.
          */
-        uint16_t readMagnitude(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true);
-
-        /**
-         * Read the current raw angle value.
-         * @param withDAEC Flag to select if the value with or without dynamic angle error correction should be returned.
-         * @return The current raw angle value.
-         */
-        uint16_t readAngleRaw(bool withDAEC = true);
+        uint16_t readMagnitude(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
         
         /**
          * Read the current raw angle value.
          * @param withDAEC Flag to select if the value with or without dynamic angle error correction should be returned.
          * @return The current raw angle value.
          */
-        uint16_t readAngleRaw(AS5047P_Types::ERROR_t *errorOut, bool withDAEC = true, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true);
+        uint16_t readAngleRaw(bool withDAEC = true, AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
 
         /**
          * Read the current angle value in degree value.
          * @param withDAEC Flag to select if the value with or without dynamic angle error correction should be returned.
          * @return The current angle value in degree value.
          */
-        float readAngleDegree(bool withDAEC = true);
+        float readAngleDegree(bool withDAEC = true, AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
+
+        // -------------------------------------------------------------
+
+        // Template functions ------------------------------------------
+
+        /**
+         * Reads a register.
+         * 
+         */
+        template<class T>
+        T readReg(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
         
         /**
-         * Read the current angle value in degree value.
-         * @param withDAEC Flag to select if the value with or without dynamic angle error correction should be returned.
-         * @return The current angle value in degree value.
-         */
-        float readAngleDegree(AS5047P_Types::ERROR_t *errorOut, bool withDAEC = true, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true);
+         * Writes a register.
+         * 
+         */ 
+        template<class T>
+        bool writeReg(const T *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
 
         // -------------------------------------------------------------
 
@@ -140,73 +140,37 @@ class AS5047P {
          * Read the ERRFL register.
          * @return The contet of the ERRFL register.
          */
-        auto read_ERRFL() -> AS5047P_Types::ERRFL_t;
-        
-        /**
-         * Read the ERRFL register.
-         * @return The contet of the ERRFL register.
-         */
-        auto read_ERRFL(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::ERRFL_t;
+        auto read_ERRFL(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ERRFL_t;
 
         /**
          * Read the PROG register.
          * @return The contet of the PROG register.
          */
-        auto read_PROG() -> AS5047P_Types::PROG_t;
-        
-        /**
-         * Read the PROG register.
-         * @return The contet of the PROG register.
-         */
-        auto read_PROG(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::PROG_t;
+        auto read_PROG(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::PROG_t;
 
         /**
          * Read the DIAAGC register.
          * @return The contet of the DIAAGC register.
          */
-        auto read_DIAAGC() -> AS5047P_Types::DIAAGC_t;
-        
-        /**
-         * Read the DIAAGC register.
-         * @return The contet of the DIAAGC register.
-         */
-        auto read_DIAAGC(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::DIAAGC_t;
+        auto read_DIAAGC(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::DIAAGC_t;
 
         /**
          * Read the MAG register.
          * @return The contet of the MAG register.
          */
-        auto read_MAG() -> AS5047P_Types::MAG_t;
-        
-        /**
-         * Read the MAG register.
-         * @return The contet of the MAG register.
-         */
-        auto read_MAG(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::MAG_t;
+        auto read_MAG(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::MAG_t;
 
         /**
          * Read the ANGLEUNC register.
          * @return The contet of the ANGLEUNC register.
          */
-        auto read_ANGLEUNC() -> AS5047P_Types::ANGLEUNC_t;
-        
-        /**
-         * Read the ANGLEUNC register.
-         * @return The contet of the ANGLEUNC register.
-         */
-        auto read_ANGLEUNC(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::ANGLEUNC_t;
+        auto read_ANGLEUNC(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ANGLEUNC_t;
 
         /**
          * Read the ANGLECOM register.
          * @return The contet of the ANGLECOM register.
          */
-        auto read_ANGLECOM() -> AS5047P_Types::ANGLECOM_t;
-        
-        /**
-         * Read the ANGLECOM register.
-         * @return The contet of the ANGLECOM register.
-         */
-        auto read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::ANGLECOM_t;
+        auto read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ANGLECOM_t;
 
         // -------------------------------------------------------------
 
@@ -215,68 +179,37 @@ class AS5047P {
         /**
          * Write into the PROG register.
          * @param regDat The new contet of the PROG register.
-         * @return True if no error occured, else false.
-         */            
-        bool write_PROG(const AS5047P_Types::PROG_t *regData);
-
-        /**
-         * Write into the PROG register.
-         * @param regDat The new contet of the PROG register.
-         * @return True if no error occured, else false.
+         * @return True if no error occurred, else false.
          */ 
-        bool write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
 
         // -------------------------------------------------------------
 
         // Read Non-Volatile Registers ---------------------------------
-        
+
         /**
          * Read the ZPOSM register.
          * @return The contet of the ZPOSM register.
          */
-        auto read_ZPOSM() -> AS5047P_Types::ZPOSM_t;
-        
-        /**
-         * Read the ZPOSM register.
-         * @return The contet of the ZPOSM register.
-         */
-        auto read_ZPOSM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::ZPOSM_t;
+        auto read_ZPOSM(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ZPOSM_t;
 
         /**
          * Read the ZPOSL register.
          * @return The contet of the ZPOSL register.
-         */ 
-        auto read_ZPOSL() -> AS5047P_Types::ZPOSL_t;
-        
-        /**
-         * Read the ZPOSL register.
-         * @return The contet of the ZPOSL register.
          */
-        auto read_ZPOSL(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::ZPOSL_t;
+        auto read_ZPOSL(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ZPOSL_t;
 
         /**
          * Read the SETTINGS1 register.
          * @return The contet of the SETTINGS1 register.
          */
-        auto read_SETTINGS1() -> AS5047P_Types::SETTINGS1_t;
-        
-        /**
-         * Read the SETTINGS1 register.
-         * @return The contet of the SETTINGS1 register.
-         */
-        auto read_SETTINGS1(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::SETTINGS1_t;
+        auto read_SETTINGS1(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::SETTINGS1_t;
 
         /**
          * Read the SETTINGS2 register.
          * @return The contet of the SETTINGS2 register.
          */
-        auto read_SETTINGS2() -> AS5047P_Types::SETTINGS2_t;
-        
-        /**
-         * Read the SETTINGS2 register.
-         * @return The contet of the SETTINGS2 register.
-         */
-        auto read_SETTINGS2(AS5047P_Types::ERROR_t *errorOut, bool verifyParity = true, bool checkForComError = true, bool checkForSensorError = true) -> AS5047P_Types::SETTINGS2_t;
+        auto read_SETTINGS2(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::SETTINGS2_t;
 
         // -------------------------------------------------------------
 
@@ -285,57 +218,30 @@ class AS5047P {
         /**
          * Write into the ZPOSM register.
          * @param regDat The new contet of the ZPOSM register.
-         * @return True if no error occured, else false.
+         * @return True if no error occurred, else false.
          */
-        bool write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData);
-        
-        /**
-         * Write into the ZPOSM register.
-         * @param regDat The new contet of the ZPOSM register.
-         */
-        bool write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
 
         /**
          * Write into the ZPOSL register.
          * @param regDat The new contet of the ZPOSL register.
-         * @return True if no error occured, else false.
+         * @return True if no error occurred, else false.
          */
-        bool write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData);
-        
-        /**
-         * Write into the ZPOSL register.
-         * @param regDat The new contet of the ZPOSL register.
-         * @return True if no error occured, else false.
-         */
-        bool write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
 
         /**
          * Write into the SETTINGS1 register.
          * @param regDat The new contet of the SETTINGS1 register.
-         * @return True if no error occured, else false.
+         * @return True if no error occurred, else false.
          */
-        bool write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData);
-        
-        /**
-         * Write into the SETTINGS1 register.
-         * @param regDat The new contet of the SETTINGS1 register.
-         * @return True if no error occured, else false.
-         */
-        bool write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
 
         /**
          * Write into the ETTINGS2 register.
          * @param regDat The new contet of the ETTINGS2 register.
-         * @return True if no error occured, else false.
+         * @return True if no error occurred, else false.
          */
-        bool write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData);
-        
-        /**
-         * Write into the ETTINGS2 register.
-         * @param regDat The new contet of the ETTINGS2 register.
-         * @return True if no error occured, else false.
-         */
-        bool write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError = true, bool verifyWittenReg = true);
+        bool write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
 
         // -------------------------------------------------------------
 

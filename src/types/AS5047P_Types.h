@@ -3,8 +3,16 @@
 
 #include <inttypes.h>
 
+#ifdef ARDUINO_ARCH_SAMD
+#include <string>
+#endif
+
+#include <Arduino.h>
+
 #define AS5047P_TYPES_WRITE_CMD 0       ///< Write command flag.
 #define AS5047P_TYPES_READ_CMD 1        ///< Read command flag.
+
+#define AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE 600     ///< buffer size for error string
 
 /**
  * @namespace AS5047P_Types
@@ -19,18 +27,20 @@ namespace AS5047P_Types {
      * @brief Enum that holds the different error names an there according bit number in the raw error information byte.
      */
     enum ERROR_Names : uint8_t {
-        SENSOR_SPI_FRAMING_ERROR = 1,
-        SENSOR_SPI_INVALID_CMD = 2,
-        SENSOR_SPI_PARITY_ERROR = 4,
 
-        SENSOR_OFFSET_COMPENSATION_ERROR = 8,
-        SENSOR_CORDIC_OVERFLOW_ERROR = 16,
-        SENSOR_MAG_TOO_HIGH = 32,
-        SENSOR_MAG_TOO_LOW = 64,
+        SENS_SPI_FRAMING_ERROR = 1,
+        SENS_SPI_INVALID_CMD = 2,
+        SENS_SPI_PARITY_ERROR = 4,
 
-        CONTROLLER_SPI_PARITY_ERROR = 1, 
-        CONTROLLER_GENERAL_COMMUNICATION_ERROR = 2,
-        CONTROLLER_WRITE_VERIFY_FAILED = 4,
+        SENS_OFFSET_COMP_ERROR = 8,
+        SENS_CORDIC_OVERFLOW_ERROR = 16,
+        SENS_MAG_TOO_HIGH = 32,
+        SENS_MAG_TOO_LOW = 64,
+
+        CONT_SPI_PARITY_ERROR = 1, 
+        CONT_GENERAL_COM_ERROR = 2,
+        CONT_WRITE_VERIFY_FAILED = 4,
+
     };
 
     /**
@@ -53,14 +63,14 @@ namespace AS5047P_Types {
                  */
                 typedef struct __attribute__ ((__packed__)) {
 
-                    uint8_t SPI_FRAMING_ERROR:1;            ///< Framing error: is set to 1 when a non-compliant SPI frame is detected.
-                    uint8_t SPI_INVALID_CMD:1;              ///< Invalid command error: set to 1 by reading or writing an invalid register address.
-                    uint8_t SPI_PARITY_ERROR:1;             ///< Parity error.
-
-                    uint8_t OFFSET_COMPENSATION_ERROR:1;    ///< Diagnostics: Offset compensation LF=0:internal offset loops not ready regulated LF=1:internal offset loop finished.
-                    uint8_t CORDIC_OVERFLOW_ERROR:1;        ///< Diagnostics: CORDIC overflow.
-                    uint8_t MAG_TOO_HIGH:1;                 ///< Diagnostics: Magnetic field strength too high; AGC=0x00.
-                    uint8_t MAG_TOO_LOW:1;                  ///< Diagnostics: Magnetic field strength too low; AGC=0xFF.
+                    uint8_t SENS_SPI_FRAMING_ERROR:1;           ///< Framing error: is set to 1 when a non-compliant SPI frame is detected.
+                    uint8_t SENS_SPI_INVALID_CMD:1;             ///< Invalid command error: set to 1 by reading or writing an invalid register address.
+                    uint8_t SENS_SPI_PARITY_ERROR:1;            ///< Parity error
+                    
+                    uint8_t SENS_OFFSET_COMP_ERROR:1;           ///< Diagnostics: Offset compensation LF=0:internal offset loops not ready regulated LF=1:internal offset loop finished.
+                    uint8_t SENS_CORDIC_OVERFLOW_ERROR:1;       ///< Diagnostics: CORDIC overflow.
+                    uint8_t SENS_MAG_TOO_HIGH:1;                ///< Diagnostics: Magnetic field strength too high; AGC=0x00.
+                    uint8_t SENS_MAG_TOO_LOW:1;                 ///< Diagnostics: Magnetic field strength too low; AGC=0xFF.
 
                 } SensorSideErrorsFlags_t;
                 
@@ -81,11 +91,11 @@ namespace AS5047P_Types {
                  */
                 typedef struct __attribute__ ((__packed__)) {
 
-                    uint8_t SPI_PARITY_ERROR:1;             ///< Parity error.
+                    uint8_t CONT_SPI_PARITY_ERROR:1;        ///< Parity error.
                     
-                    uint8_t GENERAL_COMMUNICATION_ERROR:1;  ///< An error occured during the communication with the sensor. See sensor side errors for more information. 
+                    uint8_t CONT_GENERAL_COM_ERROR:1;       ///< An error occurred during the communication with the sensor. See sensor side errors for more information. 
 
-                    uint8_t WRITE_VERIFY_FAILED:1;          ///< Could not verify the new content of a written register.
+                    uint8_t CONT_WRITE_VERIFY_FAILED:1;     ///< Could not verify the new content of a written register.
 
                 } ControllerSideErrorsFlags_t;
 
@@ -103,7 +113,27 @@ namespace AS5047P_Types {
              * @param controllerSideErrorsRaw The controller side error raw data (default: 0).
              */
             ERROR_t(uint8_t sensorSideErrorsRaw = 0, uint8_t controllerSideErrorsRaw = 0);
-            
+
+            /**
+             * Checks if no error occurred.
+             * @return True on success, else false.
+             */
+            bool noError();
+
+            #ifdef ARDUINO_ARCH_SAMD
+            /**
+             * Converts the error information into an human readable string.
+             * @return A std::string with all error information.
+             */
+            std::string toStdString();
+            #endif
+
+            /**
+             * Converts the error information into an human readable string.
+             * @return A string (Arduino String) with all error information.
+             */
+            String toArduinoString();
+
     };
 
     // -------------------------------------------------------------
