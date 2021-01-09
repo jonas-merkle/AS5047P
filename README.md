@@ -4,7 +4,7 @@
 
 ## tl;dr
 
-**An Arduino library for the AS5047P high-resolution rotary position sensor.**
+**An Arduino library for the AS5047P high-resolution rotary position sensor. Supporting also the following sensor types: AS5047D, AS5147, AS5147P, AS5247**
 
 ## Contents
 
