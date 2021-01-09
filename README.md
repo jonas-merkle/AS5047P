@@ -11,6 +11,7 @@
 - [AS5047P - Arduino Library](#as5047p---arduino-library)
   - [tl;dr](#tldr)
   - [Contents](#contents)
+  - [Supported Sensors](#supported-sensors)
   - [Documentation](#documentation)
   - [How to install this library](#how-to-install-this-library)
     - [Install the library via the Arduino Library Manager](#install-the-library-via-the-arduino-library-manager)
@@ -21,7 +22,24 @@
     - [Connect to an Arduino Mega](#connect-to-an-arduino-mega)
     - [Connect to an Adafruit Feather M0](#connect-to-an-adafruit-feather-m0)
   - [Project Status & ToDo's](#project-status--todos)
-  - [About the AS5047P](#about-the-as5047p)
+
+## Supported Sensors
+
+The following sensors of the **AS5x47** series of rotary potion sensors are supported by this library:
+
+- [**AS5047P**](https://ams.com/documents/20143/36005/AS5047P_DS000324_2-00.pdf/a7d44138-51f1-2f6e-c8b6-2577b369ace8)
+- [**AS5047D**](https://ams.com/documents/20143/36005/AS5047D_DS000394_2-00.pdf/c7225c06-112f-82c5-4471-17a2711a7f0e)
+- [**AS5147**](https://ams.com/documents/20143/36005/AS5147_DS000307_2-00.pdf/6921a55b-7cba-bf20-78c0-660d62bd0a5b)
+- [**AS5147P**](https://ams.com/documents/20143/36005/AS5147P_DS000328_2-00.pdf/847d41be-7afa-94ad-98c2-8617a5df5b6f)
+- [**AS5247**](https://ams.com/documents/20143/36005/AS5247_DS000354_2-00.pdf/db765ebd-b442-4d00-8343-d4f95a847995)
+
+You can get the **AS5047P** sensor preinstalled on a breakout board [here](https://ams.com/as5047padapterboard).
+
+Not supported are the following sensors:
+
+- [AS5047U](https://ams.com/documents/20143/36005/AS5047U_DS000637_1-00.pdf/8639418f-6c3a-1624-4e6f-18f52c962099)
+- [AS5147U](https://ams.com/documents/20143/36005/AS5147U_AS5247U_DS000639_4-00.pdf/1141a423-d438-ff83-df65-0adc533d6801)
+- [AS5247U](https://ams.com/documents/20143/36005/AS5147U_AS5247U_DS000639_4-00.pdf/1141a423-d438-ff83-df65-0adc533d6801)
 
 ## Documentation
 
@@ -113,9 +131,3 @@ Sorry, this Feature is currently not supported. 😭
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |
 |   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |
-
-## About the AS5047P
-
-The AS5047P datesheet can be found [here](https://ams.com/documents/20143/36005/AS5047P_DS000324_2-00.pdf/a7d44138-51f1-2f6e-c8b6-2577b369ace8).
-
-You can get this sensor preinstalled on a breakout board [here](https://ams.com/as5047padapterboard).
