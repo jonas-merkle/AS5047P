@@ -4,26 +4,46 @@
 
 ## tl;dr
 
-**An Arduino library for the AS5047P high-resolution rotary position sensor.**
+**An Arduino library for the AS5047P high-resolution rotary position sensor. Supporting also the following sensor types: AS5047D, AS5147, AS5147P, AS5247**
 
 ## Contents
 
 - [AS5047P - Arduino Library](#as5047p---arduino-library)
   - [tl;dr](#tldr)
   - [Contents](#contents)
-  - [Documentation !GitHub deployments](#documentation-)
+  - [Supported Sensors](#supported-sensors)
+  - [Documentation](#documentation)
   - [How to install this library](#how-to-install-this-library)
-    - [Manually install a Arduino library](#manually-install-a-arduino-library)
     - [Install the library via the Arduino Library Manager](#install-the-library-via-the-arduino-library-manager)
+    - [Manually install a Arduino library](#manually-install-a-arduino-library)
     - [Install the library via the PlattformIO Library Manager](#install-the-library-via-the-plattformio-library-manager)
   - [How to connect the AS5047P to your Arduino](#how-to-connect-the-as5047p-to-your-arduino)
     - [Connect to an Arduino Uno](#connect-to-an-arduino-uno)
     - [Connect to an Arduino Mega](#connect-to-an-arduino-mega)
     - [Connect to an Adafruit Feather M0](#connect-to-an-adafruit-feather-m0)
   - [Project Status & ToDo's](#project-status--todos)
-  - [About the AS5047P](#about-the-as5047p)
 
-## Documentation ![GitHub deployments](https://img.shields.io/github/deployments/jonas-merkle/AS5047P/github-pages)
+## Supported Sensors
+
+The following sensors of the **AS5x47** series of rotary potion sensors are supported by this library:
+
+- [**AS5047P**](https://ams.com/documents/20143/36005/AS5047P_DS000324_2-00.pdf/a7d44138-51f1-2f6e-c8b6-2577b369ace8)
+- [**AS5047D**](https://ams.com/documents/20143/36005/AS5047D_DS000394_2-00.pdf/c7225c06-112f-82c5-4471-17a2711a7f0e)
+- [**AS5147**](https://ams.com/documents/20143/36005/AS5147_DS000307_2-00.pdf/6921a55b-7cba-bf20-78c0-660d62bd0a5b)
+- [**AS5147P**](https://ams.com/documents/20143/36005/AS5147P_DS000328_2-00.pdf/847d41be-7afa-94ad-98c2-8617a5df5b6f)
+- [**AS5247**](https://ams.com/documents/20143/36005/AS5247_DS000354_2-00.pdf/db765ebd-b442-4d00-8343-d4f95a847995)
+
+You can get the **AS5047P** sensor preinstalled on a breakout board [here](https://ams.com/as5047padapterboard).
+
+Not supported are the following sensors:
+
+- [AS5047U](https://ams.com/documents/20143/36005/AS5047U_DS000637_1-00.pdf/8639418f-6c3a-1624-4e6f-18f52c962099)
+- [AS5147U](https://ams.com/documents/20143/36005/AS5147U_AS5247U_DS000639_4-00.pdf/1141a423-d438-ff83-df65-0adc533d6801)
+- [AS5247U](https://ams.com/documents/20143/36005/AS5147U_AS5247U_DS000639_4-00.pdf/1141a423-d438-ff83-df65-0adc533d6801)
+
+## Documentation
+
+Documentation Deployment Status: ![GitHub deployments](https://img.shields.io/github/deployments/jonas-merkle/AS5047P/github-pages)
 
 | Branch | Link |
 |--------|------|
@@ -32,13 +52,13 @@
 
 ## How to install this library
 
-### Manually install a Arduino library
-
-You can download the latest version of this library [here](https://github.com/jonas-merkle/AS5047P/releases) as a zip file and use [this](https://www.arduino.cc/en/guide/libraries) tutorial to install the library.
-
 ### Install the library via the Arduino Library Manager
 
-Sorry, this Feature is currently not supported. 😭
+The easiest way to install this library is to use the build in Arduino Library Manager. Just search for `AS5047P` an install the latest version available. You can also upgrade the library to the newest release via the Arduino Library Manager. For detailed infomation please read the section `Using the Library Manager` of [this](https://www.arduino.cc/en/guide/libraries) tutorial. (Pleas keep in mind you need at least version 1.6.2 of the Arduino IDE in order to use the Arduino Library Manager)
+
+### Manually install a Arduino library
+
+You can download the latest version of this library [here](https://github.com/jonas-merkle/AS5047P/releases) as a zip file and follow the section `Importing a .zip Library` or `Manual installation` of [this](https://www.arduino.cc/en/guide/libraries) tutorial about `How to Install a Library`.
 
 ### Install the library via the PlattformIO Library Manager
 
@@ -100,19 +120,14 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Parity check on incoming data. |
 |   ✅   | Improve initSPI() |
 |   ✅   | ToString() for Error_t |
-|   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
+|   ✅   | Adding Library to Arduino Library Manager 🥳 |
+|   ✅   | Documentation update.|
+|   ✅   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
-|   🚧   | Documentation update.|
-|   🚧   | Adding Library to Arduino Library Manager |
 |   🚧   | Adding Library to PlattformIO Library Manager |
 |   🚧   | Test of all wirte functions |
 |   🚧   | Test of all read functions |
+|   ❌   | Porting the library to be compatible with the STM32 HAL |
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |
 |   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |
-
-## About the AS5047P
-
-The AS5047P datesheet can be found [here](https://ams.com/documents/20143/36005/AS5047P_DS000324_2-00.pdf/a7d44138-51f1-2f6e-c8b6-2577b369ace8).
-
-You can get this sensor preinstalled on a breakout board [here](https://ams.com/as5047padapterboard).
