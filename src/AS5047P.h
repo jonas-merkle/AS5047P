@@ -3,14 +3,16 @@
 
 #include <inttypes.h>
 
+//#ifdef Arduino_h
+#include <Arduino.h>
+#include "spi/AS5047P_SPI_Arduino.h"
+//#endif
+
 #ifdef ARDUINO_ARCH_SAMD
 #include <string>
 #endif
 
-#include <Arduino.h>
-
 #include "types/AS5047P_Types.h"
-#include "spi/AS5047P_SPI_Arduino.h"
 
 
 #define AS5047P_INFO_STRING_BUFFER_SIZE 350     ///< buffer size for information string
@@ -96,6 +98,10 @@ class AS5047P {
         
         /**
          * Read the current magnitude value.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The current magnitude value.
          */
         uint16_t readMagnitude(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
@@ -103,6 +109,10 @@ class AS5047P {
         /**
          * Read the current raw angle value.
          * @param withDAEC Flag to select if the value with or without dynamic angle error correction should be returned.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The current raw angle value.
          */
         uint16_t readAngleRaw(bool withDAEC = true, AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
@@ -110,6 +120,10 @@ class AS5047P {
         /**
          * Read the current angle value in degree value.
          * @param withDAEC Flag to select if the value with or without dynamic angle error correction should be returned.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The current angle value in degree value.
          */
         float readAngleDegree(bool withDAEC = true, AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
@@ -119,15 +133,23 @@ class AS5047P {
         // Template functions ------------------------------------------
 
         /**
-         * Reads a register.
-         * 
+         * Reads a register of type T.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
+         * @return The the register content as type T.
          */
         template<class T>
         T readReg(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false);
         
         /**
-         * Writes a register.
-         * 
+         * Writes a register of type T.
+         * @param regDate A pointer to the new content of the register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param checkForComError Flag to activate coominaction error check on wirte (optional, default: false -> only active when errorOut is set).
+         * @param verifyWittenReg Flag to activate the verification of the register content after it's been wirtten (optional, default: false -> only active when errorOut is set).
+         * @return True on success, else false.
          */ 
         template<class T>
         bool writeReg(const T *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
@@ -138,36 +160,60 @@ class AS5047P {
 
         /**
          * Read the ERRFL register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the ERRFL register.
          */
         auto read_ERRFL(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ERRFL_t;
 
         /**
          * Read the PROG register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the PROG register.
          */
         auto read_PROG(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::PROG_t;
 
         /**
          * Read the DIAAGC register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the DIAAGC register.
          */
         auto read_DIAAGC(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::DIAAGC_t;
 
         /**
          * Read the MAG register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the MAG register.
          */
         auto read_MAG(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::MAG_t;
 
         /**
          * Read the ANGLEUNC register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the ANGLEUNC register.
          */
         auto read_ANGLEUNC(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ANGLEUNC_t;
 
         /**
          * Read the ANGLECOM register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the ANGLECOM register.
          */
         auto read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ANGLECOM_t;
@@ -179,6 +225,9 @@ class AS5047P {
         /**
          * Write into the PROG register.
          * @param regDat The new contet of the PROG register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param checkForComError Flag to activate coominaction error check on wirte (optional, default: false -> only active when errorOut is set).
+         * @param verifyWittenReg Flag to activate the verification of the register content after it's been wirtten (optional, default: false -> only active when errorOut is set).
          * @return True if no error occurred, else false.
          */ 
         bool write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
@@ -189,24 +238,40 @@ class AS5047P {
 
         /**
          * Read the ZPOSM register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the ZPOSM register.
          */
         auto read_ZPOSM(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ZPOSM_t;
 
         /**
          * Read the ZPOSL register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the ZPOSL register.
          */
         auto read_ZPOSL(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::ZPOSL_t;
 
         /**
          * Read the SETTINGS1 register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the SETTINGS1 register.
          */
         auto read_SETTINGS1(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::SETTINGS1_t;
 
         /**
          * Read the SETTINGS2 register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param verifyParity Flag to activate the parity check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForComError Flag to activate coominaction error check on read (optional, default: false -> only active when errorOut is set).
+         * @param checkForSensorError flag to readout the sensor error data on read (optional, default: false -> only active when errorOut is set).
          * @return The contet of the SETTINGS2 register.
          */
         auto read_SETTINGS2(AS5047P_Types::ERROR_t *errorOut = nullptr, bool verifyParity = false, bool checkForComError = false, bool checkForSensorError = false) -> AS5047P_Types::SETTINGS2_t;
@@ -218,6 +283,9 @@ class AS5047P {
         /**
          * Write into the ZPOSM register.
          * @param regDat The new contet of the ZPOSM register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param checkForComError Flag to activate coominaction error check on wirte (optional, default: false -> only active when errorOut is set).
+         * @param verifyWittenReg Flag to activate the verification of the register content after it's been wirtten (optional, default: false -> only active when errorOut is set).
          * @return True if no error occurred, else false.
          */
         bool write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
@@ -225,6 +293,9 @@ class AS5047P {
         /**
          * Write into the ZPOSL register.
          * @param regDat The new contet of the ZPOSL register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param checkForComError Flag to activate coominaction error check on wirte (optional, default: false -> only active when errorOut is set).
+         * @param verifyWittenReg Flag to activate the verification of the register content after it's been wirtten (optional, default: false -> only active when errorOut is set).
          * @return True if no error occurred, else false.
          */
         bool write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
@@ -232,6 +303,9 @@ class AS5047P {
         /**
          * Write into the SETTINGS1 register.
          * @param regDat The new contet of the SETTINGS1 register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param checkForComError Flag to activate coominaction error check on wirte (optional, default: false -> only active when errorOut is set).
+         * @param verifyWittenReg Flag to activate the verification of the register content after it's been wirtten (optional, default: false -> only active when errorOut is set).
          * @return True if no error occurred, else false.
          */
         bool write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);
@@ -239,6 +313,9 @@ class AS5047P {
         /**
          * Write into the ETTINGS2 register.
          * @param regDat The new contet of the ETTINGS2 register.
+         * @param errorOut A pointer to an error object to get error information back (optional, default: nullptr -> error checks not active).
+         * @param checkForComError Flag to activate coominaction error check on wirte (optional, default: false -> only active when errorOut is set).
+         * @param verifyWittenReg Flag to activate the verification of the register content after it's been wirtten (optional, default: false -> only active when errorOut is set).
          * @return True if no error occurred, else false.
          */
         bool write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr, bool checkForComError = false, bool verifyWittenReg = false);

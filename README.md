@@ -11,7 +11,7 @@
 - [AS5047P - Arduino Library](#as5047p---arduino-library)
   - [tl;dr](#tldr)
   - [Contents](#contents)
-  - [Documentation !GitHub deployments](#documentation-)
+  - [Documentation](#documentation)
   - [How to install this library](#how-to-install-this-library)
     - [Install the library via the Arduino Library Manager](#install-the-library-via-the-arduino-library-manager)
     - [Manually install a Arduino library](#manually-install-a-arduino-library)
@@ -23,7 +23,9 @@
   - [Project Status & ToDo's](#project-status--todos)
   - [About the AS5047P](#about-the-as5047p)
 
-## Documentation ![GitHub deployments](https://img.shields.io/github/deployments/jonas-merkle/AS5047P/github-pages)
+## Documentation
+
+Documentation Deployment Status: ![GitHub deployments](https://img.shields.io/github/deployments/jonas-merkle/AS5047P/github-pages)
 
 | Branch | Link |
 |--------|------|
@@ -101,9 +103,9 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Improve initSPI() |
 |   ✅   | ToString() for Error_t |
 |   ✅   | Adding Library to Arduino Library Manager 🥳 |
-|   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
+|   ✅   | Documentation update.|
+|   ✅   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
-|   🚧   | Documentation update.|
 |   🚧   | Adding Library to PlattformIO Library Manager |
 |   🚧   | Test of all wirte functions |
 |   🚧   | Test of all read functions |
