@@ -43,12 +43,11 @@ bool AS5047P::initSPI() {
 bool AS5047P::checkForComErrorF(AS5047P_Types::ERROR_t *errorOut) {
 
     // read the error reg
-    auto errorReg = AS5047P::read_ERRFL();
-
-    // verify parity bit
-    if (!AS5047P_Util::parityCheck(errorReg.data.raw)) {
-        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
-    }
+    AS5047P_Types::ERROR_t e;
+    auto errorReg = AS5047P::read_ERRFL(&e, true, false, false);
+    
+    // write error info from current communication in errorOut
+    errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = e.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR;
 
     // write the ERRFL register content in errorOut
     errorOut->sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR |= errorReg.data.values.FRERR;
@@ -70,12 +69,11 @@ bool AS5047P::checkForComErrorF(AS5047P_Types::ERROR_t *errorOut) {
 bool AS5047P::checkForSensorErrorF(AS5047P_Types::ERROR_t *errorOut) {
 
     // read the diag reg
-    auto diagReg = AS5047P::read_DIAAGC();
+    AS5047P_Types::ERROR_t e;
+    auto diagReg = AS5047P::read_DIAAGC(&e, true, false, false);
 
-    // verify parity bit
-    if (!AS5047P_Util::parityCheck(diagReg.data.raw)) {
-        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
-    }
+    // write error info from current communication in errorOut
+    errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = e.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR;
 
     // write the ERRFL register content in errorOut
     errorOut->sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR |= diagReg.data.values.COF;
@@ -240,9 +238,7 @@ T AS5047P::readReg(AS5047P_Types::ERROR_t *errorOut, bool verifyParity, bool che
 
     // verify parity bit
     if (verifyParity) {
-        if (!AS5047P_Util::parityCheck(recData.data.raw)) {
-            errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = true;
-        }
+        errorOut->controllerSideErrors.flags.CONT_SPI_PARITY_ERROR = !AS5047P_Util::parityCheck(recData.data.raw);
     }
 
     // check for communication error
@@ -343,7 +339,7 @@ auto AS5047P::read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut, bool verifyParity,
     
 bool AS5047P::write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    writeReg<AS5047P_Types::PROG_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::PROG_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
 }
 
@@ -380,25 +376,25 @@ auto AS5047P::read_SETTINGS2(AS5047P_Types::ERROR_t *errorOut, bool verifyParity
 
 bool AS5047P::write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    writeReg<AS5047P_Types::ZPOSM_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::ZPOSM_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
 }
 
 bool AS5047P::write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    writeReg<AS5047P_Types::ZPOSL_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::ZPOSL_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
 }
 
 bool AS5047P::write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    writeReg<AS5047P_Types::SETTINGS1_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::SETTINGS1_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
 }
 
 bool AS5047P::write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData, AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg) {
     
-    writeReg<AS5047P_Types::SETTINGS2_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::SETTINGS2_t>(regData, errorOut, checkForComError, verifyWittenReg);
 
 }
 

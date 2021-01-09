@@ -102,7 +102,7 @@ namespace AS5047P_Types {
             .PARC = 0
         };
 
-        data.values.PARC = AS5047P_Util::isEvenParityBitNoSet(data.raw);
+        data.values.PARC = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
     SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(const uint16_t raw) {
@@ -116,7 +116,7 @@ namespace AS5047P_Types {
             .PARD = 0
         };
 
-        data.values.PARD = AS5047P_Util::isEvenParityBitNoSet(data.raw);
+        data.values.PARD = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
     SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t raw) {
@@ -130,7 +130,7 @@ namespace AS5047P_Types {
             .PARD = 0
         };
 
-        data.values.PARD = AS5047P_Util::isEvenParityBitNoSet(data.raw);
+        data.values.PARD = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
     // -------------------------------------------------------------
