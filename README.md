@@ -13,8 +13,8 @@
   - [Contents](#contents)
   - [Documentation !GitHub deployments](#documentation-)
   - [How to install this library](#how-to-install-this-library)
-    - [Manually install a Arduino library](#manually-install-a-arduino-library)
     - [Install the library via the Arduino Library Manager](#install-the-library-via-the-arduino-library-manager)
+    - [Manually install a Arduino library](#manually-install-a-arduino-library)
     - [Install the library via the PlattformIO Library Manager](#install-the-library-via-the-plattformio-library-manager)
   - [How to connect the AS5047P to your Arduino](#how-to-connect-the-as5047p-to-your-arduino)
     - [Connect to an Arduino Uno](#connect-to-an-arduino-uno)
@@ -32,13 +32,13 @@
 
 ## How to install this library
 
-### Manually install a Arduino library
-
-You can download the latest version of this library [here](https://github.com/jonas-merkle/AS5047P/releases) as a zip file and use [this](https://www.arduino.cc/en/guide/libraries) tutorial to install the library.
-
 ### Install the library via the Arduino Library Manager
 
-Sorry, this Feature is currently not supported. 😭
+The easiest way to install this library is to use the build in Arduino Library Manager. Just search for `AS5047P` an install the latest version available. You can also upgrade the library to the newest release via the Arduino Library Manager. For detailed infomation please read the section `Using the Library Manager` of [this](https://www.arduino.cc/en/guide/libraries) tutorial. (Pleas keep in mind you need at least version 1.6.2 of the Arduino IDE in order to use the Arduino Library Manager)
+
+### Manually install a Arduino library
+
+You can download the latest version of this library [here](https://github.com/jonas-merkle/AS5047P/releases) as a zip file and follow the section `Importing a .zip Library` or `Manual installation` of [this](https://www.arduino.cc/en/guide/libraries) tutorial about `How to Install a Library`.
 
 ### Install the library via the PlattformIO Library Manager
 
@@ -100,13 +100,14 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Parity check on incoming data. |
 |   ✅   | Improve initSPI() |
 |   ✅   | ToString() for Error_t |
+|   ✅   | Adding Library to Arduino Library Manager 🥳 |
 |   🚧   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
 |   🚧   | Documentation update.|
-|   🚧   | Adding Library to Arduino Library Manager |
 |   🚧   | Adding Library to PlattformIO Library Manager |
 |   🚧   | Test of all wirte functions |
 |   🚧   | Test of all read functions |
+|   ❌   | Porting the library to be compatible with the STM32 HAL |
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |
 |   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |
