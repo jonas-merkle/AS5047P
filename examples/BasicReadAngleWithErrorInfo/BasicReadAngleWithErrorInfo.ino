@@ -47,24 +47,24 @@ void loop() {
   /////////////////////
   // read the sensor //
   /////////////////////
-  digitalWrite(LED_PIN, HIGH);                          // activate the led.
+  digitalWrite(LED_PIN, HIGH);    // activate the led.
 
-  auto errorInfo = AS5047P_Types::ERROR_t();            // new error object.
-  float angle = as5047p.readAngleDegree(&errorInfo);    // read the angle value from the AS5047P sensor.
+  auto errorInfo = AS5047P_Types::ERROR_t();                                    // new error object.
+  float angle = as5047p.readAngleDegree(true, &errorInfo, true, true, true);    // read the angle value from the AS5047P sensor.
 
-  Serial.println("");                                   // print new line.
-  Serial.print("Angle: ");                              // print some text to the serial consol.
-  Serial.println(angle);                                // print the angle value.
+  Serial.println("");         // print new line.
+  Serial.print("Angle: ");    // print some text to the serial consol.
+  Serial.println(angle);      // print the angle value.
 
-  Serial.println(errorInfo.toArduinoString());          // print the error infomation.
+  Serial.println(errorInfo.toArduinoString());    // print the error infomation.
   
-  delay(500);                                           // wait for 500 milli seconds.
+  delay(500);   // wait for 500 milli seconds.
 
 
   //////////
   // wait //
   //////////
-  digitalWrite(LED_PIN, LOW);                           // deactivate the led.
-  delay(500);                                           // wait for 500 milli seconds.
+  digitalWrite(LED_PIN, LOW);   // deactivate the led.
+  delay(500);                   // wait for 500 milli seconds.
 
 }
