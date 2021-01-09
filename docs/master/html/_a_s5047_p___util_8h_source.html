@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AS5047P - Arduino Library
-   &#160;<span id="projectnumber">2.1.1</span>
+   &#160;<span id="projectnumber">2.1.2</span>
    </div>
    <div id="projectbrief">An Arduino library for the AS5047P high-resolution rotary position sensor.</div>
   </td>
@@ -78,25 +78,24 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_a_s5047_p___util.html">AS5047P_Util</a> {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> isEvenParityBitNoSet(uint16_t data) {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        uint16_t shift = data &gt;&gt; 8;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        data ^= data &gt;&gt; 8;      <span class="comment">// example for 8-bir (this line scales it up to 16 bit)</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        data ^= data &gt;&gt; 4;      <span class="comment">// ( a b c d e f g h ) xor ( 0 0 0 0 a b c d ) = ( a b c d ae bf cg dh )</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        data ^= data &gt;&gt; 2;      <span class="comment">// ( a b c d ae bf cg dh ) xor ( 0 0 a b c d ae bf ) = ( a b ac bd ace bdf aceg bdfh )</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        data ^= data &gt;&gt; 1;      <span class="comment">// ( a b ac bd ace bdf aceg bdfh ) xor ( 0 a b ac bd ace bdf aceg ) = ( a ab abc abcd abcde abcdef abcdefg abcdefgh )</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">return</span> (data) &amp; 1;      <span class="comment">// if lsb of data is 0 -&gt; data is even. if lsb of data is 1 -&gt; data is odd. Don&#39;t invert (~data) result because parity bit gets added afterwards.</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> isEvenParityBitSet(uint16_t data) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span> ~isEvenParityBitNoSet(data);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> parityCheck(uint16_t data) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> ((data &amp; (1 &lt;&lt; 15)) &amp;&amp; isEvenParityBitSet(data));</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// AS5047P_Util_h</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> hasEvenNoOfBits(uint16_t data) {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        data ^= data &gt;&gt; 8;              <span class="comment">// example for 8-bir (this line scales it up to 16 bit)</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        data ^= data &gt;&gt; 4;              <span class="comment">// ( a b c d e f g h ) xor ( 0 0 0 0 a b c d ) = ( a b c d ae bf cg dh )</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        data ^= data &gt;&gt; 2;              <span class="comment">// ( a b c d ae bf cg dh ) xor ( 0 0 a b c d ae bf ) = ( a b ac bd ace bdf aceg bdfh )</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        data ^= data &gt;&gt; 1;              <span class="comment">// ( a b ac bd ace bdf aceg bdfh ) xor ( 0 a b ac bd ace bdf aceg ) = ( a ab abc abcd abcde abcdef abcdefg abcdefgh )</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">return</span> (<span class="keywordtype">bool</span>) ((~data) &amp; 1);    <span class="comment">// if lsb of data is 0 -&gt; data is even. if lsb of data is 1 -&gt; data is odd. </span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> parityCheck(uint16_t rawData) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">return</span> ((<span class="keywordtype">bool</span>) ~(rawData &amp; (1 &lt;&lt; 15)) &amp;&amp; (<span class="keywordtype">bool</span>) hasEvenNoOfBits(rawData &amp; 0x7FFF));</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// AS5047P_Util_h</span></div>
 <div class="ttc" id="anamespace_a_s5047_p___util_html"><div class="ttname"><a href="namespace_a_s5047_p___util.html">AS5047P_Util</a></div><div class="ttdoc">The Namespace for some util function for the AS5047P sensor.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
