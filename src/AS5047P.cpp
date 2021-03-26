@@ -207,11 +207,11 @@ float AS5047P::readAngleDegree(bool withDAEC, AS5047P_Types::ERROR_t *errorOut, 
 
     if (withDAEC) {
         AS5047P_Types::ANGLECOM_t res = AS5047P::read_ANGLECOM(errorOut, verifyParity, checkForComError, checkForSensorError);
-        return (res.data.values.DAECANG/(float)0x3FFF)*360;
+        return (res.data.values.DAECANG/(float)16384)*360;
     }
     else {
         AS5047P_Types::ANGLEUNC_t res = AS5047P::read_ANGLEUNC(errorOut, verifyParity, checkForComError, checkForSensorError);
-        return (res.data.values.CORDICANG/(float)0x3FFF)*360;
+        return (res.data.values.CORDICANG/(float)16384)*360;
     }
 
 }
