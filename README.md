@@ -76,7 +76,7 @@ Sorry, this Feature is currently not supported. 😭
 | MOSI | MOSI (Pin: 11) | - |
 | MISO | MISO (Pin: 12) | - |
 | CLK | SCK (Pin: 13) | - |
-| CSn | 9 | Can be any unused digital pin on the arduino as log as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| CSn | 9 | Can be any unused digital pin on the arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 ### Connect to an [Arduino Mega](https://store.arduino.cc/arduino-mega-2560-rev3)
 
@@ -88,7 +88,7 @@ Sorry, this Feature is currently not supported. 😭
 | MOSI | MOSI (Pin: 51) | - |
 | MISO | MISO (Pin: 50) | - |
 | CLK | SCK (Pin: 52) | - |
-| CSn | 9 | Can be any unused digital pin on the arduino as log as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| CSn | 9 | Can be any unused digital pin on the arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 ### Connect to an [Adafruit Feather M0](https://www.adafruit.com/product/2772)
 
@@ -100,7 +100,7 @@ Sorry, this Feature is currently not supported. 😭
 | MOSI | MOSI | - |
 | MISO | MISO | - |
 | CLK | SCK | - |
-| CSn | 9 | Can be any unused digital pin on the arduino as log as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| CSn | 9 | Can be any unused digital pin on the arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 ## Project Status & ToDo's
 
