@@ -1,8 +1,21 @@
+/**
+ * @file AS5047P_SPI_Arduino.h
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
+ * @brief This headerfile contains the Arduino SPI bus handler for the AS5047P Library.
+ * @version 2.1.4
+ * @date 2021-04-10
+ * 
+ * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * 
+ */
+
 #ifndef AS5047P_SPI_ARDUINO_h
 #define AS5047P_SPI_ARDUINO_h
 
 #include <inttypes.h>
 #include <SPI.h>
+
+#include "./util/AS5047P_Settings.h"
 
 /**
  * @namespace AS5047P_ComBackend
@@ -51,6 +64,18 @@ namespace AS5047P_ComBackend {
 
             uint8_t __chipSelectPinNo;        ///< The pin number of the chip select pin.
             SPISettings __spiSettings;        ///< The spi bus settings.
+
+            #if defined(F_CPU) && defined(AS5047P_SPI_USE_100NS_NOP_DELAY)
+
+            const uint16_t __numberOfNops = (uint16_t) ((100 * (F_CPU/1000000L))/1000);     ///< Number of asm nop operations for 100 ns delay.
+
+            /**
+             * @brief Custom delay function to wait 100 ns based on asm nop operations.
+             * 
+             */
+            const void __delay100Ns(); 
+
+            #endif
 
     };
 

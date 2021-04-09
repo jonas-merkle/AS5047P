@@ -1,7 +1,23 @@
+/**
+ * @file AS5047P_Util.h
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
+ * @brief This headerfile contains util functions for the AS5047P Library.
+ * @version 2.1.4
+ * @date 2021-04-10
+ * 
+ * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * 
+ */
+
 #ifndef AS5047P_Util_h
 #define AS5047P_Util_h
 
 #include <inttypes.h>
+
+#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+#include <string>
+#include <sstream>
+#endif
 
 /**
  * @namespace AS5047P_Util
@@ -34,6 +50,24 @@ namespace AS5047P_Util {
         return ((bool) ~(rawData & (1 << 15)) && (bool) hasEvenNoOfBits(rawData & 0x7FFF));
 
     }
+
+    #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+
+    /**
+     * @brief Convert a value to a string (see std::to_string)
+     * 
+     * @tparam T The type of the value to convert.
+     * @param value The value to convert.
+     * @return std::string The result string.
+     */
+    template <typename T>
+    std::string to_string(const T& value) {
+        std::stringstream ss;
+        ss << value;
+        return ss.str();
+    }
+
+    #endif
 }
 
 #endif // AS5047P_Util_h

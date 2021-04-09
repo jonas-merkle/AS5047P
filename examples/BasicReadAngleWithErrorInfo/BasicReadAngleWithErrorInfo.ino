@@ -1,13 +1,17 @@
-/*
-  BasicReadAngleWithErrorInfo.ino
-
-  This is a basic example program to read the angle position from a AS5047 rotary encoder.
-  The angle postion gets updated and printed to the serial consol once a second. 
-  In addition to the angle value the error information gets displayed.
-
-  More Information can be found here:
-  https://github.com/jonas-merkle/AS5047P
-*/
+/**
+ * @file BasicReadAngleWithErrorInfo.ino
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
+ * @brief This is a basic example program to read the angle position from a AS5047 rotary encoder.
+ *        The angle postion gets updated and printed to the serial consol once a second.
+ *        In addition to the angle value the error information gets displayed.
+ * @version 2.1.4
+ * @date 2021-04-10
+ * 
+ * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * 
+ * More Information can be found here:
+ * https://github.com/jonas-merkle/AS5047P
+ */
 
 // include the library for the AS5047P sensor.
 #include <AS5047P.h>
@@ -33,9 +37,9 @@ void setup() {
   // initialize the serial bus for the communication with your pc.
   Serial.begin(115200);
 
-  // initialize the AS5047P sensor and hold if sensor can't be initialized..
+  // initialize the AS5047P sensor and hold if sensor can't be initialized.
   while (!as5047p.initSPI()) {
-    Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection... "));
+    Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection..."));
     delay(5000);
   }
 
