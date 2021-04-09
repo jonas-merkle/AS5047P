@@ -1,3 +1,14 @@
+/**
+ * @file AS5047P_Types.h
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
+ * @brief This headerfile contains type definitions for the AS5047P Library.
+ * @version 2.1.4
+ * @date 2021-04-10
+ * 
+ * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * 
+ */
+
 #ifndef AS5047P_TYPES_h
 #define AS5047P_TYPES_h
 
