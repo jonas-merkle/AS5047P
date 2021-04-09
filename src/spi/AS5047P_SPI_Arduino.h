@@ -4,9 +4,7 @@
 #include <inttypes.h>
 #include <SPI.h>
 
-// additional options (uncomment to enable)
-#define AS5047P_SPI_USE_100NS_NOP_DELAY
-//#define AS5047P_SPI_INIT_ON_COM_ENAB
+#include "./util/AS5047P_Settings.h"
 
 /**
  * @namespace AS5047P_ComBackend
