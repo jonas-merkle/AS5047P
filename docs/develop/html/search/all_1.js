@@ -15,7 +15,7 @@ var searchData=
   ['as5047p_5fspi_13',['AS5047P_SPI',['../class_a_s5047_p___com_backend_1_1_a_s5047_p___s_p_i.html',1,'AS5047P_ComBackend::AS5047P_SPI'],['../class_a_s5047_p___com_backend_1_1_a_s5047_p___s_p_i.html#a64914e153f5c72f85c3e2271d3c26953',1,'AS5047P_ComBackend::AS5047P_SPI::AS5047P_SPI()']]],
   ['as5047p_5fspi_5farduino_2ecpp_14',['AS5047P_SPI_Arduino.cpp',['../_a_s5047_p___s_p_i___arduino_8cpp.html',1,'']]],
   ['as5047p_5fspi_5farduino_2eh_15',['AS5047P_SPI_Arduino.h',['../_a_s5047_p___s_p_i___arduino_8h.html',1,'']]],
-  ['as5047p_5fspi_5fuse_5f100ns_5fnop_5fdelay_16',['AS5047P_SPI_USE_100NS_NOP_DELAY',['../_a_s5047_p___settings_8h.html#a93e3c1377bbf21f372d6422a8031e62f',1,'AS5047P_Settings.h']]],
+  ['as5047p_5fspi_5farduino_5fuse_5f100ns_5fnop_5fdelay_16',['AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY',['../_a_s5047_p___settings_8h.html#a13174c8475ff36b7cfa660a28dc56ae0',1,'AS5047P_Settings.h']]],
   ['as5047p_5ftypes_17',['AS5047P_Types',['../namespace_a_s5047_p___types.html',1,'']]],
   ['as5047p_5ftypes_2ecpp_18',['AS5047P_Types.cpp',['../_a_s5047_p___types_8cpp.html',1,'']]],
   ['as5047p_5ftypes_2eh_19',['AS5047P_Types.h',['../_a_s5047_p___types_8h.html',1,'']]],
