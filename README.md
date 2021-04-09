@@ -62,7 +62,7 @@ You can download the latest version of this library [here](https://github.com/jo
 
 ### Install the library via the PlattformIO Library Manager
 
-Sorry, this Feature is currently not supported. 😭
+You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) in the PlattformIO Library Manager. To add this library to your plattformIO project you can either use the library manager ui and search for this library or you can use the following platform io cli command: `pio lib install "jonas-merkle/AS5047P"`
 
 ## How to connect the AS5047P to your Arduino
 
@@ -121,10 +121,10 @@ Sorry, this Feature is currently not supported. 😭
 |   ✅   | Improve initSPI() |
 |   ✅   | ToString() for Error_t |
 |   ✅   | Adding Library to Arduino Library Manager 🥳 |
+|   ✅   | Adding Library to PlattformIO Library Manager 🥳 |
 |   ✅   | Documentation update.|
 |   ✅   | [keywords.txt](keywords.txt) updated for all library functions. |
 |   🚧   | [Readme.md](README.md) update.|
-|   🚧   | Adding Library to PlattformIO Library Manager |
 |   🚧   | Test of all wirte functions |
 |   🚧   | Test of all read functions |
 |   ❌   | Porting the library to be compatible with the STM32 HAL |
