@@ -8,7 +8,7 @@
 #include "spi/AS5047P_SPI_Arduino.h"
 //#endif
 
-#ifdef ARDUINO_ARCH_SAMD
+#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 #include <string>
 #endif
 
@@ -77,7 +77,7 @@ class AS5047P {
         bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData);
 
 
-        #ifdef ARDUINO_ARCH_SAMD
+        #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
         /**
          * Reads all status information from the AS5047P sensor and returns them as a string.
          * @return A std::string with all status information.

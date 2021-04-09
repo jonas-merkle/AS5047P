@@ -3,6 +3,11 @@
 
 #include <inttypes.h>
 
+#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+#include <string>
+#include <sstream>
+#endif
+
 /**
  * @namespace AS5047P_Util
  * @brief The Namespace for some util function for the AS5047P sensor.
@@ -34,6 +39,24 @@ namespace AS5047P_Util {
         return ((bool) ~(rawData & (1 << 15)) && (bool) hasEvenNoOfBits(rawData & 0x7FFF));
 
     }
+
+    #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+
+    /**
+     * @brief Convert a value to a string (see std::to_string)
+     * 
+     * @tparam T The type of the value to convert.
+     * @param value The value to convert.
+     * @return std::string The result string.
+     */
+    template <typename T>
+    std::string to_string(const T& value) {
+        std::stringstream ss;
+        ss << value;
+        return ss.str();
+    }
+
+    #endif
 }
 
 #endif // AS5047P_Util_h

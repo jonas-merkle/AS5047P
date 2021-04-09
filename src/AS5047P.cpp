@@ -5,6 +5,9 @@
 // Constructors ------------------------------------------------
 
 AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spiInterface(chipSelectPinNo, spiSpeed) {
+
+    // AS5047 power-on time (according to datasheet)
+    delay(10); 
 }
 
 // -------------------------------------------------------------
@@ -29,7 +32,7 @@ bool AS5047P::checkSPICon() {
 }
 
 bool AS5047P::initSPI() {
-    
+
     __spiInterface.init();
 
     return checkSPICon();
@@ -116,7 +119,8 @@ bool AS5047P::verifyWittenRegF(uint16_t regAddress, uint16_t expectedData) {
     return recData.data.raw == expectedData;
 }
 
-#ifdef ARDUINO_ARCH_SAMD
+#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+
 std::string AS5047P::readStatusAsStdString() {
 
     AS5047P_Types::ERRFL_t errorReg = read_ERRFL();
@@ -129,31 +133,31 @@ std::string AS5047P::readStatusAsStdString() {
     str.append(" Error Information:\n");
     str.append("-------------------------\n");
     str.append("- Framing error:   ");
-    str.append(std::to_string(errorReg.data.values.FRERR));
+    str.append(AS5047P_Util::to_string(errorReg.data.values.FRERR));
     str.append("\n");
     str.append("- Invalid command: ");
-    str.append(std::to_string(errorReg.data.values.INVCOMM));
+    str.append(AS5047P_Util::to_string(errorReg.data.values.INVCOMM));
     str.append("\n");
     str.append("- Parity error:    ");
-    str.append(std::to_string(errorReg.data.values.PARERR));
+    str.append(AS5047P_Util::to_string(errorReg.data.values.PARERR));
     str.append("\n");
     str.append("#########################\n");
     str.append(" Diagnostic Information: \n");
     str.append("-------------------------\n");
     str.append("- AGC Value:       ");
-    str.append(std::to_string(diagReg.data.values.AGC));
+    str.append(AS5047P_Util::to_string(diagReg.data.values.AGC));
     str.append("\n");
     str.append("- Offset comp.:    ");
-    str.append(std::to_string(diagReg.data.values.LF));
+    str.append(AS5047P_Util::to_string(diagReg.data.values.LF));
     str.append("\n");
     str.append("- CORDIC overflow: ");
-    str.append(std::to_string(diagReg.data.values.COF));
+    str.append(AS5047P_Util::to_string(diagReg.data.values.COF));
     str.append("\n");
     str.append("- MAG too high:    ");
-    str.append(std::to_string(diagReg.data.values.MAGH));
+    str.append(AS5047P_Util::to_string(diagReg.data.values.MAGH));
     str.append("\n");
     str.append("- MAG too low:     ");
-    str.append(std::to_string(diagReg.data.values.MAGL));
+    str.append(AS5047P_Util::to_string(diagReg.data.values.MAGL));
     str.append("\n");
     str.append("#########################\n");
 

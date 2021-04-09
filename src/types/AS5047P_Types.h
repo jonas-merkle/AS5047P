@@ -3,7 +3,7 @@
 
 #include <inttypes.h>
 
-#ifdef ARDUINO_ARCH_SAMD
+#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 #include <string>
 #endif
 
@@ -120,12 +120,14 @@ namespace AS5047P_Types {
              */
             bool noError();
 
-            #ifdef ARDUINO_ARCH_SAMD
+            #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+
             /**
              * Converts the error information into an human readable string.
              * @return A std::string with all error information.
              */
             std::string toStdString();
+
             #endif
 
             /**
