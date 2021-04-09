@@ -21,6 +21,11 @@
     - [Connect to an Arduino Uno](#connect-to-an-arduino-uno)
     - [Connect to an Arduino Mega](#connect-to-an-arduino-mega)
     - [Connect to an Adafruit Feather M0](#connect-to-an-adafruit-feather-m0)
+    - [Connect to Teensy Board](#connect-to-teensy-board)
+      - [Connect to a Teensy 3.5](#connect-to-a-teensy-35)
+      - [Connect to a Teensy 3.6](#connect-to-a-teensy-36)
+      - [Connect to a Teensy 4.0](#connect-to-a-teensy-40)
+      - [Connect to a Teensy 4.1](#connect-to-a-teensy-41)
   - [Project Status & ToDo's](#project-status--todos)
 
 ## Supported Sensors
@@ -68,7 +73,7 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 
 ### Connect to an [Arduino Uno](https://store.arduino.cc/arduino-uno-rev3)
 
-| AS5047P Pin | Arduino Pin | Comment |
+| AS5047P Pin | Arduino Uno Pin | Comment |
 |:-----------:|:-----------:|:--------|
 | GND | GND | - |
 | VDD | 5V | - |
@@ -80,7 +85,7 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 
 ### Connect to an [Arduino Mega](https://store.arduino.cc/arduino-mega-2560-rev3)
 
-| AS5047P Pin | Arduino Pin | Comment |
+| AS5047P Pin | Arduino Mega Pin | Comment |
 |:-----------:|:-----------:|:--------|
 | GND | GND | - |
 | VDD | 5V | - |
@@ -92,7 +97,7 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 
 ### Connect to an [Adafruit Feather M0](https://www.adafruit.com/product/2772)
 
-| AS5047P Pin | Arduino Pin | Comment |
+| AS5047P Pin | Adafruit Feather M0 Pin | Comment |
 |:-----------:|:-----------:|:--------|
 | GND | GND | - |
 | VDD | 3V | - |
@@ -101,6 +106,66 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 | MISO | MISO | - |
 | CLK | SCK | - |
 | CSn | 9 | Can be any unused digital pin on the arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+
+**Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Adafruit Feather M0 board!**
+
+### Connect to [Teensy Board](https://www.pjrc.com/store/index.html)
+
+#### Connect to a [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)
+
+| AS5047P Pin | Teensy Pin | Comment |
+|:-----------:|:-----------:|:--------|
+| GND | GND | - |
+| VDD | 3V | - |
+| VDD3V| 3V | - |
+| MOSI | MOSI0 (Pin: 11) | - |
+| MISO | MISO0 (Pin: 12) | - |
+| CLK | SCK0 (Pin: 13) | - |
+| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+
+**Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
+
+#### Connect to a [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)
+
+| AS5047P Pin | Teensy Pin | Comment |
+|:-----------:|:-----------:|:--------|
+| GND | GND | - |
+| VDD | 3V | - |
+| VDD3V| 3V | - |
+| MOSI | MOSI0 (Pin: 11) | - |
+| MISO | MISO0 (Pin: 12) | - |
+| CLK | SCK0 (Pin: 13) | - |
+| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+
+**Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
+
+#### Connect to a [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)
+
+| AS5047P Pin | Teensy Pin | Comment |
+|:-----------:|:-----------:|:--------|
+| GND | GND | - |
+| VDD | 3V | - |
+| VDD3V| 3V | - |
+| MOSI | MOSI (Pin: 11) | - |
+| MISO | MISO (Pin: 12) | - |
+| CLK | SCK (Pin: 13) | - |
+| CSn | CS (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+
+**Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
+
+#### Connect to a [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)
+
+| AS5047P Pin | Teensy Pin | Comment |
+|:-----------:|:-----------:|:--------|
+| GND | GND | - |
+| VDD | 3V | - |
+| VDD3V| 3V | - |
+| MOSI | MOSI (Pin: 11) | - |
+| MISO | MISO (Pin: 12) | - |
+| CLK | SCK (Pin: 13) | - |
+| CSn | CS (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+
+**Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
 ## Project Status & ToDo's
 
