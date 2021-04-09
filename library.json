@@ -13,7 +13,7 @@
         {
             "name": "Jonas Merkle [JJM]",
             "email": "jonas@jjm.one",
-            "url": "jjm.one",
+            "url": "https://jjm.one/",
             "maintainer": true
         }
     ],
@@ -26,6 +26,27 @@
             "base": "examples/BasicReadAngle",
             "files": [
                 "BasicReadAngle.ino"
+            ]
+        },
+        {
+            "name": "BasicReadAngleAndDebugInfo",
+            "base": "examples/BasicReadAngleAndDebugInfo",
+            "files": [
+                "BasicReadAngleAndDebugInfo.ino"
+            ]
+        },
+        {
+            "name": "BasicReadAngleWithErrorInfo",
+            "base": "examples/BasicReadAngleWithErrorInfo",
+            "files": [
+                "BasicReadAngleWithErrorInfo.ino"
+            ]
+        },
+        {
+            "name": "PrintAllSettings",
+            "base": "examples/PrintAllSettings",
+            "files": [
+                "PrintAllSettings.ino"
             ]
         }
     ]
