@@ -1,3 +1,14 @@
+/**
+ * @file AS5047P_Types.cpp
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
+ * @brief This sourcefile contains the implementation of the type definitions for the AS5047P Library.
+ * @version 2.1.4
+ * @date 2021-04-10
+ * 
+ * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * 
+ */
+
 #include "AS5047P_Types.h"
 
 #include "util/AS5047P_Util.h"
@@ -19,7 +30,8 @@ namespace AS5047P_Types {
         );
     }
 
-    #ifdef ARDUINO_ARCH_SAMD
+    #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+
     std::string ERROR_t::toStdString() {
         
         std::string str;
@@ -29,37 +41,37 @@ namespace AS5047P_Types {
         str.append(" Sensor Side Errors:\n");
         str.append("----------------------------------\n");
         str.append("- SENS_SPI_FRAMING_ERROR:     ");
-        str.append(std::to_string(sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR));
+        str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR));
         str.append("\n");
         str.append("- SENS_SPI_INVALID_CMD:       ");
-        str.append(std::to_string(sensorSideErrors.flags.SENS_SPI_INVALID_CMD));
+        str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_SPI_INVALID_CMD));
         str.append("\n");
         str.append("- SENS_SPI_PARITY_ERROR:      ");
-        str.append(std::to_string(sensorSideErrors.flags.SENS_SPI_PARITY_ERROR));
+        str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_SPI_PARITY_ERROR));
         str.append("\n");
         str.append("- SENS_OFFSET_COMP_ERROR:     ");
-        str.append(std::to_string(sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR));
+        str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR));
         str.append("\n");
         str.append("- SENS_CORDIC_OVERFLOW_ERROR: ");
-        str.append(std::to_string(sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR));
+        str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR));
         str.append("\n");
         str.append("- SENS_CORDIC_OVERFLOW_ERROR: ");
-        str.append(std::to_string(sensorSideErrors.flags.SENS_MAG_TOO_HIGH));
+        str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_MAG_TOO_HIGH));
         str.append("\n");
         str.append("- SENS_MAG_TOO_LOW:           ");
-        str.append(std::to_string(sensorSideErrors.flags.SENS_MAG_TOO_LOW));
+        str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_MAG_TOO_LOW));
         str.append("\n");
         str.append("##################################\n");
         str.append(" Controller Side Errors: \n");
         str.append("----------------------------------\n");
         str.append("- CONT_SPI_PARITY_ERROR:      ");
-        str.append(std::to_string(controllerSideErrors.flags.CONT_SPI_PARITY_ERROR));
+        str.append(AS5047P_Util::to_string(controllerSideErrors.flags.CONT_SPI_PARITY_ERROR));
         str.append("\n");
         str.append("- CONT_GENERAL_COM_ERROR:     ");
-        str.append(std::to_string(controllerSideErrors.flags.CONT_GENERAL_COM_ERROR));
+        str.append(AS5047P_Util::to_string(controllerSideErrors.flags.CONT_GENERAL_COM_ERROR));
         str.append("\n");
         str.append("- CONT_WRITE_VERIFY_FAILED:   ");
-        str.append(std::to_string(controllerSideErrors.flags.CONT_WRITE_VERIFY_FAILED));
+        str.append(AS5047P_Util::to_string(controllerSideErrors.flags.CONT_WRITE_VERIFY_FAILED));
         str.append("\n");
         str.append("##################################\n");
 
@@ -68,6 +80,7 @@ namespace AS5047P_Types {
         return str;
 
     }
+    
     #endif
 
     String ERROR_t::toArduinoString() {

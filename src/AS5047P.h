@@ -1,3 +1,14 @@
+/**
+ * @file AS5047P.h
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
+ * @brief This is the main headerfile of the AS5047P Library.
+ * @version 2.1.4
+ * @date 2021-04-10
+ * 
+ * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * 
+ */
+
 #ifndef AS5047P_h
 #define AS5047P_h
 
@@ -8,7 +19,7 @@
 #include "spi/AS5047P_SPI_Arduino.h"
 //#endif
 
-#ifdef ARDUINO_ARCH_SAMD
+#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 #include <string>
 #endif
 
@@ -77,7 +88,7 @@ class AS5047P {
         bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData);
 
 
-        #ifdef ARDUINO_ARCH_SAMD
+        #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
         /**
          * Reads all status information from the AS5047P sensor and returns them as a string.
          * @return A std::string with all status information.
