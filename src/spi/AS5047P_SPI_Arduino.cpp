@@ -12,7 +12,6 @@ namespace AS5047P_ComBackend {
 
         pinMode(__chipSelectPinNo, OUTPUT);
         digitalWrite(__chipSelectPinNo, HIGH);
-
     }
 
     void AS5047P_SPI::init() {
@@ -31,13 +30,21 @@ namespace AS5047P_ComBackend {
         digitalWrite(__chipSelectPinNo, LOW);
         SPI.transfer16(regAddress);
         digitalWrite(__chipSelectPinNo, HIGH);
+        #if defined(F_CPU) && defined(AS5047P_SPI_USE_100NS_NOP_DELAY)
+        __delay100Ns();
+        #else
         delayMicroseconds(1);
+        #endif
         
         // write data
         digitalWrite(__chipSelectPinNo, LOW);
         SPI.transfer16(data);
         digitalWrite(__chipSelectPinNo, HIGH);
+        #if defined(F_CPU) && defined(AS5047P_SPI_USE_100NS_NOP_DELAY)
+        __delay100Ns();
+        #else
         delayMicroseconds(1);
+        #endif
 
         // close spi interface
         SPI.endTransaction();
@@ -62,15 +69,24 @@ namespace AS5047P_ComBackend {
         digitalWrite(__chipSelectPinNo, LOW);
         SPI.transfer16(regAddress);
         digitalWrite(__chipSelectPinNo, HIGH);
+        #if defined(F_CPU) && defined(AS5047P_SPI_USE_100NS_NOP_DELAY)
+        __delay100Ns();
+        #else
         delayMicroseconds(1);
+        #endif
         
         // write nop & reading data
         digitalWrite(__chipSelectPinNo, LOW);
         AS5047P_Types::SPI_Command_Frame_t nopFrame(AS5047P_Types::NOP_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
         receivedData = SPI.transfer16(nopFrame.data.raw);
         digitalWrite(__chipSelectPinNo, HIGH);
+        #if defined(F_CPU) && defined(AS5047P_SPI_USE_100NS_NOP_DELAY)
+        __delay100Ns();
+        #else
         delayMicroseconds(1);
+        #endif
         
+
         // close spi interface
         SPI.endTransaction();
         #ifdef AS5047P_SPI_INIT_ON_COM_ENAB
@@ -80,4 +96,14 @@ namespace AS5047P_ComBackend {
         return receivedData;
 
     }
+
+    #if defined(F_CPU) && defined(AS5047P_SPI_USE_100NS_NOP_DELAY) 
+
+    const void AS5047P_SPI::__delay100Ns() {
+        for (uint16_t i = 0; i < __numberOfNops; i++) {
+            __asm__("nop");
+        }
+    }
+
+    #endif
 }
