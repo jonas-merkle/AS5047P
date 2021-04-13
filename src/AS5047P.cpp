@@ -2,7 +2,7 @@
  * @file AS5047P.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is the main sourcefile of the AS5047P Library.
- * @version 2.1.4
+ * @version 2.1.5
  * @date 2021-04-10
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
@@ -17,8 +17,6 @@
 
 AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spiInterface(chipSelectPinNo, spiSpeed) {
 
-    // AS5047 power-on time (according to datasheet)
-    delay(10); 
 }
 
 // -------------------------------------------------------------
