@@ -17,8 +17,6 @@
 
 AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spiInterface(chipSelectPinNo, spiSpeed) {
 
-    // AS5047 power-on time (according to datasheet)
-    delay(10); 
 }
 
 // -------------------------------------------------------------
