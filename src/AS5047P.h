@@ -57,6 +57,14 @@ class AS5047P {
         AS5047P(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 100000);
         #endif // AS5047P_OP_MODE_Arduino
 
+        #if defined(AS5047P_OP_MODE_Zephyr)
+        /**
+         * Constructor.
+         * @param spiDevName The zephyr spi devices name.
+         */
+        AS5047P(const char *spiDevName);
+        #endif // AS5047P_OP_MODE_Zephyr
+
         // -------------------------------------------------------------
 
         // Init --------------------------------------------------------

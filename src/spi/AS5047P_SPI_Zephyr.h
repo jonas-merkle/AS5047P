@@ -21,12 +21,26 @@
 
 // disable in non Zephyr op mode
 #if defined(AS5047P_OP_MODE_Zephyr)
+// zephyr libraties
+#include <drivers/spi.h>
+#include <logging/log.h>
+
+// log
+LOG_MODULE_REGISTER(as5047p_lib_spi, LOG_LEVEL_INF);
+
 
 /**
  * @namespace AS5047P_ComBackend
  * @brief The namespace for the communication backend of the AS5047P sensor.
  */
 namespace AS5047P_ComBackend {
+
+    static const struct spi_config __spiDevCfg = {
+
+            .frequency = 28000000,
+            .operation = SPI_WORD_SET(8) | SPI_TRANSFER_MSB | SPI_MODE_CPHA,
+            .slave = 0,
+    };
 
     /**
      * @class AS5047P_SPI_Zephyr
@@ -38,10 +52,9 @@ namespace AS5047P_ComBackend {
 
             /**
              * Constructor.
-             * @param chipSelectPinNo The pin number of the chip select pin (default: 9);
-             * @param spiSpeed The spi bus speed (default: 8000000, on Feather M0 tested up to 32000000)
+             * @param spiDevName The zephyr spi devices name.
              */
-            AS5047P_SPI_Zephyr();
+            AS5047P_SPI_Zephyr(const char *spiDevName);
 
 
             /**
@@ -58,7 +71,7 @@ namespace AS5047P_ComBackend {
             void write(uint16_t regAddress, uint16_t data);
 
             /**
-             * Read tata from a register of the AS5047P sensor.
+             * Read data from a register of the AS5047P sensor.
              * @param regAddress The address of the register where the data should be read.
              * @return The data in the register.
              */ 
@@ -67,6 +80,9 @@ namespace AS5047P_ComBackend {
 
         private:
 
+            const char *__spiDevName;
+
+            const device *__spiDev;
     };
 
 }

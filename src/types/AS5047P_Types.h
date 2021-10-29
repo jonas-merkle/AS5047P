@@ -23,10 +23,8 @@
 #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 #include <string>
 #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
-#endif // AS5047P_OP_MODE_Arduino
-
-
 #include <Arduino.h>
+#endif // AS5047P_OP_MODE_Arduino
 
 #define AS5047P_TYPES_WRITE_CMD 0       ///< Write command flag.
 #define AS5047P_TYPES_READ_CMD 1        ///< Read command flag.

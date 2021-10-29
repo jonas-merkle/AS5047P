@@ -22,6 +22,12 @@ AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spi
 }
 #endif // AS5047P_OP_MODE_Arduino
 
+#if defined(AS5047P_OP_MODE_Zephyr)
+AS5047P::AS5047P(const char *spiDevName) : __spiInterface(spiDevName) {
+
+}
+#endif // AS5047P_OP_MODE_Zephyr
+
 // -------------------------------------------------------------
 
 // Init --------------------------------------------------------

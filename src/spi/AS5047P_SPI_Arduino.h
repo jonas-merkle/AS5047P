@@ -60,7 +60,7 @@ namespace AS5047P_ComBackend {
             void write(uint16_t regAddress, uint16_t data);
 
             /**
-             * Read tata from a register of the AS5047P sensor.
+             * Read data from a register of the AS5047P sensor.
              * @param regAddress The address of the register where the data should be read.
              * @return The data in the register.
              */ 
