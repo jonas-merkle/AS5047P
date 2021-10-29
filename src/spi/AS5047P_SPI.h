@@ -25,7 +25,7 @@ namespace AS5047P_ComBackend {
      * @class AS5047P_SPI
      * @brief The arduino spi interface wrapper class for the AS5047P sensor.
      */
-    class AS5047P_SPI_Arduino {
+    class AS5047P_SPI {
     
         public:
 

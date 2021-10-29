@@ -17,6 +17,7 @@
 
 // as5047p libraries
 #include "./../util/AS5047P_Settings.h"
+#include "./../spi/AS5047P_SPI.h"
 
 // disable in non arduino op mode
 #if defined(AS5047P_OP_MODE_Arduino)
@@ -33,7 +34,7 @@ namespace AS5047P_ComBackend {
      * @class AS5047P_SPI_Arduino
      * @brief The arduino spi interface wrapper class for the AS5047P sensor.
      */
-    class AS5047P_SPI_Arduino {
+    class AS5047P_SPI_Arduino : AS5047P_SPI {
     
         public:
 
