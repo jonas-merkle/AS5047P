@@ -11,7 +11,7 @@
 
 #include "AS5047P_SPI_Arduino.h"
 
-// disable in non arduino op mode
+// disable in non Arduino op mode
 #if defined(AS5047P_OP_MODE_Arduino)
 
 // as5047p libraries

@@ -18,7 +18,6 @@
 // as5047p libraries
 #include "./util/AS5047P_Settings.h"
 #include "./types/AS5047P_Types.h"
-#include "./spi/AS5047P_SPI.h"
 
 // op mode dependent libraries
 #if defined(AS5047P_OP_MODE_Arduino)
@@ -29,6 +28,9 @@
 #include <string>
 #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
 #endif // AS5047P_OP_MODE_Arduino
+#if defined(AS5047P_OP_MODE_Zephyr)
+#include "./spi/AS5047P_SPI_Zephyr.h"
+#endif // AS5047P_OP_MODE_Zephyr
 
 // op mode dependent defines
 #if defined(AS5047P_OP_MODE_Arduino)
@@ -346,10 +348,11 @@ class AS5047P {
     private:
 
         #if defined(AS5047P_OP_MODE_Arduino)
-        AS5047P_ComBackend::AS5047P_SPI_Arduino __spiInterface;       ///< The instance of the spi interface for the sensor communication.
-        #elif 
-        AS5047P_ComBackend::AS5047P_SPI __spiInterface;       ///< The instance of the spi interface for the sensor communication.
+        AS5047P_ComBackend::AS5047P_SPI_Arduino __spiInterface;         ///< The instance of the spi interface for the sensor communication.
         #endif // AS5047P_OP_MODE_Arduino
+        #if defined(AS5047P_OP_MODE_Zephyr)
+        AS5047P_ComBackend::AS5047P_SPI_Zephyr __spiInterface;          ///< The instance of the spi interface for the sensor communication.
+        #endif // AS5047P_OP_MODE_Zephyr
+    
 };
-
 #endif // AS5047P_h
