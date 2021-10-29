@@ -2,8 +2,8 @@
  * @file AS5047P.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is the main headerfile of the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -12,21 +12,29 @@
 #ifndef AS5047P_h
 #define AS5047P_h
 
+// std libraries
 #include <inttypes.h>
 
-//#ifdef Arduino_h
+// as5047p libraries
+#include "./util/AS5047P_Settings.h"
+#include "./types/AS5047P_Types.h"
+#include "./spi/AS5047P_SPI.h"
+
+// op mode dependent libraries
+#if defined(AS5047P_OP_MODE_Arduino)
 #include <Arduino.h>
-#include "spi/AS5047P_SPI_Arduino.h"
-//#endif
+#include "./spi/AS5047P_SPI_Arduino.h"
 
 #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 #include <string>
-#endif
+#endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
+#endif // AS5047P_OP_MODE_Arduino
 
-#include "types/AS5047P_Types.h"
-
-
+// op mode dependent defines
+#if defined(AS5047P_OP_MODE_Arduino)
 #define AS5047P_INFO_STRING_BUFFER_SIZE 350     ///< buffer size for information string
+#endif // AS5047P_OP_MODE_Arduino
+
 
 /**
  * @class AS5047P
@@ -38,12 +46,14 @@ class AS5047P {
 
         // Constructors ------------------------------------------------
 
+        #if defined(AS5047P_OP_MODE_Arduino)
         /**
          * Constructor.
          * @param chipSelectPinNo The pin number of the chip select pin (default: 9);
          * @param spiSpeed The spi bus speed (default: 8000000, on Feather M0 tested up to 32000000)
          */
         AS5047P(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 100000);
+        #endif // AS5047P_OP_MODE_Arduino
 
         // -------------------------------------------------------------
 
@@ -87,21 +97,21 @@ class AS5047P {
          */
         bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData);
 
-
+        #if defined(AS5047P_OP_MODE_Arduino)
         #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
         /**
          * Reads all status information from the AS5047P sensor and returns them as a string.
          * @return A std::string with all status information.
          */
         std::string readStatusAsStdString();
-        #endif
+        #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
 
         /**
          * Reads all status information from the AS5047P sensor and returns them as a string.
          * @return A string (Arduino String) with all status information.
          */
         String readStatusAsArduinoString();
-
+        #endif // AS5047P_OP_MODE_Arduino
 
         // -------------------------------------------------------------
 
@@ -335,8 +345,11 @@ class AS5047P {
 
     private:
 
+        #if defined(AS5047P_OP_MODE_Arduino)
+        AS5047P_ComBackend::AS5047P_SPI_Arduino __spiInterface;       ///< The instance of the spi interface for the sensor communication.
+        #elif 
         AS5047P_ComBackend::AS5047P_SPI __spiInterface;       ///< The instance of the spi interface for the sensor communication.
-
+        #endif // AS5047P_OP_MODE_Arduino
 };
 
 #endif // AS5047P_h

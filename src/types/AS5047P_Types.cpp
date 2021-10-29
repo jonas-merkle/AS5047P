@@ -2,8 +2,8 @@
  * @file AS5047P_Types.cpp
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This sourcefile contains the implementation of the type definitions for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -11,7 +11,7 @@
 
 #include "AS5047P_Types.h"
 
-#include "util/AS5047P_Util.h"
+#include "./../util/AS5047P_Util.h"
 
 namespace AS5047P_Types {
 
@@ -30,8 +30,8 @@ namespace AS5047P_Types {
         );
     }
 
+    #if defined(AS5047P_OP_MODE_Arduino)
     #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-
     std::string ERROR_t::toStdString() {
         
         std::string str;
@@ -80,8 +80,7 @@ namespace AS5047P_Types {
         return str;
 
     }
-    
-    #endif
+    #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
 
     String ERROR_t::toArduinoString() {
 
@@ -99,6 +98,7 @@ namespace AS5047P_Types {
         return String(buf);
 
     }
+    #endif // AS5047P_OP_MODE_Arduino
 
     // -------------------------------------------------------------
 

@@ -1,22 +1,29 @@
-#include "AS5047P_SPI_Arduino.h"
-
 /**
  * @file AS5047P_SPI_Arduino.cpp
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This sourefile contains the implementation of the Arduino SPI bus handler for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  */
 
+#include "AS5047P_SPI_Arduino.h"
+
+// disable in non arduino op mode
+#if defined(AS5047P_OP_MODE_Arduino)
+
+// as5047p libraries
+#include "./../types/AS5047P_Types.h"
+
+// arduino libraries
 #include <Arduino.h>
-#include "types/AS5047P_Types.h"
+
 
 namespace AS5047P_ComBackend {
 
-    AS5047P_SPI::AS5047P_SPI(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) {
+    AS5047P_SPI_Arduino::AS5047P_SPI_Arduino(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) {
         
         this->__chipSelectPinNo = chipSelectPinNo;
         this->__spiSettings = SPISettings(spiSpeed, MSBFIRST, SPI_MODE1);
@@ -25,16 +32,16 @@ namespace AS5047P_ComBackend {
         digitalWrite(__chipSelectPinNo, HIGH);
     }
 
-    void AS5047P_SPI::init() {
+    void AS5047P_SPI_Arduino::init() {
         SPI.begin();
     }
 
-    void AS5047P_SPI::write(const uint16_t regAddress, const uint16_t data) {
+    void AS5047P_SPI_Arduino::write(const uint16_t regAddress, const uint16_t data) {
 
         // init spi interface
         #ifdef AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
         SPI.begin();
-        #endif
+        #endif // AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
         SPI.beginTransaction(__spiSettings);
 
         // set register address
@@ -45,7 +52,7 @@ namespace AS5047P_ComBackend {
         __delay100Ns();
         #else
         delayMicroseconds(1);
-        #endif
+        #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
         
         // write data
         digitalWrite(__chipSelectPinNo, LOW);
@@ -55,18 +62,17 @@ namespace AS5047P_ComBackend {
         __delay100Ns();
         #else
         delayMicroseconds(1);
-        #endif
+        #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
 
         // close spi interface
         SPI.endTransaction();
         #ifdef AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
         SPI.end();
-        #endif
+        #endif // AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
 
     }
 
-
-    uint16_t AS5047P_SPI::read(const uint16_t regAddress) {
+    uint16_t AS5047P_SPI_Arduino::read(const uint16_t regAddress) {
         
         uint16_t receivedData = 0;
         
@@ -84,7 +90,7 @@ namespace AS5047P_ComBackend {
         __delay100Ns();
         #else
         delayMicroseconds(1);
-        #endif
+        #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
         
         // write nop & reading data
         digitalWrite(__chipSelectPinNo, LOW);
@@ -95,14 +101,14 @@ namespace AS5047P_ComBackend {
         __delay100Ns();
         #else
         delayMicroseconds(1);
-        #endif
+        #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
         
 
         // close spi interface
         SPI.endTransaction();
         #ifdef AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
         SPI.end();
-        #endif
+        #endif // AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
 
         return receivedData;
 
@@ -110,11 +116,13 @@ namespace AS5047P_ComBackend {
 
     #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY) 
 
-    const void AS5047P_SPI::__delay100Ns() {
+    const void AS5047P_SPI_Arduino::__delay100Ns() {
         for (uint16_t i = 0; i < __numberOfNops; i++) {
             __asm__("nop");
         }
     }
 
-    #endif
+    #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
 }
+
+#endif // AS5047P_OP_MODE_Arduino

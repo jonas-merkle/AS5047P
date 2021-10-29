@@ -2,8 +2,8 @@
  * @file AS5047P.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is the main sourcefile of the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -11,13 +11,16 @@
 
 #include "AS5047P.h"
 
-#include "util/AS5047P_Util.h"
+// as5047p libraries
+#include "./util/AS5047P_Util.h"
 
 // Constructors ------------------------------------------------
 
+#if defined(AS5047P_OP_MODE_Arduino)
 AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed) : __spiInterface(chipSelectPinNo, spiSpeed) {
 
 }
+#endif // AS5047P_OP_MODE_Arduino
 
 // -------------------------------------------------------------
 
@@ -128,6 +131,7 @@ bool AS5047P::verifyWittenRegF(uint16_t regAddress, uint16_t expectedData) {
     return recData.data.raw == expectedData;
 }
 
+#if defined(AS5047P_OP_MODE_Arduino)
 #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 
 std::string AS5047P::readStatusAsStdString() {
@@ -175,7 +179,7 @@ std::string AS5047P::readStatusAsStdString() {
     return str;
 
 }
-#endif
+#endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
 
 String AS5047P::readStatusAsArduinoString() {
     AS5047P_Types::ERRFL_t errorReg = read_ERRFL();
@@ -191,6 +195,7 @@ String AS5047P::readStatusAsArduinoString() {
 
     return String(buf);
 }
+#endif // AS5047P_OP_MODE_Arduino
 
 // -------------------------------------------------------------
 

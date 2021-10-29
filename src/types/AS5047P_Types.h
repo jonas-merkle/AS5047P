@@ -2,8 +2,8 @@
  * @file AS5047P_Types.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This headerfile contains type definitions for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -12,11 +12,19 @@
 #ifndef AS5047P_TYPES_h
 #define AS5047P_TYPES_h
 
+// std libraries
 #include <inttypes.h>
 
+// as5047p libraries
+#include "./../util/AS5047P_Settings.h"
+
+// op mode dependent libraries 
+#if defined(AS5047P_OP_MODE_Arduino)
 #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 #include <string>
-#endif
+#endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
+#endif // AS5047P_OP_MODE_Arduino
+
 
 #include <Arduino.h>
 
@@ -131,21 +139,21 @@ namespace AS5047P_Types {
              */
             bool noError();
 
+            #if defined(AS5047P_OP_MODE_Arduino)
             #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-
             /**
              * Converts the error information into an human readable string.
              * @return A std::string with all error information.
              */
             std::string toStdString();
-
-            #endif
+            #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
 
             /**
              * Converts the error information into an human readable string.
              * @return A string (Arduino String) with all error information.
              */
             String toArduinoString();
+            #endif // AS5047P_OP_MODE_Arduino
 
     };
 

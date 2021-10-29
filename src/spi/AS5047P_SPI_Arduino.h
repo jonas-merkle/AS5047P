@@ -2,8 +2,8 @@
  * @file AS5047P_SPI_Arduino.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This headerfile contains the Arduino SPI bus handler for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -12,10 +12,16 @@
 #ifndef AS5047P_SPI_ARDUINO_h
 #define AS5047P_SPI_ARDUINO_h
 
+// std libraties
 #include <inttypes.h>
-#include <SPI.h>
 
-#include "./util/AS5047P_Settings.h"
+// as5047p libraries
+#include "./../util/AS5047P_Settings.h"
+
+// disable in non arduino op mode
+#if defined(AS5047P_OP_MODE_Arduino)
+// arduino libratries
+#include <SPI.h>
 
 /**
  * @namespace AS5047P_ComBackend
@@ -24,10 +30,10 @@
 namespace AS5047P_ComBackend {
 
     /**
-     * @class AS5047P_SPI
+     * @class AS5047P_SPI_Arduino
      * @brief The arduino spi interface wrapper class for the AS5047P sensor.
      */
-    class AS5047P_SPI {
+    class AS5047P_SPI_Arduino {
     
         public:
 
@@ -36,7 +42,7 @@ namespace AS5047P_ComBackend {
              * @param chipSelectPinNo The pin number of the chip select pin (default: 9);
              * @param spiSpeed The spi bus speed (default: 8000000, on Feather M0 tested up to 32000000)
              */
-            AS5047P_SPI(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 8000000);
+            AS5047P_SPI_Arduino(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 8000000);
 
 
             /**
@@ -80,5 +86,6 @@ namespace AS5047P_ComBackend {
     };
 
 }
+#endif // AS5047P_OP_MODE_Arduino
 
 #endif // AS5047P_SPI_ARDUINO_h
