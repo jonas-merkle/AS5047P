@@ -43,13 +43,13 @@ namespace AS5047P_ComBackend {
              * @param chipSelectPinNo The pin number of the chip select pin (default: 9);
              * @param spiSpeed The spi bus speed (default: 8000000, on Feather M0 tested up to 32000000)
              */
-            AS5047P_SPI_Arduino(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 8000000);
+            explicit AS5047P_SPI_Arduino(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 8000000);
 
 
             /**
              * Initializes the spi interface.
              */
-            void init();
+            void init() override;
 
 
             /**
@@ -57,20 +57,20 @@ namespace AS5047P_ComBackend {
              * @param regAddress The address of the register where the data should be written.
              * @param data The data to wirte.
              */
-            void write(uint16_t regAddress, uint16_t data);
+            void write(uint16_t regAddress, uint16_t data) const override;
 
             /**
              * Read data from a register of the AS5047P sensor.
              * @param regAddress The address of the register where the data should be read.
              * @return The data in the register.
              */ 
-            uint16_t read(uint16_t regAddress);
+            uint16_t read(uint16_t regAddress) const override;
 
 
         private:
 
-            uint8_t __chipSelectPinNo;        ///< The pin number of the chip select pin.
-            SPISettings __spiSettings;        ///< The spi bus settings.
+            uint8_t _chipSelectPinNo;        ///< The pin number of the chip select pin.
+            SPISettings _spiSettings;        ///< The spi bus settings.
 
             #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
 
