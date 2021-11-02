@@ -22,7 +22,7 @@
  * This allows the library to be used as a normal arduino compatible library. 
  * 
  */
-#define AS5047P_OP_MODE_Arduino
+//#define AS5047P_OP_MODE_Arduino
 
 /**
  * @brief Uncomment this to use this library in the zephyr mode. Default: not active 
@@ -30,7 +30,7 @@
  * THis allows the library to be used within a zephyr project.
  * 
  */
-//#define AS5047P_OP_MODE_Zephyr
+#define AS5047P_OP_MODE_Zephyr
 
 
 //////////////////////////////////////////////////

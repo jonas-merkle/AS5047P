@@ -132,11 +132,11 @@ namespace AS5047P_Types {
         data.values.PARD = !AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
-    [[maybe_unused]] SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t raw) {
+    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t raw) {
         data.raw = raw;
     }
 
-    [[maybe_unused]] SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t DATA, const uint16_t NC) {
+    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t DATA, const uint16_t NC) {
         data.values = {
             .DATA = DATA,
             .NC = NC,
