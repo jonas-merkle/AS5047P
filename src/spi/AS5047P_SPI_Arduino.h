@@ -74,13 +74,13 @@ namespace AS5047P_ComBackend {
 
             #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
 
-            const uint16_t __numberOfNops = (uint16_t) ((100 * (F_CPU/1000000L))/1000);     ///< Number of asm nop operations for 100 ns delay.
+            static const uint16_t _numberOfNops = (uint16_t) ((100 * (F_CPU/1000000L))/1000);     ///< Number of asm nop operations for 100 ns delay.
 
             /**
              * @brief Custom delay function to wait 100 ns based on asm nop operations.
              * 
              */
-            const void __delay100Ns(); 
+            void _delay100Ns() const; 
 
             #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
 

@@ -49,7 +49,7 @@ namespace AS5047P_ComBackend {
         SPI.transfer16(regAddress);
         digitalWrite(_chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
-        __delay100Ns();
+        _delay100Ns();
         #else
         delayMicroseconds(1);
         #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
@@ -59,7 +59,7 @@ namespace AS5047P_ComBackend {
         SPI.transfer16(data);
         digitalWrite(_chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
-        __delay100Ns();
+        _delay100Ns();
         #else
         delayMicroseconds(1);
         #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
@@ -87,7 +87,7 @@ namespace AS5047P_ComBackend {
         SPI.transfer16(regAddress);
         digitalWrite(_chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
-        __delay100Ns();
+        _delay100Ns();
         #else
         delayMicroseconds(1);
         #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
@@ -98,7 +98,7 @@ namespace AS5047P_ComBackend {
         receivedData = SPI.transfer16(nopFrame.data.raw);
         digitalWrite(_chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
-        __delay100Ns();
+        _delay100Ns();
         #else
         delayMicroseconds(1);
         #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
@@ -116,8 +116,8 @@ namespace AS5047P_ComBackend {
 
     #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY) 
 
-    const void AS5047P_SPI_Arduino::__delay100Ns() {
-        for (uint16_t i = 0; i < __numberOfNops; i++) {
+    void AS5047P_SPI_Arduino::_delay100Ns() const {
+        for (uint16_t i = 0; i < _numberOfNops; i++) {
             __asm__("nop");
         }
     }
