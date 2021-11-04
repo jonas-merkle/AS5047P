@@ -26,10 +26,6 @@
 #include <devicetree.h>
 #include <drivers/spi.h>
 
-// log
-LOG_MODULE_REGISTER(as5047p_lib_spi, LOG_LEVEL_INF);
-
-
 /**
  * @namespace AS5047P_ComBackend
  * @brief The namespace for the communication backend of the AS5047P sensor.
@@ -59,15 +55,9 @@ namespace AS5047P_ComBackend {
 
             /**
              * Constructor.
-             * @param spiDevName The zephyr spi devices name.
+             * @param spiDevSpec The zephyr spi devices spec for the AS5047P sensor.
              */
-            explicit AS5047P_SPI_Zephyr(const char *spiDevName);
-
-            /**
-             * Constructor.
-             * @param dev The zephyr spi devices.
-             */
-            explicit AS5047P_SPI_Zephyr(const device *spiDev);
+            explicit AS5047P_SPI_Zephyr(const struct spi_dt_spec *spiDevSpec);
 
             /**
              * Initializes the spi interface.
@@ -92,9 +82,7 @@ namespace AS5047P_ComBackend {
 
         private:
 
-            const char *_spiDevName;
-
-            const device *_spiDev;
+            const struct spi_dt_spec *_spiDevSpec
     };
 
 }

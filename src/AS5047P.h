@@ -60,15 +60,10 @@ class AS5047P {
         #if defined(AS5047P_OP_MODE_Zephyr)
         /**
          * Constructor.
-         * @param spiDevName The zephyr spi devices name.
+         * @param spiDevSpec The zephyr spi devices spec for the AS5047P sensor.
          */
-        explicit AS5047P(const char *spiDevName);
+        explicit AS5047P(const struct spi_dt_spec *spiDevSpec);
 
-        /**
-         * Constructor.
-         * @param spiDevName The zephyr spi devices.
-         */
-        explicit AS5047P(const device *spiDev);
         #endif // AS5047P_OP_MODE_Zephyr
 
         // -------------------------------------------------------------
