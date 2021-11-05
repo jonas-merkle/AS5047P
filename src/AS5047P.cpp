@@ -137,9 +137,8 @@ bool AS5047P::verifyWittenRegF(uint16_t regAddress, uint16_t expectedData) const
     return recData.data.raw == expectedData;
 }
 
-#if defined(AS5047P_OP_MODE_Arduino)
-#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 
+#if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
 std::string AS5047P::readStatusAsStdString() const {
 
     AS5047P_Types::ERRFL_t errorReg = read_ERRFL();
@@ -185,8 +184,9 @@ std::string AS5047P::readStatusAsStdString() const {
     return str;
 
 }
-#endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
+#endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 
+#if defined(AS5047P_OP_MODE_Arduino)
 String AS5047P::readStatusAsArduinoString() const {
     AS5047P_Types::ERRFL_t errorReg = read_ERRFL();
     AS5047P_Types::DIAAGC_t diagReg = read_DIAAGC();
@@ -231,11 +231,11 @@ float AS5047P::readAngleDegree(bool withDAEC, AS5047P_Types::ERROR_t *errorOut, 
 
     if (withDAEC) {
         AS5047P_Types::ANGLECOM_t res = AS5047P::read_ANGLECOM(errorOut, verifyParity, checkForComError, checkForSensorError);
-        return (res.data.values.DAECANG/(float)16384)*360;
+        return ((float)res.data.values.DAECANG/(float)16384)*360;
     }
     else {
         AS5047P_Types::ANGLEUNC_t res = AS5047P::read_ANGLEUNC(errorOut, verifyParity, checkForComError, checkForSensorError);
-        return (res.data.values.CORDICANG/(float)16384)*360;
+        return ((float)res.data.values.CORDICANG/(float)16384)*360;
     }
 
 }

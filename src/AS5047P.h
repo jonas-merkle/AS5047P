@@ -23,19 +23,21 @@
 #if defined(AS5047P_OP_MODE_Arduino)
 #include <Arduino.h>
 #include "./spi/AS5047P_SPI_Arduino.h"
-
-#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-#include <string>
-#endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
 #endif // AS5047P_OP_MODE_Arduino
+
 #if defined(AS5047P_OP_MODE_Zephyr)
 #include "./spi/AS5047P_SPI_Zephyr.h"
 #endif // AS5047P_OP_MODE_Zephyr
 
+#if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
+#include <string>
+#endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
+
+
 // op mode dependent defines
-#if defined(AS5047P_OP_MODE_Arduino)
+#if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
 #define AS5047P_INFO_STRING_BUFFER_SIZE 350     ///< buffer size for information string
-#endif // AS5047P_OP_MODE_Arduino
+#endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 
 
 /**
@@ -108,15 +110,15 @@ class AS5047P {
          */
         bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData) const;
 
-        #if defined(AS5047P_OP_MODE_Arduino)
-        #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+        #if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
         /**
          * Reads all status information from the AS5047P sensor and returns them as a string.
          * @return A std::string with all status information.
          */
         std::string readStatusAsStdString() const;
-        #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
+        #endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 
+        #if defined(AS5047P_OP_MODE_Arduino)
         /**
          * Reads all status information from the AS5047P sensor and returns them as a string.
          * @return A string (Arduino String) with all status information.
