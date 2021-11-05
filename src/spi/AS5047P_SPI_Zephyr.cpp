@@ -69,8 +69,7 @@ namespace AS5047P_ComBackend {
             LOG_ERR("AS5047P SPI error while sending the register address!");
             return;
         }
-        // @ToDo: thread sleep?
-        k_busy_wait(K_MSEC(1));
+        k_busy_wait(1);
 
         // write data
         txBuffer[0] = data;
@@ -79,8 +78,7 @@ namespace AS5047P_ComBackend {
             LOG_ERR("AS5047P SPI error while sending the register data!");
             return;
         }
-        // @ToDo: thread sleep?
-        k_busy_wait(K_MSEC(1));
+        k_busy_wait(1);
 
     }
 
@@ -115,8 +113,7 @@ namespace AS5047P_ComBackend {
             LOG_ERR("AS5047P SPI error while sending the register address!");
             return 0;
         }
-        // @ToDo: thread sleep?
-        k_busy_wait(K_MSEC(1));
+        k_busy_wait(1);
 
         // write nop & reading data
         static AS5047P_Types::SPI_Command_Frame_t nopFrame(AS5047P_Types::NOP_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
@@ -126,8 +123,7 @@ namespace AS5047P_ComBackend {
             LOG_ERR("AS5047P SPI error while transceiving the register data!");
             return 0;
         }
-        // @ToDo: thread sleep?
-        k_busy_wait(K_MSEC(1));
+        k_busy_wait(1);
 
         return rxBuffer[0];
     }

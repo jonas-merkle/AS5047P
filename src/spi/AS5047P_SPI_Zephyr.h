@@ -32,19 +32,6 @@
  */
 namespace AS5047P_ComBackend {
 
-    /*
-    static const struct spi_config _spiDevCfg = {
-
-            .frequency = 28000000,
-            .operation = SPI_WORD_SET(8) | SPI_TRANSFER_MSB | SPI_MODE_CPHA,
-            .slave = 0,
-    };
-     */
-
-    static inline const spi_dt_spec *to_spi_dt_spec(const device *dev) {
-        return static_cast<const spi_dt_spec *>(dev->config);
-    }
-
     /**
      * @class AS5047P_SPI_Zephyr
      * @brief The arduino spi interface wrapper class for the AS5047P sensor.
