@@ -74,7 +74,7 @@ namespace AS5047P_ComBackend {
             return;
         }
         // @ToDo: thread sleep?
-        k_busy_wait(K_NSEC(100));
+        k_busy_wait(K_MSEC(1));
 
         // write data
         txBuffer[0] = data;
@@ -84,7 +84,7 @@ namespace AS5047P_ComBackend {
             return;
         }
         // @ToDo: thread sleep?
-        k_busy_wait(K_NSEC(100));
+        k_busy_wait(K_MSEC(1));
 
     }
 
@@ -120,7 +120,7 @@ namespace AS5047P_ComBackend {
             return 0;
         }
         // @ToDo: thread sleep?
-        k_busy_wait(K_NSEC(100));
+        k_busy_wait(K_MSEC(1));
 
         // write nop & reading data
         static AS5047P_Types::SPI_Command_Frame_t nopFrame(AS5047P_Types::NOP_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
@@ -131,7 +131,7 @@ namespace AS5047P_ComBackend {
             return 0;
         }
         // @ToDo: thread sleep?
-        k_busy_wait(K_NSEC(100));
+        k_busy_wait(K_MSEC(1));
 
         return rxBuffer[0];
     }
