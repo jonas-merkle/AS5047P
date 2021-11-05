@@ -50,7 +50,7 @@ namespace AS5047P_ComBackend {
      * @brief The arduino spi interface wrapper class for the AS5047P sensor.
      */
     class AS5047P_SPI_Zephyr : AS5047P_SPI {
-    
+
         public:
 
             /**
@@ -76,13 +76,13 @@ namespace AS5047P_ComBackend {
              * Read data from a register of the AS5047P sensor.
              * @param regAddress The address of the register where the data should be read.
              * @return The data in the register.
-             */ 
+             */
             uint16_t read(uint16_t regAddress) const override;
 
 
         private:
 
-            const struct spi_dt_spec *_spiDevSpec
+            const struct spi_dt_spec *_spiDevSpec;
     };
 
 }
