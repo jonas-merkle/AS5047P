@@ -30,9 +30,9 @@ namespace AS5047P_Types {
         );
     }
 
-    #if defined(AS5047P_OP_MODE_Arduino)
-    #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-    std::string ERROR_t::toStdString() {
+    
+    #if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
+    std::string ERROR_t::toString() {
         
         std::string str;
         str.reserve(AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE);
@@ -80,8 +80,9 @@ namespace AS5047P_Types {
         return str;
 
     }
-    #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
+    #endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 
+    #if defined(AS5047P_OP_MODE_Arduino)
     String ERROR_t::toArduinoString() {
 
         char buf[AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE] = {0};

@@ -57,7 +57,7 @@ namespace AS5047P_Util {
 
     }
 
-#if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
+    #if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
     /**
      * @brief Convert a value to a string (see std::to_string)
      * 
@@ -71,7 +71,7 @@ namespace AS5047P_Util {
         ss << value;
         return ss.str();
     }
-    #endif (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
+    #endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 }
 
 #endif // AS5047P_Util_h
