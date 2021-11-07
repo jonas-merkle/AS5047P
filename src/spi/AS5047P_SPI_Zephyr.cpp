@@ -43,7 +43,7 @@ namespace AS5047P_ComBackend {
             return;
         }
 
-        LOG_INF("AS5047P SPI initialization done!");
+        LOG_INF("AS5047P SPI is ready!");
 
     }
 
@@ -61,9 +61,10 @@ namespace AS5047P_ComBackend {
                 .buffers = &txBuf,
                 .count = 1
         };
-
+        // TODO: one single SPI transaction?
         // set register address
         txBuffer[0] = regAddress;
+        LOG_INF("SPI Register Write: Sending 0x%04x 0x%04x", regAddress, data);
         error = spi_write_dt(_spiDevSpec, &tx);
         if (error != 0) {
             LOG_ERR("AS5047P SPI error while sending the register address!");
@@ -124,6 +125,7 @@ namespace AS5047P_ComBackend {
             return 0;
         }
         k_busy_wait(1);
+        LOG_INF("SPI Register Read: Sending 0x%04x, received 0x%04x", regAddress, rxBuffer[0]);
 
         return rxBuffer[0];
     }

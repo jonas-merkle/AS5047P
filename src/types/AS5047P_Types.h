@@ -279,7 +279,7 @@ namespace AS5047P_Types {
                  */
                 typedef struct __attribute__ ((__packed__)) {
 
-                    uint16_t DATA:1;        ///< Address to read or write.
+                    uint16_t DATA:14;        ///< Address to read or write.
                     uint16_t NC:1;          ///< Always low.
                     uint16_t PARD:1;        ///< Parity bit (even)
 
