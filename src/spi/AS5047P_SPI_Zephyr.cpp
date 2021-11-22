@@ -64,7 +64,7 @@ namespace AS5047P_ComBackend {
         // TODO: one single SPI transaction?
         // set register address
         txBuffer[0] = regAddress;
-        LOG_INF("SPI Register Write: Sending 0x%04x 0x%04x", regAddress, data);
+        LOG_DBG("SPI Register Write: Sending 0x%04x 0x%04x", regAddress, data);
         error = spi_write_dt(_spiDevSpec, &tx);
         if (error != 0) {
             LOG_ERR("AS5047P SPI error while sending the register address!");
