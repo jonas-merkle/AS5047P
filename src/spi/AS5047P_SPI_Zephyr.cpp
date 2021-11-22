@@ -125,7 +125,7 @@ namespace AS5047P_ComBackend {
             return 0;
         }
         k_busy_wait(1);
-        LOG_INF("SPI Register Read: Sending 0x%04x, received 0x%04x", regAddress, rxBuffer[0]);
+        LOG_DBG("SPI Register Read: Sending 0x%04x, received 0x%04x", regAddress, rxBuffer[0]);
 
         return rxBuffer[0];
     }
