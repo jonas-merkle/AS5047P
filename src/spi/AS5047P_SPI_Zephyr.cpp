@@ -21,7 +21,7 @@
 #include <kernel.h>
 
 // log
-LOG_MODULE_REGISTER(as5047p_lib_spi, LOG_LEVEL_INF);
+LOG_MODULE_REGISTER(as5047p_lib_spi, LOG_LEVEL_WRN);
 
 namespace AS5047P_ComBackend {
 
