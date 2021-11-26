@@ -2,8 +2,8 @@
  * @file AS5047P_Util.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This headerfile contains util functions for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -12,12 +12,18 @@
 #ifndef AS5047P_Util_h
 #define AS5047P_Util_h
 
+// std libraries
 #include <inttypes.h>
 
-#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+// as5047p libraries
+#include "./../util/AS5047P_Settings.h"
+
+// op mode dependent libraries
+#if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
 #include <string>
 #include <sstream>
-#endif
+#endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
+
 
 /**
  * @namespace AS5047P_Util
@@ -51,8 +57,7 @@ namespace AS5047P_Util {
 
     }
 
-    #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-
+    #if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
     /**
      * @brief Convert a value to a string (see std::to_string)
      * 
@@ -66,8 +71,7 @@ namespace AS5047P_Util {
         ss << value;
         return ss.str();
     }
-
-    #endif
+    #endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 }
 
 #endif // AS5047P_Util_h

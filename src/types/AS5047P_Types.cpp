@@ -2,8 +2,8 @@
  * @file AS5047P_Types.cpp
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This sourcefile contains the implementation of the type definitions for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -11,7 +11,7 @@
 
 #include "AS5047P_Types.h"
 
-#include "util/AS5047P_Util.h"
+#include "./../util/AS5047P_Util.h"
 
 namespace AS5047P_Types {
 
@@ -23,16 +23,16 @@ namespace AS5047P_Types {
         controllerSideErrors.raw = controllerSideErrorsRaw;
     }
 
-    bool ERROR_t::noError() {
+    bool ERROR_t::noError() const {
         return (
             sensorSideErrors.raw == 0 &&
             controllerSideErrors.raw == 0
         );
     }
 
-    #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-
-    std::string ERROR_t::toStdString() {
+    
+    #if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
+    std::string ERROR_t::toString() {
         
         std::string str;
         str.reserve(AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE);
@@ -80,9 +80,9 @@ namespace AS5047P_Types {
         return str;
 
     }
-    
-    #endif
+    #endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 
+    #if defined(AS5047P_OP_MODE_Arduino)
     String ERROR_t::toArduinoString() {
 
         char buf[AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE] = {0};
@@ -99,6 +99,7 @@ namespace AS5047P_Types {
         return String(buf);
 
     }
+    #endif // AS5047P_OP_MODE_Arduino
 
     // -------------------------------------------------------------
 
@@ -115,7 +116,7 @@ namespace AS5047P_Types {
             .PARC = 0
         };
 
-        data.values.PARC = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
+        data.values.PARC = !AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
     SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(const uint16_t raw) {
@@ -129,7 +130,7 @@ namespace AS5047P_Types {
             .PARD = 0
         };
 
-        data.values.PARD = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
+        data.values.PARD = !AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
     SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t raw) {
@@ -143,7 +144,7 @@ namespace AS5047P_Types {
             .PARD = 0
         };
 
-        data.values.PARD = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
+        data.values.PARD = !AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
     // -------------------------------------------------------------

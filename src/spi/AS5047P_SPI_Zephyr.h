@@ -1,7 +1,7 @@
 /**
- * @file AS5047P_SPI_Arduino.h
+ * @file AS5047P_SPI_Zephyr.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
- * @brief This headerfile contains the Arduino SPI bus handler for the AS5047P Library.
+ * @brief This headerfile contains the Zephyr SPI bus handler for the AS5047P Library.
  * @version 3.0.0
  * @date 2021-10-29
  * 
@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef AS5047P_SPI_ARDUINO_h
-#define AS5047P_SPI_ARDUINO_h
+#ifndef AS5047P_SPI_Zephyr_h
+#define AS5047P_SPI_Zephyr_h
 
 // std libraties
 #include <inttypes.h>
@@ -19,10 +19,12 @@
 #include "./../util/AS5047P_Settings.h"
 #include "./../spi/AS5047P_SPI.h"
 
-// disable in non Arduino op mode
-#if defined(AS5047P_OP_MODE_Arduino)
-// arduino libratries
-#include <SPI.h>
+// disable in non Zephyr op mode
+#if defined(AS5047P_OP_MODE_Zephyr)
+// zephyr libraties
+#include <logging/log.h>
+#include <devicetree.h>
+#include <drivers/spi.h>
 
 /**
  * @namespace AS5047P_ComBackend
@@ -31,20 +33,18 @@
 namespace AS5047P_ComBackend {
 
     /**
-     * @class AS5047P_SPI_Arduino
+     * @class AS5047P_SPI_Zephyr
      * @brief The arduino spi interface wrapper class for the AS5047P sensor.
      */
-    class AS5047P_SPI_Arduino : AS5047P_SPI {
-    
+    class AS5047P_SPI_Zephyr : AS5047P_SPI {
+
         public:
 
             /**
              * Constructor.
-             * @param chipSelectPinNo The pin number of the chip select pin (default: 9);
-             * @param spiSpeed The spi bus speed (default: 8000000, on Feather M0 tested up to 32000000)
+             * @param spiDevSpec The zephyr spi devices spec for the AS5047P sensor.
              */
-            explicit AS5047P_SPI_Arduino(uint8_t chipSelectPinNo = 9, uint32_t spiSpeed = 8000000);
-
+            explicit AS5047P_SPI_Zephyr(const struct spi_dt_spec *spiDevSpec);
 
             /**
              * Initializes the spi interface.
@@ -63,30 +63,16 @@ namespace AS5047P_ComBackend {
              * Read data from a register of the AS5047P sensor.
              * @param regAddress The address of the register where the data should be read.
              * @return The data in the register.
-             */ 
+             */
             uint16_t read(uint16_t regAddress) const override;
 
 
         private:
 
-            uint8_t _chipSelectPinNo;        ///< The pin number of the chip select pin.
-            SPISettings _spiSettings;        ///< The spi bus settings.
-
-            #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
-
-            static const uint16_t _numberOfNops = (uint16_t) ((100 * (F_CPU/1000000L))/1000);     ///< Number of asm nop operations for 100 ns delay.
-
-            /**
-             * @brief Custom delay function to wait 100 ns based on asm nop operations.
-             * 
-             */
-            void _delay100Ns() const; 
-
-            #endif // F_CPU && AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY
-
+            const struct spi_dt_spec *_spiDevSpec;
     };
 
 }
-#endif // AS5047P_OP_MODE_Arduino
+#endif // AS5047P_OP_MODE_Zephyr
 
 #endif // AS5047P_SPI_ARDUINO_h

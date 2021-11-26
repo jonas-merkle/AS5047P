@@ -2,8 +2,8 @@
  * @file AS5047P_Types.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This headerfile contains type definitions for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 3.0.0
+ * @date 2021-10-29
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -12,13 +12,20 @@
 #ifndef AS5047P_TYPES_h
 #define AS5047P_TYPES_h
 
+// std libraries
 #include <inttypes.h>
 
-#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-#include <string>
-#endif
+// as5047p libraries
+#include "./../util/AS5047P_Settings.h"
 
+// op mode dependent libraries 
+#if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
+#include <string>
+#endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
+
+#if defined(AS5047P_OP_MODE_Arduino)
 #include <Arduino.h>
+#endif // AS5047P_OP_MODE_Arduino
 
 #define AS5047P_TYPES_WRITE_CMD 0       ///< Write command flag.
 #define AS5047P_TYPES_READ_CMD 1        ///< Read command flag.
@@ -66,7 +73,7 @@ namespace AS5047P_Types {
              * @typedef SensorSideErrors_t
              * @brief Provides a new datatype for "Sensor Side Errors".
              */
-            typedef union {
+            typedef union SensorSideErrors_t {
 
                 /**
                  * @typedef SensorSideErrorsFlags_t
@@ -94,7 +101,7 @@ namespace AS5047P_Types {
              * @typedef ControllerSideErrors_t
              * @brief Provides a new datatype for "Controller Side Errors".
              */
-            typedef union {
+            typedef union ControllerSideErrors_t {
                 
                 /**
                  * @typedef ControllerSideErrorsFlags_t
@@ -123,29 +130,30 @@ namespace AS5047P_Types {
              * @param sensorSideErrorsRaw The sensor side error raw data (default: 0).
              * @param controllerSideErrorsRaw The controller side error raw data (default: 0).
              */
-            ERROR_t(uint8_t sensorSideErrorsRaw = 0, uint8_t controllerSideErrorsRaw = 0);
+            explicit ERROR_t(uint8_t sensorSideErrorsRaw = 0, uint8_t controllerSideErrorsRaw = 0);
 
             /**
              * Checks if no error occurred.
              * @return True on success, else false.
              */
-            bool noError();
+            bool noError() const;
 
-            #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
-
+            
+            #if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
             /**
              * Converts the error information into an human readable string.
              * @return A std::string with all error information.
              */
-            std::string toStdString();
+            std::string toString();
+            #endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 
-            #endif
-
+            #if defined(AS5047P_OP_MODE_Arduino)
             /**
              * Converts the error information into an human readable string.
              * @return A string (Arduino String) with all error information.
              */
             String toArduinoString();
+            #endif // AS5047P_OP_MODE_Arduino
 
     };
 
@@ -165,7 +173,7 @@ namespace AS5047P_Types {
              * @typedef SPI_Command_Frame_data_t
              * @brief Provides a new datatype for the data of a "SPI Command Frame".
              */
-            typedef union {
+            typedef union SPI_Command_Frame_data_t {
 
                 /**
                  * @typedef SPI_Command_Frame_values_t
@@ -190,7 +198,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            SPI_Command_Frame_t(uint16_t raw);
+            explicit SPI_Command_Frame_t(uint16_t raw);
             
             /**
              * Constructor.
@@ -214,7 +222,7 @@ namespace AS5047P_Types {
              * @typedef SPI_ReadData_Frame_data_t
              * @brief Provides a new datatype for the data of a "SPI Read Data Frame".
              */
-            typedef union {
+            typedef union SPI_ReadData_Frame_data_t {
                 
                 /**
                  * @typedef SPI_ReadData_Frame_t
@@ -239,7 +247,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            SPI_ReadData_Frame_t(uint16_t raw);
+            explicit SPI_ReadData_Frame_t(uint16_t raw);
             
             /**
              * Constructor.
@@ -263,7 +271,7 @@ namespace AS5047P_Types {
              * @typedef SPI_WriteData_Frame_data_t
              * @brief Provides a new datatype for the data of a "SPI Write Data Frame".
              */
-            typedef union {
+            typedef union SPI_WriteData_Frame_data_t {
 
                 /**
                  * @typedef SPI_WriteData_Frame_t
@@ -271,7 +279,7 @@ namespace AS5047P_Types {
                  */
                 typedef struct __attribute__ ((__packed__)) {
 
-                    uint16_t DATA:1;        ///< Address to read or write.
+                    uint16_t DATA:14;        ///< Address to read or write.
                     uint16_t NC:1;          ///< Always low.
                     uint16_t PARD:1;        ///< Parity bit (even)
 
@@ -288,7 +296,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            SPI_WriteData_Frame_t(uint16_t raw);
+            explicit SPI_WriteData_Frame_t(uint16_t raw);
             
             /**
              * Constructor.
@@ -328,7 +336,7 @@ namespace AS5047P_Types {
              * @typedef ERRFL_data_t
              * @brief Provides a new datatype for the data of a the ERRFL register.
              */
-            typedef union {
+            typedef union ERRFL_data_t {
                 
                 /**
                  * @typedef ERRFL_values_t
@@ -361,7 +369,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            ERRFL_t(uint16_t raw);
+            explicit ERRFL_t(uint16_t raw);
 
     };
 
@@ -377,7 +385,7 @@ namespace AS5047P_Types {
              * @typedef PROG_data_t
              * @brief Provides a new datatype for the data of a the PROG register.
              */
-            typedef union {
+            typedef union PROG_data_t {
 
                 /**
                  * @typedef PROG_values_t
@@ -411,7 +419,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            PROG_t(uint16_t raw);
+            explicit PROG_t(uint16_t raw);
 
     };
 
@@ -427,7 +435,7 @@ namespace AS5047P_Types {
              * @typedef DIAAGC_data_t
              * @brief Provides a new datatype for the data of a the DIAAGC register.
              */
-            typedef union {
+            typedef union DIAAGC_data_t {
 
                 /**
                  * @typedef DIAAGC_values_t
@@ -462,7 +470,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            DIAAGC_t(uint16_t raw);
+            explicit DIAAGC_t(uint16_t raw);
 
     };
 
@@ -478,7 +486,7 @@ namespace AS5047P_Types {
              * @typedef MAG_data_t
              * @brief Provides a new datatype for the data of the MAG register.
              */
-            typedef union {
+            typedef union MAG_data_t {
                 
                 /**
                  * @typedef MAG_values_t
@@ -509,7 +517,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            MAG_t(uint16_t raw);
+            explicit MAG_t(uint16_t raw);
 
     };
 
@@ -525,7 +533,7 @@ namespace AS5047P_Types {
              * @typedef ANGLEUNC_data_t
              * @brief Provides a new datatype for the data of the ANGLEUNC register.
              */
-            typedef union {
+            typedef union ANGLEUNC_data_t {
                 
                 /**
                  * @typedef ANGLEUNC_values_t
@@ -556,7 +564,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            ANGLEUNC_t(uint16_t raw);
+            explicit ANGLEUNC_t(uint16_t raw);
 
     };
 
@@ -572,7 +580,7 @@ namespace AS5047P_Types {
              * @typedef ANGLECOM_data_t
              * @brief Provides a new datatype for the data of the ANGLECOM register.
              */
-            typedef union {
+            typedef union ANGLECOM_data_t {
 
                 /**
                  * @typedef ANGLECOM_values_t
@@ -603,7 +611,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            ANGLECOM_t(uint16_t raw);
+            explicit ANGLECOM_t(uint16_t raw);
             
     };
 
@@ -623,7 +631,7 @@ namespace AS5047P_Types {
              * @typedef ZPOSM_data_t
              * @brief Provides a new datatype for the data of the ZPOSM register.
              */
-            typedef union {
+            typedef union ZPOSM_data_t {
 
                 /**
                  * @typedef ZPOSM_values_t
@@ -654,7 +662,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            ZPOSM_t(uint16_t raw);
+            explicit ZPOSM_t(uint16_t raw);
 
     };
 
@@ -670,7 +678,7 @@ namespace AS5047P_Types {
              * @typedef ZPOSL_data_t
              * @brief Provides a new datatype for the data of the ZPOSL register.
              */
-            typedef union {
+            typedef union ZPOSL_data_t {
                 
                 /**
                  * @typedef ZPOSL_values_t
@@ -703,7 +711,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            ZPOSL_t(uint16_t raw);
+            explicit ZPOSL_t(uint16_t raw);
 
     };
 
@@ -719,7 +727,7 @@ namespace AS5047P_Types {
              * @typedef SETTINGS1_data_t
              * @brief Provides a new datatype for the data of the SETTINGS1 register.
              */
-            typedef union {
+            typedef union SETTINGS1_data_t {
 
                 /**
                  * @typedef SETTINGS1_values_t
@@ -757,7 +765,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            SETTINGS1_t(uint16_t raw);
+            explicit SETTINGS1_t(uint16_t raw);
 
     };
 
@@ -773,7 +781,7 @@ namespace AS5047P_Types {
              * @typedef SETTINGS2_data_t
              * @brief Provides a new datatype for the data of the SETTINGS2 register.
              */
-            typedef union {
+            typedef union SETTINGS2_data_t {
                 
                 /**
                  * @typedef SETTINGS2_values_t
@@ -806,7 +814,7 @@ namespace AS5047P_Types {
              * Constructor.
              * @param raw Two bytes of raw data.
              */
-            SETTINGS2_t(uint16_t raw);
+            explicit SETTINGS2_t(uint16_t raw);
 
     };
 
