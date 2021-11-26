@@ -19,10 +19,11 @@
 #include "./../util/AS5047P_Settings.h"
 
 // op mode dependent libraries 
-#if defined(AS5047P_OP_MODE_Arduino)
-#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+#if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
 #include <string>
-#endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
+#endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
+
+#if defined(AS5047P_OP_MODE_Arduino)
 #include <Arduino.h>
 #endif // AS5047P_OP_MODE_Arduino
 
@@ -137,15 +138,16 @@ namespace AS5047P_Types {
              */
             bool noError() const;
 
-            #if defined(AS5047P_OP_MODE_Arduino)
-            #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+            
+            #if (defined(AS5047P_OP_MODE_Arduino) && (defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY))) || defined(AS5047P_OP_MODE_Zephyr)
             /**
              * Converts the error information into an human readable string.
              * @return A std::string with all error information.
              */
-            std::string toStdString();
-            #endif // ARDUINO_ARCH_SAMD || CORE_TEENSY
+            std::string toString();
+            #endif // (AS5047P_OP_MODE_Arduino && (ARDUINO_ARCH_SAMD || CORE_TEENSY)) || AS5047P_OP_MODE_Zephyr
 
+            #if defined(AS5047P_OP_MODE_Arduino)
             /**
              * Converts the error information into an human readable string.
              * @return A string (Arduino String) with all error information.
@@ -277,7 +279,7 @@ namespace AS5047P_Types {
                  */
                 typedef struct __attribute__ ((__packed__)) {
 
-                    uint16_t DATA:1;        ///< Address to read or write.
+                    uint16_t DATA:14;        ///< Address to read or write.
                     uint16_t NC:1;          ///< Always low.
                     uint16_t PARD:1;        ///< Parity bit (even)
 

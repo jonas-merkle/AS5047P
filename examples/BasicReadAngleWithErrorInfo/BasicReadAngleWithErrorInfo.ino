@@ -36,13 +36,17 @@ void setup() {
 
   // initialize the serial bus for the communication with your pc.
   Serial.begin(115200);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
 
   // initialize the AS5047P sensor and hold if sensor can't be initialized.
+  Serial.println(F("Initializing AS5047P sensor..."));
   while (!as5047p.initSPI()) {
     Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection..."));
     delay(5000);
   }
-
+  Serial.println(F("Initializing AS5047P sensor... Done!"));
 }
 
 // arduino loop routine
