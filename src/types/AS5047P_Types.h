@@ -14,6 +14,9 @@
 
 #include <inttypes.h>
 
+//Following line needed for Teensy 4.1. Added by Ciarán McDermott
+#include <string>
+
 #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
 #include <string>
 #endif
