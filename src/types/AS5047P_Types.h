@@ -2,8 +2,8 @@
  * @file AS5047P_Types.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This headerfile contains type definitions for the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 2.2.0
+ * @date 2022-11-20
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -14,7 +14,9 @@
 
 #include <inttypes.h>
 
-#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+#include "./util/AS5047P_Settings.h"
+
+#if defined(AS5047P_STD_STRING_SUPPORT)
 #include <string>
 #endif
 
@@ -131,7 +133,7 @@ namespace AS5047P_Types {
              */
             bool noError();
 
-            #if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+            #if defined(AS5047P_STD_STRING_SUPPORT)
 
             /**
              * Converts the error information into an human readable string.

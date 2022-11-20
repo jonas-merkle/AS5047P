@@ -2,8 +2,8 @@
  * @file AS5047P.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is the main sourcefile of the AS5047P Library.
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 2.2.0
+ * @date 2022-11-20
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -128,7 +128,7 @@ bool AS5047P::verifyWittenRegF(uint16_t regAddress, uint16_t expectedData) {
     return recData.data.raw == expectedData;
 }
 
-#if defined(ARDUINO_ARCH_SAMD) || defined(CORE_TEENSY)
+#if defined(AS5047P_STD_STRING_SUPPORT)
 
 std::string AS5047P::readStatusAsStdString() {
 
