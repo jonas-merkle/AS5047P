@@ -3,8 +3,8 @@
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is a basic example program to read the angle position and debug information from a AS5047 rotary encoder.
  *        The angle postion and debug information gets updated and printed to the serial consol once a second. 
- * @version 2.1.5
- * @date 2021-04-10
+ * @version 2.2.0
+ * @date 2022-11-20
  * 
  * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
@@ -50,16 +50,8 @@ void loop() {
   digitalWrite(LED_PIN, HIGH);                    // activate the led.
   Serial.print("Angle: ");                        // print some text to the serial consol.
   Serial.println(as5047p.readAngleDegree());      // read the angle value from the AS5047P sensor an print it to the serial consol.
-  #ifdef ARDUINO_ARCH_SAMD
-  std::string s = as5047p.readStatusAsStdString();      // get the string containing the debug information.
-  for(uint16_t i = 0; i < s.size(); i++) {              // printing the string character by character
-    Serial.print(s[i]); 
-  }
-  Serial.println("");
-  #else
   Serial.println(as5047p.readStatusAsArduinoString());  // get the string containing the debug information and print it.
   Serial.println("");
-  #endif
   delay(500);                                     // wait for 500 milli seconds.
 
   // wait
