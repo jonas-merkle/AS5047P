@@ -1,6 +1,5 @@
 # AS5047P - Arduino Library
-
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI/master?label=build%20master) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI/develop?label=build%20develop) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jonas-merkle/AS5047P) ![GitHub](https://img.shields.io/github/license/jonas-merkle/AS5047P) ![GitHub issues](https://img.shields.io/github/issues/jonas-merkle/AS5047P) ![GitHub pull requests](https://img.shields.io/github/issues-pr/jonas-merkle/AS5047P) ![Maintenance](https://img.shields.io/maintenance/yes/2022)
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI.yml?branch=master&label=build%20master) ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI.yml?branch=develop&label=build%20develop) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jonas-merkle/AS5047P) ![GitHub](https://img.shields.io/github/license/jonas-merkle/AS5047P) ![GitHub issues](https://img.shields.io/github/issues/jonas-merkle/AS5047P) ![GitHub pull requests](https://img.shields.io/github/issues-pr/jonas-merkle/AS5047P) ![Maintenance](https://img.shields.io/maintenance/yes/2023)
 
 ## tl;dr
 
