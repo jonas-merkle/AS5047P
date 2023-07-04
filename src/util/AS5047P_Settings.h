@@ -27,7 +27,7 @@
 /**
  * @brief Uncomment this to init the spi bus every time when a communication is startet.
  * 
- * This can become usefull if multiple libraries are using the spi bus with different settings.
+ * This can become useful if multiple libraries are using the spi bus with different settings.
  * 
  */
 //#define AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
