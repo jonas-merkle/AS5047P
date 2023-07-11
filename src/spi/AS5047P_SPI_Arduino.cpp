@@ -25,21 +25,22 @@ namespace AS5047P_ComBackend {
         digitalWrite(__chipSelectPinNo, HIGH);
     }
 
-    void AS5047P_SPI::init() {
-        SPI.begin();
+    void AS5047P_SPI::init(SPIClass* _spi) {
+        spi = _spi;
+        spi->begin();
     }
 
     void AS5047P_SPI::write(const uint16_t regAddress, const uint16_t data) {
 
         // init spi interface
         #ifdef AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
-        SPI.begin();
+        spi->begin();
         #endif
-        SPI.beginTransaction(__spiSettings);
+        spi->beginTransaction(__spiSettings);
 
         // set register address
         digitalWrite(__chipSelectPinNo, LOW);
-        SPI.transfer16(regAddress);
+        spi->transfer16(regAddress);
         digitalWrite(__chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
         __delay100Ns();
@@ -49,7 +50,7 @@ namespace AS5047P_ComBackend {
         
         // write data
         digitalWrite(__chipSelectPinNo, LOW);
-        SPI.transfer16(data);
+        spi->transfer16(data);
         digitalWrite(__chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
         __delay100Ns();
@@ -58,9 +59,9 @@ namespace AS5047P_ComBackend {
         #endif
 
         // close spi interface
-        SPI.endTransaction();
+        spi->endTransaction();
         #ifdef AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
-        SPI.end();
+        spi->end();
         #endif
 
     }
@@ -72,13 +73,13 @@ namespace AS5047P_ComBackend {
         
         // init spi interface
         #ifdef AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
-        SPI.begin();
+        spi->begin();
         #endif
-        SPI.beginTransaction(__spiSettings);
+        spi->beginTransaction(__spiSettings);
 
         // set register address
         digitalWrite(__chipSelectPinNo, LOW);
-        SPI.transfer16(regAddress);
+        spi->transfer16(regAddress);
         digitalWrite(__chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
         __delay100Ns();
@@ -89,7 +90,7 @@ namespace AS5047P_ComBackend {
         // write nop & reading data
         digitalWrite(__chipSelectPinNo, LOW);
         AS5047P_Types::SPI_Command_Frame_t nopFrame(AS5047P_Types::NOP_t::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-        receivedData = SPI.transfer16(nopFrame.data.raw);
+        receivedData = spi->transfer16(nopFrame.data.raw);
         digitalWrite(__chipSelectPinNo, HIGH);
         #if defined(F_CPU) && defined(AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY)
         __delay100Ns();
@@ -99,9 +100,9 @@ namespace AS5047P_ComBackend {
         
 
         // close spi interface
-        SPI.endTransaction();
+        spi->endTransaction();
         #ifdef AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB
-        SPI.end();
+        spi->end();
         #endif
 
         return receivedData;
