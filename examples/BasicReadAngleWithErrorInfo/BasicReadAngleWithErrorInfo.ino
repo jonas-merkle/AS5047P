@@ -4,10 +4,10 @@
  * @brief This is a basic example program to read the angle position from a AS5047 rotary encoder.
  *        The angle postion gets updated and printed to the serial consol once a second.
  *        In addition to the angle value the error information gets displayed.
- * @version 2.2.0
- * @date 2022-11-20
+ * @version 2.2.1
+ * @date 2023-07-04
  * 
- * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @copyright Copyright (c) 2023 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  * More Information can be found here:
  * https://github.com/jonas-merkle/AS5047P

@@ -26,7 +26,7 @@
       - [Connect to a Teensy 3.6](#connect-to-a-teensy-36)
       - [Connect to a Teensy 4.0](#connect-to-a-teensy-40)
       - [Connect to a Teensy 4.1](#connect-to-a-teensy-41)
-  - [Project Status & ToDo's](#project-status--todos)
+  - [Project Status \& ToDo's](#project-status--todos)
 
 ## Supported Sensors
 
@@ -59,7 +59,7 @@ Documentation Deployment Status: ![GitHub deployments](https://img.shields.io/gi
 
 ### Install the library via the Arduino Library Manager
 
-The easiest way to install this library is to use the build in Arduino Library Manager. Just search for `AS5047P` an install the latest version available. You can also upgrade the library to the newest release via the Arduino Library Manager. For detailed infomation please read the section `Using the Library Manager` of [this](https://www.arduino.cc/en/guide/libraries) tutorial. (Pleas keep in mind you need at least version 1.6.2 of the Arduino IDE in order to use the Arduino Library Manager)
+The easiest way to install this library is to use the build in Arduino Library Manager. Just search for `AS5047P` an install the latest version available. You can also upgrade the library to the newest release via the Arduino Library Manager. For detailed information please read the section `Using the Library Manager` of [this](https://www.arduino.cc/en/guide/libraries) tutorial. (Pleas keep in mind you need at least version 1.6.2 of the Arduino IDE in order to use the Arduino Library Manager)
 
 ### Manually install a Arduino library
 
@@ -121,7 +121,7 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 | MOSI | MOSI0 (Pin: 11) | - |
 | MISO | MISO0 (Pin: 12) | - |
 | CLK | SCK0 (Pin: 13) | - |
-| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
@@ -135,7 +135,7 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 | MOSI | MOSI0 (Pin: 11) | - |
 | MISO | MISO0 (Pin: 12) | - |
 | CLK | SCK0 (Pin: 13) | - |
-| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
@@ -149,7 +149,7 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 | MOSI | MOSI (Pin: 11) | - |
 | MISO | MISO (Pin: 12) | - |
 | CLK | SCK (Pin: 13) | - |
-| CSn | CS (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| CSn | CS (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
@@ -163,7 +163,7 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 | MOSI | MOSI (Pin: 11) | - |
 | MISO | MISO (Pin: 12) | - |
 | CLK | SCK (Pin: 13) | - |
-| CSn | CS (Pin: 10) | Can be any unused digital pin on the teenys as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| CSn | CS (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 

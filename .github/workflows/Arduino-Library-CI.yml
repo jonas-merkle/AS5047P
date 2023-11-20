@@ -16,13 +16,14 @@ jobs:
     steps:
 
       - name: 📥📄 Clone current Library Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.5.3
         with:
           fetch-depth: 0
           persist-credentials: false
       
       - name: 🔧🤖 Arduino CI Build
-        uses: Arduino-CI/action@v0.1.1
+        uses: Arduino-CI/action@v0.1.6
+
   
   deploy:
     name: Deploy ⚙️🚀
@@ -32,7 +33,7 @@ jobs:
     steps:
       
       - name: 📥📄 Clone current Library Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.5.3
         with:
           fetch-depth: 0  
           persist-credentials: false
@@ -49,7 +50,7 @@ jobs:
         uses: mattnotmitt/doxygen-action@v1
           
       - name: 📥🌐 Clone current gh-pages barnch of the Library Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.5.3
         with:
           ref: 'gh-pages'
           path: './.gh-pages'

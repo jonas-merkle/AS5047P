@@ -1,11 +1,11 @@
 /**
  * @file AS5047P_Settings.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
- * @brief This headerfile contains settings information for the AS5047P Library.
- * @version 2.2.0
- * @date 2022-11-20
+ * @brief This header file contains settings information for the AS5047P Library.
+ * @version 2.2.1
+ * @date 2023-07-04
  * 
- * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @copyright Copyright (c) 2023 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  */
 
@@ -27,7 +27,7 @@
 /**
  * @brief Uncomment this to init the spi bus every time when a communication is startet.
  * 
- * This can become usefull if multiple libraries are using the spi bus with different settings.
+ * This can become useful if multiple libraries are using the spi bus with different settings.
  * 
  */
 //#define AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB

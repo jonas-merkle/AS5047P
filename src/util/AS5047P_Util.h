@@ -1,11 +1,11 @@
 /**
  * @file AS5047P_Util.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
- * @brief This headerfile contains util functions for the AS5047P Library.
- * @version 2.2.0
- * @date 2022-11-20
+ * @brief This header file contains util functions for the AS5047P Library.
+ * @version 2.2.1
+ * @date 2023-07-04
  * 
- * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @copyright Copyright (c) 2023 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  */
 
@@ -34,7 +34,7 @@ namespace AS5047P_Util {
      */
     static inline bool hasEvenNoOfBits(uint16_t data) {
 
-        data ^= data >> 8;              // example for 8-bir (this line scales it up to 16 bit)
+        data ^= data >> 8;              // example for 8-bit (this line scales it up to 16 bit)
         data ^= data >> 4;              // ( a b c d e f g h ) xor ( 0 0 0 0 a b c d ) = ( a b c d ae bf cg dh )
         data ^= data >> 2;              // ( a b c d ae bf cg dh ) xor ( 0 0 a b c d ae bf ) = ( a b ac bd ace bdf aceg bdfh )
         data ^= data >> 1;              // ( a b ac bd ace bdf aceg bdfh ) xor ( 0 a b ac bd ace bdf aceg ) = ( a ab abc abcd abcde abcdef abcdefg abcdefgh )
