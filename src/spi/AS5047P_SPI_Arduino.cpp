@@ -3,11 +3,11 @@
 /**
  * @file AS5047P_SPI_Arduino.cpp
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
- * @brief This sourefile contains the implementation of the Arduino SPI bus handler for the AS5047P Library.
- * @version 2.2.0
- * @date 2022-11-20
+ * @brief This soure file contains the implementation of the Arduino SPI bus handler for the AS5047P Library.
+ * @version 2.2.1
+ * @date 2023-07-04
  * 
- * @copyright Copyright (c) 2021 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @copyright Copyright (c) 2023 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  */
 
