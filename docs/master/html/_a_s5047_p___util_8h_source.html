@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">AS5047P - Arduino Library<span id="projectnumber">&#160;2.2.0</span>
+   <div id="projectname">AS5047P - Arduino Library<span id="projectnumber">&#160;2.2.1</span>
    </div>
    <div id="projectbrief">An Arduino library for the AS5047P high-resolution rotary position sensor.</div>
   </td>
@@ -94,7 +94,7 @@ $(function() {
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> hasEvenNoOfBits(uint16_t data) {</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        data ^= data &gt;&gt; 8;              <span class="comment">// example for 8-bir (this line scales it up to 16 bit)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        data ^= data &gt;&gt; 8;              <span class="comment">// example for 8-bit (this line scales it up to 16 bit)</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        data ^= data &gt;&gt; 4;              <span class="comment">// ( a b c d e f g h ) xor ( 0 0 0 0 a b c d ) = ( a b c d ae bf cg dh )</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        data ^= data &gt;&gt; 2;              <span class="comment">// ( a b c d ae bf cg dh ) xor ( 0 0 a b c d ae bf ) = ( a b ac bd ace bdf aceg bdfh )</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        data ^= data &gt;&gt; 1;              <span class="comment">// ( a b ac bd ace bdf aceg bdfh ) xor ( 0 a b ac bd ace bdf aceg ) = ( a ab abc abcd abcde abcdef abcdefg abcdefgh )</span></div>
@@ -121,7 +121,7 @@ $(function() {
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif </span><span class="comment">// AS5047P_Util_h</span></div>
-<div class="ttc" id="a_a_s5047_p___settings_8h_html"><div class="ttname"><a href="_a_s5047_p___settings_8h.html">AS5047P_Settings.h</a></div><div class="ttdoc">This headerfile contains settings information for the AS5047P Library.</div></div>
+<div class="ttc" id="a_a_s5047_p___settings_8h_html"><div class="ttname"><a href="_a_s5047_p___settings_8h.html">AS5047P_Settings.h</a></div><div class="ttdoc">This header file contains settings information for the AS5047P Library.</div></div>
 <div class="ttc" id="anamespace_a_s5047_p___util_html"><div class="ttname"><a href="namespace_a_s5047_p___util.html">AS5047P_Util</a></div><div class="ttdoc">The Namespace for some util function for the AS5047P sensor.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
