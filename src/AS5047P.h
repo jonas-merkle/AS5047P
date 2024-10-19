@@ -61,7 +61,7 @@ class AS5047P {
          * Initializes the sensor object & tests the connection. Must be called once befor using the sensor object.
          * @return True on success, else false.
          */
-        bool initSPI();
+        bool initSPI(SPIClass* _spi);
 
         // -------------------------------------------------------------
 

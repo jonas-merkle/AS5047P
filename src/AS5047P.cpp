@@ -40,9 +40,9 @@ bool AS5047P::checkSPICon() {
 
 }
 
-bool AS5047P::initSPI() {
+bool AS5047P::initSPI(SPIClass* _spi) {
 
-    __spiInterface.init();
+    __spiInterface.init(_spi);
 
     return checkSPICon();
 

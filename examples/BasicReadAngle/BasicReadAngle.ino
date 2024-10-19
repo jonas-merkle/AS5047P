@@ -1,3 +1,6 @@
+#include <VBCoreG4_arduino_system.h>
+
+//Example corrected for VBCore_G4 board
 /**
  * @file BasicReadAngle.ino
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
@@ -15,11 +18,11 @@
 // include the library for the AS5047P sensor.
 #include <AS5047P.h>
 
-// define a led pin.
-#define LED_PIN 13
 
 // define the chip select port.
-#define AS5047P_CHIP_SELECT_PORT 9 
+#define AS5047P_CHIP_SELECT_PORT PA_15_ALT1
+//            MOSI  MISO  SCLK
+SPIClass SPI_3(PC12, PC11, PC10); 
 
 // define the spi bus speed 
 #define AS5047P_CUSTOM_SPI_BUS_SPEED 100000
@@ -29,17 +32,17 @@ AS5047P as5047p(AS5047P_CHIP_SELECT_PORT, AS5047P_CUSTOM_SPI_BUS_SPEED);
 
 // arduino setup routine
 void setup() {
-
+  
   // set the pinmode of the led pin to output.
-  pinMode(LED_PIN, OUTPUT);
+  pinMode(LED1, OUTPUT);
 
   // initialize the serial bus for the communication with your pc.
   Serial.begin(115200);
 
   // initialize the AS5047P sensor and hold if sensor can't be initialized.
-  while (!as5047p.initSPI()) {
+  while (!as5047p.initSPI(& SPI_3)) {
     Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection..."));
-    delay(5000);
+    delay(3000);
   }
 
 }
@@ -47,14 +50,12 @@ void setup() {
 // arduino loop routine
 void loop() {
 
-  // read the sensor
-  digitalWrite(LED_PIN, HIGH);                    // activate the led.
   Serial.print("Angle: ");                        // print some text to the serial consol.
   Serial.println(as5047p.readAngleDegree());      // read the angle value from the AS5047P sensor an print it to the serial consol.
-  delay(500);                                     // wait for 500 milli seconds.
+                                      // wait for 500 milli seconds.
 
   // wait
-  digitalWrite(LED_PIN, LOW);                     // deactivate the led.
-  delay(500);                                     // wait for 500 milli seconds.
+  digitalWrite(LED1, !digitalRead(LED1));                     // deactivate the led.
+  delay(100);                                     // wait for 500 milli seconds.
 
 }
