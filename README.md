@@ -15,8 +15,8 @@
   - [Documentation](#documentation)
   - [How to install this library](#how-to-install-this-library)
     - [Install the library via the Arduino Library Manager](#install-the-library-via-the-arduino-library-manager)
-    - [Manually install a Arduino library](#manually-install-a-arduino-library)
-    - [Install the library via the PlattformIO Library Manager](#install-the-library-via-the-plattformio-library-manager)
+    - [Manually install an Arduino library](#manually-install-an-arduino-library)
+    - [Install the library via the PlatformIO Library Manager](#install-the-library-via-the-platformio-library-manager)
   - [How to connect the AS5047P to your Arduino](#how-to-connect-the-as5047p-to-your-arduino)
     - [Connect to an Arduino Uno](#connect-to-an-arduino-uno)
     - [Connect to an Arduino Mega](#connect-to-an-arduino-mega)
@@ -30,7 +30,7 @@
 
 ## Supported Sensors
 
-The following sensors of the **AS5x47** series of rotary potion sensors are supported by this library:
+The following sensors of the **AS5x47** series of rotary position sensors are supported by this library:
 
 - [**AS5047P**](https://ams.com/documents/20143/36005/AS5047P_DS000324_2-00.pdf/a7d44138-51f1-2f6e-c8b6-2577b369ace8)
 - [**AS5047D**](https://ams.com/documents/20143/36005/AS5047D_DS000394_2-00.pdf/c7225c06-112f-82c5-4471-17a2711a7f0e)
@@ -38,7 +38,7 @@ The following sensors of the **AS5x47** series of rotary potion sensors are supp
 - [**AS5147P**](https://ams.com/documents/20143/36005/AS5147P_DS000328_2-00.pdf/847d41be-7afa-94ad-98c2-8617a5df5b6f)
 - [**AS5247**](https://ams.com/documents/20143/36005/AS5247_DS000354_2-00.pdf/db765ebd-b442-4d00-8343-d4f95a847995)
 
-You can get the **AS5047P** sensor preinstalled on a breakout board [here](https://ams.com/as5047padapterboard).
+You can get the **AS5047P** sensor pre-installed on a breakout board [here](https://ams.com/as5047padapterboard).
 
 Not supported are the following sensors:
 
@@ -59,53 +59,53 @@ Documentation Deployment Status: ![GitHub deployments](https://img.shields.io/gi
 
 ### Install the library via the Arduino Library Manager
 
-The easiest way to install this library is to use the build in Arduino Library Manager. Just search for `AS5047P` an install the latest version available. You can also upgrade the library to the newest release via the Arduino Library Manager. For detailed information please read the section `Using the Library Manager` of [this](https://www.arduino.cc/en/guide/libraries) tutorial. (Pleas keep in mind you need at least version 1.6.2 of the Arduino IDE in order to use the Arduino Library Manager)
+The easiest way to install this library is to use the built-in Arduino Library Manager. Just search for `AS5047P` and install the latest version available. You can also upgrade the library to the newest release via the Arduino Library Manager. For detailed information, please read the section `Using the Library Manager` of [this](https://www.arduino.cc/en/guide/libraries) tutorial. (Please keep in mind you need at least version 1.6.2 of the Arduino IDE in order to use the Arduino Library Manager.)
 
-### Manually install a Arduino library
+### Manually install an Arduino library
 
 You can download the latest version of this library [here](https://github.com/jonas-merkle/AS5047P/releases) as a zip file and follow the section `Importing a .zip Library` or `Manual installation` of [this](https://www.arduino.cc/en/guide/libraries) tutorial about `How to Install a Library`.
 
-### Install the library via the PlattformIO Library Manager
+### Install the library via the PlatformIO Library Manager
 
-You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) in the PlattformIO Library Manager. To add this library to your plattformIO project you can either use the library manager ui and search for this library or you can use the following platform io cli command: `pio lib install "jonas-merkle/AS5047P"`
+You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) in the PlatformIO Library Manager. To add this library to your PlatformIO project, you can either use the library manager UI and search for this library or you can use the following PlatformIO CLI command: `pio lib install "jonas-merkle/AS5047P"`
 
 ## How to connect the AS5047P to your Arduino
 
 ### Connect to an [Arduino Uno](https://store.arduino.cc/arduino-uno-rev3)
 
 | AS5047P Pin | Arduino Uno Pin | Comment |
-|:-----------:|:-----------:|:--------|
-| GND | GND | - |
-| VDD | 5V | - |
-| VDD3V| NC | - |
-| MOSI | MOSI (Pin: 11) | - |
-| MISO | MISO (Pin: 12) | - |
-| CLK | SCK (Pin: 13) | - |
-| CSn | 9 | Can be any unused digital pin on the arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+|:-----------:|:---------------:|:--------|
+| GND         | GND             | -       |
+| VDD         | 5V              | -       |
+| VDD3V       | NC              | -       |
+| MOSI        | MOSI (Pin: 11)  | -       |
+| MISO        | MISO (Pin: 12)  | -       |
+| CLK         | SCK (Pin: 13)   | -       |
+| CSn         | 9               | Can be any unused digital pin on the Arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 ### Connect to an [Arduino Mega](https://store.arduino.cc/arduino-mega-2560-rev3)
 
 | AS5047P Pin | Arduino Mega Pin | Comment |
-|:-----------:|:-----------:|:--------|
-| GND | GND | - |
-| VDD | 5V | - |
-| VDD3V| NC | - |
-| MOSI | MOSI (Pin: 51) | - |
-| MISO | MISO (Pin: 50) | - |
-| CLK | SCK (Pin: 52) | - |
-| CSn | 9 | Can be any unused digital pin on the arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+|:-----------:|:----------------:|:--------|
+| GND         | GND              | -       |
+| VDD         | 5V               | -       |
+| VDD3V       | NC               | -       |
+| MOSI        | MOSI (Pin: 51)   | -       |
+| MISO        | MISO (Pin: 50)   | -       |
+| CLK         | SCK (Pin: 52)    | -       |
+| CSn         | 9                | Can be any unused digital pin on the Arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 ### Connect to an [Adafruit Feather M0](https://www.adafruit.com/product/2772)
 
 | AS5047P Pin | Adafruit Feather M0 Pin | Comment |
-|:-----------:|:-----------:|:--------|
-| GND | GND | - |
-| VDD | 3V | - |
-| VDD3V| 3V | - |
-| MOSI | MOSI | - |
-| MISO | MISO | - |
-| CLK | SCK | - |
-| CSn | 9 | Can be any unused digital pin on the arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+|:-----------:|:-----------------------:|:--------|
+| GND         | GND                     | -       |
+| VDD         | 3V                      | -       |
+| VDD3V       | 3V                      | -       |
+| MOSI        | MOSI                    | -       |
+| MISO        | MISO                    | -       |
+| CLK         | SCK                     | -       |
+| CSn         | 9                       | Can be any unused digital pin on the Arduino as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Adafruit Feather M0 board!**
 
@@ -113,57 +113,57 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 
 #### Connect to a [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)
 
-| AS5047P Pin | Teensy Pin | Comment |
-|:-----------:|:-----------:|:--------|
-| GND | GND | - |
-| VDD | 3V | - |
-| VDD3V| 3V | - |
-| MOSI | MOSI0 (Pin: 11) | - |
-| MISO | MISO0 (Pin: 12) | - |
-| CLK | SCK0 (Pin: 13) | - |
-| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| AS5047P Pin | Teensy Pin      | Comment |
+|:-----------:|:---------------:|:--------|
+| GND         | GND             | -       |
+| VDD         | 3V              | -       |
+| VDD3V       | 3V              | -       |
+| MOSI        | MOSI0 (Pin: 11) | -       |
+| MISO        | MISO0 (Pin: 12) | -       |
+| CLK         | SCK0 (Pin: 13)  | -       |
+| CSn         | CS0 (Pin: 10)   | Can be any unused digital pin on the Teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
 #### Connect to a [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)
 
-| AS5047P Pin | Teensy Pin | Comment |
-|:-----------:|:-----------:|:--------|
-| GND | GND | - |
-| VDD | 3V | - |
-| VDD3V| 3V | - |
-| MOSI | MOSI0 (Pin: 11) | - |
-| MISO | MISO0 (Pin: 12) | - |
-| CLK | SCK0 (Pin: 13) | - |
-| CSn | CS0 (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| AS5047P Pin | Teensy Pin      | Comment |
+|:-----------:|:---------------:|:--------|
+| GND         | GND             | -       |
+| VDD         | 3V              | -       |
+| VDD3V       | 3V              | -       |
+| MOSI        | MOSI0 (Pin: 11) | -       |
+| MISO        | MISO0 (Pin: 12) | -       |
+| CLK         | SCK0 (Pin: 13)  | -       |
+| CSn         | CS0 (Pin: 10)   | Can be any unused digital pin on the Teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
 #### Connect to a [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)
 
-| AS5047P Pin | Teensy Pin | Comment |
-|:-----------:|:-----------:|:--------|
-| GND | GND | - |
-| VDD | 3V | - |
-| VDD3V| 3V | - |
-| MOSI | MOSI (Pin: 11) | - |
-| MISO | MISO (Pin: 12) | - |
-| CLK | SCK (Pin: 13) | - |
-| CSn | CS (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| AS5047P Pin | Teensy Pin      | Comment |
+|:-----------:|:---------------:|:--------|
+| GND         | GND             | -       |
+| VDD         | 3V              | -       |
+| VDD3V       | 3V              | -       |
+| MOSI        | MOSI (Pin: 11)  | -       |
+| MISO        | MISO (Pin: 12)  | -       |
+| CLK         | SCK (Pin: 13)   | -       |
+| CSn         | CS (Pin: 10)    | Can be any unused digital pin on the Teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
 #### Connect to a [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)
 
-| AS5047P Pin | Teensy Pin | Comment |
-|:-----------:|:-----------:|:--------|
-| GND | GND | - |
-| VDD | 3V | - |
-| VDD3V| 3V | - |
-| MOSI | MOSI (Pin: 11) | - |
-| MISO | MISO (Pin: 12) | - |
-| CLK | SCK (Pin: 13) | - |
-| CSn | CS (Pin: 10) | Can be any unused digital pin on the teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
+| AS5047P Pin | Teensy Pin      | Comment |
+|:-----------:|:---------------:|:--------|
+| GND         | GND             | -       |
+| VDD         | 3V              | -       |
+| VDD3V       | 3V              | -       |
+| MOSI        | MOSI (Pin: 11)  | -       |
+| MISO        | MISO (Pin: 12)  | -       |
+| CLK         | SCK (Pin: 13)   | -       |
+| CSn         | CS (Pin: 10)    | Can be any unused digital pin on the Teensy as long as it's configured here `AS5047P as5047p(<ChipSelectPort>);` |
 
 **Please note that the sensor can no longer be operated with 5V, but must be operated with 3.3V, otherwise there is a risk of damaging the Teensy board!**
 
@@ -176,8 +176,8 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 |   ✅   | [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
 |   ✅   | [BasicReadAngleAndDebugInfo.ino](examples/BasicReadAngleAndDebugInfo/BasicReadAngleAndDebugInfo.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
 |   ✅   | [PrintAllSettings.ino](examples/PrintAllSettings/PrintAllSettings.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
-|   ✅   | Adding a CI pipline. |
-|   ✅   | Build & deploy doxygen documentation for the library. |
+|   ✅   | Adding a CI pipeline. |
+|   ✅   | Build & deploy Doxygen documentation for the library. |
 |   ✅   | Sensor status output as string. |
 |   ✅   | [keywords.txt](keywords.txt) updated for main library functions. |
 |   ✅   | Switch to unions... |
@@ -186,13 +186,13 @@ You can find this library [here](https://platformio.org/lib/show/12035/AS5047P) 
 |   ✅   | Improve initSPI() |
 |   ✅   | ToString() for Error_t |
 |   ✅   | Adding Library to Arduino Library Manager 🥳 |
-|   ✅   | Adding Library to PlattformIO Library Manager 🥳 |
-|   ✅   | Documentation update.|
+|   ✅   | Adding Library to PlatformIO Library Manager 🥳 |
+|   ✅   | Documentation update. |
 |   ✅   | [keywords.txt](keywords.txt) updated for all library functions. |
-|   🚧   | [Readme.md](README.md) update.|
-|   🚧   | Test of all wirte functions |
+|   🚧   | [Readme.md](README.md) update. |
+|   🚧   | Test of all write functions |
 |   🚧   | Test of all read functions |
 |   ❌   | Porting the library to be compatible with the STM32 HAL |
 |   ❌   | Additional examples. |
 |   ❌   | Unit Tests?! |
-|   ❌   | Implementation & test of programming the one time programmable register of the AS5047P. |
+|   ❌   | Implementation & test of programming the one-time programmable register of the AS5047P. |
