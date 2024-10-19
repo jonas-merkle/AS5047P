@@ -2,10 +2,10 @@
  * @file AS5047P.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is the main header file of the AS5047P Library.
- * @version 2.2.1
- * @date 2023-07-04
+ * @version 2.2.2
+ * @date 2024-10-19
  * 
- * @copyright Copyright (c) 2023 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  */
 
