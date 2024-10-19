@@ -3,10 +3,10 @@
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is a basic example program to read the angle position and debug information from a AS5047 rotary encoder.
  *        The angle postion and debug information gets updated and printed to the serial consol once a second. 
- * @version 2.2.1
- * @date 2023-07-04
+ * @version 2.2.2
+ * @date 2024-10-19
  * 
- * @copyright Copyright (c) 2023 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  * More Information can be found here:
  * https://github.com/jonas-merkle/AS5047P

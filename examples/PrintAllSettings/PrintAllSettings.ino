@@ -2,10 +2,10 @@
  * @file PrintAllSettings.ino
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This is a example prints out the settings of the AS5047P sensor.
- * @version 2.2.1
- * @date 2023-07-04
+ * @version 2.2.2
+ * @date 2024-10-19
  * 
- * @copyright Copyright (c) 2023 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
  * 
  * More Information can be found here:
  * https://github.com/jonas-merkle/AS5047P
