@@ -53,7 +53,7 @@ Read 14-bit angles, magnitude, and diagnostics with concise APIs—works on clas
 
 ## Supported Sensors
 
-This library targets (**AS5047P**)[https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf] and is compatible with several AS5x47 variants that share the same SPI framing:
+This library targets [**AS5047P**](https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf) and is compatible with several AS5x47 variants that share the same SPI framing:
 
 - **AS5047P**, **AS5047D**, **AS5147**, **AS5147P**, **AS5247**
 
