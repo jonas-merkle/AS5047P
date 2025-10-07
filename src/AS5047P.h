@@ -1,6 +1,6 @@
 /**
  * @file AS5047P.h
- * @autor Jonas Merkle [JJM] (jonas@jjm.one)
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief Main header for the AS5047P library.
  *
  *        Declares the high-level sensor API, read/write helpers for volatile
