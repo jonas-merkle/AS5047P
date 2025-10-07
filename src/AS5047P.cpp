@@ -170,11 +170,8 @@ bool AS5047P::verifyWrittenRegF(uint16_t regAddress, uint16_t expectedData)
         return false;
     }
 
-    // Issue read command.
-    AS5047P_Types::SPI_Command_Frame_t readCMD(regAddress, AS5047P_TYPES_READ_CMD);
-
     // Read register content (16-bit frame, includes parity).
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
+    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(regAddress));
 
     // Validate parity of the received frame.
     if (!AS5047P_Util::parityCheck(recData.data.raw))
