@@ -9,7 +9,7 @@
  *        from the AS5047P sensor and prints each bit field to the serial console
  *        every five seconds.
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

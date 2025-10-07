@@ -8,7 +8,7 @@
  *        once per second, printing both to the serial console while
  *        toggling the onboard LED to indicate activity.
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

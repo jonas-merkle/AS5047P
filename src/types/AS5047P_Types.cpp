@@ -4,7 +4,7 @@
  * @brief Implementation of types, frame structures, and helpers used by the
  *        AS5047P library (error reporting, SPI frames, and register wrappers).
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

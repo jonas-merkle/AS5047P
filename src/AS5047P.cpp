@@ -6,7 +6,7 @@
  *        Provides high-level read/write helpers, error aggregation utilities,
  *        and user-facing convenience functions for angle and magnitude reads.
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

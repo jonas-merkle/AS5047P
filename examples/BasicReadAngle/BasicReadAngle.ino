@@ -8,7 +8,7 @@
  *        AS5047P sensor and prints it to the serial console once per second,
  *        toggling the onboard LED to indicate activity.
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

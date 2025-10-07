@@ -9,7 +9,7 @@
  *        command/data frames, chip-select timing, and the readback NOP
  *        transaction required by the AS5047P.
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

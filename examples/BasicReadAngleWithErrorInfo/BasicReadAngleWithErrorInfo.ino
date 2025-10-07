@@ -7,7 +7,7 @@
  *        The program outputs the current angle and any reported error details
  *        to the serial console once per second while toggling the onboard LED.
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

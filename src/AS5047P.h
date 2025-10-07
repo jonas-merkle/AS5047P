@@ -6,7 +6,7 @@
  *        Declares the high-level sensor API, read/write helpers for volatile
  *        and non-volatile registers, and optional status/debug utilities.
  *
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright

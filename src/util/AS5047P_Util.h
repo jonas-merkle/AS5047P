@@ -2,7 +2,7 @@
  * @file AS5047P_Util.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief Utility helpers for the AS5047P library (bit parity, optional string utils).
- * @version 2.3.0
+ * @version 3.0.0
  * @date 2025-10-07
  *
  * @copyright
