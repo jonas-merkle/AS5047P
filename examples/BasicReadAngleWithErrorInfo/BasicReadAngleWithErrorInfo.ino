@@ -1,6 +1,6 @@
 /**
  * @file BasicReadAngleWithErrorInfo.ino
- * @autor Jonas Merkle [JJM] (jonas@jjm.one)
+ * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief Example program demonstrating how to read the angular position
  *        from an AS5047P rotary encoder and print associated error information.
  *
