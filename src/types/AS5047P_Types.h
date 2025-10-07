@@ -1,12 +1,13 @@
 /**
  * @file AS5047P_Types.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
- * @brief This header file contains type definitions for the AS5047P Library.
- * @version 2.2.2
- * @date 2024-10-19
+ * @brief Type definitions used by the AS5047P library (errors, SPI frames, register wrappers).
+ * @version 2.2.3
+ * @date 2025-10-07
  *
- * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
- *
+ * @copyright
+ * Copyright (c) 2024 Jonas Merkle.
+ * This project is released under the GPL-3.0 License.
  */
 
 #ifndef AS5047P_TYPES_h
@@ -24,810 +25,650 @@
 
 #define AS5047P_TYPES_WRITE_CMD 0  ///< Write command flag.
 #define AS5047P_TYPES_READ_CMD 1   ///< Read command flag.
-#define AS5047P_TYPES_ALWAYS_LOW 0 ///< Always low flag..
+#define AS5047P_TYPES_ALWAYS_LOW 0 ///< Always-low flag.
 
-#define AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE 600 ///< buffer size for error string
+#define AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE 600 ///< Buffer size for error string.
 
 /**
  * @namespace AS5047P_Types
- * @brief The namespace for all custom types needed for the AS5047P sensor.
+ * @brief Namespace for all custom types used with the AS5047P sensor.
  */
 namespace AS5047P_Types
 {
 
-    // Errors ------------------------------------------------------
+    // ======================================================================
+    // Error types
+    // ======================================================================
 
     /**
      * @enum ERROR_Names
-     * @brief Enum that holds the different error names an there according bit number in the raw error information byte.
+     * @brief Bit positions of error flags and their corresponding names.
+     *
+     * Note: Sensor-side and controller-side flags live in separate bytes.
      */
     enum ERROR_Names : uint8_t
     {
-
+        // Sensor-side flags
         SENS_SPI_FRAMING_ERROR = 1,
         SENS_SPI_INVALID_CMD = 2,
         SENS_SPI_PARITY_ERROR = 4,
-
         SENS_OFFSET_COMP_ERROR = 8,
         SENS_CORDIC_OVERFLOW_ERROR = 16,
         SENS_MAG_TOO_HIGH = 32,
         SENS_MAG_TOO_LOW = 64,
 
+        // Controller-side flags
         CONT_SPI_PARITY_ERROR = 1,
         CONT_GENERAL_COM_ERROR = 2,
         CONT_WRITE_VERIFY_FAILED = 4,
-
     };
 
     /**
      * @class ERROR_t
-     * @brief Provides a representation for a "ERROR Information".
+     * @brief Container for error information reported by the sensor and host.
      */
     class ERROR_t
     {
-
     public:
         /**
          * @typedef SensorSideErrors_t
-         * @brief Provides a new datatype for "Sensor Side Errors".
+         * @brief Sensor-side error flags and raw byte.
          */
         typedef union
         {
-
             /**
              * @typedef SensorSideErrorsFlags_t
-             * @brief Provides a new datatype for "Sensor Side Error Flags".
+             * @brief Individual sensor-side error flags.
              */
             typedef struct __attribute__((__packed__))
             {
+                uint8_t SENS_SPI_FRAMING_ERROR : 1; ///< Framing error: non-compliant SPI frame detected.
+                uint8_t SENS_SPI_INVALID_CMD : 1;   ///< Invalid command: read/write of an invalid register address.
+                uint8_t SENS_SPI_PARITY_ERROR : 1;  ///< Parity error on SPI command/data.
 
-                uint8_t SENS_SPI_FRAMING_ERROR : 1; ///< Framing error: is set to 1 when a non-compliant SPI frame is detected.
-                uint8_t SENS_SPI_INVALID_CMD : 1;   ///< Invalid command error: set to 1 by reading or writing an invalid register address.
-                uint8_t SENS_SPI_PARITY_ERROR : 1;  ///< Parity error
-
-                uint8_t SENS_OFFSET_COMP_ERROR : 1;     ///< Diagnostics: Offset compensation LF=0:internal offset loops not ready regulated LF=1:internal offset loop finished.
+                uint8_t SENS_OFFSET_COMP_ERROR : 1;     ///< Diagnostics: offset loop not finished (LF=0) / finished (LF=1).
                 uint8_t SENS_CORDIC_OVERFLOW_ERROR : 1; ///< Diagnostics: CORDIC overflow.
-                uint8_t SENS_MAG_TOO_HIGH : 1;          ///< Diagnostics: Magnetic field strength too high; AGC=0x00.
-                uint8_t SENS_MAG_TOO_LOW : 1;           ///< Diagnostics: Magnetic field strength too low; AGC=0xFF.
-
+                uint8_t SENS_MAG_TOO_HIGH : 1;          ///< Diagnostics: magnetic field strength too high (AGC=0x00).
+                uint8_t SENS_MAG_TOO_LOW : 1;           ///< Diagnostics: magnetic field strength too low (AGC=0xFF).
             } SensorSideErrorsFlags_t;
 
-            uint8_t raw = 0;               ///< Error data (RAW).
-            SensorSideErrorsFlags_t flags; ///< Error data.
-
+            uint8_t raw = 0;               ///< Raw sensor-side error byte.
+            SensorSideErrorsFlags_t flags; ///< Sensor-side error flags.
         } SensorSideErrors_t;
 
         /**
          * @typedef ControllerSideErrors_t
-         * @brief Provides a new datatype for "Controller Side Errors".
+         * @brief Controller-side error flags and raw byte.
          */
         typedef union
         {
-
             /**
              * @typedef ControllerSideErrorsFlags_t
-             * @brief Provides a new datatype for "Controller Side Error Flags".
+             * @brief Individual controller-side error flags.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint8_t CONT_SPI_PARITY_ERROR : 1; ///< Parity error.
-
-                uint8_t CONT_GENERAL_COM_ERROR : 1; ///< An error occurred during the communication with the sensor. See sensor side errors for more information.
-
-                uint8_t CONT_WRITE_VERIFY_FAILED : 1; ///< Could not verify the new content of a written register.
-
+                uint8_t CONT_SPI_PARITY_ERROR : 1;    ///< Parity error detected by controller.
+                uint8_t CONT_GENERAL_COM_ERROR : 1;   ///< General communication error with the sensor.
+                uint8_t CONT_WRITE_VERIFY_FAILED : 1; ///< Written register content could not be verified.
             } ControllerSideErrorsFlags_t;
 
-            uint8_t raw = 0;                   ///< Error data (RAW).
-            ControllerSideErrorsFlags_t flags; ///< Error data.
-
+            uint8_t raw = 0;                   ///< Raw controller-side error byte.
+            ControllerSideErrorsFlags_t flags; ///< Controller-side error flags.
         } ControllerSideErrors_t;
 
-        SensorSideErrors_t sensorSideErrors;         ///< The actual sensor side error data of a "ERROR Information".
-        ControllerSideErrors_t controllerSideErrors; ///< The actual controller side error data data of a "ERROR Information".
+        SensorSideErrors_t sensorSideErrors;         ///< Sensor-side error data.
+        ControllerSideErrors_t controllerSideErrors; ///< Controller-side error data.
 
         /**
-         * Main Constructor.
-         * @param sensorSideErrorsRaw The sensor side error raw data (default: 0).
-         * @param controllerSideErrorsRaw The controller side error raw data (default: 0).
+         * @brief Construct an ERROR_t container.
+         * @param sensorSideErrorsRaw      Sensor-side error raw byte (default: 0).
+         * @param controllerSideErrorsRaw  Controller-side error raw byte (default: 0).
          */
         ERROR_t(uint8_t sensorSideErrorsRaw = 0, uint8_t controllerSideErrorsRaw = 0);
 
         /**
-         * Checks if no error occurred.
-         * @return True on success, else false.
+         * @brief Check if no error is present.
+         * @return true if no sensor-side nor controller-side errors are set; false otherwise.
          */
         bool noError();
 
 #if defined(AS5047P_STD_STRING_SUPPORT)
-
         /**
-         * Converts the error information into an human readable string.
-         * @return A std::string with all error information.
+         * @brief Render a human-readable error report as std::string.
+         * @return std::string with all error information.
          */
         std::string toStdString();
-
 #endif
 
         /**
-         * Converts the error information into an human readable string.
-         * @return A string (Arduino String) with all error information.
+         * @brief Render a human-readable error report as Arduino String.
+         * @return String with all error information.
          */
         String toArduinoString();
     };
 
-    // -------------------------------------------------------------
-
-    // SPI Frames --------------------------------------------------
+    // ======================================================================
+    // SPI frame types
+    // ======================================================================
 
     /**
      * @class SPI_Command_Frame_t
-     * @brief Provides a representation for a "SPI Command Frame".
+     * @brief Representation of an SPI command frame (address + R/W + parity).
      */
     class SPI_Command_Frame_t
     {
-
     public:
         /**
          * @typedef SPI_Command_Frame_data_t
-         * @brief Provides a new datatype for the data of a "SPI Command Frame".
+         * @brief Raw/decoded view of a command frame.
          */
         typedef union
         {
-
             /**
              * @typedef SPI_Command_Frame_values_t
-             * @brief Provides a new datatype for the single values of a "SPI Command Frame".
+             * @brief Field view of a command frame.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t ADDR : 14; ///< Address to read or write.
-                uint16_t RW : 1;    ///< 0: Write 1: Read.
-                uint16_t PARC : 1;  ///< Parity bit (even) calculated on the lower 15 bits of command frame.
-
+                uint16_t ADDR : 14; ///< Register address (14 bits).
+                uint16_t RW : 1;    ///< 0: Write, 1: Read.
+                uint16_t PARC : 1;  ///< Even parity over the lower 15 bits.
             } SPI_Command_Frame_values_t;
 
-            uint16_t raw = 0;                  ///< Register values (RAW).
-            SPI_Command_Frame_values_t values; ///< Register values.
-
+            uint16_t raw = 0;                  ///< Raw 16-bit frame.
+            SPI_Command_Frame_values_t values; ///< Decoded fields.
         } SPI_Command_Frame_data_t;
 
-        SPI_Command_Frame_data_t data; ///< The actual data of a "SPI Command Frame".
+        SPI_Command_Frame_data_t data; ///< Backing storage.
 
         /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
+         * @brief Construct from raw 16-bit frame.
          */
         SPI_Command_Frame_t(uint16_t raw);
 
         /**
-         * Constructor.
-         * @param ADDR 14 bit address.
-         * @param RW 0: Write 1: Read.
+         * @brief Construct from address and R/W.
+         * @param ADDR 14-bit register address.
+         * @param RW   0: Write, 1: Read.
          */
         SPI_Command_Frame_t(uint16_t ADDR, uint16_t RW);
     };
 
     /**
      * @class SPI_ReadData_Frame_t
-     * @brief Provides a representation for a "SPI Read Data Frame".
+     * @brief Representation of an SPI read-data frame (data + EF + parity).
      */
     class SPI_ReadData_Frame_t
     {
-
     public:
         /**
          * @typedef SPI_ReadData_Frame_data_t
-         * @brief Provides a new datatype for the data of a "SPI Read Data Frame".
+         * @brief Raw/decoded view of a read-data frame.
          */
         typedef union
         {
-
             /**
-             * @typedef SPI_ReadData_Frame_t
-             * @brief Provides a new datatype for the single values of a "SPI Read Data Frame".
+             * @typedef SPI_ReadData_Frame_values_t
+             * @brief Field view of a read-data frame.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t DATA : 14; ///< Address to read or write.
-                uint16_t EF : 1;    ///< 0: No command frame error occurred 1: Error occurred.
-                uint16_t PARD : 1;  ///< Parity bit (even) calculated on the lower 15 bits.
-
+                uint16_t DATA : 14; ///< 14-bit data payload.
+                uint16_t EF : 1;    ///< Error flag for the *previous* command frame (0: OK, 1: error).
+                uint16_t PARD : 1;  ///< Even parity over the lower 15 bits.
             } SPI_ReadData_Frame_values_t;
 
-            uint16_t raw = 0;                   ///< Register values (RAW).
-            SPI_ReadData_Frame_values_t values; ///< Register values.
-
+            uint16_t raw = 0;                   ///< Raw 16-bit frame.
+            SPI_ReadData_Frame_values_t values; ///< Decoded fields.
         } SPI_ReadData_Frame_data_t;
 
-        SPI_ReadData_Frame_data_t data; ///< The actual data of a "SPI Read Data Frame".
+        SPI_ReadData_Frame_data_t data; ///< Backing storage.
 
         /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
+         * @brief Construct from raw 16-bit frame.
          */
         SPI_ReadData_Frame_t(uint16_t raw);
 
         /**
-         * Constructor.
-         * @param ADDR 14 bit data.
-         * @param EF 0: No command frame error occurred 1: Error occurred.
+         * @brief Construct from fields.
+         * @param DATA 14-bit data payload.
+         * @param EF   Error flag for previous command frame (0: OK, 1: error).
          */
-        SPI_ReadData_Frame_t(uint16_t ADDR, uint16_t EF);
+        SPI_ReadData_Frame_t(uint16_t DATA, uint16_t EF);
     };
 
     /**
      * @class SPI_WriteData_Frame_t
-     * @brief Provides a representation for a "SPI Write Data Frame".
+     * @brief Representation of an SPI write-data frame (data + NC + parity).
      */
     class SPI_WriteData_Frame_t
     {
-
     public:
         /**
          * @typedef SPI_WriteData_Frame_data_t
-         * @brief Provides a new datatype for the data of a "SPI Write Data Frame".
+         * @brief Raw/decoded view of a write-data frame.
          */
         typedef union
         {
-
             /**
-             * @typedef SPI_WriteData_Frame_t
-             * @brief Provides a new datatype for the single values of a "SPI Write Data Frame".
+             * @typedef SPI_WriteData_Frame_values_t
+             * @brief Field view of a write-data frame.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t DATA : 1; ///< Address to read or write.
-                uint16_t NC : 1;   ///< Always low.
-                uint16_t PARD : 1; ///< Parity bit (even)
-
+                uint16_t DATA : 14; ///< 14-bit data payload.
+                uint16_t NC : 1;    ///< Not connected / always 0.
+                uint16_t PARD : 1;  ///< Even parity over the lower 15 bits.
             } SPI_WriteData_Frame_values_t;
 
-            uint16_t raw = 0;                    ///< Register values (RAW).
-            SPI_WriteData_Frame_values_t values; ///< Register values.
-
+            uint16_t raw = 0;                    ///< Raw 16-bit frame.
+            SPI_WriteData_Frame_values_t values; ///< Decoded fields.
         } SPI_WriteData_Frame_data_t;
 
-        SPI_WriteData_Frame_data_t data; ///< The actual data of a "SPI Write Data Frame".
+        SPI_WriteData_Frame_data_t data; ///< Backing storage.
 
         /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
+         * @brief Construct from raw 16-bit frame.
          */
         SPI_WriteData_Frame_t(uint16_t raw);
 
         /**
-         * Constructor.
-         * @param ADDR 14 bit data.
-         * @param NC Always low (0).
+         * @brief Construct from fields.
+         * @param DATA 14-bit data payload.
+         * @param NC   Always 0.
          */
-        SPI_WriteData_Frame_t(uint16_t ADDR, uint16_t NC);
+        SPI_WriteData_Frame_t(uint16_t DATA, uint16_t NC);
     };
 
-    // -------------------------------------------------------------
-
-    // Volatile Registers ------------------------------------------
+    // ======================================================================
+    // Volatile registers
+    // ======================================================================
 
     /**
      * @class NOP_t
-     * @brief Provides a representation of the no operation register of the AS5047P.
+     * @brief No-operation register (used to clock out readback data).
      */
     class NOP_t
     {
-
     public:
         static const uint16_t REG_ADDRESS = 0x0000; ///< Register address.
     };
 
     /**
      * @class ERRFL_t
-     * @brief Provides a representation of the error register of the AS5047P.
+     * @brief Error flags register (framing/invalid-command/parity).
      */
     class ERRFL_t
     {
-
     public:
         /**
          * @typedef ERRFL_data_t
-         * @brief Provides a new datatype for the data of a the ERRFL register.
+         * @brief Raw/decoded view of the ERRFL register.
          */
         typedef union
         {
-
             /**
              * @typedef ERRFL_values_t
-             * @brief Provides a new datatype for the single values of the ERRFL register.
+             * @brief Field view of the ERRFL register.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t FRERR : 1;   ///< Framing error: is set to 1 when a non-compliant SPI frame is detected.
-                uint16_t INVCOMM : 1; ///< Invalid command error: set to 1 by reading or writing an invalid register address.
+                uint16_t FRERR : 1;   ///< Framing error: non-compliant SPI frame detected.
+                uint16_t INVCOMM : 1; ///< Invalid command: invalid register address read/written.
                 uint16_t PARERR : 1;  ///< Parity error.
-
             } ERRFL_values_t;
 
-            uint16_t raw = 0;      ///< Register values (RAW).
-            ERRFL_values_t values; ///< Register values.
-
+            uint16_t raw = 0;      ///< Raw 16-bit register value.
+            ERRFL_values_t values; ///< Decoded fields.
         } ERRFL_data_t;
 
         static const uint16_t REG_ADDRESS = 0x0001; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        ERRFL_data_t data; ///< The actual data of the register.
+        ERRFL_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        ERRFL_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        ERRFL_t(uint16_t raw);
+        ERRFL_t();             ///< Default constructor.
+        ERRFL_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class PROG_t
-     * @brief Provides a representation of the programming register register of the AS5047P.
+     * @brief Programming control register (OTP operations).
      */
     class PROG_t
     {
-
     public:
         /**
          * @typedef PROG_data_t
-         * @brief Provides a new datatype for the data of a the PROG register.
+         * @brief Raw/decoded view of the PROG register.
          */
         typedef union
         {
-
             /**
              * @typedef PROG_values_t
-             * @brief Provides a new datatype for the single values of the PROG register.
+             * @brief Field view of the PROG register.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t PROGEN : 1;  ///< Program OTP enable: enables programming the entire OTP memory.
-                uint16_t OTPREF : 1;  ///< Refreshes the non-volatile memory content with the OTP programmed content.
+                uint16_t PROGEN : 1;  ///< Enable programming of OTP memory.
+                uint16_t OTPREF : 1;  ///< Refresh non-volatile regs from OTP content.
                 uint16_t PROGOTP : 1; ///< Start OTP programming cycle.
-                uint16_t PROGVER : 1; ///< Program verify: must be set to 1 for verifying the correctness of the OTP programming.
-
+                uint16_t PROGVER : 1; ///< Enable verify phase after programming.
             } PROG_values_t;
 
-            uint16_t raw = 0;     ///< Register values (RAW).
-            PROG_values_t values; ///< Register values.
-
+            uint16_t raw = 0;     ///< Raw 16-bit register value.
+            PROG_values_t values; ///< Decoded fields.
         } PROG_data_t;
 
         static const uint16_t REG_ADDRESS = 0x0003; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        PROG_data_t data; ///< The actual data of the register.
+        PROG_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        PROG_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        PROG_t(uint16_t raw);
+        PROG_t();             ///< Default constructor.
+        PROG_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class DIAAGC_t
-     * @brief Provides a representation of the diagnostic and AGC register of the AS5047P.
+     * @brief Diagnostics and AGC register.
      */
     class DIAAGC_t
     {
-
     public:
         /**
          * @typedef DIAAGC_data_t
-         * @brief Provides a new datatype for the data of a the DIAAGC register.
+         * @brief Raw/decoded view of the DIAAGC register.
          */
         typedef union
         {
-
             /**
              * @typedef DIAAGC_values_t
-             * @brief Provides a new datatype for the single values of the DIAAGC register.
+             * @brief Field view of the DIAAGC register.
              */
             typedef struct __attribute__((__packed__))
             {
-
                 uint16_t AGC : 8;  ///< Automatic gain control value.
-                uint16_t LF : 1;   ///< Diagnostics: Offset compensation LF=0:internal offset loops not ready regulated LF=1:internal offset loop finished.
-                uint16_t COF : 1;  ///< Diagnostics: CORDIC overflow.
-                uint16_t MAGH : 1; ///< Diagnostics: Magnetic field strength too high; AGC=0x00.
-                uint16_t MAGL : 1; ///< Diagnostics: Magnetic field strength too low; AGC=0xFF.
-
+                uint16_t LF : 1;   ///< Offset loop finished (1) / not finished (0).
+                uint16_t COF : 1;  ///< CORDIC overflow.
+                uint16_t MAGH : 1; ///< Magnetic field strength too high (AGC=0x00).
+                uint16_t MAGL : 1; ///< Magnetic field strength too low (AGC=0xFF).
             } DIAAGC_values_t;
 
-            uint16_t raw = 0;       ///< Register values (RAW).
-            DIAAGC_values_t values; ///< Register values.
-
+            uint16_t raw = 0;       ///< Raw 16-bit register value.
+            DIAAGC_values_t values; ///< Decoded fields.
         } DIAAGC_data_t;
 
         static const uint16_t REG_ADDRESS = 0x3FFC; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0180; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0180; ///< Register default.
 
-        DIAAGC_data_t data; ///< The actual data of the register.
+        DIAAGC_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        DIAAGC_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        DIAAGC_t(uint16_t raw);
+        DIAAGC_t();             ///< Default constructor.
+        DIAAGC_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class MAG_t
-     * @brief Provides a representation of the CORDIC magnitude register of the AS5047P.
+     * @brief CORDIC magnitude register.
      */
     class MAG_t
     {
-
     public:
         /**
          * @typedef MAG_data_t
-         * @brief Provides a new datatype for the data of the MAG register.
+         * @brief Raw/decoded view of the MAG register.
          */
         typedef union
         {
-
             /**
              * @typedef MAG_values_t
-             * @brief Provides a new datatype for the single values of the MAG register.
+             * @brief Field view of the MAG register.
              */
             typedef struct __attribute__((__packed__))
             {
-
                 uint16_t CMAG : 14; ///< CORDIC magnitude information.
-
             } MAG_values_t;
 
-            uint16_t raw = 0;    ///< Register values (RAW).
-            MAG_values_t values; ///< Register values.
-
+            uint16_t raw = 0;    ///< Raw 16-bit register value.
+            MAG_values_t values; ///< Decoded fields.
         } MAG_data_t;
 
         static const uint16_t REG_ADDRESS = 0x3FFD; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        MAG_data_t data; ///< The actual data of the register.
+        MAG_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        MAG_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        MAG_t(uint16_t raw);
+        MAG_t();             ///< Default constructor.
+        MAG_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class ANGLEUNC_t
-     * @brief Provides a representation of the measured angle without dynamic angle error compensation register of the AS5047P.
+     * @brief Measured angle without dynamic angle error compensation.
      */
     class ANGLEUNC_t
     {
-
     public:
         /**
          * @typedef ANGLEUNC_data_t
-         * @brief Provides a new datatype for the data of the ANGLEUNC register.
+         * @brief Raw/decoded view of the ANGLEUNC register.
          */
         typedef union
         {
-
             /**
              * @typedef ANGLEUNC_values_t
-             * @brief Provides a new datatype for the single values of the ANGLEUNC register.
+             * @brief Field view of the ANGLEUNC register.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t CORDICANG : 14; ///< Angle information without dynamic angle error compensation.
-
+                uint16_t CORDICANG : 14; ///< Angle without DAE compensation.
             } ANGLEUNC_values_t;
 
-            uint16_t raw = 0;         ///< Register values (RAW).
-            ANGLEUNC_values_t values; ///< Register values.
-
+            uint16_t raw = 0;         ///< Raw 16-bit register value.
+            ANGLEUNC_values_t values; ///< Decoded fields.
         } ANGLEUNC_data_t;
 
         static const uint16_t REG_ADDRESS = 0x3FFE; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        ANGLEUNC_data_t data; ///< The actual data of the register.
+        ANGLEUNC_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        ANGLEUNC_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        ANGLEUNC_t(uint16_t raw);
+        ANGLEUNC_t();             ///< Default constructor.
+        ANGLEUNC_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class ANGLECOM_t
-     * @brief Provides a representation of the measured angle with dynamic angle error compensation register of the AS5047P.
+     * @brief Measured angle with dynamic angle error compensation.
      */
     class ANGLECOM_t
     {
-
     public:
         /**
          * @typedef ANGLECOM_data_t
-         * @brief Provides a new datatype for the data of the ANGLECOM register.
+         * @brief Raw/decoded view of the ANGLECOM register.
          */
         typedef union
         {
-
             /**
              * @typedef ANGLECOM_values_t
-             * @brief Provides a new datatype for the single values of the ANGLECOM register.
+             * @brief Field view of the ANGLECOM register.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t DAECANG : 14; ///< Angle information with dynamic angle error compensation.
-
+                uint16_t DAECANG : 14; ///< Angle with DAE compensation.
             } ANGLECOM_values_t;
 
-            uint16_t raw = 0;         ///< Register values (RAW).
-            ANGLECOM_values_t values; ///< Register values.
-
+            uint16_t raw = 0;         ///< Raw 16-bit register value.
+            ANGLECOM_values_t values; ///< Decoded fields.
         } ANGLECOM_data_t;
 
         static const uint16_t REG_ADDRESS = 0x3FFF; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        ANGLECOM_data_t data; ///< The actual data of the register.
+        ANGLECOM_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        ANGLECOM_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        ANGLECOM_t(uint16_t raw);
+        ANGLECOM_t();             ///< Default constructor.
+        ANGLECOM_t(uint16_t raw); ///< Construct from raw value.
     };
 
-    // -------------------------------------------------------------
-
-    // Non-Volatile Registers --------------------------------------
+    // ======================================================================
+    // Non-volatile registers
+    // ======================================================================
 
     /**
      * @class ZPOSM_t
-     * @brief Provides a representation of the zero position MSB register of the AS5047P.
+     * @brief Zero position MSB register.
      */
     class ZPOSM_t
     {
-
     public:
         /**
          * @typedef ZPOSM_data_t
-         * @brief Provides a new datatype for the data of the ZPOSM register.
+         * @brief Raw/decoded view of the ZPOSM register.
          */
         typedef union
         {
-
             /**
              * @typedef ZPOSM_values_t
-             * @brief Provides a new datatype for the single values of the ZPOSM register.
+             * @brief Field view of the ZPOSM register.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t ZPOSM : 8; ///< 8 most significant bits of the zero position.
-
+                uint16_t ZPOSM : 8; ///< 8 most significant bits of zero position.
             } ZPOSM_values_t;
 
-            uint16_t raw = 0;      ///< Register values (RAW).
-            ZPOSM_values_t values; ///< Register values.
-
+            uint16_t raw = 0;      ///< Raw 16-bit register value.
+            ZPOSM_values_t values; ///< Decoded fields.
         } ZPOSM_data_t;
 
         static const uint16_t REG_ADDRESS = 0x0016; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        ZPOSM_data_t data; ///< The actual data of the register.
+        ZPOSM_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        ZPOSM_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        ZPOSM_t(uint16_t raw);
+        ZPOSM_t();             ///< Default constructor.
+        ZPOSM_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class ZPOSL_t
-     * @brief Provides a representation of the zero position LSB /MAG diagnostic register of the AS5047P.
+     * @brief Zero position LSB / MAG diagnostic control register.
      */
     class ZPOSL_t
     {
-
     public:
         /**
          * @typedef ZPOSL_data_t
-         * @brief Provides a new datatype for the data of the ZPOSL register.
+         * @brief Raw/decoded view of the ZPOSL register.
          */
         typedef union
         {
-
             /**
              * @typedef ZPOSL_values_t
-             * @brief Provides a new datatype for the single values of the ZPOSL register.
+             * @brief Field view of the ZPOSL register.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t ZPOSL : 6;           ///< 6 least significant bits of the zero position.
-                uint16_t comp_l_error_en : 1; ///< This bit enables the contribution of MAGH (Magnetic field strength too high) to the error flag.
-                uint16_t comp_h_error_en : 1; ///< This bit enables the contribution of MAGL (Magnetic field strength too low) to the error flag.
-
+                uint16_t ZPOSL : 6;           ///< 6 least significant bits of zero position.
+                uint16_t comp_l_error_en : 1; ///< Enable MAGL (too low) to contribute to ERRFL.
+                uint16_t comp_h_error_en : 1; ///< Enable MAGH (too high) to contribute to ERRFL.
             } ZPOSL_values_t;
 
-            uint16_t raw = 0;      ///< Register values (RAW).
-            ZPOSL_values_t values; ///< Register values.
-
+            uint16_t raw = 0;      ///< Raw 16-bit register value.
+            ZPOSL_values_t values; ///< Decoded fields.
         } ZPOSL_data_t;
 
         static const uint16_t REG_ADDRESS = 0x0017; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        ZPOSL_data_t data; ///< The actual data of the register.
+        ZPOSL_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        ZPOSL_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        ZPOSL_t(uint16_t raw);
+        ZPOSL_t();             ///< Default constructor.
+        ZPOSL_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class SETTINGS1_t
-     * @brief Provides a representation of the custom setting register 1 of the AS5047P.
+     * @brief Custom setting register 1.
      */
     class SETTINGS1_t
     {
-
     public:
         /**
          * @typedef SETTINGS1_data_t
-         * @brief Provides a new datatype for the data of the SETTINGS1 register.
+         * @brief Raw/decoded view of SETTINGS1.
          */
         typedef union
         {
-
             /**
              * @typedef SETTINGS1_values_t
-             * @brief Provides a new datatype for the single values of the SETTINGS1 register.
+             * @brief Field view of SETTINGS1.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t FactorySetting : 1; ///< Pre-Programmed to 1.
+                uint16_t FactorySetting : 1; ///< Pre-programmed to 1.
                 uint16_t NOISESET : 1;       ///< Noise settings.
                 uint16_t DIR : 1;            ///< Rotation direction.
-                uint16_t UVW_ABI : 1;        ///< Defines the PWM Output (0 = ABI is operating, W is used as PWM 1 = UVW is operating, I is used as PWM).
-                uint16_t DAECDIS : 1;        ///< Disable Dynamic Angle Error Compensation (0 = DAE compensation ON, 1 = DAE compensation OFF).
-                uint16_t ABIBIN : 1;         ///< ABI decimal or binary selection of the ABI pulses per revolution.
-                uint16_t Dataselect : 1;     ///< This bit defines which data can be read form address 16383dec (3FFFhex). 0->DAECANG 1->CORDICANG.
-                uint16_t PWMon : 1;          ///< Enables PWM (setting of UVW_ABI Bit necessary).
-
+                uint16_t UVW_ABI : 1;        ///< PWM function selection with UVW/ABI.
+                uint16_t DAECDIS : 1;        ///< Disable DAE compensation (0=ON, 1=OFF).
+                uint16_t ABIBIN : 1;         ///< ABI pulses per revolution decimal/binary.
+                uint16_t Dataselect : 1;     ///< 0->DAECANG, 1->CORDICANG returned at 0x3FFF.
+                uint16_t PWMon : 1;          ///< Enable PWM (requires UVW_ABI setting).
             } SETTINGS1_values_t;
 
-            uint16_t raw = 0;          ///< Register values (RAW).
-            SETTINGS1_values_t values; ///< Register values.
-
+            uint16_t raw = 0;          ///< Raw 16-bit register value.
+            SETTINGS1_values_t values; ///< Decoded fields.
         } SETTINGS1_data_t;
 
         static const uint16_t REG_ADDRESS = 0x0018; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0001; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0001; ///< Register default.
 
-        SETTINGS1_data_t data; ///< The actual data of the register.
+        SETTINGS1_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        SETTINGS1_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        SETTINGS1_t(uint16_t raw);
+        SETTINGS1_t();             ///< Default constructor.
+        SETTINGS1_t(uint16_t raw); ///< Construct from raw value.
     };
 
     /**
      * @class SETTINGS2_t
-     * @brief Provides a representation of the custom setting register 2 of the AS5047P.
+     * @brief Custom setting register 2.
      */
     class SETTINGS2_t
     {
-
     public:
         /**
          * @typedef SETTINGS2_data_t
-         * @brief Provides a new datatype for the data of the SETTINGS2 register.
+         * @brief Raw/decoded view of SETTINGS2.
          */
         typedef union
         {
-
             /**
              * @typedef SETTINGS2_values_t
-             * @brief Provides a new datatype for the single values of the SETTINGS2 register.
+             * @brief Field view of SETTINGS2.
              */
             typedef struct __attribute__((__packed__))
             {
-
-                uint16_t UVWPP : 3;  ///< UVW number of pole pairs (000 = 1, 001 = 2, 010 = 3, 011 = 4, 100 = 5, 101 = 6, 110 = 7, 111 = 7).
+                uint16_t UVWPP : 3;  ///< UVW number of pole pairs (encoded 0..7 → 1..8).
                 uint16_t HYS : 2;    ///< Hysteresis setting.
-                uint16_t ABIRES : 3; ///< Resolution of ABI.
-
+                uint16_t ABIRES : 3; ///< ABI resolution setting.
             } SETTINGS2_values_t;
 
-            uint16_t raw = 0;          ///< Register values (RAW).
-            SETTINGS2_values_t values; ///< Register values.
-
+            uint16_t raw = 0;          ///< Raw 16-bit register value.
+            SETTINGS2_values_t values; ///< Decoded fields.
         } SETTINGS2_data_t;
 
         static const uint16_t REG_ADDRESS = 0x0019; ///< Register address.
-        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default values.
+        static const uint16_t REG_DEFAULT = 0x0000; ///< Register default.
 
-        SETTINGS2_data_t data; ///< The actual data of the register.
+        SETTINGS2_data_t data; ///< Backing storage.
 
-        /**
-         * Default constructor.
-         */
-        SETTINGS2_t();
-
-        /**
-         * Constructor.
-         * @param raw Two bytes of raw data.
-         */
-        SETTINGS2_t(uint16_t raw);
+        SETTINGS2_t();             ///< Default constructor.
+        SETTINGS2_t(uint16_t raw); ///< Construct from raw value.
     };
 
-    // -------------------------------------------------------------
-}
+} // namespace AS5047P_Types
 
 #endif // AS5047P_TYPES_h

@@ -1,82 +1,106 @@
 /**
  * @file PrintAllSettings.ino
- * @author Jonas Merkle [JJM] (jonas@jjm.one)
- * @brief This is a example prints out the settings of the AS5047P sensor.
- * @version 2.2.2
- * @date 2024-10-19
+ * @author Jonas Merkle [JJM]
+ * @email jonas@jjm.one
+ * @brief Example program demonstrating how to read and print all configuration
+ *        register settings from an AS5047P rotary encoder using SPI.
  *
- * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ *        The program continuously reads both SETTINGS1 and SETTINGS2 registers
+ *        from the AS5047P sensor and prints each bit field to the serial console
+ *        every five seconds.
  *
- * More Information can be found here:
- * https://github.com/jonas-merkle/AS5047P
+ * @version 2.3.0
+ * @date 2025-10-07
+ *
+ * @copyright
+ * Copyright (c) 2024 Jonas Merkle.
+ * This project is released under the GPL-3.0 License.
+ *
+ * @see https://github.com/jonas-merkle/AS5047P
  */
 
-// include the library for the AS5047P sensor.
-#include <AS5047P.h>
+#include <AS5047P.h> // Include the AS5047P sensor library.
 
-// define a led pin.
+// Define the onboard LED pin (usually pin 13 on most Arduino boards).
 #define LED_PIN 13
 
-// define the chip select port.
+// Define the chip select (CS) pin used for SPI communication.
 #define AS5047P_CHIP_SELECT_PORT 9
 
-// define the spi bus speed
+// Define the SPI bus speed (in Hz).
 #define AS5047P_CUSTOM_SPI_BUS_SPEED 100000
 
-// initialize a new AS5047P sensor object.
+// Create an instance of the AS5047P sensor.
 AS5047P as5047p(AS5047P_CHIP_SELECT_PORT, AS5047P_CUSTOM_SPI_BUS_SPEED);
 
-// arduino setup routine
+/**
+ * @brief Arduino setup function.
+ *
+ * Initializes serial communication, configures the LED pin,
+ * and establishes communication with the AS5047P sensor.
+ */
 void setup()
 {
-
-  // set the pinmode of the led pin to output.
+  // Configure the LED pin as an output.
   pinMode(LED_PIN, OUTPUT);
 
-  // initialize the serial bus for the communication with your pc.
+  // Start serial communication at 115200 baud.
   Serial.begin(115200);
+  Serial.println("Initializing AS5047P sensor...");
 
-  // initialize the AS5047P sensor and hold if sensor can't be initialized.
+  // Attempt to initialize the AS5047P sensor.
+  // Retry every 5 seconds if initialization fails.
   while (!as5047p.initSPI())
   {
-    Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection..."));
+    Serial.println(F("Error: Unable to connect to AS5047P sensor!"));
+    Serial.println(F("Please check wiring and power connections."));
     delay(5000);
   }
+
+  Serial.println("AS5047P sensor successfully initialized.");
 }
 
-// arduino loop routine
+/**
+ * @brief Arduino loop function.
+ *
+ * Reads the configuration registers SETTINGS1 and SETTINGS2 from the AS5047P,
+ * then prints the individual bit fields to the serial console.
+ */
 void loop()
 {
-
-  // read the settings from the sensor
+  // Read the configuration registers from the sensor.
   auto settings1 = as5047p.read_SETTINGS1();
   auto settings2 = as5047p.read_SETTINGS2();
 
-  // print the settings
-  Serial.print("SETTINGS1.values.FactorySetting: ");
+  // Print SETTINGS1 register values.
+  Serial.println("\n--- SETTINGS1 ---");
+  Serial.print("FactorySetting: ");
   Serial.println(settings1.data.values.FactorySetting);
-  Serial.print("SETTINGS1.values.NOISESET:       ");
+  Serial.print("NOISESET:       ");
   Serial.println(settings1.data.values.NOISESET);
-  Serial.print("SETTINGS1.values.DIR:            ");
+  Serial.print("DIR:            ");
   Serial.println(settings1.data.values.DIR);
-  Serial.print("SETTINGS1.values.UVW_ABI:        ");
+  Serial.print("UVW_ABI:        ");
   Serial.println(settings1.data.values.UVW_ABI);
-  Serial.print("SETTINGS1.values.DAECDIS:        ");
+  Serial.print("DAECDIS:        ");
   Serial.println(settings1.data.values.DAECDIS);
-  Serial.print("SETTINGS1.values.ABIBIN:         ");
+  Serial.print("ABIBIN:         ");
   Serial.println(settings1.data.values.ABIBIN);
-  Serial.print("SETTINGS1.values.Dataselect:     ");
+  Serial.print("Dataselect:     ");
   Serial.println(settings1.data.values.Dataselect);
-  Serial.print("SETTINGS1.values.PWMon:          ");
+  Serial.print("PWMon:          ");
   Serial.println(settings1.data.values.PWMon);
 
-  Serial.print("SETTINGS2.values.UVWPP:          ");
+  // Print SETTINGS2 register values.
+  Serial.println("\n--- SETTINGS2 ---");
+  Serial.print("UVWPP:          ");
   Serial.println(settings2.data.values.UVWPP);
-  Serial.print("SETTINGS2.values.HYS:            ");
+  Serial.print("HYS:            ");
   Serial.println(settings2.data.values.HYS);
-  Serial.print("SETTINGS2.values.ABIRES:         ");
+  Serial.print("ABIRES:         ");
   Serial.println(settings2.data.values.ABIRES);
 
-  Serial.println("");
+  // Add an empty line for readability and wait 5 seconds before repeating.
+  Serial.println();
   delay(5000);
 }

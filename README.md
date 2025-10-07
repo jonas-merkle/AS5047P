@@ -1,262 +1,267 @@
-# AS5047P - Arduino Library
+# AS5047P – Arduino Library
 
-![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI.yml?branch=master&label=build%20master) ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI.yml?branch=develop&label=build%20develop) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jonas-merkle/AS5047P) ![GitHub](https://img.shields.io/github/license/jonas-merkle/AS5047P) ![GitHub issues](https://img.shields.io/github/issues/jonas-merkle/AS5047P) ![GitHub pull requests](https://img.shields.io/github/issues-pr/jonas-merkle/AS5047P) ![Maintenance](https://img.shields.io/maintenance/yes/2025)
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI.yml?branch=master&label=build%20master)
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/jonas-merkle/AS5047P/Arduino-Library-CI.yml?branch=develop&label=build%20develop)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/jonas-merkle/AS5047P)
+![GitHub](https://img.shields.io/github/license/jonas-merkle/AS5047P)
+![GitHub issues](https://img.shields.io/github/issues/jonas-merkle/AS5047P)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/jonas-merkle/AS5047P)
+![Maintenance](https://img.shields.io/maintenance/yes/2025)
 
-## Overview
+High-level, type-safe SPI driver for **ams/TA** **AS5047P** (and compatible AS5x47 parts).
+Read 14-bit angles, magnitude, and diagnostics with concise APIs—works on classic Arduino, Feather, Teensy, and other SPI-capable boards.
 
-The **AS5047P Arduino Library** provides an easy way to interface with the AS5047P high-resolution rotary position sensor, as well as several other sensors from the AS5x47 series. This library supports reading the angular position and other diagnostic information using SPI communication, and is designed to work with a variety of microcontrollers, including Arduino, Adafruit Feather, and Teensy boards.
+---
 
-The AS5047P sensor provides high-resolution rotary position sensing with a 14-bit resolution, making it ideal for applications that require accurate angular measurements, such as robotics, motor control, and industrial automation.
+## Table of Contents
+
+- [AS5047P – Arduino Library](#as5047p--arduino-library)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Supported Sensors](#supported-sensors)
+  - [Installation](#installation)
+    - [Arduino Library Manager](#arduino-library-manager)
+    - [Manual](#manual)
+    - [PlatformIO](#platformio)
+  - [Hardware Setup](#hardware-setup)
+    - [SPI Pins \& Power Notes](#spi-pins--power-notes)
+    - [Quick Wiring Tables](#quick-wiring-tables)
+      - [Arduino Uno](#arduino-uno)
+      - [Adafruit Feather M0 (3.3 V logic)](#adafruit-feather-m0-33-v-logic)
+  - [Quick Start](#quick-start)
+  - [Advanced Usage](#advanced-usage)
+    - [Error \& Diagnostic Handling](#error--diagnostic-handling)
+    - [Low-level Register Access](#low-level-register-access)
+  - [Documentation](#documentation)
+  - [Troubleshooting](#troubleshooting)
+  - [Project Status](#project-status)
+  - [License](#license)
+    - [Acknowledgements](#acknowledgements)
+
+---
 
 ## Features
 
-- Support for multiple sensor models: AS5047P, AS5047D, AS5147, AS5147P, and AS5247.
-- Easy-to-use interface for reading angular position.
-- SPI communication for reliable data transmission.
-- Example sketches to help get started quickly.
-- Compatibility with Arduino, Adafruit Feather, Teensy, and other boards.
+- ✅ 14-bit **angle** readout (raw or DAE-compensated)
+- ✅ **Magnitude (CMAG)** & **diagnostics** (AGC, CORDIC overflow, field strength)
+- ✅ Clean **C++ types** for all registers and SPI frames (with parity helpers)
+- ✅ **Even parity** verification over 15 LSBs (MSB parity bit handled for you)
+- ✅ Arduino-style, minimal API + detailed status strings
+- ✅ Examples for quick bring-up
 
-## Contents
-
-- [AS5047P - Arduino Library](#as5047p---arduino-library)
-  - [Overview](#overview)
-  - [Features](#features)
-  - [Contents](#contents)
-  - [Supported Sensors](#supported-sensors)
-  - [Documentation](#documentation)
-  - [Installation Instructions](#installation-instructions)
-    - [Install via Arduino Library Manager](#install-via-arduino-library-manager)
-    - [Manual Installation](#manual-installation)
-    - [Install via PlatformIO Library Manager](#install-via-platformio-library-manager)
-  - [Connecting the AS5047P to Your Arduino](#connecting-the-as5047p-to-your-arduino)
-    - [Arduino Uno](#arduino-uno)
-    - [Arduino Mega](#arduino-mega)
-    - [Adafruit Feather M0](#adafruit-feather-m0)
-    - [Teensy Board Connections](#teensy-board-connections)
-      - [Teensy 3.5](#teensy-35)
-      - [Teensy 3.6](#teensy-36)
-      - [Teensy 4.0](#teensy-40)
-      - [Teensy 4.1](#teensy-41)
-  - [Usage Guide](#usage-guide)
-    - [Basic Example](#basic-example)
-    - [Advanced Usage](#advanced-usage)
-  - [License](#license)
-  - [Project Status \& To-Do's](#project-status--to-dos)
+---
 
 ## Supported Sensors
 
-The following sensors of the **AS5x47** series of rotary position sensors are supported by this library:
+This library targets (**AS5047P**)[https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf] and is compatible with several AS5x47 variants that share the same SPI framing:
 
-- [**AS5047P**](https://ams.com/documents/20143/36005/AS5047P_DS000324_2-00.pdf/a7d44138-51f1-2f6e-c8b6-2577b369ace8)
-- [**AS5047D**](https://ams.com/documents/20143/36005/AS5047D_DS000394_2-00.pdf/c7225c06-112f-82c5-4471-17a2711a7f0e)
-- [**AS5147**](https://ams.com/documents/20143/36005/AS5147_DS000307_2-00.pdf/6921a55b-7cba-bf20-78c0-660d62bd0a5b)
-- [**AS5147P**](https://ams.com/documents/20143/36005/AS5147P_DS000328_2-00.pdf/847d41be-7afa-94ad-98c2-8617a5df5b6f)
-- [**AS5247**](https://ams.com/documents/20143/36005/AS5247_DS000354_2-00.pdf/db765ebd-b442-4d00-8343-d4f95a847995)
+- **AS5047P**, **AS5047D**, **AS5147**, **AS5147P**, **AS5247**
 
-Not supported are the following sensors:
+Not supported: **AS5047U**, **AS5147U**, **AS5247U** (different protocol/regs).
 
-- [AS5047U](https://ams.com/documents/20143/36005/AS5047U_DS000637_1-00.pdf/8639418f-6c3a-1624-4e6f-18f52c962099)
-- [AS5147U](https://ams.com/documents/20143/36005/AS5147U_AS5247U_DS000639_4-00.pdf/1141a423-d438-ff83-df65-0adc533d6801)
-- [AS5247U](https://ams.com/documents/20143/36005/AS5147U_AS5247U_DS000639_4-00.pdf/1141a423-d438-ff83-df65-0adc533d6801)
+---
 
-## Documentation
+## Installation
 
-The library documentation is deployed on GitHub Pages. For detailed reference on the API, examples, and usage guides, check the links below:
+### Arduino Library Manager
 
-| Branch  | Link                                                                                 |
-| ------- | ------------------------------------------------------------------------------------ |
-| Master  | [Documentation](https://jonas-merkle.github.io/AS5047P/docs/master/html/index.html)  |
-| Develop | [Documentation](https://jonas-merkle.github.io/AS5047P/docs/develop/html/index.html) |
+1. **Sketch → Include Library → Manage Libraries…**
+2. Search **`AS5047P`**, then **Install**.
 
-## Installation Instructions
+> You’ll need Arduino IDE ≥ 1.6.2 for Library Manager.
 
-### Install via Arduino Library Manager
+### Manual
 
-The easiest way to install this library is to use the built-in Arduino Library Manager:
+1. Download the latest **Release** ZIP.
+2. Extract to your Arduino `libraries/` folder.
+3. Restart the IDE.
 
-1. Open the Arduino IDE.
-2. Go to **Sketch > Include Library > Manage Libraries...**
-3. In the Library Manager, type `AS5047P` in the search bar.
-4. Install the latest version of the library.
+### PlatformIO
 
-You can also upgrade the library to the newest release via the Arduino Library Manager. For more information, refer to the [Arduino Libraries Guide](https://www.arduino.cc/en/guide/libraries). Note that you need at least version 1.6.2 of the Arduino IDE to use the Library Manager.
+```sh
+pio lib install "jonas-merkle/AS5047P"
+```
 
-### Manual Installation
+Or add to `platformio.ini`:
 
-1. Download the latest version of the library from [GitHub Releases](https://github.com/jonas-merkle/AS5047P/releases).
-2. Extract the downloaded ZIP file.
-3. Copy the extracted folder to your Arduino libraries directory (e.g., `Documents/Arduino/libraries`).
+```ini
+lib_deps = jonas-merkle/AS5047P
+```
 
-Follow the [Arduino Libraries Guide](https://www.arduino.cc/en/guide/libraries) for more detailed instructions.
+---
 
-### Install via PlatformIO Library Manager
+## Hardware Setup
 
-To add this library to your PlatformIO project, follow these steps:
+### SPI Pins & Power Notes
 
-1. Open PlatformIO IDE.
-2. Search for `AS5047P` in the Library Manager UI, or run the following command in the PlatformIO CLI:
-   ```
-   pio lib install "jonas-merkle/AS5047P"
-   ```
+- **SPI mode**: `MODE1` (CPOL=0, CPHA=1), **MSB first**
+- **Voltage**:
 
-## Connecting the AS5047P to Your Arduino
+  - Many dev boards (Feather M0, Teensy 3.x/4.x) are **3.3 V only** → power sensor @ **3.3 V**
+  - Classic Arduino Uno/Mega can power at **5 V**, but confirm **logic levels** and your breakout’s level shifting.
 
-### Arduino Uno
+- **CS pin** defaults to **D9**, configurable in the constructor.
 
-| AS5047P Pin | Arduino Uno Pin | Comment                        |
-| :---------: | :-------------: | :----------------------------- |
-|     GND     |       GND       | Ground connection              |
-|     VDD     |       5V        | Power supply (5V)              |
-|    VDD3V    |       NC        | Not connected                  |
-|    MOSI     | MOSI (Pin: 11)  | SPI Data Out                   |
-|    MISO     | MISO (Pin: 12)  | SPI Data In                    |
-|     CLK     |  SCK (Pin: 13)  | SPI Clock                      |
-|     CSn     |        9        | Chip select (configurable pin) |
+### Quick Wiring Tables
 
-### Arduino Mega
+#### Arduino Uno
 
-| AS5047P Pin | Arduino Mega Pin | Comment                        |
-| :---------: | :--------------: | :----------------------------- |
-|     GND     |       GND        | Ground connection              |
-|     VDD     |        5V        | Power supply (5V)              |
-|    VDD3V    |        NC        | Not connected                  |
-|    MOSI     |  MOSI (Pin: 51)  | SPI Data Out                   |
-|    MISO     |  MISO (Pin: 50)  | SPI Data In                    |
-|     CLK     |  SCK (Pin: 52)   | SPI Clock                      |
-|     CSn     |        9         | Chip select (configurable pin) |
+| AS5047P | Uno | Notes                      |
+| ------: | :-: | -------------------------- |
+|     GND | GND | Ground                     |
+|     VDD | 5V  | Sensor Vcc                 |
+|   VDD3V | NC  | —                          |
+|    MOSI | 11  | SPI MOSI                   |
+|    MISO | 12  | SPI MISO                   |
+|     CLK | 13  | SPI SCK                    |
+|     CSn |  9  | Chip Select (configurable) |
 
-### Adafruit Feather M0
+#### Adafruit Feather M0 (3.3 V logic)
 
-| AS5047P Pin | Adafruit Feather M0 Pin | Comment                        |
-| :---------: | :---------------------: | :----------------------------- |
-|     GND     |           GND           | Ground connection              |
-|     VDD     |           3V            | Power supply (3.3V)            |
-|    VDD3V    |           3V            | Power supply (3.3V)            |
-|    MOSI     |          MOSI           | SPI Data Out                   |
-|    MISO     |          MISO           | SPI Data In                    |
-|     CLK     |           SCK           | SPI Clock                      |
-|     CSn     |            9            | Chip select (configurable pin) |
+| AS5047P | Feather M0 | Notes                             |
+| ------: | :--------: | --------------------------------- |
+|     GND |    GND     | Ground                            |
+|     VDD |     3V     | **3.3 V only**                    |
+|   VDD3V |     3V     | Tie to 3.3 V if required by board |
+|    MOSI |    MOSI    | SPI MOSI                          |
+|    MISO |    MISO    | SPI MISO                          |
+|     CLK |    SCK     | SPI SCK                           |
+|     CSn |     9      | Chip Select (configurable)        |
 
-**Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Adafruit Feather M0 board.**
+> ⚠️ **3.3 V ONLY** on Feather/Teensy. Do **not** feed 5 V.
 
-### Teensy Board Connections
+Teensy 3.5/3.6/4.0/4.1 use their standard SPI pins (MOSI/MISO/SCK) and a free GPIO for CS (e.g., 10). Power @ **3.3 V**.
 
-#### Teensy 3.5
+---
 
-| AS5047P Pin |   Teensy Pin    | Comment                        |
-| :---------: | :-------------: | :----------------------------- |
-|     GND     |       GND       | Ground connection              |
-|     VDD     |       3V        | Power supply (3.3V)            |
-|    VDD3V    |       3V        | Power supply (3.3V)            |
-|    MOSI     | MOSI0 (Pin: 11) | SPI Data Out                   |
-|    MISO     | MISO0 (Pin: 12) | SPI Data In                    |
-|     CLK     | SCK0 (Pin: 13)  | SPI Clock                      |
-|     CSn     |  CS0 (Pin: 10)  | Chip select (configurable pin) |
-
-**Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
-
-#### Teensy 3.6
-
-| AS5047P Pin |   Teensy Pin    | Comment                        |
-| :---------: | :-------------: | :----------------------------- |
-|     GND     |       GND       | Ground connection              |
-|     VDD     |       3V        | Power supply (3.3V)            |
-|    VDD3V    |       3V        | Power supply (3.3V)            |
-|    MOSI     | MOSI0 (Pin: 11) | SPI Data Out                   |
-|    MISO     | MISO0 (Pin: 12) | SPI Data In                    |
-|     CLK     | SCK0 (Pin: 13)  | SPI Clock                      |
-|     CSn     |  CS0 (Pin: 10)  | Chip select (configurable pin) |
-
-**Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
-
-#### Teensy 4.0
-
-| AS5047P Pin |   Teensy Pin   | Comment                        |
-| :---------: | :------------: | :----------------------------- |
-|     GND     |      GND       | Ground connection              |
-|     VDD     |       3V       | Power supply (3.3V)            |
-|    VDD3V    |       3V       | Power supply (3.3V)            |
-|    MOSI     | MOSI (Pin: 11) | SPI Data Out                   |
-|    MISO     | MISO (Pin: 12) | SPI Data In                    |
-|     CLK     | SCK (Pin: 13)  | SPI Clock                      |
-|     CSn     |  CS (Pin: 10)  | Chip select (configurable pin) |
-
-**Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
-
-#### Teensy 4.1
-
-| AS5047P Pin |   Teensy Pin   | Comment                        |
-| :---------: | :------------: | :----------------------------- |
-|     GND     |      GND       | Ground connection              |
-|     VDD     |       3V       | Power supply (3.3V)            |
-|    VDD3V    |       3V       | Power supply (3.3V)            |
-|    MOSI     | MOSI (Pin: 11) | SPI Data Out                   |
-|    MISO     | MISO (Pin: 12) | SPI Data In                    |
-|     CLK     | SCK (Pin: 13)  | SPI Clock                      |
-|     CSn     |  CS (Pin: 10)  | Chip select (configurable pin) |
-
-**Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
-
-## Usage Guide
-
-### Basic Example
-
-The following example demonstrates how to read the angle from the AS5047P sensor using an Arduino board.
+## Quick Start
 
 ```cpp
 #include <SPI.h>
 #include <AS5047P.h>
 
-AS5047P as5047p(9); // Chip select pin 9
+// CS pin 9, SPI speed default from library header (can pass a custom speed)
+AS5047P as5047p(9);
 
 void setup() {
-  Serial.begin(9600);
-  SPI.begin();
-  as5047p.initSPI();
+  Serial.begin(115200);
+  // Initialize SPI via library and verify connectivity
+  if (!as5047p.initSPI()) {
+    Serial.println("AS5047P init failed. Check wiring and power.");
+    while (true) { delay(1000); }
+  }
 }
 
 void loop() {
-  uint16_t angle = as5047p.readAngle();
-  Serial.print("Angle: ");
-  Serial.println(angle);
+  // Read 14-bit angle (degrees) with DAE compensation
+  float deg = as5047p.readAngleDegree(true);
+  Serial.print("Angle (deg): ");
+  Serial.println(deg, 3);
+
+  // Read magnitude
+  uint16_t mag = as5047p.readMagnitude();
+  Serial.print("Magnitude: ");
+  Serial.println(mag);
+
   delay(500);
 }
 ```
 
-### Advanced Usage
+---
 
-The library provides several functions for advanced interaction with the sensor, including reading diagnostic registers and status flags. Refer to the [documentation](https://jonas-merkle.github.io/AS5047P/docs/master/html/index.html) for a complete API reference and usage examples.
+## Advanced Usage
+
+### Error & Diagnostic Handling
+
+You can request parity verification and collect communication/sensor diagnostics on each read:
+
+```cpp
+AS5047P_Types::ERROR_t err;
+float deg = as5047p.readAngleDegree(
+  /*withDAEC*/ true,
+  /*errorOut*/ &err,
+  /*verifyParity*/ true,
+  /*checkForComError*/ true,
+  /*checkForSensorError*/ true
+);
+
+if (!err.noError()) {
+  Serial.println(err.toArduinoString()); // nicely formatted error report
+}
+```
+
+You can also dump a combined status block:
+
+```cpp
+Serial.println(as5047p.readStatusAsArduinoString());
+```
+
+### Low-level Register Access
+
+Typed wrappers let you work with registers directly:
+
+```cpp
+// Read DIAAGC (AGC, LF, COF, MAGH/L)
+AS5047P_Types::DIAAGC_t dia = as5047p.read_DIAAGC(/*errorOut*/ nullptr, /*verifyParity*/ true);
+
+// Write to SETTINGS1 (example: toggle DAE compensation disable bit)
+AS5047P_Types::SETTINGS1_t s1 = as5047p.read_SETTINGS1();
+s1.data.values.DAECDIS = 1; // disable DAE
+AS5047P_Types::ERROR_t err;
+bool ok = as5047p.write_SETTINGS1(&s1, &err, /*checkForComError*/ true, /*verifyWittenReg*/ true);
+if (!ok) Serial.println(err.toArduinoString());
+```
+
+> Parity for frames is handled internally by the SPI layer; you can also use `AS5047P_Util::parityCheck()` if you construct frames yourself.
+
+---
+
+## Documentation
+
+- **Master**: [https://jonas-merkle.github.io/AS5047P/docs/master/html/index.html](https://jonas-merkle.github.io/AS5047P/docs/master/html/index.html)
+- **Develop**: [https://jonas-merkle.github.io/AS5047P/docs/develop/html/index.html](https://jonas-merkle.github.io/AS5047P/docs/develop/html/index.html)
+
+Doxygen is generated from the extensively commented headers and sources.
+
+---
+
+## Troubleshooting
+
+- **`initSPI()` fails**
+
+  - Check **power** (3.3 V vs 5 V board), **common ground**, and **CS pin** number.
+  - Verify **SPI mode 1** (the library sets this), and that no other library reconfigures SPI mid-flight.
+  - If multiple SPI users exist, consider enabling `AS5047P_SPI_ARDUINO_INIT_ON_COM_ENAB` in `util/AS5047P_Settings.h`.
+
+- **Random read errors**
+
+  - Try disabling the ~100 ns NOP delay (`AS5047P_SPI_ARDUINO_USE_100NS_NOP_DELAY`) or vice versa depending on your MCU clock.
+  - Shorten wires; keep SPI lines tight and add GND reference near sensor.
+
+- **Angles look noisy**
+
+  - Check **magnet distance/centering** (MAGH/MAGL flags, AGC value in `DIAAGC`).
+  - Consider using **DAE-compensated** angle (`readAngleDegree(true)`).
+
+---
+
+## Project Status
+
+- ✅ Read/write APIs for all relevant registers
+- ✅ Parity checking & formatted error/status strings
+- ✅ CI, Doxygen docs, Arduino & PlatformIO registry
+- 🚧 Broader write-path testing across MCUs/clock rates
+- 🚧 More examples (DAE tuning, ABI/U VW config)
+- ❌ STM32 HAL backend (PRs welcome)
+
+---
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0**. You can find the full license text in the [LICENSE](./LICENSE) file or visit the [GPL v3.0 License page](https://www.gnu.org/licenses/gpl-3.0.en.html) for more information.
+Licensed under **GNU GPLv3**. See [LICENSE](./LICENSE).
 
-## Project Status & To-Do's
+---
 
-| Status | Task / ToDo                                                                                                                                                       |
-| :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|   ✅   | Read functions for all registers implemented.                                                                                                                     |
-|   ✅   | Doxygen comments added.                                                                                                                                           |
-|   ✅   | [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0                                     |
-|   ✅   | [BasicReadAngleAndDebugInfo.ino](examples/BasicReadAngleAndDebugInfo/BasicReadAngleAndDebugInfo.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
-|   ✅   | [PrintAllSettings.ino](examples/PrintAllSettings/PrintAllSettings.ino) successfully tested on an Arduino Mega & Adafruit Feather M0                               |
-|   ✅   | Adding a CI pipeline.                                                                                                                                             |
-|   ✅   | Build & deploy Doxygen documentation for the library.                                                                                                             |
-|   ✅   | Sensor status output as string.                                                                                                                                   |
-|   ✅   | [keywords.txt](keywords.txt) updated for main library functions.                                                                                                  |
-|   ✅   | Switch to unions...                                                                                                                                               |
-|   ✅   | Write functions for all registers implemented.                                                                                                                    |
-|   ✅   | Parity check on incoming data.                                                                                                                                    |
-|   ✅   | Improve initSPI()                                                                                                                                                 |
-|   ✅   | ToString() for Error_t                                                                                                                                            |
-|   ✅   | Adding Library to Arduino Library Manager 🥳                                                                                                                      |
-|   ✅   | Adding Library to PlatformIO Library Manager 🥳                                                                                                                   |
-|   ✅   | Documentation update.                                                                                                                                             |
-|   ✅   | [keywords.txt](keywords.txt) updated for all library functions.                                                                                                   |
-|   🚧   | [Readme.md](README.md) update.                                                                                                                                    |
-|   🚧   | Test of all write functions                                                                                                                                       |
-|   🚧   | Test of all read functions                                                                                                                                        |
-|   ❌   | Porting the library to be compatible with the STM32 HAL                                                                                                           |
-|   ❌   | Additional examples.                                                                                                                                              |
-|   ❌   | Unit Tests?!                                                                                                                                                      |
-|   ❌   | Implementation & test of programming the one-time programmable register of the AS5047P.                                                                           |
+### Acknowledgements
+
+Thanks to contributors and users testing across different boards. Issues and PRs are welcome!
