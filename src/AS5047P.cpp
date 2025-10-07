@@ -341,8 +341,7 @@ T AS5047P::readReg(AS5047P_Types::ERROR_t *errorOut,
                    bool verifyParity, bool checkForComError, bool checkForSensorError)
 {
     // Issue read command and fetch data frame.
-    AS5047P_Types::SPI_Command_Frame_t readCMD(T::REG_ADDRESS, AS5047P_TYPES_READ_CMD);
-    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(readCMD.data.raw));
+    AS5047P_Types::SPI_ReadData_Frame_t recData(__spiInterface.read(T::REG_ADDRESS));
 
     if (errorOut == nullptr)
     {
