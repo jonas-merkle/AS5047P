@@ -63,9 +63,9 @@ Not supported are the following sensors:
 
 The library documentation is deployed on GitHub Pages. For detailed reference on the API, examples, and usage guides, check the links below:
 
-| Branch | Link |
-|--------|------|
-| Master | [Documentation](https://jonas-merkle.github.io/AS5047P/docs/master/html/index.html) |
+| Branch  | Link                                                                                 |
+| ------- | ------------------------------------------------------------------------------------ |
+| Master  | [Documentation](https://jonas-merkle.github.io/AS5047P/docs/master/html/index.html)  |
 | Develop | [Documentation](https://jonas-merkle.github.io/AS5047P/docs/develop/html/index.html) |
 
 ## Installation Instructions
@@ -103,39 +103,39 @@ To add this library to your PlatformIO project, follow these steps:
 
 ### Arduino Uno
 
-| AS5047P Pin | Arduino Uno Pin | Comment |
-|:-----------:|:---------------:|:--------|
-| GND         | GND             | Ground connection |
-| VDD         | 5V              | Power supply (5V) |
-| VDD3V       | NC              | Not connected     |
-| MOSI        | MOSI (Pin: 11)  | SPI Data Out      |
-| MISO        | MISO (Pin: 12)  | SPI Data In       |
-| CLK         | SCK (Pin: 13)   | SPI Clock         |
-| CSn         | 9               | Chip select (configurable pin) |
+| AS5047P Pin | Arduino Uno Pin | Comment                        |
+| :---------: | :-------------: | :----------------------------- |
+|     GND     |       GND       | Ground connection              |
+|     VDD     |       5V        | Power supply (5V)              |
+|    VDD3V    |       NC        | Not connected                  |
+|    MOSI     | MOSI (Pin: 11)  | SPI Data Out                   |
+|    MISO     | MISO (Pin: 12)  | SPI Data In                    |
+|     CLK     |  SCK (Pin: 13)  | SPI Clock                      |
+|     CSn     |        9        | Chip select (configurable pin) |
 
 ### Arduino Mega
 
-| AS5047P Pin | Arduino Mega Pin | Comment |
-|:-----------:|:----------------:|:--------|
-| GND         | GND              | Ground connection |
-| VDD         | 5V               | Power supply (5V) |
-| VDD3V       | NC               | Not connected     |
-| MOSI        | MOSI (Pin: 51)   | SPI Data Out      |
-| MISO        | MISO (Pin: 50)   | SPI Data In       |
-| CLK         | SCK (Pin: 52)    | SPI Clock         |
-| CSn         | 9                | Chip select (configurable pin) |
+| AS5047P Pin | Arduino Mega Pin | Comment                        |
+| :---------: | :--------------: | :----------------------------- |
+|     GND     |       GND        | Ground connection              |
+|     VDD     |        5V        | Power supply (5V)              |
+|    VDD3V    |        NC        | Not connected                  |
+|    MOSI     |  MOSI (Pin: 51)  | SPI Data Out                   |
+|    MISO     |  MISO (Pin: 50)  | SPI Data In                    |
+|     CLK     |  SCK (Pin: 52)   | SPI Clock                      |
+|     CSn     |        9         | Chip select (configurable pin) |
 
 ### Adafruit Feather M0
 
-| AS5047P Pin | Adafruit Feather M0 Pin | Comment |
-|:-----------:|:-----------------------:|:--------|
-| GND         | GND                     | Ground connection |
-| VDD         | 3V                      | Power supply (3.3V) |
-| VDD3V       | 3V                      | Power supply (3.3V) |
-| MOSI        | MOSI                    | SPI Data Out       |
-| MISO        | MISO                    | SPI Data In        |
-| CLK         | SCK                     | SPI Clock          |
-| CSn         | 9                       | Chip select (configurable pin) |
+| AS5047P Pin | Adafruit Feather M0 Pin | Comment                        |
+| :---------: | :---------------------: | :----------------------------- |
+|     GND     |           GND           | Ground connection              |
+|     VDD     |           3V            | Power supply (3.3V)            |
+|    VDD3V    |           3V            | Power supply (3.3V)            |
+|    MOSI     |          MOSI           | SPI Data Out                   |
+|    MISO     |          MISO           | SPI Data In                    |
+|     CLK     |           SCK           | SPI Clock                      |
+|     CSn     |            9            | Chip select (configurable pin) |
 
 **Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Adafruit Feather M0 board.**
 
@@ -143,57 +143,57 @@ To add this library to your PlatformIO project, follow these steps:
 
 #### Teensy 3.5
 
-| AS5047P Pin | Teensy Pin      | Comment |
-|:-----------:|:---------------:|:--------|
-| GND         | GND             | Ground connection |
-| VDD         | 3V              | Power supply (3.3V) |
-| VDD3V       | 3V              | Power supply (3.3V) |
-| MOSI        | MOSI0 (Pin: 11) | SPI Data Out       |
-| MISO        | MISO0 (Pin: 12) | SPI Data In        |
-| CLK         | SCK0 (Pin: 13)  | SPI Clock          |
-| CSn         | CS0 (Pin: 10)   | Chip select (configurable pin) |
+| AS5047P Pin |   Teensy Pin    | Comment                        |
+| :---------: | :-------------: | :----------------------------- |
+|     GND     |       GND       | Ground connection              |
+|     VDD     |       3V        | Power supply (3.3V)            |
+|    VDD3V    |       3V        | Power supply (3.3V)            |
+|    MOSI     | MOSI0 (Pin: 11) | SPI Data Out                   |
+|    MISO     | MISO0 (Pin: 12) | SPI Data In                    |
+|     CLK     | SCK0 (Pin: 13)  | SPI Clock                      |
+|     CSn     |  CS0 (Pin: 10)  | Chip select (configurable pin) |
 
 **Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
 
 #### Teensy 3.6
 
-| AS5047P Pin | Teensy Pin      | Comment |
-|:-----------:|:---------------:|:--------|
-| GND         | GND             | Ground connection |
-| VDD         | 3V              | Power supply (3.3V) |
-| VDD3V       | 3V              | Power supply (3.3V) |
-| MOSI        | MOSI0 (Pin: 11) | SPI Data Out       |
-| MISO        | MISO0 (Pin: 12) | SPI Data In        |
-| CLK         | SCK0 (Pin: 13)  | SPI Clock          |
-| CSn         | CS0 (Pin: 10)   | Chip select (configurable pin) |
+| AS5047P Pin |   Teensy Pin    | Comment                        |
+| :---------: | :-------------: | :----------------------------- |
+|     GND     |       GND       | Ground connection              |
+|     VDD     |       3V        | Power supply (3.3V)            |
+|    VDD3V    |       3V        | Power supply (3.3V)            |
+|    MOSI     | MOSI0 (Pin: 11) | SPI Data Out                   |
+|    MISO     | MISO0 (Pin: 12) | SPI Data In                    |
+|     CLK     | SCK0 (Pin: 13)  | SPI Clock                      |
+|     CSn     |  CS0 (Pin: 10)  | Chip select (configurable pin) |
 
 **Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
 
 #### Teensy 4.0
 
-| AS5047P Pin | Teensy Pin      | Comment |
-|:-----------:|:---------------:|:--------|
-| GND         | GND             | Ground connection |
-| VDD         | 3V              | Power supply (3.3V) |
-| VDD3V       | 3V              | Power supply (3.3V) |
-| MOSI        | MOSI (Pin: 11)  | SPI Data Out       |
-| MISO        | MISO (Pin: 12)  | SPI Data In        |
-| CLK         | SCK (Pin: 13)   | SPI Clock          |
-| CSn         | CS (Pin: 10)    | Chip select (configurable pin) |
+| AS5047P Pin |   Teensy Pin   | Comment                        |
+| :---------: | :------------: | :----------------------------- |
+|     GND     |      GND       | Ground connection              |
+|     VDD     |       3V       | Power supply (3.3V)            |
+|    VDD3V    |       3V       | Power supply (3.3V)            |
+|    MOSI     | MOSI (Pin: 11) | SPI Data Out                   |
+|    MISO     | MISO (Pin: 12) | SPI Data In                    |
+|     CLK     | SCK (Pin: 13)  | SPI Clock                      |
+|     CSn     |  CS (Pin: 10)  | Chip select (configurable pin) |
 
 **Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
 
 #### Teensy 4.1
 
-| AS5047P Pin | Teensy Pin      | Comment |
-|:-----------:|:---------------:|:--------|
-| GND         | GND             | Ground connection |
-| VDD         | 3V              | Power supply (3.3V) |
-| VDD3V       | 3V              | Power supply (3.3V) |
-| MOSI        | MOSI (Pin: 11)  | SPI Data Out       |
-| MISO        | MISO (Pin: 12)  | SPI Data In        |
-| CLK         | SCK (Pin: 13)   | SPI Clock          |
-| CSn         | CS (Pin: 10)    | Chip select (configurable pin) |
+| AS5047P Pin |   Teensy Pin   | Comment                        |
+| :---------: | :------------: | :----------------------------- |
+|     GND     |      GND       | Ground connection              |
+|     VDD     |       3V       | Power supply (3.3V)            |
+|    VDD3V    |       3V       | Power supply (3.3V)            |
+|    MOSI     | MOSI (Pin: 11) | SPI Data Out                   |
+|    MISO     | MISO (Pin: 12) | SPI Data In                    |
+|     CLK     | SCK (Pin: 13)  | SPI Clock                      |
+|     CSn     |  CS (Pin: 10)  | Chip select (configurable pin) |
 
 **Warning: Ensure the sensor is powered with 3.3V to avoid damage to the Teensy board.**
 
@@ -233,31 +233,30 @@ This project is licensed under the **GNU General Public License v3.0**. You can 
 
 ## Project Status & To-Do's
 
-| Status | Task / ToDo |
-|:------:|:------------|
-|   ✅   | Read functions for all registers implemented. |
-|   ✅   | Doxygen comments added. |
-|   ✅   | [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
+| Status | Task / ToDo                                                                                                                                                       |
+| :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   ✅   | Read functions for all registers implemented.                                                                                                                     |
+|   ✅   | Doxygen comments added.                                                                                                                                           |
+|   ✅   | [BasicReadAngle.ino](examples/BasicReadAngle/BasicReadAngle.ino) successfully tested on an Arduino Mega & Adafruit Feather M0                                     |
 |   ✅   | [BasicReadAngleAndDebugInfo.ino](examples/BasicReadAngleAndDebugInfo/BasicReadAngleAndDebugInfo.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
-|   ✅   | [PrintAllSettings.ino](examples/PrintAllSettings/PrintAllSettings.ino) successfully tested on an Arduino Mega & Adafruit Feather M0 |
-|   ✅   | Adding a CI pipeline. |
-|   ✅   | Build & deploy Doxygen documentation for the library. |
-|   ✅   | Sensor status output as string. |
-|   ✅   | [keywords.txt](keywords.txt) updated for main library functions. |
-|   ✅   | Switch to unions... |
-|   ✅   | Write functions for all registers implemented. |
-|   ✅   | Parity check on incoming data. |
-|   ✅   | Improve initSPI() |
-|   ✅   | ToString() for Error_t |
-|   ✅   | Adding Library to Arduino Library Manager 🥳 |
-|   ✅   | Adding Library to PlatformIO Library Manager 🥳 |
-|   ✅   | Documentation update. |
-|   ✅   | [keywords.txt](keywords.txt) updated for all library functions. |
-|   🚧   | [Readme.md](README.md) update. |
-|   🚧   | Test of all write functions |
-|   🚧   | Test of all read functions |
-|   ❌   | Porting the library to be compatible with the STM32 HAL |
-|   ❌   | Additional examples. |
-|   ❌   | Unit Tests?! |
-|   ❌   | Implementation & test of programming the one-time programmable register of the AS5047P. |
-
+|   ✅   | [PrintAllSettings.ino](examples/PrintAllSettings/PrintAllSettings.ino) successfully tested on an Arduino Mega & Adafruit Feather M0                               |
+|   ✅   | Adding a CI pipeline.                                                                                                                                             |
+|   ✅   | Build & deploy Doxygen documentation for the library.                                                                                                             |
+|   ✅   | Sensor status output as string.                                                                                                                                   |
+|   ✅   | [keywords.txt](keywords.txt) updated for main library functions.                                                                                                  |
+|   ✅   | Switch to unions...                                                                                                                                               |
+|   ✅   | Write functions for all registers implemented.                                                                                                                    |
+|   ✅   | Parity check on incoming data.                                                                                                                                    |
+|   ✅   | Improve initSPI()                                                                                                                                                 |
+|   ✅   | ToString() for Error_t                                                                                                                                            |
+|   ✅   | Adding Library to Arduino Library Manager 🥳                                                                                                                      |
+|   ✅   | Adding Library to PlatformIO Library Manager 🥳                                                                                                                   |
+|   ✅   | Documentation update.                                                                                                                                             |
+|   ✅   | [keywords.txt](keywords.txt) updated for all library functions.                                                                                                   |
+|   🚧   | [Readme.md](README.md) update.                                                                                                                                    |
+|   🚧   | Test of all write functions                                                                                                                                       |
+|   🚧   | Test of all read functions                                                                                                                                        |
+|   ❌   | Porting the library to be compatible with the STM32 HAL                                                                                                           |
+|   ❌   | Additional examples.                                                                                                                                              |
+|   ❌   | Unit Tests?!                                                                                                                                                      |
+|   ❌   | Implementation & test of programming the one-time programmable register of the AS5047P.                                                                           |

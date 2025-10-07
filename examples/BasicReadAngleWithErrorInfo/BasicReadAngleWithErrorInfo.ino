@@ -6,9 +6,9 @@
  *        In addition to the angle value the error information gets displayed.
  * @version 2.2.2
  * @date 2024-10-19
- * 
+ *
  * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
- * 
+ *
  * More Information can be found here:
  * https://github.com/jonas-merkle/AS5047P
  */
@@ -20,16 +20,17 @@
 #define LED_PIN 13
 
 // define the chip select port.
-#define AS5047P_CHIP_SELECT_PORT 9 
+#define AS5047P_CHIP_SELECT_PORT 9
 
-// define the spi bus speed 
+// define the spi bus speed
 #define AS5047P_CUSTOM_SPI_BUS_SPEED 100000
 
 // initialize a new AS5047P sensor object.
 AS5047P as5047p(AS5047P_CHIP_SELECT_PORT, AS5047P_CUSTOM_SPI_BUS_SPEED);
 
 // arduino setup routine
-void setup() {
+void setup()
+{
 
   // set the pinmode of the led pin to output.
   pinMode(LED_PIN, OUTPUT);
@@ -38,37 +39,36 @@ void setup() {
   Serial.begin(115200);
 
   // initialize the AS5047P sensor and hold if sensor can't be initialized.
-  while (!as5047p.initSPI()) {
+  while (!as5047p.initSPI())
+  {
     Serial.println(F("Can't connect to the AS5047P sensor! Please check the connection..."));
     delay(5000);
   }
-
 }
 
 // arduino loop routine
-void loop() {
+void loop()
+{
 
   /////////////////////
   // read the sensor //
   /////////////////////
-  digitalWrite(LED_PIN, HIGH);    // activate the led.
+  digitalWrite(LED_PIN, HIGH); // activate the led.
 
-  auto errorInfo = AS5047P_Types::ERROR_t();                                    // new error object.
-  float angle = as5047p.readAngleDegree(true, &errorInfo, true, true, true);    // read the angle value from the AS5047P sensor.
+  auto errorInfo = AS5047P_Types::ERROR_t();                                 // new error object.
+  float angle = as5047p.readAngleDegree(true, &errorInfo, true, true, true); // read the angle value from the AS5047P sensor.
 
-  Serial.println("");         // print new line.
-  Serial.print("Angle: ");    // print some text to the serial consol.
-  Serial.println(angle);      // print the angle value.
+  Serial.println("");      // print new line.
+  Serial.print("Angle: "); // print some text to the serial consol.
+  Serial.println(angle);   // print the angle value.
 
-  Serial.println(errorInfo.toArduinoString());    // print the error infomation.
-  
-  delay(500);   // wait for 500 milli seconds.
+  Serial.println(errorInfo.toArduinoString()); // print the error infomation.
 
+  delay(500); // wait for 500 milli seconds.
 
   //////////
   // wait //
   //////////
-  digitalWrite(LED_PIN, LOW);   // deactivate the led.
-  delay(500);                   // wait for 500 milli seconds.
-
+  digitalWrite(LED_PIN, LOW); // deactivate the led.
+  delay(500);                 // wait for 500 milli seconds.
 }

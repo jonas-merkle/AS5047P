@@ -1,53 +1,43 @@
 {
-    "name": "AS5047P",
-    "version": "2.2.2",
-    "description": "An Arduino library for the AS5047P high-resolution rotary position sensor. Supporting also the following sensor types: AS5047D, AS5147, AS5147P, AS5247",
-    "keywords": "arduino-library, as5047p, spi, sensor, rotary-encoder, high-resolution, rotary-position-sensor, as5x47, as5047d, as5147, as5147p, as5247, encoder, rotaty, angle, uvw, abi",
-    "repository":
+  "name": "AS5047P",
+  "version": "2.2.2",
+  "description": "An Arduino library for the AS5047P high-resolution rotary position sensor. Supporting also the following sensor types: AS5047D, AS5147, AS5147P, AS5247",
+  "keywords": "arduino-library, as5047p, spi, sensor, rotary-encoder, high-resolution, rotary-position-sensor, as5x47, as5047d, as5147, as5147p, as5247, encoder, rotaty, angle, uvw, abi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonas-merkle/AS5047P.git"
+  },
+  "authors": [
     {
-        "type": "git",
-        "url": "https://github.com/jonas-merkle/AS5047P.git"
+      "name": "Jonas Merkle [JJM]",
+      "email": "jonas@jjm.one",
+      "url": "https://jjm.one/",
+      "maintainer": true
+    }
+  ],
+  "license": "GPL-3.0-only",
+  "frameworks": "arduino",
+  "platforms": "*",
+  "examples": [
+    {
+      "name": "BasicReadAngle",
+      "base": "examples/BasicReadAngle",
+      "files": ["BasicReadAngle.ino"]
     },
-    "authors":
-    [
-        {
-            "name": "Jonas Merkle [JJM]",
-            "email": "jonas@jjm.one",
-            "url": "https://jjm.one/",
-            "maintainer": true
-        }
-    ],
-    "license": "GPL-3.0-only",
-    "frameworks": "arduino",
-    "platforms": "*",
-    "examples": [
-        {
-            "name": "BasicReadAngle",
-            "base": "examples/BasicReadAngle",
-            "files": [
-                "BasicReadAngle.ino"
-            ]
-        },
-        {
-            "name": "BasicReadAngleAndDebugInfo",
-            "base": "examples/BasicReadAngleAndDebugInfo",
-            "files": [
-                "BasicReadAngleAndDebugInfo.ino"
-            ]
-        },
-        {
-            "name": "BasicReadAngleWithErrorInfo",
-            "base": "examples/BasicReadAngleWithErrorInfo",
-            "files": [
-                "BasicReadAngleWithErrorInfo.ino"
-            ]
-        },
-        {
-            "name": "PrintAllSettings",
-            "base": "examples/PrintAllSettings",
-            "files": [
-                "PrintAllSettings.ino"
-            ]
-        }
-    ]
+    {
+      "name": "BasicReadAngleAndDebugInfo",
+      "base": "examples/BasicReadAngleAndDebugInfo",
+      "files": ["BasicReadAngleAndDebugInfo.ino"]
+    },
+    {
+      "name": "BasicReadAngleWithErrorInfo",
+      "base": "examples/BasicReadAngleWithErrorInfo",
+      "files": ["BasicReadAngleWithErrorInfo.ino"]
+    },
+    {
+      "name": "PrintAllSettings",
+      "base": "examples/PrintAllSettings",
+      "files": ["PrintAllSettings.ino"]
+    }
+  ]
 }
