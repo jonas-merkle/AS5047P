@@ -174,12 +174,12 @@ public:
      * @param regData            Pointer to the data to write.
      * @param errorOut           Optional: error accumulator (nullptr disables checks).
      * @param checkForComError   Poll ERRFL for communication errors after write (effective when errorOut is set).
-     * @param verifyWittenReg    If true, perform a diagnostic pass after write (historical flag name kept).
+     * @param verifyWrittenReg    If true, perform a diagnostic pass after write (historical flag name kept).
      * @return true if no errors were accumulated (or errorOut is nullptr); false otherwise.
      */
     template <class T>
     bool writeReg(const T *regData, AS5047P_Types::ERROR_t *errorOut = nullptr,
-                  bool checkForComError = false, bool verifyWittenReg = false);
+                  bool checkForComError = false, bool verifyWrittenReg = false);
 
     // ======================================================================
     // Read: volatile registers
@@ -236,11 +236,11 @@ public:
      * @param regData           New content to write.
      * @param errorOut          Optional: error accumulator (nullptr disables checks).
      * @param checkForComError  Poll ERRFL for communication errors after write (effective when errorOut is set).
-     * @param verifyWittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
+     * @param verifyWrittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
      * @return true if no errors were accumulated (or errorOut is nullptr); false otherwise.
      */
     bool write_PROG(const AS5047P_Types::PROG_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr,
-                    bool checkForComError = false, bool verifyWittenReg = false);
+                    bool checkForComError = false, bool verifyWrittenReg = false);
 
     // ======================================================================
     // Read: non-volatile registers
@@ -283,44 +283,44 @@ public:
      * @param regData           New content to write.
      * @param errorOut          Optional: error accumulator (nullptr disables checks).
      * @param checkForComError  Poll ERRFL for communication errors after write (effective when errorOut is set).
-     * @param verifyWittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
+     * @param verifyWrittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
      * @return true if no errors were accumulated (or errorOut is nullptr); false otherwise.
      */
     bool write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr,
-                     bool checkForComError = false, bool verifyWittenReg = false);
+                     bool checkForComError = false, bool verifyWrittenReg = false);
 
     /**
      * @brief Write to the ZPOSL register.
      * @param regData           New content to write.
      * @param errorOut          Optional: error accumulator (nullptr disables checks).
      * @param checkForComError  Poll ERRFL for communication errors after write (effective when errorOut is set).
-     * @param verifyWittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
+     * @param verifyWrittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
      * @return true if no errors were accumulated (or errorOut is nullptr); false otherwise.
      */
     bool write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr,
-                     bool checkForComError = false, bool verifyWittenReg = false);
+                     bool checkForComError = false, bool verifyWrittenReg = false);
 
     /**
      * @brief Write to the SETTINGS1 register.
      * @param regData           New content to write.
      * @param errorOut          Optional: error accumulator (nullptr disables checks).
      * @param checkForComError  Poll ERRFL for communication errors after write (effective when errorOut is set).
-     * @param verifyWittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
+     * @param verifyWrittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
      * @return true if no errors were accumulated (or errorOut is nullptr); false otherwise.
      */
     bool write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr,
-                         bool checkForComError = false, bool verifyWittenReg = false);
+                         bool checkForComError = false, bool verifyWrittenReg = false);
 
     /**
      * @brief Write to the SETTINGS2 register.
      * @param regData           New content to write.
      * @param errorOut          Optional: error accumulator (nullptr disables checks).
      * @param checkForComError  Poll ERRFL for communication errors after write (effective when errorOut is set).
-     * @param verifyWittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
+     * @param verifyWrittenReg   If true, perform a diagnostic pass after write (historical flag name kept).
      * @return true if no errors were accumulated (or errorOut is nullptr); false otherwise.
      */
     bool write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData, AS5047P_Types::ERROR_t *errorOut = nullptr,
-                         bool checkForComError = false, bool verifyWittenReg = false);
+                         bool checkForComError = false, bool verifyWrittenReg = false);
 
 private:
     AS5047P_ComBackend::AS5047P_SPI __spiInterface; ///< SPI backend used for sensor communication.

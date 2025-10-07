@@ -386,12 +386,12 @@ T AS5047P::readReg(AS5047P_Types::ERROR_t *errorOut,
  * @param regData           Data to write (16-bit raw in regData->data.raw).
  * @param errorOut          Optional error accumulator (nullptr to skip).
  * @param checkForComError  Poll ERRFL to OR-in comms errors after write.
- * @param verifyWittenReg   If true, also polls sensor diagnostics (historical naming kept).
+ * @param verifyWrittenReg   If true, also polls sensor diagnostics (historical naming kept).
  * @return true if @p errorOut shows no errors (or @p errorOut is nullptr); false otherwise.
  */
 template <class T>
 bool AS5047P::writeReg(const T *regData, AS5047P_Types::ERROR_t *errorOut,
-                       bool checkForComError, bool verifyWittenReg)
+                       bool checkForComError, bool verifyWrittenReg)
 {
     // Perform write (frame assembly handled by lower layer).
     __spiInterface.write(T::REG_ADDRESS, regData->data.raw);
@@ -411,7 +411,7 @@ bool AS5047P::writeReg(const T *regData, AS5047P_Types::ERROR_t *errorOut,
     }
 
     // Optionally run a sensor diagnostic pass (historical flag name preserved).
-    if (verifyWittenReg)
+    if (verifyWrittenReg)
     {
         checkForSensorErrorF(errorOut);
 
@@ -471,9 +471,9 @@ auto AS5047P::read_ANGLECOM(AS5047P_Types::ERROR_t *errorOut,
 // ======================================================================
 
 bool AS5047P::write_PROG(const AS5047P_Types::PROG_t *regData,
-                         AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg)
+                         AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWrittenReg)
 {
-    return writeReg<AS5047P_Types::PROG_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::PROG_t>(regData, errorOut, checkForComError, verifyWrittenReg);
 }
 
 // ======================================================================
@@ -509,25 +509,25 @@ auto AS5047P::read_SETTINGS2(AS5047P_Types::ERROR_t *errorOut,
 // ======================================================================
 
 bool AS5047P::write_ZPOSM(const AS5047P_Types::ZPOSM_t *regData,
-                          AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg)
+                          AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWrittenReg)
 {
-    return writeReg<AS5047P_Types::ZPOSM_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::ZPOSM_t>(regData, errorOut, checkForComError, verifyWrittenReg);
 }
 
 bool AS5047P::write_ZPOSL(const AS5047P_Types::ZPOSL_t *regData,
-                          AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg)
+                          AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWrittenReg)
 {
-    return writeReg<AS5047P_Types::ZPOSL_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::ZPOSL_t>(regData, errorOut, checkForComError, verifyWrittenReg);
 }
 
 bool AS5047P::write_SETTINGS1(const AS5047P_Types::SETTINGS1_t *regData,
-                              AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg)
+                              AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWrittenReg)
 {
-    return writeReg<AS5047P_Types::SETTINGS1_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::SETTINGS1_t>(regData, errorOut, checkForComError, verifyWrittenReg);
 }
 
 bool AS5047P::write_SETTINGS2(const AS5047P_Types::SETTINGS2_t *regData,
-                              AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWittenReg)
+                              AS5047P_Types::ERROR_t *errorOut, bool checkForComError, bool verifyWrittenReg)
 {
-    return writeReg<AS5047P_Types::SETTINGS2_t>(regData, errorOut, checkForComError, verifyWittenReg);
+    return writeReg<AS5047P_Types::SETTINGS2_t>(regData, errorOut, checkForComError, verifyWrittenReg);
 }
