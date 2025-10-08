@@ -98,6 +98,16 @@ public:
      */
     bool verifyWrittenRegF(uint16_t regAddress, uint16_t expectedData);
 
+    /**
+     * @brief Deprecated alias for verifyWrittenRegF (for backward compatibility).
+     * @deprecated Use verifyWrittenRegF instead.
+     */
+#if defined(__cplusplus) && __cplusplus >= 201402L
+    [[deprecated("Use verifyWrittenRegF instead.")]]
+#endif
+    inline bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData) {
+        return verifyWrittenRegF(regAddress, expectedData);
+    }
 #if defined(AS5047P_STD_STRING_SUPPORT)
     /**
      * @brief Read status/error information and return it as a std::string.
