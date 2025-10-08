@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['noerror_0',['noError',['../class_a_s5047_p___types_1_1_e_r_r_o_r__t.html#adbbf6089b37ded068c537046401d23ba',1,'AS5047P_Types::ERROR_t']]],
-  ['nop_5ft_1',['NOP_t',['../class_a_s5047_p___types_1_1_n_o_p__t.html',1,'AS5047P_Types']]]
+  ['mag_5fdata_5ft_0',['MAG_data_t',['../union_a_s5047_p___types_1_1_m_a_g__t_1_1_m_a_g__data__t.html',1,'AS5047P_Types::MAG_t']]],
+  ['mag_5ft_1',['MAG_t',['../class_a_s5047_p___types_1_1_m_a_g__t.html',1,'AS5047P_Types::MAG_t'],['../class_a_s5047_p___types_1_1_m_a_g__t.html#a7b2fa59846143640b5a2bf67433d393b',1,'AS5047P_Types::MAG_t::MAG_t()'],['../class_a_s5047_p___types_1_1_m_a_g__t.html#ad731ba3f20a409be35c926bf1d278a21',1,'AS5047P_Types::MAG_t::MAG_t(uint16_t raw)']]],
+  ['mag_5fvalues_5ft_2',['MAG_values_t',['../union_a_s5047_p___types_1_1_m_a_g__t_1_1_m_a_g__data__t.html#a8398a480b1a14b4c46b1633a4cf98076',1,'AS5047P_Types::MAG_t::MAG_data_t']]]
 ];

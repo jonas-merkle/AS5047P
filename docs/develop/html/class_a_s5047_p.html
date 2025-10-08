@@ -117,6 +117,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9c6d37ccba2030d9af91098544373354" id="r_a9c6d37ccba2030d9af91098544373354"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c6d37ccba2030d9af91098544373354">verifyWrittenRegF</a> (uint16_t regAddress, uint16_t expectedData)</td></tr>
 <tr class="memdesc:a9c6d37ccba2030d9af91098544373354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify that a register contains the expected 16-bit frame (including parity).  <br /></td></tr>
 <tr class="separator:a9c6d37ccba2030d9af91098544373354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae0badbc72869300a2e39a50a90ae5c" id="r_a1ae0badbc72869300a2e39a50a90ae5c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ae0badbc72869300a2e39a50a90ae5c">verifyWittenRegF</a> (uint16_t regAddress, uint16_t expectedData)</td></tr>
+<tr class="memdesc:a1ae0badbc72869300a2e39a50a90ae5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deprecated alias for verifyWrittenRegF (for backward compatibility).  <br /></td></tr>
+<tr class="separator:a1ae0badbc72869300a2e39a50a90ae5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac068387483b45df4523bca69c67aae7b" id="r_ac068387483b45df4523bca69c67aae7b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac068387483b45df4523bca69c67aae7b">readStatusAsArduinoString</a> ()</td></tr>
 <tr class="memdesc:ac068387483b45df4523bca69c67aae7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read status/error information and return it as an Arduino String.  <br /></td></tr>
 <tr class="separator:ac068387483b45df4523bca69c67aae7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -926,6 +929,38 @@ template&lt;class T &gt; </div>
 <p>Read status/error information and return it as an Arduino String. </p>
 <p>Render a human-readable status dump (Arduino String).</p>
 <dl class="section return"><dt>Returns</dt><dd>String with formatted status and diagnostic information. </dd></dl>
+
+</div>
+</div>
+<a id="a1ae0badbc72869300a2e39a50a90ae5c" name="a1ae0badbc72869300a2e39a50a90ae5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae0badbc72869300a2e39a50a90ae5c">&#9670;&#160;</a></span>verifyWittenRegF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AS5047P::verifyWittenRegF </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>regAddress</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>expectedData</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deprecated alias for verifyWrittenRegF (for backward compatibility). </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated</a></b></dt><dd>Use verifyWrittenRegF instead. </dd></dl>
 
 </div>
 </div>
