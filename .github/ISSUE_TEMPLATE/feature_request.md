@@ -4,7 +4,6 @@ about: Suggest an idea for this project
 title: "[FEATURE REQUEST]:"
 labels: enhancement
 assignees: jonas-merkle
-
 ---
 
 **Is your feature request related to a problem? Please describe.**

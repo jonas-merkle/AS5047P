@@ -1,39 +1,44 @@
 /**
  * @file AS5047P_Types.cpp
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
- * @brief This source file contains the implementation of the type definitions for the AS5047P Library.
- * @version 2.2.2
- * @date 2024-10-19
- * 
- * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
- * 
+ * @brief Implementation of types, frame structures, and helpers used by the
+ *        AS5047P library (error reporting, SPI frames, and register wrappers).
+ *
+ * @version 3.0.0
+ * @date 2025-10-07
+ *
+ * @copyright
+ * Copyright (c) 2024 Jonas Merkle.
+ * This project is released under the GPL-3.0 License.
  */
 
 #include "AS5047P_Types.h"
-
 #include "util/AS5047P_Util.h"
 
-namespace AS5047P_Types {
+namespace AS5047P_Types
+{
 
-    // Errors ------------------------------------------------------
+    // ======================================================================
+    // Error container
+    // ======================================================================
 
-    ERROR_t::ERROR_t(uint8_t sensorSideErrorsRaw, uint8_t controllerSideErrorsRaw) {
-
+    ERROR_t::ERROR_t(uint8_t sensorSideErrorsRaw, uint8_t controllerSideErrorsRaw)
+    {
         sensorSideErrors.raw = sensorSideErrorsRaw;
         controllerSideErrors.raw = controllerSideErrorsRaw;
     }
 
-    bool ERROR_t::noError() {
-        return (
-            sensorSideErrors.raw == 0 &&
-            controllerSideErrors.raw == 0
-        );
+    bool ERROR_t::noError()
+    {
+        return (sensorSideErrors.raw == 0 && controllerSideErrors.raw == 0);
     }
 
-    #if defined(AS5047P_STD_STRING_SUPPORT)
-
-    std::string ERROR_t::toStdString() {
-        
+#if defined(AS5047P_STD_STRING_SUPPORT)
+    /**
+     * @brief Render a human-readable error report (C++ std::string version).
+     */
+    std::string ERROR_t::toStdString()
+    {
         std::string str;
         str.reserve(AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE);
 
@@ -55,14 +60,14 @@ namespace AS5047P_Types {
         str.append("- SENS_CORDIC_OVERFLOW_ERROR: ");
         str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR));
         str.append("\n");
-        str.append("- SENS_CORDIC_OVERFLOW_ERROR: ");
+        str.append("- SENS_MAG_TOO_HIGH:          "); // fixed label
         str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_MAG_TOO_HIGH));
         str.append("\n");
         str.append("- SENS_MAG_TOO_LOW:           ");
         str.append(AS5047P_Util::to_string(sensorSideErrors.flags.SENS_MAG_TOO_LOW));
         str.append("\n");
         str.append("##################################\n");
-        str.append(" Controller Side Errors: \n");
+        str.append(" Controller Side Errors:\n");
         str.append("----------------------------------\n");
         str.append("- CONT_SPI_PARITY_ERROR:      ");
         str.append(AS5047P_Util::to_string(controllerSideErrors.flags.CONT_SPI_PARITY_ERROR));
@@ -76,163 +81,126 @@ namespace AS5047P_Types {
         str.append("##################################\n");
 
         str.shrink_to_fit();
-
         return str;
-
     }
-    
-    #endif
+#endif
 
-    String ERROR_t::toArduinoString() {
-
+    /**
+     * @brief Render a human-readable error report (Arduino String version).
+     */
+    String ERROR_t::toArduinoString()
+    {
         char buf[AS5047P__TYPES_ERROR_STRING_BUFFER_SIZE] = {0};
 
+        // fixed label for MAG_TOO_HIGH
         sprintf(buf,
-            "##################################\n Sensor Side Errors:\n----------------------------------\n- SENS_SPI_FRAMING_ERROR:     %d\n- SENS_SPI_INVALID_CMD:       %d\n- SENS_SPI_PARITY_ERROR:      %d\n- SENS_OFFSET_COMP_ERROR:     %d\n- SENS_CORDIC_OVERFLOW_ERROR: %d\n- SENS_CORDIC_OVERFLOW_ERROR: %d\n- SENS_MAG_TOO_LOW:           %d\n##################################\n Controller Side Errors: \n----------------------------------\n- CONT_SPI_PARITY_ERROR:      %d\n- CONT_GENERAL_COM_ERROR:     %d\n- CONT_WRITE_VERIFY_FAILED:   %d\n##################################\n",
-            sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR, sensorSideErrors.flags.SENS_SPI_INVALID_CMD, sensorSideErrors.flags.SENS_SPI_PARITY_ERROR,
-            sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR, sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR, sensorSideErrors.flags.SENS_MAG_TOO_HIGH, 
-            sensorSideErrors.flags.SENS_MAG_TOO_LOW,
-
-            controllerSideErrors.flags.CONT_SPI_PARITY_ERROR, controllerSideErrors.flags.CONT_GENERAL_COM_ERROR, controllerSideErrors.flags.CONT_WRITE_VERIFY_FAILED
-        );
+                "##################################\n"
+                " Sensor Side Errors:\n"
+                "----------------------------------\n"
+                "- SENS_SPI_FRAMING_ERROR:     %d\n"
+                "- SENS_SPI_INVALID_CMD:       %d\n"
+                "- SENS_SPI_PARITY_ERROR:      %d\n"
+                "- SENS_OFFSET_COMP_ERROR:     %d\n"
+                "- SENS_CORDIC_OVERFLOW_ERROR: %d\n"
+                "- SENS_MAG_TOO_HIGH:          %d\n"
+                "- SENS_MAG_TOO_LOW:           %d\n"
+                "##################################\n"
+                " Controller Side Errors:\n"
+                "----------------------------------\n"
+                "- CONT_SPI_PARITY_ERROR:      %d\n"
+                "- CONT_GENERAL_COM_ERROR:     %d\n"
+                "- CONT_WRITE_VERIFY_FAILED:   %d\n"
+                "##################################\n",
+                sensorSideErrors.flags.SENS_SPI_FRAMING_ERROR,
+                sensorSideErrors.flags.SENS_SPI_INVALID_CMD,
+                sensorSideErrors.flags.SENS_SPI_PARITY_ERROR,
+                sensorSideErrors.flags.SENS_OFFSET_COMP_ERROR,
+                sensorSideErrors.flags.SENS_CORDIC_OVERFLOW_ERROR,
+                sensorSideErrors.flags.SENS_MAG_TOO_HIGH,
+                sensorSideErrors.flags.SENS_MAG_TOO_LOW,
+                controllerSideErrors.flags.CONT_SPI_PARITY_ERROR,
+                controllerSideErrors.flags.CONT_GENERAL_COM_ERROR,
+                controllerSideErrors.flags.CONT_WRITE_VERIFY_FAILED);
 
         return String(buf);
-
     }
 
-    // -------------------------------------------------------------
+    // ======================================================================
+    // SPI frame helpers (command, read, write)
+    // ======================================================================
 
-    // SPI Frames --------------------------------------------------
-
-    SPI_Command_Frame_t::SPI_Command_Frame_t(const uint16_t raw) {
+    SPI_Command_Frame_t::SPI_Command_Frame_t(const uint16_t raw)
+    {
         data.raw = raw;
     }
 
-    SPI_Command_Frame_t::SPI_Command_Frame_t(const uint16_t ADDR, const uint16_t RW) {
-        data.values = {
-            .ADDR = ADDR,
-            .RW = RW,
-            .PARC = 0
-        };
-
-        data.values.PARC = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
+    SPI_Command_Frame_t::SPI_Command_Frame_t(const uint16_t ADDR, const uint16_t RW)
+    {
+        // Compose frame, then compute command parity (PARC on the assembled raw).
+        data.values = {.ADDR = ADDR, .RW = RW, .PARC = 0};
+        data.values.PARC = !AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
-    SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(const uint16_t raw) {
+    SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(const uint16_t raw)
+    {
         data.raw = raw;
     }
 
-    SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(const uint16_t DATA, const uint16_t EF) {
-        data.values = {
-            .DATA = DATA,
-            .EF = EF,
-            .PARD = 0
-        };
-
-        data.values.PARD = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
+    SPI_ReadData_Frame_t::SPI_ReadData_Frame_t(const uint16_t DATA, const uint16_t EF)
+    {
+        // Compose frame, then compute data parity (PARD on the assembled raw).
+        data.values = {.DATA = DATA, .EF = EF, .PARD = 0};
+        data.values.PARD = !AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
-    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t raw) {
+    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t raw)
+    {
         data.raw = raw;
     }
 
-    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t DATA, const uint16_t NC) {
-        data.values = {
-            .DATA = DATA,
-            .NC = NC,
-            .PARD = 0
-        };
-
-        data.values.PARD = ~AS5047P_Util::hasEvenNoOfBits(data.raw);
+    SPI_WriteData_Frame_t::SPI_WriteData_Frame_t(const uint16_t DATA, const uint16_t NC)
+    {
+        // Compose frame, then compute data parity (PARD on the assembled raw).
+        data.values = {.DATA = DATA, .NC = NC, .PARD = 0};
+        data.values.PARD = !AS5047P_Util::hasEvenNoOfBits(data.raw);
     }
 
-    // -------------------------------------------------------------
+    // ======================================================================
+    // Volatile register wrappers
+    // ======================================================================
 
-    // Volatile Registers ------------------------------------------
+    ERRFL_t::ERRFL_t() { data.raw = ERRFL_t::REG_DEFAULT; }
+    ERRFL_t::ERRFL_t(uint16_t raw) { data.raw = raw; }
 
-    ERRFL_t::ERRFL_t() {
-        data.raw = ERRFL_t::REG_DEFAULT;
-    }
+    PROG_t::PROG_t() { data.raw = PROG_t::REG_DEFAULT; }
+    PROG_t::PROG_t(uint16_t raw) { data.raw = raw; }
 
-    ERRFL_t::ERRFL_t(uint16_t raw) {
-        data.raw = raw;
-    }
+    DIAAGC_t::DIAAGC_t() { data.raw = DIAAGC_t::REG_DEFAULT; }
+    DIAAGC_t::DIAAGC_t(uint16_t raw) { data.raw = raw; }
 
-    PROG_t::PROG_t() {
-        data.raw = PROG_t::REG_DEFAULT;
-    }
+    MAG_t::MAG_t() { data.raw = MAG_t::REG_DEFAULT; }
+    MAG_t::MAG_t(uint16_t raw) { data.raw = raw; }
 
-    PROG_t::PROG_t(uint16_t raw) {
-        data.raw = raw;
-    }
+    ANGLEUNC_t::ANGLEUNC_t() { data.raw = ANGLEUNC_t::REG_DEFAULT; }
+    ANGLEUNC_t::ANGLEUNC_t(uint16_t raw) { data.raw = raw; }
 
-    DIAAGC_t::DIAAGC_t() {
-        data.raw = DIAAGC_t::REG_DEFAULT;
-    }
+    ANGLECOM_t::ANGLECOM_t() { data.raw = ANGLECOM_t::REG_DEFAULT; }
+    ANGLECOM_t::ANGLECOM_t(uint16_t raw) { data.raw = raw; }
 
-    DIAAGC_t::DIAAGC_t(uint16_t raw) {
-        data.raw = raw;
-    }
+    // ======================================================================
+    // Non-volatile register wrappers
+    // ======================================================================
 
-    MAG_t::MAG_t() {
-        data.raw = MAG_t::REG_DEFAULT;
-    }
+    ZPOSM_t::ZPOSM_t() { data.raw = ZPOSM_t::REG_DEFAULT; }
+    ZPOSM_t::ZPOSM_t(uint16_t raw) { data.raw = raw; }
 
-    MAG_t::MAG_t(uint16_t raw) {
-        data.raw = raw;
-    }
+    ZPOSL_t::ZPOSL_t() { data.raw = ZPOSL_t::REG_DEFAULT; }
+    ZPOSL_t::ZPOSL_t(uint16_t raw) { data.raw = raw; }
 
-    ANGLEUNC_t::ANGLEUNC_t() {
-        data.raw = ANGLEUNC_t::REG_DEFAULT;
-    }
+    SETTINGS1_t::SETTINGS1_t() { data.raw = SETTINGS1_t::REG_DEFAULT; }
+    SETTINGS1_t::SETTINGS1_t(uint16_t raw) { data.raw = raw; }
 
-    ANGLEUNC_t::ANGLEUNC_t(uint16_t raw) {
-        data.raw = raw;
-    }
+    SETTINGS2_t::SETTINGS2_t() { data.raw = SETTINGS2_t::REG_DEFAULT; }
+    SETTINGS2_t::SETTINGS2_t(uint16_t raw) { data.raw = raw; }
 
-    ANGLECOM_t::ANGLECOM_t() {
-        data.raw = ANGLECOM_t::REG_DEFAULT;
-    }
-
-    ANGLECOM_t::ANGLECOM_t(uint16_t raw) {
-        data.raw = raw;
-    }
-
-    // -------------------------------------------------------------
-
-    // Non-Volatile Registers --------------------------------------
-
-    ZPOSM_t::ZPOSM_t() {
-        data.raw = ZPOSM_t::REG_DEFAULT;
-    }
-
-    ZPOSM_t::ZPOSM_t(uint16_t raw) {
-        data.raw = raw;
-    }
-
-    ZPOSL_t::ZPOSL_t() {
-        data.raw = ZPOSL_t::REG_DEFAULT;
-    }
-
-    ZPOSL_t::ZPOSL_t(uint16_t raw) {
-        data.raw = raw;
-    }
-
-    SETTINGS1_t::SETTINGS1_t() {
-        data.raw = SETTINGS1_t::REG_DEFAULT;
-    }
-
-    SETTINGS1_t::SETTINGS1_t(uint16_t raw) {
-        data.raw = raw;
-    }
-
-    SETTINGS2_t::SETTINGS2_t() {
-        data.raw = SETTINGS2_t::REG_DEFAULT;
-    }
-
-    SETTINGS2_t::SETTINGS2_t(uint16_t raw) {
-        data.raw = raw;
-    }
-
-    // -------------------------------------------------------------
-}
+} // namespace AS5047P_Types
