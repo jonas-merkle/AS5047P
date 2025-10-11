@@ -59,7 +59,7 @@ void setup()
     delay(5000);
   }
 
-  Serial.println(F("AS5047P sensor successfully initialized.");
+  Serial.println(F("AS5047P sensor successfully initialized."));
 }
 
 /**
@@ -90,7 +90,7 @@ void loop()
   Serial.println();
 
   // Print the angle.
-  Serial.print("Angle: ");
+  Serial.print(F("Angle: "));
   Serial.println(angle);
 
   // Print error/diagnostic information as a single Arduino-friendly string.

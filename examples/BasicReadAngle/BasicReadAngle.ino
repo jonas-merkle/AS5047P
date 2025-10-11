@@ -75,7 +75,7 @@ void loop()
   digitalWrite(LED_PIN, HIGH);
 
   // Read the current angle (in degrees) and print it to the serial console.
-  Serial.print("Angle: ");
+  Serial.print(F("Angle: "));
   Serial.println(as5047p.readAngleDegree());
 
   // Wait for 500 milliseconds.

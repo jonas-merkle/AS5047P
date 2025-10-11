@@ -76,7 +76,7 @@ void loop()
   digitalWrite(LED_PIN, HIGH);
 
   // Read and print the angle in degrees.
-  Serial.print("Angle: ");
+  Serial.print(F("Angle: "));
   Serial.println(as5047p.readAngleDegree());
 
   // Read and print sensor diagnostic information.
