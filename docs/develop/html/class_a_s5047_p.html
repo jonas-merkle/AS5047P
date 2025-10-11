@@ -315,7 +315,7 @@ Public Member Functions</h2></td></tr>
 <p>Test the SPI connection to the <a class="el" href="class_a_s5047_p.html" title="Main class for interacting with the AS5047P sensor.">AS5047P</a>. </p>
 <p>Check that SPI communication works as expected.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if the connection behaves as expected; false otherwise.</dd></dl>
-<p>Sends a write to the read-only ERRFL register to force an error, then verifies that the expected error bits are set.</p>
+<p>Performs a series of reads and a write to verify basic SPI functionality,</p>
 <dl class="section return"><dt>Returns</dt><dd>true if the check passes and parity error is detected, false otherwise. </dd></dl>
 
 </div>
