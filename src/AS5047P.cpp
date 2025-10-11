@@ -33,25 +33,166 @@ AS5047P::AS5047P(const uint8_t chipSelectPinNo, const uint32_t spiSpeed)
 /**
  * @brief Check that SPI communication works as expected.
  *
- * Sends a write to the read-only ERRFL register to force an error,
- * then verifies that the expected error bits are set.
+ * Performs a series of reads and a write to verify basic SPI functionality,
  *
  * @return true if the check passes and parity error is detected, false otherwise.
  */
 bool AS5047P::checkSPICon()
 {
-    // Test: attempt to write to a read-only register (ERRFL) to trigger an error.
-    __spiInterface.write(AS5047P_Types::ERRFL_t::REG_ADDRESS, 0x0007);
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+    Serial.println(F("=== AS5047P SPI Connection Test (compact + safe restore) ==="));
+#endif
 
-    // Read the error register (should contain an error after the invalid write).
-    AS5047P_Types::ERRFL_t errorReg = read_ERRFL();
+    AS5047P_Types::ERROR_t err;
 
-    // If the error register shows no framing/invalid-command errors and a parity
-    // error *is* present, SPI comms are behaving as expected for this test.
-    return (
-        errorReg.data.values.FRERR == 0 &&
-        errorReg.data.values.INVCOMM == 0 &&
-        errorReg.data.values.PARERR == 1);
+    // 1) ERRFL: quick comm/parity check
+    auto errfl = AS5047P::read_ERRFL(&err, true, true, true);
+    if (err.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR)
+    {
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.println(F("[FAIL] Parity error on ERRFL read."));
+#endif
+        return false;
+    }
+    if (errfl.data.raw)
+    {
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.print(F("[FAIL] ERRFL nonzero: 0b"));
+        Serial.println(errfl.data.raw, BIN);
+#endif
+        return false;
+    }
+
+    // 2) ANGLEUNC: basic data sanity + parity
+    auto angle = AS5047P::read_ANGLEUNC(&err, true, true, false);
+    if (err.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR)
+    {
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.println(F("[FAIL] Parity error on ANGLEUNC read."));
+#endif
+        return false;
+    }
+    uint16_t ang = angle.data.values.CORDICANG;
+    if (ang > 0x3FFF)
+    {
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.println(F("[FAIL] ANGLE out of range (>16383)."));
+#endif
+        return false;
+    }
+
+    // 3) Soft write test on SETTINGS2 (mask writable bits only: 0..7)
+    constexpr uint16_t S2_WRITABLE_MASK = 0x00FF;
+
+    AS5047P_Types::ERROR_t e_before{};
+    auto s2_before = AS5047P::read_SETTINGS2(&e_before, true, true, false);
+    if (e_before.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR)
+    {
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.println(F("[FAIL] Parity error on SETTINGS2 read (before)."));
+#endif
+        return false;
+    }
+
+    // Prepare modified value (harmless flip of HYS LSB)
+    AS5047P_Types::SETTINGS2_t s2_w = s2_before;
+    s2_w.data.values.HYS ^= 0x1;
+
+    // Track if we changed the setting so we can always restore it later
+    bool s2_changed = false;
+
+    // Helper to restore original SETTINGS2 before returning on failure/success
+    auto restore_s2 = [&](const __FlashStringHelper *ctx_label)
+    {
+        if (!s2_changed)
+            return true; // nothing to restore
+        AS5047P_Types::ERROR_t e_restore{};
+        bool ok = AS5047P::write_SETTINGS2(&s2_before, &e_restore, true, false);
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        if (!ok || e_restore.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR)
+        {
+            Serial.print(F("[WARN] Restore SETTINGS2 failed during "));
+            Serial.print(ctx_label);
+            Serial.println(F("."));
+        }
+#endif
+        return ok && !e_restore.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR;
+    };
+
+    // 3a) Write modified SETTINGS2
+    AS5047P_Types::ERROR_t e_wr{};
+    if (!AS5047P::write_SETTINGS2(&s2_w, &e_wr, /*checkForComError=*/true, /*verifyWrittenReg=*/false) || e_wr.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR)
+    {
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.println(F("[FAIL] SETTINGS2 write failed or parity error."));
+#endif
+        // nothing changed on chip if write failed, so just return
+        return false;
+    }
+    s2_changed = true;
+
+    // 3b) Read back and verify ONLY writable bits
+    AS5047P_Types::ERROR_t e_after{};
+    auto s2_after = AS5047P::read_SETTINGS2(&e_after, true, true, false);
+    if (e_after.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR)
+    {
+        restore_s2(F("post-write read"));
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.println(F("[FAIL] Parity error on SETTINGS2 read (after)."));
+#endif
+        return false;
+    }
+
+    const uint16_t wrote_m = s2_w.data.raw & S2_WRITABLE_MASK;
+    const uint16_t read_m = s2_after.data.raw & S2_WRITABLE_MASK;
+    if (read_m != wrote_m)
+    {
+        restore_s2(F("verification"));
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.print(F("[FAIL] SETTINGS2 mismatch (masked). wrote=0x"));
+        Serial.print(wrote_m, HEX);
+        Serial.print(F(" read=0x"));
+        Serial.println(read_m, HEX);
+#endif
+        return false;
+    }
+
+    // 3c) Restore original SETTINGS2 and (optionally) verify
+    if (!restore_s2(F("restore")))
+    {
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+        Serial.println(F("[FAIL] SETTINGS2 restore failed."));
+#endif
+        return false;
+    }
+
+#ifdef AS5047P_DEBUG_OUTPUT_ENABLE
+    // Optional masked verify of the restore (cheap and safe)
+    AS5047P_Types::ERROR_t e_verify{};
+    auto s2_restored = AS5047P::read_SETTINGS2(&e_verify, true, true, false);
+    if (!e_verify.controllerSideErrors.flags.CONT_SPI_PARITY_ERROR)
+    {
+        uint16_t before_m = s2_before.data.raw & S2_WRITABLE_MASK;
+        uint16_t now_m = s2_restored.data.raw & S2_WRITABLE_MASK;
+        if (before_m != now_m)
+        {
+            Serial.print(F("[FAIL] SETTINGS2 did not restore on writable bits. got=0x"));
+            Serial.print(now_m, HEX);
+            Serial.print(F(" expected=0x"));
+            Serial.println(before_m, HEX);
+            return false;
+        }
+    }
+    else
+    {
+        Serial.println(F("[FAIL] Parity error while verifying SETTINGS2 restore."));
+        return false;
+    }
+
+    Serial.println(F("[PASS] SPI OK (ERRFL, ANGLE, SETTINGS2 masked write + guaranteed restore)."));
+#endif
+
+    return true;
 }
 
 /**
