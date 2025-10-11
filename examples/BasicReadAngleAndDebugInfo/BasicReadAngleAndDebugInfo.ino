@@ -45,7 +45,11 @@ void setup()
 
   // Start serial communication at 115200 baud.
   Serial.begin(115200);
-  Serial.println("Initializing AS5047P sensor...");
+  while (!Serial)
+  {
+    delay(10); // Wait for Serial to be ready
+  }
+  Serial.println(F("Initializing AS5047P sensor..."));
 
   // Attempt to initialize the AS5047P sensor.
   // Retry every 5 seconds if initialization fails.
@@ -56,7 +60,7 @@ void setup()
     delay(5000);
   }
 
-  Serial.println("AS5047P sensor successfully initialized.");
+  Serial.println(F("AS5047P sensor successfully initialized."));
 }
 
 /**

@@ -46,7 +46,11 @@ void setup()
 
   // Start serial communication at 115200 baud.
   Serial.begin(115200);
-  Serial.println("Initializing AS5047P sensor...");
+  while (!Serial)
+  {
+    delay(10); // Wait for Serial to be ready
+  }
+  Serial.println(F("Initializing AS5047P sensor..."));
 
   // Attempt to initialize the AS5047P sensor.
   // Retry every 5 seconds if initialization fails.
@@ -57,7 +61,7 @@ void setup()
     delay(5000);
   }
 
-  Serial.println("AS5047P sensor successfully initialized.");
+  Serial.println(F("AS5047P sensor successfully initialized."));
 }
 
 /**
@@ -73,31 +77,31 @@ void loop()
   auto settings2 = as5047p.read_SETTINGS2();
 
   // Print SETTINGS1 register values.
-  Serial.println("\n--- SETTINGS1 ---");
-  Serial.print("FactorySetting: ");
+  Serial.println(F("\n--- SETTINGS1 ---"));
+  Serial.print(F("FactorySetting: "));
   Serial.println(settings1.data.values.FactorySetting);
-  Serial.print("NOISESET:       ");
+  Serial.print(F("NOISESET:       "));
   Serial.println(settings1.data.values.NOISESET);
-  Serial.print("DIR:            ");
+  Serial.print(F("DIR:            "));
   Serial.println(settings1.data.values.DIR);
-  Serial.print("UVW_ABI:        ");
+  Serial.print(F("UVW_ABI:        "));
   Serial.println(settings1.data.values.UVW_ABI);
-  Serial.print("DAECDIS:        ");
+  Serial.print(F("DAECDIS:        "));
   Serial.println(settings1.data.values.DAECDIS);
-  Serial.print("ABIBIN:         ");
+  Serial.print(F("ABIBIN:         "));
   Serial.println(settings1.data.values.ABIBIN);
-  Serial.print("Dataselect:     ");
+  Serial.print(F("Dataselect:     "));
   Serial.println(settings1.data.values.Dataselect);
-  Serial.print("PWMon:          ");
+  Serial.print(F("PWMon:          "));
   Serial.println(settings1.data.values.PWMon);
 
   // Print SETTINGS2 register values.
-  Serial.println("\n--- SETTINGS2 ---");
-  Serial.print("UVWPP:          ");
+  Serial.println(F("\n--- SETTINGS2 ---"));
+  Serial.print(F("UVWPP:          "));
   Serial.println(settings2.data.values.UVWPP);
-  Serial.print("HYS:            ");
+  Serial.print(F("HYS:            "));
   Serial.println(settings2.data.values.HYS);
-  Serial.print("ABIRES:         ");
+  Serial.print(F("ABIRES:         "));
   Serial.println(settings2.data.values.ABIRES);
 
   // Add an empty line for readability and wait 5 seconds before repeating.
