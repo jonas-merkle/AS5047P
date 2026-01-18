@@ -8,11 +8,11 @@
  *        AS5047P sensor and prints it to the serial console once per second,
  *        toggling the onboard LED to indicate activity.
  *
- * @version 3.0.0
- * @date 2025-10-07
+ * @version 3.0.1
+ * @date 2026-01-18
  *
  * @copyright
- * Copyright (c) 2024 Jonas Merkle.
+ * Copyright (c) 2026 Jonas Merkle.
  * This project is released under the GPL-3.0 License.
  *
  * @see https://github.com/jonas-merkle/AS5047P

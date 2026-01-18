@@ -6,11 +6,11 @@
  *        Declares the high-level sensor API, read/write helpers for volatile
  *        and non-volatile registers, and optional status/debug utilities.
  *
- * @version 3.0.0
- * @date 2025-10-07
+ * @version 3.0.1
+ * @date 2026-01-18
  *
  * @copyright
- * Copyright (c) 2024 Jonas Merkle.
+ * Copyright (c) 2026 Jonas Merkle.
  * This project is released under the GPL-3.0 License.
  */
 
@@ -105,7 +105,8 @@ public:
 #if defined(__cplusplus) && __cplusplus >= 201402L
     [[deprecated("Use verifyWrittenRegF instead.")]]
 #endif
-    inline bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData) {
+    inline bool verifyWittenRegF(uint16_t regAddress, uint16_t expectedData)
+    {
         return verifyWrittenRegF(regAddress, expectedData);
     }
 #if defined(AS5047P_STD_STRING_SUPPORT)

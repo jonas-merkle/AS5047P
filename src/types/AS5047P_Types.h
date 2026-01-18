@@ -2,11 +2,12 @@
  * @file AS5047P_Types.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief Type definitions used by the AS5047P library (errors, SPI frames, register wrappers).
- * @version 2.2.3
- * @date 2025-10-07
+ *
+ * @version 3.0.1
+ * @date 2026-01-18
  *
  * @copyright
- * Copyright (c) 2024 Jonas Merkle.
+ * Copyright (c) 2026 Jonas Merkle.
  * This project is released under the GPL-3.0 License.
  */
 
@@ -352,8 +353,10 @@ namespace AS5047P_Types
             typedef struct __attribute__((__packed__))
             {
                 uint16_t PROGEN : 1;  ///< Enable programming of OTP memory.
+                uint16_t :1;
                 uint16_t OTPREF : 1;  ///< Refresh non-volatile regs from OTP content.
                 uint16_t PROGOTP : 1; ///< Start OTP programming cycle.
+                uint16_t :2;
                 uint16_t PROGVER : 1; ///< Enable verify phase after programming.
             } PROG_values_t;
 

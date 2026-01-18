@@ -4,11 +4,11 @@
  * @brief Implementation of types, frame structures, and helpers used by the
  *        AS5047P library (error reporting, SPI frames, and register wrappers).
  *
- * @version 3.0.0
- * @date 2025-10-07
+ * @version 3.0.1
+ * @date 2026-01-18
  *
  * @copyright
- * Copyright (c) 2024 Jonas Merkle.
+ * Copyright (c) 2026 Jonas Merkle.
  * This project is released under the GPL-3.0 License.
  */
 
