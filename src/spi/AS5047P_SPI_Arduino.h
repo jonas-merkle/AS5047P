@@ -2,11 +2,13 @@
  * @file AS5047P_SPI_Arduino.h
  * @author Jonas Merkle [JJM] (jonas@jjm.one)
  * @brief This header file contains the Arduino SPI bus handler for the AS5047P Library.
- * @version 2.2.2
- * @date 2024-10-19
  *
- * @copyright Copyright (c) 2024 Jonas Merkle. This project is released under the GPL-3.0 License License.
+ * @version 3.0.1
+ * @date 2026-01-18
  *
+ * @copyright
+ * Copyright (c) 2026 Jonas Merkle.
+ * This project is released under the GPL-3.0 License.
  */
 
 #ifndef AS5047P_SPI_ARDUINO_h
