@@ -352,8 +352,10 @@ namespace AS5047P_Types
             typedef struct __attribute__((__packed__))
             {
                 uint16_t PROGEN : 1;  ///< Enable programming of OTP memory.
+                uint16_t :1;
                 uint16_t OTPREF : 1;  ///< Refresh non-volatile regs from OTP content.
                 uint16_t PROGOTP : 1; ///< Start OTP programming cycle.
+                uint16_t :2;
                 uint16_t PROGVER : 1; ///< Enable verify phase after programming.
             } PROG_values_t;
 
