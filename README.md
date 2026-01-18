@@ -6,7 +6,7 @@
 ![GitHub](https://img.shields.io/github/license/jonas-merkle/AS5047P)
 ![GitHub issues](https://img.shields.io/github/issues/jonas-merkle/AS5047P)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/jonas-merkle/AS5047P)
-![Maintenance](https://img.shields.io/maintenance/yes/2025)
+![Maintenance](https://img.shields.io/maintenance/yes/2026)
 
 High-level, type-safe SPI driver for **ams/TA** **AS5047P** (and compatible AS5x47 parts).
 Read 14-bit angles, magnitude, and diagnostics with concise APIs—works on classic Arduino, Feather, Teensy, and other SPI-capable boards.
