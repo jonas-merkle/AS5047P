@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">AS5047P - Arduino Library<span id="projectnumber">&#160;3.0.0</span>
+   <div id="projectname">AS5047P - Arduino Library<span id="projectnumber">&#160;3.0.1</span>
    </div>
    <div id="projectbrief">An Arduino library for the AS5047P high-resolution rotary position sensor.</div>
   </td>
@@ -93,56 +93,56 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 <a href="_a_s5047_p___util_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef AS5047P_Util_h</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define AS5047P_Util_h</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="_a_s5047_p___settings_8h.html">./util/AS5047P_Settings.h</a>&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#if defined(AS5047P_STD_STRING_SUPPORT)</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_s5047_p___util.html">AS5047P_Util</a></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> hasEvenNoOfBits(uint16_t data)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="comment">// Fold upper bits into lower bits; after these XORs, LSB holds parity.</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        data ^= data &gt;&gt; 8;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        data ^= data &gt;&gt; 4;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        data ^= data &gt;&gt; 2;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        data ^= data &gt;&gt; 1;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="comment">// If LSB == 0 ⇒ even parity; if LSB == 1 ⇒ odd parity.</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> ((~data) &amp; 1u) != 0u;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> parityCheck(uint16_t rawData)</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keyword">const</span> uint16_t lower15 = rawData &amp; 0x7FFFu;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">const</span> uint16_t parityBit = (rawData &gt;&gt; 15) &amp; 0x1u; <span class="comment">// MSB (bit 15)</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">const</span> uint16_t expected = <span class="keyword">static_cast&lt;</span>uint16_t<span class="keyword">&gt;</span>(!hasEvenNoOfBits(lower15));</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> parityBit == expected;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#if defined(AS5047P_STD_STRING_SUPPORT)</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    std::string to_string(<span class="keyword">const</span> T &amp;value)</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        std::stringstream ss;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        ss &lt;&lt; value;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} <span class="comment">// namespace AS5047P_Util</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#endif </span><span class="comment">// AS5047P_Util_h</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef AS5047P_Util_h</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define AS5047P_Util_h</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="_a_s5047_p___settings_8h.html">./util/AS5047P_Settings.h</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#if defined(AS5047P_STD_STRING_SUPPORT)</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_a_s5047_p___util.html">AS5047P_Util</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> hasEvenNoOfBits(uint16_t data)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="comment">// Fold upper bits into lower bits; after these XORs, LSB holds parity.</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        data ^= data &gt;&gt; 8;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        data ^= data &gt;&gt; 4;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        data ^= data &gt;&gt; 2;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        data ^= data &gt;&gt; 1;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// If LSB == 0 ⇒ even parity; if LSB == 1 ⇒ odd parity.</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">return</span> ((~data) &amp; 1u) != 0u;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> parityCheck(uint16_t rawData)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">const</span> uint16_t lower15 = rawData &amp; 0x7FFFu;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">const</span> uint16_t parityBit = (rawData &gt;&gt; 15) &amp; 0x1u; <span class="comment">// MSB (bit 15)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">const</span> uint16_t expected = <span class="keyword">static_cast&lt;</span>uint16_t<span class="keyword">&gt;</span>(!hasEvenNoOfBits(lower15));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> parityBit == expected;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#if defined(AS5047P_STD_STRING_SUPPORT)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::string to_string(<span class="keyword">const</span> T &amp;value)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        std::stringstream ss;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ss &lt;&lt; value;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">return</span> ss.str();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>} <span class="comment">// namespace AS5047P_Util</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif </span><span class="comment">// AS5047P_Util_h</span></div>
 <div class="ttc" id="a_a_s5047_p___settings_8h_html"><div class="ttname"><a href="_a_s5047_p___settings_8h.html">AS5047P_Settings.h</a></div><div class="ttdoc">Library-wide configuration options for the AS5047P library.</div></div>
 <div class="ttc" id="anamespace_a_s5047_p___util_html"><div class="ttname"><a href="namespace_a_s5047_p___util.html">AS5047P_Util</a></div><div class="ttdoc">Utility functions for the AS5047P sensor.</div></div>
 </div><!-- fragment --></div><!-- contents -->
